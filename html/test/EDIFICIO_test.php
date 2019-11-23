@@ -1,10 +1,10 @@
 <?php
-// Autor : jrodeiro
-// Fecha : 23/9/2019
-// Descripción : 
-//	Fichero de test de unidad de la entidad EDIFICIO
+//Clase : EDIFICIO_test
+//Creado el : 20-11-2019
+//Creado por: grvidal
+//Fichero de test de unidad de la entidad EDIFICIO
 //	Saca por pantalla el resultado de los test
-// incluir el modelo de la entidad EDIFICIO
+//-------------------------------------------------------
 	include '../Model/EDIFICIO_Model.php';
 
 // function EDIFICIO_Register_test()

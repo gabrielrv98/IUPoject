@@ -8,7 +8,8 @@ class MESSAGE{
 	function __construct($string, $volver){
 		session_start();
 		include '../Locale/Strings_'.$_SESSION['idioma'].'.php';
-		$this->string = $string;
+		if(is_string($string))	$this->string = $string;
+		else $this->string = $string[3];
 		$this->volver = $volver;	
 		$this->render();
 	}

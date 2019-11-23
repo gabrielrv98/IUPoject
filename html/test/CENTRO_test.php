@@ -1,10 +1,11 @@
 <?php
-// Autor : jrodeiro
-// Fecha : 23/9/2019
-// Descripción : 
-//	Fichero de test de unidad de la entidad CENTRO
+
+//Clase : CENTRO_test
+//Creado el : 20-11-2019
+//Creado por: grvidal
+//Fichero de test de unidad de la entidad CENTRO
 //	Saca por pantalla el resultado de los test
-// incluir el modelo de la entidad CENTRO
+//-------------------------------------------------------
 	include '../Model/CENTRO_Model.php';
 
 // function CENTRO_Register_test()
@@ -410,8 +411,8 @@ function CENTRO_Search_test()
 	CENTRO_Edit_test();
 	CENTRO_Delete_test();
 	CENTRO_Search_test();
-
-	//search
+	$CENTRO = new CENTRO_Model("CodCent","CodEdi",'nom','dir','resp');
+	$CENTRO->ADD();
 
 ?>
 

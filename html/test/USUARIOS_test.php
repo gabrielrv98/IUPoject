@@ -1,10 +1,10 @@
 <?php
-// Autor : jrodeiro
-// Fecha : 23/9/2019
-// Descripción : 
-//	Fichero de test de unidad de la entidad USUARIOS
+//Clase : USUARIOS_test
+//Creado el : 20-11-2019
+//Creado por: grvidal
+//Fichero de test de unidad de la entidad USUARIOS
 //	Saca por pantalla el resultado de los test
-// incluir el modelo de la entidad USUARIOS
+//-------------------------------------------------------
 	include '../Model/USUARIOS_Model.php';
 
 // function USUARIOS_Login_test()
