@@ -5,3 +5,5 @@ GENERAL, USUARIOS, EDIFICIO, CENTRO, TITULACION have Test implemented fully.
 Missing-----
 param validations
 language swap front-end.
+
+https://stackoverflow.com/questions/3747362/php-regex-validation
