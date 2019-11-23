@@ -122,11 +122,7 @@ function DELETE()
 //Busco si centro existe con todas las caracteristicas
 	$sql = "SELECT *
 			FROM CENTRO
-			WHERE (CODCENTRO = '$this->centro' &&
-					CODEDIFICIO = '$this->edificio' &&
-					NOMBRECENTRO = '$this->nombre' &&
-					DIRECCIONCENTRO = '$this->direccion' &&
-					RESPONSABLECENTRO = '$this->responsable'  )";
+			WHERE (CODCENTRO = '$this->centro')";
 
 	$obj = $this->mysqli->query($sql);
 
@@ -235,14 +231,13 @@ function ADD(){
 function Register(){
 
 		$sql = "SELECT * 
-		from CENTRO 
-		where CODCENTRO = '$this->centro'";
+		FROM CENTRO 
+		WHERE (CODCENTRO = '$this->centro')";
 
 		$result = $this->mysqli->query($sql);
 		if ($result->num_rows == 1){  // existe el usuario
 				return 'Inserción fallida: el elemento ya existe';
-		}
-		else{
+		}else{
 	    		return true; //no existe el usuario
 		}
 

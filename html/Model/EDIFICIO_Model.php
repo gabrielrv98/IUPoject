@@ -95,10 +95,7 @@ function DELETE()
 //Busco si edificio existe con todas las caracteristicas
 	$sql = "SELECT *
 			FROM EDIFICIO
-			WHERE (CODEDIFICIO = '$this->codigo' AND
-					NOMBREEDIFICIO = '$this->nombre' AND
-					DIRECCIONEDIFICIO = '$this->direccion' AND
-					CAMPUSEDIFICIO = '$this->campus'  )";
+			WHERE (CODEDIFICIO = '$this->codigo')";
 
 	$obj = $this->mysqli->query($sql);
 
@@ -107,15 +104,15 @@ function DELETE()
 		$sql = "SELECT *
 			FROM CENTRO
 			WHERE (CODEDIFICIO = '$this->codigo' )";
+		$obj = $this->mysqli->query($sql);
+
 //Busco si hay alguna sala en este edificio
-		$sql2 = "SELECT *
+		$sql = "SELECT *
 			FROM ESPACIO
 			WHERE (CODEDIFICIO = '$this->codigo' )";
 
-  
+		$obj2 = $this->mysqli->query($sql);
 //compruebo que no hay coincidencias
-		$obj = $this->mysqli->query($sql);
-		$obj2 = $this->mysqli->query($sql2);
 		if( mysqli_num_rows($obj) == 0 && mysqli_num_rows($obj2) == 0){
 
 			$sql = "DELETE 

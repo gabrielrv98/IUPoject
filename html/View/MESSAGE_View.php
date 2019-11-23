@@ -8,18 +8,6 @@ class MESSAGE{
 	function __construct($string, $volver){
 		session_start();
 		include '../Locale/Strings_'.$_SESSION['idioma'].'.php';
-		
-		//cambio aqui
-		if($string != array())	$this->string = $string;
-		else $this->string = $string[3];
-		
-		$this->volver = $volver;	
-		$this->render();
-	}
-
-	function __construct($string, $volver){
-		session_start();
-		include '../Locale/Strings_'.$_SESSION['idioma'].'.php';
 		$this->string = $string;
 		$this->volver = $volver;	
 		$this->render();

@@ -335,6 +335,9 @@ function EDIFICIO_Edit_test()
 	EDIFICIO_Edit_test();
 	EDIFICIO_ADD_test();
 	EDIFICIO_Delete_test();
+	//Es necesario edificios para poder seguir haciendo el test
+	$EDIFICIO_TEST = new EDIFICIO_Model("CodEdi","NombreEdi","DirEdi","Campus");
+	$EDIFICIO_TEST->ADD();
 
 ?>
 

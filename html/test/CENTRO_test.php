@@ -27,15 +27,16 @@ function CENTRO_ADD_test()
 	$CENTRO_array_test1['error_esperado'] = 'Inserción fallida: el elemento ya existe';
 	$CENTRO_array_test1['error_obtenido'] = '';
 	$CENTRO_array_test1['resultado'] = '';
+
 	
 	// Relleno los datos de usuario	
 	$login = 'miusuario';
-	$codEdi = 'codEdi3';;
+	$codEdi = 'CodEdi';
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
-	$email = 'miemail@uvigo.es';
+	$email = 'miemail';
 // creo el modelo
-	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$email,'');
+	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$email,$apellidos);
 // inserto la tupla
 	$CENTRO->ADD();
 
@@ -62,11 +63,11 @@ function CENTRO_ADD_test()
 	$CENTRO_array_test1['error_obtenido'] = '';
 	$CENTRO_array_test1['resultado'] = '';
 	
-	$login = 'jrodeirolklkjlkj';
-	$codEdi = 'codEdi3';
+	$login = 'jrodeiro\' , \'lklkjlkjasdasdadasds';
+	$codEdi = 'CodEdi23';
 	$nombre = 'javkdfalkj'; 
 	$apellidos = 'rodeiro';
-	$email = 'jrodeiro@uvigo.es';
+	$email = 'jrodeiro';
 
 	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,'');
 	$CENTRO_array_test1['error_obtenido'] = $CENTRO->ADD();
@@ -92,12 +93,12 @@ function CENTRO_ADD_test()
 	$CENTRO_array_test1['resultado'] = '';
 	
 	$login = 'jrodeiro1';
-	$codEdi = 'codEdi3';
+	$codEdi = 'CodEdi';
 	$nombre = 'javi'; 
 	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1@uvigo.es';
+	$email = 'jrodeiro1';
 
-	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,'');
+	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,$email);
 	$CENTRO_array_test1['error_obtenido'] = $CENTRO->ADD();
 	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
 	{
@@ -139,15 +140,14 @@ function CENTRO_RellenaDatos_test()
 	$CENTRO_array_test1['resultado'] = '';
 	
 	// Relleno los datos de usuario	
-	$login = 'javi hola';
-	$codEdi = 'codEdi3';;
+	$login = 'hola\' , \' que tal';
+	$codigo = 'CodEdi';
 	
 // creo el modelo
-	$CENTRO = new CENTRO_Model($login,$codEdi,'','','');
-
+	$CENTRO = new CENTRO_Model($login,$codigo,'nom','dir','resp');
 
 	$CENTRO_array_test1['error_obtenido'] = $CENTRO->RellenaDatos();
-	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	if ($CENTRO_array_test1['error_obtenido'] == $CENTRO_array_test1['error_esperado'])
 	{
 		$CENTRO_array_test1['resultado'] = 'OK';
 	}
@@ -168,13 +168,13 @@ function CENTRO_RellenaDatos_test()
 	$CENTRO_array_test1['resultado'] = '';
 	
 	$login = 'jrodeiro1';
-	$codEdi = 'codEdi3';
+	$codEdi = 'CodEdi';
 	$nombre = 'javi'; 
 	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1@uvigo.es';
+	$email = 'jrodeiro1';
 
-	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,'');
-	$CENTRO_array_test1['error_obtenido'] = $CENTRO->ADD();
+	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,$email);
+	$CENTRO->ADD();
 
 
 	$CENTRO_array_test1['error_obtenido'] = gettype($CENTRO->RellenaDatos());
@@ -217,10 +217,10 @@ function CENTRO_Delete_test()
 	
 	// Relleno los datos de usuario	
 	$login = 'grvidal25';
-	$codEdi = 'codEdi3';
+	$codEdi = 'CodEdi';
 	
 // creo el modelo
-	$CENTRO = new CENTRO_Model($login,$codEdi,'','','');
+	$CENTRO = new CENTRO_Model($login,$codEdi,'nom','dir','resp');
 
 //Elimino al usuario
 	$CENTRO_array_test1['error_obtenido'] = $CENTRO->DELETE();
@@ -245,8 +245,8 @@ function CENTRO_Delete_test()
 	$CENTRO_array_test1['resultado'] = '';
 	
 	$login = 'grvidal25';
-	$codEdi = 'codEdi3';
-	$CENTRO = new CENTRO_Model($login,$codEdi,'','','');
+	$codEdi = 'CodEdi';
+	$CENTRO = new CENTRO_Model($login,$codEdi,'nom','dir','resp');
 	$CENTRO->ADD();
 
 	$CENTRO_array_test1['error_obtenido'] = $CENTRO->DELETE();
@@ -284,10 +284,10 @@ function CENTRO_Edit_test()
 	
 	// Relleno los datos de usuario	
 	$login = 'grvidal25';
-	$codEdi = 'codEdi3';
+	$codEdi = 'CodEdi';
 	
 // creo el modelo sin añadirlo a la base de datos
-	$editado = new CENTRO_Model($login,$codEdi,'2','3','');
+	$editado = new CENTRO_Model($login,$codEdi,'nom','dir','resp');
 
 //Intento editar la tupla
 	$CENTRO_array_test1['error_obtenido'] = $editado->EDIT();
@@ -312,9 +312,9 @@ function CENTRO_Edit_test()
 	$CENTRO_array_test1['resultado'] = '';
 	
 	$login = 'grvidal25';
-	$codEdi = 'codEdi3';
+	$codEdi = 'CodEdi';
 
-	$CENTRO = new CENTRO_Model($login,$codEdi,'2','3','');
+	$CENTRO = new CENTRO_Model($login,$codEdi,'nom','dir','resp');
 	
 	//Lo añado a la base de datos
 	$CENTRO->ADD();
@@ -334,11 +334,91 @@ function CENTRO_Edit_test()
 
 }
 
+function CENTRO_Search_test()
+{
+
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$CENTRO_array_test1 = array();
+
+// Comprobar el login no existe
+//--------------------------------------------------
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'Search';
+	$CENTRO_array_test1['error'] = 'Error de gestor de base de datos';
+	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
 	
+	// Relleno los datos de usuario	
+	$login = 'grvidal25\' , \'asd';
+	$codEdi = 'CodEdi';
+	
+// creo el modelo sin añadirlo a la base de datos
+	$CENTRO = new CENTRO_Model($login,$codEdi,'nom','dir','resp');
+
+//Intento editar la tupla
+	$CENTRO_array_test1['error_obtenido'] = $CENTRO->SEARCH();
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+// El usuario no existe en la base de datos
+//----------------------------------------------
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'Search';
+	$CENTRO_array_test1['error'] = 'Devuelve el recordset';
+	$CENTRO_array_test1['error_esperado'] = 'array';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+	
+	$login = 'miCenTest';
+	$codEdi = 'CodEdi';
+
+	$CENTRO = new CENTRO_Model($login,$codEdi,'nom','dir','resp');
+	
+	//Lo añado a la base de datos
+	$CENTRO->ADD();
+	$array = $CENTRO->SEARCH();
+	//$array = $array->fetch_array();
+
+	$CENTRO2 = new CENTRO_Model('','','','','');
+	var_dump($CENTRO->SEARCH());
+
+	
+
+	$CENTRO_array_test1['error_obtenido'] = gettype($CENTRO->SEARCH()->fetch_array());
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+	$CENTRO->DELETE();
+
+}
+
+	
+	
+	CENTRO_ADD_test();
 	CENTRO_RellenaDatos_test();
 	CENTRO_Edit_test();
-	CENTRO_ADD_test();
 	CENTRO_Delete_test();
+	CENTRO_Search_test();
+
+	//search
 
 ?>
 

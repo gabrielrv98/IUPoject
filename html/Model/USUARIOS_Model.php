@@ -106,14 +106,7 @@ function SEARCH()
 
 	    	$sql = $sql . "FechaNacimiento LIKE '%" .$this->bday. "%'";
 	    } 
-/*
-	    if ( $this->foto != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "fotopersonal LIKE '%" .$this->foto. "%'";
-	    } 
-*/
+	    
 	    if ( $this->sexo != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
@@ -163,8 +156,7 @@ function RellenaDatos()
 
 	$sql = "SELECT * 
 			FROM USUARIOS
-			WHERE ( login = '$this->login'
-		)";
+			WHERE ( login = '$this->login')";
 
 
 	$toRet = $this->mysqli->query($sql);
@@ -211,7 +203,7 @@ function login(){
 	$sql = "SELECT *
 			FROM USUARIOS
 			WHERE (
-				(login = '$this->login') 
+				login = '$this->login'
 			)";
 
 	$resultado = $this->mysqli->query($sql);
@@ -252,6 +244,7 @@ function ADD(){
 //Busca algun usuario con las mismas claves primarias, 
 //si lo encuentra devuelve una cadena sino true
 function Register(){
+
 
 		$sql = "SELECT * 
 			FROM USUARIOS 

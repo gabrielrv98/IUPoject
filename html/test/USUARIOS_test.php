@@ -194,7 +194,7 @@ function USUARIOS_Registrar_test()
 	
 	$login = 'jrodeiro887';
 	$password = 'javi';
-	$nombre = 'javi\' ,\'kdfalkj'; 
+	$nombre = 'javi\' , \' kdfalkj'; 
 	$apellidos = 'rodeiro';
 	$email = 'jrodeiro@uvigo.es';
 
@@ -302,7 +302,7 @@ function USUARIOS_ADD_test()
 	
 	$login = 'jrodeirolklkjlkj';
 	$password = 'javi';
-	$nombre = 'javi\' ,\'kdfalkj'; 
+	$nombre = 'javi\' , \' kdfalkj'; 
 	$apellidos = 'rodeiro';
 	$email = 'jrodeiro@uvigo.es';
 
