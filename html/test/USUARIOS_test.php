@@ -30,7 +30,8 @@ function USUARIOS_login_test()
 	$USUARIOS_array_test1['resultado'] = '';
 	
 	$login = 'loginerror';
-	$usuarios = new USUARIOS_Model($login,'','','','','','','','','');
+	$usuarios = new USUARIOS_Model($login,'1234','88516567D','nom','apel','123123123',
+		'e@e.es','1960-08-10','','hombre');
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->login();
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
@@ -55,11 +56,13 @@ function USUARIOS_login_test()
 	// Relleno los datos de usuario	
 	$login = 'miusuario';
 	$password = 'mipassword';
+	$dni = '88516567D';
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
 // creo el modelo
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,'','','','','');
+	$usuarios = new USUARIOS_Model($login,$password,$dni,$nombre,$apellidos,'123123123',
+		$email,'','','','');
 // inserto la tupla
 	$usuarios->ADD();
 // cambio la password en el objeto modelo usuario
@@ -426,74 +429,6 @@ function USUARIOS_RellenaDatos_test()
 }
 
 
-function USUARIOS_Search_test()
-{
-
-	global $ERRORS_array_test;
-// creo array de almacen de test individual
-	$USUARIOS_array_test1 = array();
-
-// Comprobar el login no existe
-//--------------------------------------------------
-	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'Edit';
-	$USUARIOS_array_test1['error'] = 'La tupla se ha actualizado';
-	$USUARIOS_array_test1['error_esperado'] = 'Actualización realizada con éxito';
-	$USUARIOS_array_test1['error_obtenido'] = '';
-	$USUARIOS_array_test1['resultado'] = '';
-	
-	// Relleno los datos de usuario	
-	$login = 'grvidal';
-	
-// creo el modelo
-	$usuarios = new USUARIOS_Model($login,'','','','','','','','','');
-	$usuarios->ADD();
-// creo el nuevo modelo
-	$editado = new USUARIOS_Model($login,'1','2','3','4','5','6','7','8','9');
-
-//Edito el usuario
-	$USUARIOS_array_test1['error_obtenido'] = $usuario->EDIT($editado);
-	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
-	{
-		$USUARIOS_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$USUARIOS_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
-
-	$usuario->DELETE();
-// El usuario no existe en la base de datos
-//----------------------------------------------
-	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'Edit';
-	$USUARIOS_array_test1['error'] = 'Usuario no existente';
-	$USUARIOS_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$USUARIOS_array_test1['error_obtenido'] = '';
-	$USUARIOS_array_test1['resultado'] = '';
-	
-	$login = 'grvidal';
-
-	$usuarios = new USUARIOS_Model($login,'','','','','','','','','');
-
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->EDIT();
-	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
-	{
-		$USUARIOS_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$USUARIOS_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
-
-	$usuarios->DELETE();
-
-}
-
 
 function USUARIOS_Edit_test()
 {
@@ -561,12 +496,82 @@ function USUARIOS_Edit_test()
 
 }
 
+
+function USUARIOS_Search_test()
+{
+
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$USUARIO_array_test1 = array();
+
+// Comprobar el login no existe
+//--------------------------------------------------
+	$USUARIO_array_test1['entidad'] = 'USUARIO';	
+	$USUARIO_array_test1['metodo'] = 'Search';
+	$USUARIO_array_test1['error'] = 'Error de gestor de base de datos';
+	$USUARIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
+	$USUARIO_array_test1['error_obtenido'] = '';
+	$USUARIO_array_test1['resultado'] = '';
+	
+	// Relleno los datos de usuario	
+	$login = 'grvidal25\' , \'asd';
+	$codEdi = 'CodEdi';
+	
+// creo el modelo sin añadirlo a la base de datos
+	$USUARIO = new USUARIOS_Model($login,'1234','88516567D','nom','apel','123123123',
+		'e@e.es','1960-08-10','','hombre');
+
+	$USUARIO_array_test1['error_obtenido'] = $USUARIO->SEARCH();
+	if ($USUARIO_array_test1['error_obtenido'] === $USUARIO_array_test1['error_esperado'])
+	{
+		$USUARIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIO_array_test1);
+
+// El usuario no existe en la base de datos
+//----------------------------------------------
+	$USUARIO_array_test1['entidad'] = 'USUARIO';	
+	$USUARIO_array_test1['metodo'] = 'Search';
+	$USUARIO_array_test1['error'] = 'Devuelve el recordset';
+	$USUARIO_array_test1['error_esperado'] = 'array';
+	$USUARIO_array_test1['error_obtenido'] = '';
+	$USUARIO_array_test1['resultado'] = '';
+	
+	$login = 'miLog';
+
+	$USUARIO = new USUARIOS_Model($login,'1234','88516567D','nom','apel','123123123',
+		'e@e.es','1960-08-10','','hombre');
+	//Lo añado a la base de datos
+	$USUARIO->ADD();
+
+	$USUARIO_array_test1['error_obtenido'] = gettype($USUARIO->SEARCH()->fetch_array());
+	if ($USUARIO_array_test1['error_obtenido'] === $USUARIO_array_test1['error_esperado'])
+	{
+		$USUARIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIO_array_test1);
+
+	$USUARIO->DELETE();
+
+}
+
+
 	USUARIOS_login_test();
 	USUARIOS_Registrar_test();
 	USUARIOS_ADD_test();
 	USUARIOS_RellenaDatos_test();
 	USUARIOS_Edit_test();
-	//USUARIOS_RellenaDatos_test();
+	USUARIOS_Search_test();
 
 ?>
 

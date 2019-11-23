@@ -341,7 +341,7 @@ function CENTRO_Search_test()
 // creo array de almacen de test individual
 	$CENTRO_array_test1 = array();
 
-// Comprobar el login no existe
+// Comprobar el centro error
 //--------------------------------------------------
 	$CENTRO_array_test1['entidad'] = 'CENTRO';	
 	$CENTRO_array_test1['metodo'] = 'Search';
@@ -357,7 +357,7 @@ function CENTRO_Search_test()
 // creo el modelo sin añadirlo a la base de datos
 	$CENTRO = new CENTRO_Model($login,$codEdi,'nom','dir','resp');
 
-//Intento editar la tupla
+//Intento buscar la tupla
 	$CENTRO_array_test1['error_obtenido'] = $CENTRO->SEARCH();
 	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
 	{
@@ -370,7 +370,7 @@ function CENTRO_Search_test()
 
 	array_push($ERRORS_array_test, $CENTRO_array_test1);
 
-// El usuario no existe en la base de datos
+// encontrar el centro en search
 //----------------------------------------------
 	$CENTRO_array_test1['entidad'] = 'CENTRO';	
 	$CENTRO_array_test1['metodo'] = 'Search';
@@ -386,13 +386,6 @@ function CENTRO_Search_test()
 	
 	//Lo añado a la base de datos
 	$CENTRO->ADD();
-	$array = $CENTRO->SEARCH();
-	//$array = $array->fetch_array();
-
-	$CENTRO2 = new CENTRO_Model('','','','','');
-	var_dump($CENTRO->SEARCH());
-
-	
 
 	$CENTRO_array_test1['error_obtenido'] = gettype($CENTRO->SEARCH()->fetch_array());
 	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])

@@ -33,7 +33,7 @@ function EDIFICIO_ADD_test()
 	$password = 'mipassword';
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
-	$email = 'miemail@uvigo.es';
+	$email = 'campus';
 // creo el modelo
 	$EDIFICIO = new EDIFICIO_Model($login,$password,$nombre,$email);
 // inserto la tupla
@@ -64,11 +64,10 @@ function EDIFICIO_ADD_test()
 	
 	$login = 'jrodeirolklkjlkj';
 	$password = 'javi';
-	$nombre = 'javi\' ,\'kdfalkj'; 
-	$apellidos = 'rodeiro';
-	$email = 'jrodeiro@uvigo.es';
+	$nombre = 'javi\' ,\'kdfalkj';  
+	$campus = 'campus';
 
-	$EDIFICIO = new EDIFICIO_Model($login,$password,$nombre,$apellidos);
+	$EDIFICIO = new EDIFICIO_Model($login,$password,$nombre,$campus);
 	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->ADD();
 	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
 	{
@@ -95,7 +94,6 @@ function EDIFICIO_ADD_test()
 	$password = 'javi';
 	$nombre = 'javi'; 
 	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1@uvigo.es';
 
 	$EDIFICIO = new EDIFICIO_Model($login,$password,$nombre,$apellidos);
 	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->ADD();
@@ -170,7 +168,7 @@ function EDIFICIO_RellenaDatos_test()
 	$password = 'javi';
 	$nombre = 'javi'; 
 	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1@uvigo.es';
+	$email = 'campus';
 
 	$EDIFICIO = new EDIFICIO_Model($login,$password,$nombre,$apellidos);
 	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->ADD();
@@ -310,11 +308,79 @@ function EDIFICIO_Edit_test()
 	
 	$login = 'grvidal25';
 
-	$EDIFICIO = new EDIFICIO_Model($login,'1','2','3');
+	$EDIFICIO = new EDIFICIO_Model($login,'nom','dir','campus');
 	
 	//Lo añado a la base de datos
 	$EDIFICIO->ADD();
 	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->EDIT();
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+	$EDIFICIO->DELETE();
+
+}
+
+function EDIFICIO_Search_test()
+{
+
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$EDIFICIO_array_test1 = array();
+
+// Comprobar el login no existe
+//--------------------------------------------------
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'Search';
+	$EDIFICIO_array_test1['error'] = 'Error de gestor de base de datos';
+	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+	
+	// Relleno los datos de usuario	
+	$login = 'grvidal25\' , \'asd';
+	
+// creo el modelo sin añadirlo a la base de datos
+	$EDIFICIO = new EDIFICIO_Model($login,'','','');
+
+//Intento editar la tupla
+	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->SEARCH();
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+// El usuario no existe en la base de datos
+//----------------------------------------------
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'Search';
+	$EDIFICIO_array_test1['error'] = 'Devuelve el recordset';
+	$EDIFICIO_array_test1['error_esperado'] = 'array';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+	
+	$login = 'miCenTest';
+	$nomEdi = 'nomEdi';
+
+	$EDIFICIO = new EDIFICIO_Model($login,$nomEdi,'nom','dir');
+	
+	//Lo añado a la base de datos
+	$EDIFICIO->ADD();
+
+	$EDIFICIO_array_test1['error_obtenido'] = gettype($EDIFICIO->SEARCH()->fetch_array());
 	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
 	{
 		$EDIFICIO_array_test1['resultado'] = 'OK';
@@ -335,6 +401,7 @@ function EDIFICIO_Edit_test()
 	EDIFICIO_Edit_test();
 	EDIFICIO_ADD_test();
 	EDIFICIO_Delete_test();
+	EDIFICIO_Search_test();
 	//Es necesario edificios para poder seguir haciendo el test
 	$EDIFICIO_TEST = new EDIFICIO_Model("CodEdi","NombreEdi","DirEdi","Campus");
 	$EDIFICIO_TEST->ADD();

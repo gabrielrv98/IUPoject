@@ -1,0 +1,5 @@
+GENERAL, USUARIOS, EDIFICIO, CENTRO have Test implemented fully.
+
+Missing-----
+param validations
+language swap front-end.

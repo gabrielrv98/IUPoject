@@ -13,7 +13,14 @@ include '../test/CENTRO_test.php';
 
 ?>
 
-<h1>De <?php echo count($ERRORS_array_test); ?> tests hay </h1>
+<h1>De <?php echo count($ERRORS_array_test); ?> tests hay  
+	<?php $n = 0;
+		foreach ($ERRORS_array_test as $test ) {
+			if ($test['resultado']) $n++; 
+		}
+		echo $n
+	?> correctos.
+</h1>
 <br>
 
 <?php
