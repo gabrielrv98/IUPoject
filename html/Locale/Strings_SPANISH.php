@@ -155,7 +155,12 @@ array(
 	'sexoError' => 'El sexo no coincide con lo esperado',
 	'anhoError' => 'Cadena esperada xxxx-xxxx',
 	'tipoError' => 'El tipo no coincide con lo esperado',
-	'numberError' => 'Solo números'
+	'numberError' => 'Solo números',
+
+	//new---------------------------------------------------------------
+	'paramVacio' => 'no puede estar vacio',
+	'toolong' => 'es demasiado largo',
+	'tooshortNoNNum' => 'demasiado corto, necesita al menos 3 caracteres'
 
 	);
 ?>

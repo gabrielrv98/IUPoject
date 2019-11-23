@@ -41,6 +41,9 @@ function __construct($login,$password,$dni,$nombre,$apellidos,$tlf,$email,$bday,
 	$this->mysqli = ConnectDB();
 }
 
+
+
+
 //funcion de destrucción del objeto: se ejecuta automaticamente
 //al finalizar el script
 function __destruct()
@@ -222,12 +225,49 @@ function login(){
 }//fin metodo login
 
 
+function comprobar_login()
+{
+	$array = array();
+	$array[0] = $this->login;
+
+	$this->login = trim($this->login);
+
+	if(empty($this->login)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->login) > 15){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->login) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if ( preg_match('/\W\d_/', $this->login) ) {//comprobamos si contiene caracteres no alfabeticos, numero o barrabaja
+		$array[1] = "00090";
+		$array[2] = "El login solo puede contener letras";
+		return $array;
+	}
+
+	return true;
+}
+
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
 //existe ya en la tabla
 function ADD(){
 
+	$comprobarParam = $this->comprobar_login();
+
+	if ($comprobarParam != true) return $comprobarParam;
 	// si el usuario no existe se devolveria true a toRet
 	$toRet = $this->Register();
 	if($toRet == 'true'){

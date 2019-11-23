@@ -1,4 +1,6 @@
-GENERAL, USUARIOS, EDIFICIO, CENTRO have Test implemented fully.
+5h
+
+GENERAL, USUARIOS, EDIFICIO, CENTRO, TITULACION have Test implemented fully.
 
 Missing-----
 param validations
