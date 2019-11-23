@@ -7,3 +7,9 @@ param validations
 language swap front-end.
 
 https://stackoverflow.com/questions/3747362/php-regex-validation
+
+cod errores
+https://docs.google.com/document/d/1-3drCmg3pmDyYnWSeVegPPAFpYyo-CGcjmKkeOPAdqY/edit
+
+defET3
+https://docs.google.com/document/d/1T5ZHd18UndElZQe2haheGBRSwsvJlbepHM7m1UPQqzo/edit
