@@ -14,6 +14,8 @@ array(
 	'name' => 'Name',
 	'surname' => 'Surname',
 	'bDate' => 'Birthday',
+	'dni' => 'DNI',
+	'email' => 'Email',
 	'idioma' => 'Language',
 	'Usuario' => 'User',
 	'Ejemplo' => 'Example',

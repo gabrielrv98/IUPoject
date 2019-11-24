@@ -12,6 +12,8 @@ array(
 	'name' => 'Nombre',
 	'password' => 'Contraseña',
 	'surname' => 'Apellidos',
+	'dni' => 'DNI',
+	'email' => 'Email',
 	'bDate' => 'Fecha de nacimiento',
 	'idioma' => 'Idioma',
 	'Usuario' => 'Usuario',
@@ -145,6 +147,8 @@ array(
 	'profTitAso' => 'Profesores y titulaciones asociadas',
 	'profEspAso' => 'Profesores y espacios asociados',
 	'hoyes' => 'Hoy es',
+
+	//verificaiones---------------------------------------------------------
 	'letrasynumeros' => 'El campo solo puede contener letras y números.',
 	'dniError' => 'Faltan números o la letra es incorrecta.',
 	'textonly' => 'Solo letras.',
@@ -158,9 +162,11 @@ array(
 	'numberError' => 'Solo números',
 
 	//new---------------------------------------------------------------
-	'paramVacio' => 'no puede estar vacio',
-	'toolong' => 'es demasiado largo',
-	'tooshortNoNNum' => 'demasiado corto, necesita al menos 3 caracteres'
-
+	'paramVacio' => 'no puede estar vacio.',
+	'toolong' => 'es demasiado largo.',
+	'tooshortNoNNum' => 'demasiado corto, necesita al menos 3 caracteres.',
+	'sexoError' => 'solo puede ser hombre o mujer.',
+	'dateError' => 'no tiene el formato correcto, formato requerido yyyy-mm-dd.'
+	'emailErrorCode' => 'no tiene el formato correcto, formato requerido x.@x.(com|es|org)'
 	);
 ?>

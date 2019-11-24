@@ -13,3 +13,7 @@ https://docs.google.com/document/d/1-3drCmg3pmDyYnWSeVegPPAFpYyo-CGcjmKkeOPAdqY/
 
 defET3
 https://docs.google.com/document/d/1T5ZHd18UndElZQe2haheGBRSwsvJlbepHM7m1UPQqzo/edit
+
+
+verificaciones comprobar_email()
+array[1]= bad code

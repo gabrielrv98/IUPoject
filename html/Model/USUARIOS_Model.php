@@ -41,8 +41,287 @@ function __construct($login,$password,$dni,$nombre,$apellidos,$tlf,$email,$bday,
 	$this->mysqli = ConnectDB();
 }
 
+//comprueba que el login tenga el formato correcto
+function comprobar_login()
+{
+	$array = array();
+	$array[0] = 'login';
 
+	$this->login = trim($this->login);
 
+	if(empty($this->login)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->login) > 15){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->login) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if ( !preg_match('/^\w[\w_]*$/', $this->login) ) {//comprobamos si contiene caracteres no alfabeticos, numero o barrabaja
+		$array[1] = "00090";
+		$array[2] = "textonly";
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que la password tenga formato correcto
+function comprobar_password()
+{
+	$array = array();
+	$array[0] = 'password';
+
+	$this->password = trim($this->password);
+
+	if(empty($this->password)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->password) > 30){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->password) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if ( !preg_match('/^\w[\w_]*$/', $this->password) ) {//comprobamos si contiene caracteres no alfabeticos, numero o barrabaja
+		$array[1] = "00090";
+		$array[2] = "textonly";
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que el dni tenga formato correcto y la letra este bien
+function comprobar_dni()
+{
+	$array = array();
+	$array[0] = "dni";
+	$letras =  array('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T');
+    
+
+	$this->dni = trim($this->dni);
+
+	if(empty($this->dni)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if( !preg_match('/^\d{8}[A-Z]$/', $this->dni) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00020";
+		$array[2] = "dniError";
+
+		return $array;
+	}else if (substr($this->dni, -1) != $letras[substr($this->dni, 0,-1) % 23] ){
+		$array[1] = "00020";
+		$array[2] = "dniError";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que solo sean letras y espacios
+function comprobar_nombre()
+{
+	$array = array();
+	$array[0] = 'name';
+
+	$this->nombre = trim($this->nombre);
+
+	if(empty($this->nombre)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->nombre) > 30){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->nombre) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->nombre) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y espacios
+function comprobar_apellidos()
+{
+	$array = array();
+	$array[0] = 'surname';
+
+	$this->apellidos = trim($this->apellidos);
+
+	if(empty($this->apellidos)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->apellidos) > 50){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->apellidos) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->apellidos) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//còmprueba que el telefono tenga formato correcto con o sin +34, 0034, 34
+function comprobar_tlf()
+{
+	$array = array();
+	$array[0] = 'tlf';
+
+	$this->tlf = trim($this->tlf);
+
+	if(empty($this->tlf)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if( !preg_match('/^(\+34|0034|34)?[0-9]{9}$/', $this->tlf) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00070";
+		$array[2] = "tlfError";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que el email tenga formato correcto
+function comprobar_email()
+{
+	$array = array();
+	$array[0] = 'email';
+
+	$this->email = trim($this->email);
+
+	if(empty($this->email)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->email) > 60){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->email) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-zñ0-9]+@([ña-z]+.)+(es|org|com)$/', $this->email) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00020";
+		$array[2] = "emailErrorCode";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que la fecha sea formato yyyy-mm-dd
+function comprobar_fecha()
+{
+	$array = array();
+	$array[0] = 'bDate';
+
+	$this->bday = trim($this->bday);
+
+	if(empty($this->bday)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if( !preg_match('/^\d{4}-\d{2}-\d{2}$/', $this->bday) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00020";
+		$array[2] = "dateError";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//funcion que comprueba que el sexo sea hombre o mujer
+function comprobar_sexo()
+{
+	$array = array();
+	$array[0] = 'sexo';
+
+	$this->sexo = trim($this->sexo);
+
+	if(empty($this->sexo)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if($this->sexo != 'hombre' && $this->sexo != 'mujer'){//comprobamos si coinicide con los campos
+		$array[1] = "00100";
+		$array[2] = "sexoError";
+
+		return $array;
+
+	}
+
+	return true;
+}
 
 //funcion de destrucción del objeto: se ejecuta automaticamente
 //al finalizar el script
@@ -132,10 +411,31 @@ function SHOW_ALL(){
 			FROM USUARIOS";
 	return $this->mysqli->query($sql);
 }
+
+
+
+//comprueba los atributos que utilizara add
+function comprobar_atributos_DELETE(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_login();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 //funcion DELETE : comprueba que la tupla a borrar existe y una vez
 // verificado la borra
 function DELETE()
 {
+	$check = $this->comprobar_atributos_DELETE();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
+
 	$sql = "SELECT *
 			FROM USUARIOS
 			WHERE (login = '$this->login')";
@@ -153,10 +453,29 @@ function DELETE()
     
 }
 
+
+
+//comprueba los atributos que utilizara Rellena datos
+function comprobar_atributos_RellenaDatos(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_login();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+	return $correcto == true ? true : $array; 
+}
+
+
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
 function RellenaDatos()
 {
+	$check = $this->comprobar_atributos_RellenaDatos();
 
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 	$sql = "SELECT * 
 			FROM USUARIOS
 			WHERE ( login = '$this->login')";
@@ -166,15 +485,77 @@ function RellenaDatos()
 	return $toRet ? $toRet->fetch_array() : 'Error de gestor de base de datos';
 }
 
+
+//comprueba los atributos que utilizara edit
+function comprobar_atributos_EDIT(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_login();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_password();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_dni();
+	if ($aux !== true) {
+		$array[2] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_nombre();
+	if ($aux !== true) {
+		$array[3] = $aux;
+		$correcto = false;
+	}
+	$aux = $this->comprobar_apellidos();
+	if ($aux !== true) {
+		$array[4] = $aux;
+		$correcto = false;
+	}
+	$aux = $this->comprobar_tlf();
+	if ($aux !== true) {
+		$array[5] = $aux;
+		$correcto = false;
+	} 
+	$aux = $this->comprobar_email();
+	if ($aux !== true) {
+		$array[6] = $aux;
+		$correcto = false;
+	} 
+	$aux = $this->comprobar_fecha();
+	if ($aux !== true) {
+		$array[7] = $aux;
+		$correcto = false;
+	}
+	$aux = $this->comprobar_sexo();
+	if ($aux !== true) {
+		$array[8] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
+
 // funcion Edit: realizar el update de una tupla despues de comprobar que existe
 function EDIT()
 {
 
+	$check = $this->comprobar_atributos_EDIT();
+
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
+	
 	$sql = "SELECT login 
 				FROM USUARIOS
-				WHERE (DNI = '$this->dni' AND
-					email = '$this->email' AND login = '$this->login'
-					)";
+				WHERE (login = '$this->login')";
 
 //se comprueba que el dni o el email no estan repetidos en otros usuarios
 	$response = $this->mysqli->query($sql)->num_rows;
@@ -187,9 +568,7 @@ function EDIT()
 				FechaNacimiento = '$this->bday',
 				fotopersonal = '$this->foto',
 				sexo = '$this->sexo'
-			WHERE (DNI = '$this->dni' AND
-					email = '$this->email' AND login = '$this->login'
-					)";
+			WHERE (login = '$this->login')";
 		$result = $this->mysqli->query($sql);
 
 		if($result = 1) return 'Actualización realizada con éxito';
@@ -224,39 +603,60 @@ function login(){
 	}
 }//fin metodo login
 
-
-function comprobar_login()
-{
+//comprueba los atributos que utilizara add
+function comprobar_atributos_ADD(){
 	$array = array();
-	$array[0] = $this->login;
+	$correcto = true;
 
-	$this->login = trim($this->login);
-
-	if(empty($this->login)){//comprobamos si esta vacio
-		$array[1] = "00001";
-		$array[2] = "paramVacio";
-
-		return $array;
-
-	}else if(strlen($this->login) > 15){//comprobamos si es muy larga
-		$array[1] = "00002";
-		$array[2] = "toolong";
-
-		return $array;
-
-	}else if(strlen($this->login) < 3){//comprobamos si es muy corta
-		$array[1] = "00003";
-		$array[2] = "tooshortNoNNum";
-
-		return $array;
-
-	}else if ( preg_match('/\W\d_/', $this->login) ) {//comprobamos si contiene caracteres no alfabeticos, numero o barrabaja
-		$array[1] = "00090";
-		$array[2] = "El login solo puede contener letras";
-		return $array;
+	$aux = $this->comprobar_login();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
 	}
 
-	return true;
+	$aux = $this->comprobar_password();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_dni();
+	if ($aux !== true) {
+		$array[2] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_nombre();
+	if ($aux !== true) {
+		$array[3] = $aux;
+		$correcto = false;
+	}
+	$aux = $this->comprobar_apellidos();
+	if ($aux !== true) {
+		$array[4] = $aux;
+		$correcto = false;
+	}
+	$aux = $this->comprobar_tlf();
+	if ($aux !== true) {
+		$array[5] = $aux;
+		$correcto = false;
+	} 
+	$aux = $this->comprobar_email();
+	if ($aux !== true) {
+		$array[6] = $aux;
+		$correcto = false;
+	} 
+	$aux = $this->comprobar_fecha();
+	if ($aux !== true) {
+		$array[7] = $aux;
+		$correcto = false;
+	}
+	$aux = $this->comprobar_sexo();
+	if ($aux !== true) {
+		$array[8] = $aux;
+		$correcto = false;
+	}
+	return $correcto == true ? true : $array; 
 }
 
 //Metodo ADD
@@ -265,9 +665,13 @@ function comprobar_login()
 //existe ya en la tabla
 function ADD(){
 
-	$comprobarParam = $this->comprobar_login();
+	$comprobarParam = $this->comprobar_atributos_ADD();
 
-	if ($comprobarParam != true) return $comprobarParam;
+
+	//si algun atributo no cumple las restricciones
+	if ($comprobarParam !== true) return $comprobarParam;
+	
+	
 	// si el usuario no existe se devolveria true a toRet
 	$toRet = $this->Register();
 	if($toRet == 'true'){

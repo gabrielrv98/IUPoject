@@ -13,6 +13,8 @@ array(
 	'password' => 'Contrasinal',
 	'surname' => 'Apelidos',
 	'bDate' => 'Data de nacemento',
+	'dni' => 'DNI',
+	'email' => 'Email',
 	'idioma' => 'Idioma',
 	'Usuario' => 'Usuario',
 	'Ejemplo' => 'Exemplo',

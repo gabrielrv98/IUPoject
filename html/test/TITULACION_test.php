@@ -37,7 +37,7 @@ function TITULACION_ADD_test()
 // creo el modelo
 	$TITULACION = new TITULACION_Model($login,$CodCent,$nombre,$resp);
 // inserto la tupla
-	echo $TITULACION->ADD();
+	$TITULACION->ADD();
 
 	$TITULACION_array_test1['error_obtenido'] = $TITULACION->ADD();
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
