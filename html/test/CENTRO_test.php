@@ -22,7 +22,8 @@ function CENTRO_ADD_test()
 	$CENTRO_array_test1 = array();
 
 // Comprobar el login existe
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'ADD';
 	$CENTRO_array_test1['error'] = 'El usuario ya existe';
 	$CENTRO_array_test1['error_esperado'] = 'Inserción fallida: el elemento ya existe';
@@ -57,7 +58,8 @@ function CENTRO_ADD_test()
 
 
 // Comprobar error en la inserción
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'ADD';
 	$CENTRO_array_test1['error'] = 'Error en la inserción';
 	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -86,7 +88,8 @@ function CENTRO_ADD_test()
 	$CENTRO->DELETE();
 
 // Comprobar Inserción realizada con éxito
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'ADD';
 	$CENTRO_array_test1['error'] = 'Inserción realizada con éxito';
 	$CENTRO_array_test1['error_esperado'] = 'Inserción realizada con éxito';
@@ -133,7 +136,8 @@ function CENTRO_RellenaDatos_test()
 
 // Comprobar el login no existe
 //--------------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'RellenaDatos';
 	$CENTRO_array_test1['error'] = 'El usuario a rellenar no existe';
 	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -161,7 +165,8 @@ function CENTRO_RellenaDatos_test()
 
 // Comprobar devuelve recordset
 //----------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'RellenaDatos';
 	$CENTRO_array_test1['error'] = 'Devuelve el recordset';
 	$CENTRO_array_test1['error_esperado'] = 'array';
@@ -209,7 +214,8 @@ function CENTRO_Delete_test()
 
 // Usuario no encontrado
 //--------------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'Delete';
 	$CENTRO_array_test1['error'] = 'Usuario no encontrado';
 	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -238,7 +244,8 @@ function CENTRO_Delete_test()
 
 // Usuario eliminado
 //----------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'Delete';
 	$CENTRO_array_test1['error'] = 'Eliminado';
 	$CENTRO_array_test1['error_esperado'] = 'Borrado realizado con éxito';
@@ -276,7 +283,8 @@ function CENTRO_Edit_test()
 
 // Comprobar el login no existe
 //--------------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'Edit';
 	$CENTRO_array_test1['error'] = 'Usuario no existente';
 	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -305,7 +313,8 @@ function CENTRO_Edit_test()
 
 // El usuario no existe en la base de datos
 //----------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'Edit';
 	$CENTRO_array_test1['error'] = 'La tupla se ha actualizado';
 	$CENTRO_array_test1['error_esperado'] = 'Actualización realizada con éxito';
@@ -344,7 +353,8 @@ function CENTRO_Search_test()
 
 // Comprobar el centro error
 //--------------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'Search';
 	$CENTRO_array_test1['error'] = 'Error de gestor de base de datos';
 	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -373,7 +383,8 @@ function CENTRO_Search_test()
 
 // encontrar el centro en search
 //----------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['entidad'] = 'CENTRO';
+    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
 	$CENTRO_array_test1['metodo'] = 'Search';
 	$CENTRO_array_test1['error'] = 'Devuelve el recordset';
 	$CENTRO_array_test1['error_esperado'] = 'array';

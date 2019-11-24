@@ -21,7 +21,8 @@ function EDIFICIO_ADD_test()
 	$EDIFICIO_array_test1 = array();
 
 // Comprobar el login existe
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'ADD';
 	$EDIFICIO_array_test1['error'] = 'El usuario ya existe';
 	$EDIFICIO_array_test1['error_esperado'] = 'Inserción fallida: el elemento ya existe';
@@ -55,7 +56,8 @@ function EDIFICIO_ADD_test()
 
 
 // Comprobar error en la inserción
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'ADD';
 	$EDIFICIO_array_test1['error'] = 'Error en la inserción';
 	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -83,7 +85,8 @@ function EDIFICIO_ADD_test()
 	$EDIFICIO->DELETE();
 
 // Comprobar Inserción realizada con éxito
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'ADD';
 	$EDIFICIO_array_test1['error'] = 'Inserción realizada con éxito';
 	$EDIFICIO_array_test1['error_esperado'] = 'Inserción realizada con éxito';
@@ -129,7 +132,8 @@ function EDIFICIO_RellenaDatos_test()
 
 // Comprobar el login no existe
 //--------------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'RellenaDatos';
 	$EDIFICIO_array_test1['error'] = 'El usuario a rellenar no existe';
 	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -157,7 +161,8 @@ function EDIFICIO_RellenaDatos_test()
 
 // Comprobar devuelve recordset
 //----------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'RellenaDatos';
 	$EDIFICIO_array_test1['error'] = 'Devuelve el recordset';
 	$EDIFICIO_array_test1['error_esperado'] = 'array';
@@ -205,7 +210,8 @@ function EDIFICIO_Delete_test()
 
 // Usuario no encontrado
 //--------------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'Delete';
 	$EDIFICIO_array_test1['error'] = 'Usuario no encontrado';
 	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -233,7 +239,8 @@ function EDIFICIO_Delete_test()
 
 // Usuario eliminado
 //----------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'Edit';
 	$EDIFICIO_array_test1['error'] = 'Eliminado';
 	$EDIFICIO_array_test1['error_esperado'] = 'Borrado realizado con éxito';
@@ -271,7 +278,8 @@ function EDIFICIO_Edit_test()
 
 // Comprobar el login no existe
 //--------------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'Edit';
 	$EDIFICIO_array_test1['error'] = 'Usuario no existente';
 	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -299,7 +307,8 @@ function EDIFICIO_Edit_test()
 
 // El usuario no existe en la base de datos
 //----------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'Edit';
 	$EDIFICIO_array_test1['error'] = 'La tupla se ha actualizado';
 	$EDIFICIO_array_test1['error_esperado'] = 'Actualización realizada con éxito';
@@ -337,7 +346,8 @@ function EDIFICIO_Search_test()
 
 // Comprobar el login no existe
 //--------------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'Search';
 	$EDIFICIO_array_test1['error'] = 'Error de gestor de base de datos';
 	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -365,7 +375,8 @@ function EDIFICIO_Search_test()
 
 // El usuario no existe en la base de datos
 //----------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
+    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
 	$EDIFICIO_array_test1['metodo'] = 'Search';
 	$EDIFICIO_array_test1['error'] = 'Devuelve el recordset';
 	$EDIFICIO_array_test1['error_esperado'] = 'array';

@@ -21,7 +21,8 @@ function TITULACION_ADD_test()
 	$TITULACION_array_test1 = array();
 
 // Comprobar el codigo existe
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+    $TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';
 	$TITULACION_array_test1['metodo'] = 'ADD';
 	$TITULACION_array_test1['error'] = 'El usuario ya existe';
 	$TITULACION_array_test1['error_esperado'] = 'Inserción fallida: el elemento ya existe';
@@ -55,7 +56,8 @@ function TITULACION_ADD_test()
 
 
 // Comprobar error en la inserción
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'ADD';
 	$TITULACION_array_test1['error'] = 'Error en la inserción';
 	$TITULACION_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -83,7 +85,8 @@ function TITULACION_ADD_test()
 	$TITULACION->DELETE();
 
 // Comprobar Inserción realizada con éxito
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'ADD';
 	$TITULACION_array_test1['error'] = 'Inserción realizada con éxito';
 	$TITULACION_array_test1['error_esperado'] = 'Inserción realizada con éxito';
@@ -129,7 +132,8 @@ function TITULACION_RellenaDatos_test()
 
 // Comprobar el login no existe
 //--------------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'RellenaDatos';
 	$TITULACION_array_test1['error'] = 'El usuario a rellenar no existe';
 	$TITULACION_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -157,7 +161,8 @@ function TITULACION_RellenaDatos_test()
 
 // Comprobar devuelve recordset
 //----------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'RellenaDatos';
 	$TITULACION_array_test1['error'] = 'Devuelve el recordset';
 	$TITULACION_array_test1['error_esperado'] = 'array';
@@ -204,7 +209,8 @@ function TITULACION_Delete_test()
 
 // Usuario no encontrado
 //--------------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'Delete';
 	$TITULACION_array_test1['error'] = 'Usuario no encontrado';
 	$TITULACION_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -232,7 +238,8 @@ function TITULACION_Delete_test()
 
 // Usuario eliminado
 //----------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'Delete';
 	$TITULACION_array_test1['error'] = 'Eliminado';
 	$TITULACION_array_test1['error_esperado'] = 'Borrado realizado con éxito';
@@ -271,7 +278,8 @@ function TITULACION_Edit_test()
 
 // Comprobar el login no existe
 //--------------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'Edit';
 	$TITULACION_array_test1['error'] = 'Titulacion no existente';
 	$TITULACION_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -300,7 +308,8 @@ function TITULACION_Edit_test()
 
 // El usuario no existe en la base de datos
 //----------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'Edit';
 	$TITULACION_array_test1['error'] = 'La tupla se ha actualizado';
 	$TITULACION_array_test1['error_esperado'] = 'Actualización realizada con éxito';
@@ -340,7 +349,8 @@ function TITULACION_Search_test()
 
 // Comprobar el TITULACION error
 //--------------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'Search';
 	$TITULACION_array_test1['error'] = 'Error de gestor de base de datos';
 	$TITULACION_array_test1['error_esperado'] = 'Error de gestor de base de datos';
@@ -369,7 +379,8 @@ function TITULACION_Search_test()
 
 // encontrar el TITULACION en search
 //----------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['entidad'] = 'TITULACION';
+    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
 	$TITULACION_array_test1['metodo'] = 'Search';
 	$TITULACION_array_test1['error'] = 'Devuelve el recordset';
 	$TITULACION_array_test1['error_esperado'] = 'array';

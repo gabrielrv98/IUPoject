@@ -12,6 +12,7 @@ function ExisteBD()
 
 // usuario o contraseña no es correcto
 //-------------------------------------------------------------------------------
+	$global_array_test['tipo'] = 'GLOBAL';
 	$global_array_test['entidad'] = 'GENERAL';	
 	$global_array_test['metodo'] = 'BD';
 	$global_array_test['error'] = 'Usuario contraseña erronea';
@@ -40,7 +41,7 @@ function ExisteBD()
 
 	//NO existe la BD
 	//------------------------------------------
-
+	$global_array_test['tipo'] = 'GLOBAL';
 	$global_array_test['entidad'] = 'GENERAL';	
 	$global_array_test['metodo'] = 'BD';
 	$global_array_test['error'] = 'No existe la bd';

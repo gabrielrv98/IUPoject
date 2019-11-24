@@ -128,12 +128,12 @@ function comprobar_dni()
 		return $array;
 
 	}else if( !preg_match('/^\d{8}[A-Z]$/', $this->dni) ){//comprobamos si coincide con la expresion esperada
-		$array[1] = "00020";
+		$array[1] = "00010";
 		$array[2] = "dniError";
 
 		return $array;
 	}else if (substr($this->dni, -1) != $letras[substr($this->dni, 0,-1) % 23] ){
-		$array[1] = "00020";
+		$array[1] = "00010";
 		$array[2] = "dniError";
 
 		return $array;

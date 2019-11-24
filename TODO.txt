@@ -1,5 +1,5 @@
 5h
-
+15 : 20 U 20 30
 GENERAL, USUARIOS, EDIFICIO, CENTRO, TITULACION have Test implemented fully.
 
 Missing-----
@@ -15,5 +15,9 @@ defET3
 https://docs.google.com/document/d/1T5ZHd18UndElZQe2haheGBRSwsvJlbepHM7m1UPQqzo/edit
 
 
+
+falta un buen codigo para comprobar que el email tiene la expresion regular
 verificaciones comprobar_email()
-array[1]= bad code
+array[1]= solotexto ? ninguno vale realmente
+
+general_test y index.php tiene una linea que suprimen los warnings

@@ -6,12 +6,18 @@
 //Contiene php para mostrar el resultado de los tests
 //-------------------------------------------------------
 //error_reporting(E_ERROR | E_WARNING | E_PARSE);
-error_reporting( E_PARSE);
+//error_reporting( E_PARSE);
 
 // crear el array principal de test
 	$ERRORS_array_test = array();
 // incluimos aqui tantos ficheros de test como entidades
-include_once '../test/Global_test.php';
+	include_once '../test/Global_test.php';	
+	include_once '../test/USUARIOS_test.php';
+	include_once '../test/EDIFICIO_test.php';
+	include_once '../test/CENTRO_test.php';
+	include_once '../test/TITULACION_test.php';
+	include_once '../test/CLEAN_test.php';
+	include_once '../test/USUARIOS_VADLICACION_test.php';
 
 ?>
 
@@ -22,7 +28,7 @@ include_once '../test/Global_test.php';
 			if ($test['resultado'] == 'FALSE') $n++; 
 		}
 		echo $n
-	?> correctos.
+	?> 
 </h2>
 <br>
 
@@ -38,10 +44,10 @@ include_once '../test/Global_test.php';
 			Error testeado
 		</th>
 		<th>
-			Error Esperado
+			Valor Esperado
 		</th>
 		<th>
-			Error Obtenido
+			Valor Obtenido
 		</th>
 		<th>
 			Resultado
@@ -50,6 +56,7 @@ include_once '../test/Global_test.php';
 <?php
 	foreach ($ERRORS_array_test as $test)
 	{
+		if ($test['tipo'] == 'GLOBAL') {
 ?>
 	<tr>
 		<td>
@@ -66,20 +73,12 @@ include_once '../test/Global_test.php';
 		</td>
 	</tr>
 <?php
-
+		}
 	}
 ?>
 </table>
 
-<?php 
-	$ERRORS_array_test = array();
-	include_once '../test/USUARIOS_test.php';
-	include_once '../test/EDIFICIO_test.php';
-	include_once '../test/CENTRO_test.php';
-	include_once '../test/TITULACION_test.php';
-	include_once '../test/CLEAN_test.php';
-?>
-<h2>Test de unidad</h2>
+<h2>Pruebas Unitarias</h2>
 <table>
 	<tr>
 		<th>
@@ -92,10 +91,10 @@ include_once '../test/Global_test.php';
 			Error testeado
 		</th>
 		<th>
-			Error Esperado
+			Valor Esperado
 		</th>
 		<th>
-			Error Obtenido
+			Valor Obtenido
 		</th>
 		<th>
 			Resultado
@@ -104,6 +103,7 @@ include_once '../test/Global_test.php';
 <?php
 	foreach ($ERRORS_array_test as $test)
 	{
+		if ($test['tipo'] == 'P_UNITARIA') {
 ?>
 	<tr>
 		<td>
@@ -126,7 +126,60 @@ include_once '../test/Global_test.php';
 		</td>
 	</tr>
 <?php	
+		}
 	}
 ?>
 </table>
 
+<h2>Pruevas Validación</h2>
+<table>
+	<tr>
+		<th>
+			Entidad
+		</th>
+		<th>
+			Atributo
+		</th>
+		<th>
+			Error testeado
+		</th>
+		<th>
+			Valor Esperado
+		</th>
+		<th>
+			Valor Obtenido
+		</th>
+		<th>
+			Resultado
+		</th>
+	</tr>
+<?php
+	foreach ($ERRORS_array_test as $test)
+	{
+		if($test['tipo'] == 'VALIDACION' ){
+?>
+	<tr>
+		<td>
+			<?php echo $test['entidad'];?>
+		</td>
+		<td>
+			<?php echo $test['metodo']; ?>
+		</td>
+		<td>
+			<?php echo $test['error']; ?>
+		</td>
+		<td>
+			<?php echo $test['error_esperado']; ?>
+		</td>
+		<td>
+			<?php echo $test['error_obtenido']; ?>
+		</td>
+		<td>
+			<?php echo $test['resultado']; ?>
+		</td>
+	</tr>
+<?php	
+		}
+	}
+?>
+</table>
