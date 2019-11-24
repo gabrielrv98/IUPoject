@@ -19,16 +19,11 @@ function ExisteBD()
 	$global_array_test['error_obtenido'] = '';
 	$global_array_test['resultado'] = '';
 
-	if (!$mysqli = new mysqli(host, user, 'aaaa' , BD))
-	{
-
-	}
+	$mysqli = new mysqli(host, user, 'aaaa' , BD);
     	
 	/* Comprueba la conexión */
-	if ($mysqli->connect_errno) {
-    	 $global_array_test['error_obtenido'] = $mysqli->connect_error;
-    	 echo $mysqli->connect_error;
-    }
+    $global_array_test['error_obtenido'] = $mysqli->connect_error;
+    
 
 
    	if ($global_array_test['error_obtenido'] === $global_array_test['error_esperado'])
