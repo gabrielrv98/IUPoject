@@ -25,6 +25,152 @@ function __construct($titulacion,$centro,$nombre,$responsable){
 	$this->mysqli = ConnectDB();
 }
 
+
+//comprueba que sean solo letras y numeros
+function comprobar_titulacion()
+{
+	$array = array();
+	$array[0] = 'codeTitulation';
+
+	$this->titulacion = trim($this->titulacion);
+
+	if(empty($this->titulacion)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->titulacion) > 10){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->titulacion) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z0-9]*$/i', $this->titulacion) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00060";
+		$array[2] = "alfNum";
+
+		return $array;
+	}
+
+	return true;
+}
+
+
+//comprueba que sean solo letras y numeros
+function comprobar_centro()
+{
+	$array = array();
+	$array[0] = 'codeCenter';
+
+	$this->centro = trim($this->centro);
+
+	if(empty($this->centro)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->centro) > 10){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->centro) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z0-9-]*$/i', $this->centro) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00040";
+		$array[2] = "alfNumguion";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y espacios
+function comprobar_nombre()
+{
+	$array = array();
+	$array[0] = 'nameTitulation';
+
+	$this->nombre = trim($this->nombre);
+
+	if(empty($this->nombre)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->nombre) > 50){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->nombre) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->nombre) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y espacios
+function comprobar_responsable()
+{
+	$array = array();
+	$array[0] = 'responsableTitulation';
+
+	$this->responsable = trim($this->responsable);
+
+	if(empty($this->responsable)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->responsable) > 60){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->responsable) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->responsable) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
+
 //funcion de destrucción del objeto: se ejecuta automaticamente
 //al finalizar el script
 function __destruct()

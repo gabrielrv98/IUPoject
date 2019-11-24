@@ -72,6 +72,7 @@ array(
 	'deletepRrofessor' => 'Eliminar profesor',
 	'searchProfesor' => 'Buscar profesor',
 	'departamento' => 'Departamento',
+	'area' => 'area',
 	'spaceManager' => 'Gestor de espacio',
 	'El espacio no existe' => 'El espacio no existe',
 	'EspacioExist' => 'Espacio ya existente',
@@ -96,7 +97,7 @@ array(
 	'searchEdificio' => 'Buscar edificio',
 	'NomEdificio' => 'Nombre del edificio',
 	'DirEdificio' => 'Direccion del edificio',
-	'CampusEdifio' => 'Campus del edificio',
+	'CampusEdifio' => 'Campus',
 	'buildingManager' => 'Gestor de edificio',	
 	'centerManager' => 'Gestor de centros',
 	'El centro no existe' => 'El centro no existe',
@@ -158,15 +159,21 @@ array(
 	'fotoError' => 'La extensión no coincide con la de una foto',
 	'sexoError' => 'El sexo no coincide con lo esperado',
 	'anhoError' => 'Cadena esperada xxxx-xxxx',
-	'tipoError' => 'El tipo no coincide con lo esperado',
+	'tipoError' => 'El tipo tiene que ser Despacho, laboratorio o pas',
 	'numberError' => 'Solo números',
 
 	//new---------------------------------------------------------------
 	'paramVacio' => 'no puede estar vacio.',
 	'toolong' => 'es demasiado largo.',
+	'tooshort' => 'demasiado corto, necesita al menos 1 caracteres.',
 	'tooshortNoNNum' => 'demasiado corto, necesita al menos 3 caracteres.',
 	'sexoError' => 'solo puede ser hombre o mujer.',
 	'dateError' => 'no tiene el formato correcto, formato requerido yyyy-mm-dd.'
-	'emailErrorCode' => 'no tiene el formato correcto, formato requerido x.@x.(com|es|org)'
+	'emailErrorCode' => 'no tiene el formato correcto, formato requerido x.@x.(com|es|org)',
+	'alfNumguion' => 'solo esta permitido letras, numeros y guien \'-\'.',
+	'alfNum' => 'solo esta permitido numeros y letras.'
+	'anhoAcadCode' => 'Solo se permiten dddd-dddd (año académico) donde d es un dígito.'
+	'onlynumbers' => 'solo esta permitido numeros.',
+	'dirError' => 'solo puede contener letras, numerosy los símbolos  “- / º ª.'
 	);
 ?>

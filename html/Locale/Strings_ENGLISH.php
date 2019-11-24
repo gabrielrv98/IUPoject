@@ -23,6 +23,7 @@ array(
 	'INGLES' => 'ENGLISH',
 	'ESPAÑOL' => 'SPANISH',
 	'GALLAECIAN' => 'GALLAECIAN',
+	'area' => 'area',
 	'El login no existe' => 'The login dont exists',
 	'Volver' => 'Back',
 	'La password para este usuario no es correcta' => 'Incorrect password for this login',
@@ -160,7 +161,7 @@ array(
 	'fotoError' => 'Extension doesn\'t match with what is expected',
 	'sexoError' => 'Sex not expected',
 	'anhoError' => 'Expected string as xxxx-xxxx',
-	'tipoError' => 'Type not expecetd',
+	'tipoError' => 'Type must be "laboratorio", "despacho" or "PAS".',
 	'numberError' => 'Numbers only'
  );
  ?>

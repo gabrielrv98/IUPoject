@@ -27,6 +27,97 @@ function __construct($DNI,$codTitulacion,$anhoAcademico){
 	$this->mysqli = ConnectDB();
 }
 
+//comprueba que el dni tenga formato correcto y la letra este bien
+function comprobar_dni()
+{
+	$array = array();
+	$array[0] = "dni";
+	$letras =  array('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T');
+    
+
+	$this->DNI = trim($this->DNI);
+
+	if(empty($this->DNI)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if( !preg_match('/^\d{8}[A-Z]$/', $this->DNI) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00010";
+		$array[2] = "dniError";
+
+		return $array;
+	}else if (substr($this->DNI, -1) != $letras[substr($this->DNI, 0,-1) % 23] ){
+		$array[1] = "00010";
+		$array[2] = "dniError";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_titulacion()
+{
+	$array = array();
+	$array[0] = 'codeTitulation';
+
+	$this->codTitulacion = trim($this->codTitulacion);
+
+	if(empty($this->codTitulacion)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->codTitulacion) > 10){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->codTitulacion) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z0-9]*$/i', $this->codTitulacion) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00060";
+		$array[2] = "alfNum";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_anhoAcademico()
+{
+	$array = array();
+	$array[0] = 'ANHOACADEMICO';
+
+	$this->anhoAcademico = trim($this->anhoAcademico);
+
+	if(empty($this->anhoAcademico)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if( !preg_match('/^[0-9]{4}-[0-9]{4}$/i', $this->anhoAcademico) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00110";
+		$array[2] = "anhoAcadCode";
+
+		return $array;
+	}
+
+	return true;
+}
+
 //funcion de destrucción del objeto: se ejecuta automaticamente
 //al finalizar el script
 function __destruct()

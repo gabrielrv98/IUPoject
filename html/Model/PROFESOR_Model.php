@@ -28,6 +28,180 @@ function __construct($dni,$nombre,$apellido,$area,$departamento){
 	$this->mysqli = ConnectDB();
 }
 
+//comprueba que el dni tenga formato correcto y la letra este bien
+function comprobar_dni()
+{
+	$array = array();
+	$array[0] = "dni";
+	$letras =  array('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T');
+    
+
+	$this->dni = trim($this->dni);
+
+	if(empty($this->dni)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if( !preg_match('/^\d{8}[A-Z]$/', $this->dni) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00010";
+		$array[2] = "dniError";
+
+		return $array;
+	}else if (substr($this->dni, -1) != $letras[substr($this->dni, 0,-1) % 23] ){
+		$array[1] = "00010";
+		$array[2] = "dniError";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_nombre()
+{
+	$array = array();
+	$array[0] = 'name';
+
+	$this->nombre = trim($this->nombre);
+
+	if(empty($this->nombre)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->nombre) > 60){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->nombre) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->nombre) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_apellido()
+{
+	$array = array();
+	$array[0] = 'surname';
+
+	$this->apellido = trim($this->apellido);
+
+	if(empty($this->apellido)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->apellido) > 60){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->apellido) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->apellido) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_area()
+{
+	$array = array();
+	$array[0] = 'area';
+
+	$this->area = trim($this->area);
+
+	if(empty($this->area)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->area) > 60){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->area) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->area) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_departamento()
+{
+	$array = array();
+	$array[0] = 'departamento';
+
+	$this->departamento = trim($this->departamento);
+
+	if(empty($this->departamento)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->departamento) > 60){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->departamento) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z ]*$/i', $this->departamento) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00030";
+		$array[2] = "textonly";
+
+		return $array;
+	}
+
+	return true;
+}
 //funcion de destrucción del objeto: se ejecuta automaticamente
 //al finalizar el script
 function __destruct()

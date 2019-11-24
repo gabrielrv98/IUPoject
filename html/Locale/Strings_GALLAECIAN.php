@@ -21,6 +21,7 @@ array(
 	'Otro' => 'Outro',
 	'INGLES' => 'INGLES',
 	'ESPAÑOL' => 'ESPAÑOL',
+	'area' => 'area',
 	'GALLAECIAN' => 'GALEGO',
 	'El login no existe' => 'Login non existe',
 	'Volver' => 'Volver',
@@ -156,7 +157,7 @@ array(
 	'fotoError' => 'A extensión non coincide coa dunha foto',
 	'sexoError' => 'O sexo non coincide co esperado',
 	'anhoError' => 'Cadea esperada xxxx-xxxx',
-	'tipoError' => 'O tipo non coincide co esperado',
+	'tipoError' => 'O tipo ten que ser despacho, laboratorio o pas',
 	'numberError' => 'Só numeros'
 
 );
