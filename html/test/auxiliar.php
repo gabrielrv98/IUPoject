@@ -98,3 +98,33 @@ function USUARIOS_comprobar_sexo_test()
 
 
 ?>
+
+
+
+
+
+
+
+
+
+
+//comprueba los atributos que utilizara add
+function comprobar_atributos_RellenaDatos(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_edificio();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
+
+
+$check = $this->comprobar_atributos_DELETE();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
+	

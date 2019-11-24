@@ -309,20 +309,33 @@ function SHOW_ALL(){
 			FROM ESPACIO";
 	return $this->mysqli->query($sql);
 }
+
+//comprueba los atributos que utilizara add
+function comprobar_atributos_DELETE(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_codEspacio();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 //funcion DELETE : comprueba que la tupla a borrar existe y una vez
 // verificado la borra
 function DELETE()
 {
+	$check = $this->comprobar_atributos_DELETE();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 
 	//Compruebo que la tupla a eliminar existe
 	$sql = "SELECT *
 			FROM ESPACIO
-			WHERE (CODESPACIO = '$this->espacio' &&
-					CODEDIFICIO = '$this->edificio' &&
-					CODCENTRO = '$this->centro' &&
-					TIPO = '$this->tipo' &&
-					SUPERFICIEESPACIO = '$this->superficie' &&
-					NUMINVENTARIOESPACIO = '$this->nInventario' )";
+			WHERE (CODESPACIO = '$this->espacio' )";
 
 	$obj = $this->mysqli->query($sql);
 
@@ -355,9 +368,26 @@ function getProfesores(){
 	return $this->mysqli->query($sql); 
 }
  
+ //comprueba los atributos que utilizara add
+function comprobar_atributos_RellenaDatos(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_codEspacio();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
 function RellenaDatos()
 {
+	$check = $this->comprobar_atributos_RellenaDatos();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 
 	$sql = "SELECT * 
 			FROM ESPACIO
@@ -368,9 +398,57 @@ function RellenaDatos()
     
 }
 
+//comprueba los atributos que utilizara add
+function comprobar_atributos_EDIT(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_codEspacio();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_edificio();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_centro();
+	if ($aux !== true) {
+		$array[2] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_tipo();
+	if ($aux !== true) {
+		$array[3] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_superficie();
+	if ($aux !== true) {
+		$array[4] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_nInventario();
+	if ($aux !== true) {
+		$array[5] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 // funcion Edit: realizar el update de una tupla si centro existe o si va vacio
 function EDIT()
 {
+
+	$check = $this->comprobar_atributos_EDIT();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 
 		if ($this->centro != '') {
 				$sql = "SELECT *
@@ -421,11 +499,59 @@ function getCentros(){
 }
 
 
+//comprueba los atributos que utilizara add
+function comprobar_atributos_ADD(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_codEspacio();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_edificio();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_centro();
+	if ($aux !== true) {
+		$array[2] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_tipo();
+	if ($aux !== true) {
+		$array[3] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_superficie();
+	if ($aux !== true) {
+		$array[4] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_nInventario();
+	if ($aux !== true) {
+		$array[5] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
 //existe ya en la tabla
 function ADD(){
+
+	$check = $this->comprobar_atributos_ADD();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 
 	// si el usuario no existe se devolveria true a toRet
 	$toRet = $this->Register();
