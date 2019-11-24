@@ -166,10 +166,34 @@ function SHOW_ALL(){
 			FROM PROF_TITULACION";
 	return $this->mysqli->query($sql);
 }
+
+//comprueba los atributos que utilizara add
+function comprobar_atributos_DELETE(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_dni();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
 //funcion DELETE : comprueba que la tupla a borrar existe y una vez
 // verificado la borra
 function DELETE()
 {
+	$check = $this->comprobar_atributos_DELETE();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
+
 	$sql = "SELECT *
 			FROM PROF_TITULACION
 			WHERE ( DNI = '$this->DNI' AND
@@ -190,10 +214,33 @@ function DELETE()
     
 }
 
+//comprueba los atributos que utilizara add
+function comprobar_atributos_RellenaDatos(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_dni();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
 function RellenaDatos()
 {
-
+	$check = $this->comprobar_atributos_RellenaDatos();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
+	
 	$sql = "SELECT * 
 			FROM PROF_TITULACION
 			WHERE ( DNI = '$this->DNI' &&
@@ -205,9 +252,41 @@ function RellenaDatos()
     
 }
 
+
+//comprueba los atributos que utilizara add
+function comprobar_atributos_EDIT(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_dni();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_anhoAcademico();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 // funcion Edit: realizar el update de una tupla despues de comprobar que existe
 function EDIT()
 {
+
+	$check = $this->comprobar_atributos_EDIT();
+
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 
 	$sql = "SELECT * 
 				FROM PROF_TITULACION
@@ -252,11 +331,42 @@ function getTitulaciones(){
 	return $this->mysqli->query($sql);
 }
 
+//comprueba los atributos que utilizara add
+function comprobar_atributos_ADD(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_dni();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_anhoAcademico();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
 //existe ya en la tabla
 function ADD(){
+
+	$check = $this->comprobar_atributos_ADD();
+
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 
 	// si el usuario no existe se devolveria true a toRet
 	$toRet = $this->Register();

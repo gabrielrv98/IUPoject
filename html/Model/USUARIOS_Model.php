@@ -473,7 +473,6 @@ function comprobar_atributos_RellenaDatos(){
 function RellenaDatos()
 {
 	$check = $this->comprobar_atributos_RellenaDatos();
-
 	//si algun atributo no cumple las restricciones
 	if ($check !== true) return $check;
 	$sql = "SELECT * 
@@ -666,8 +665,6 @@ function comprobar_atributos_ADD(){
 function ADD(){
 
 	$comprobarParam = $this->comprobar_atributos_ADD();
-
-
 	//si algun atributo no cumple las restricciones
 	if ($comprobarParam !== true) return $comprobarParam;
 	

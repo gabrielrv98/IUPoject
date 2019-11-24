@@ -231,10 +231,29 @@ function SHOW_ALL(){
 			FROM TITULACION";
 	return $this->mysqli->query($sql);
 }
+
+//comprueba los atributos que utilizara add
+function comprobar_atributos_DELETE(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 //funcion DELETE : comprueba que la tupla a borrar existe y una vez
 // verificado la borra
 function DELETE()
 {
+
+	$check = $this->comprobar_atributos_DELETE();
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 //Busco si titulacion existe con todas las caracteristicas
 	$sql = "SELECT *
 			FROM TITULACION
@@ -276,9 +295,26 @@ function getProfTit(){
 	return $toRet;
 }
 
+//comprueba los atributos que utilizara Rellena datos
+function comprobar_atributos_RellenaDatos(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+	return $correcto == true ? true : $array; 
+}
+
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
 function RellenaDatos()
 {
+	$check = $this->comprobar_atributos_RellenaDatos();
+
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
 
 	$sql = "SELECT * 
 			FROM TITULACION
@@ -288,9 +324,47 @@ function RellenaDatos()
 	return $toRet ? $toRet->fetch_array() : 'Error de gestor de base de datos';
 }
 
+//comprueba los atributos que utilizara edit
+function comprobar_atributos_EDIT(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_centro();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_nombre();
+	if ($aux !== true) {
+		$array[2] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_responsable();
+	if ($aux !== true) {
+		$array[3] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 // funcion Edit: realizar el update de una tupla despues de comprobar que existe
 function EDIT()
 {
+
+	$check = $this->comprobar_atributos_EDIT();
+
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
+
 	$sql =  "SELECT *
 			FROM TITULACION
 			WHERE CODTITULACION = '$this->titulacion'";
@@ -319,12 +393,50 @@ function getCentros(){
 	return $this->mysqli->query($sql);
 }
 
+//comprueba los atributos que utilizara edit
+function comprobar_atributos_ADD(){
+	$array = array();
+	$correcto = true;
+
+	$aux = $this->comprobar_titulacion();
+	if ($aux !== true) {
+		$array[0] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_centro();
+	if ($aux !== true) {
+		$array[1] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_nombre();
+	if ($aux !== true) {
+		$array[2] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_responsable();
+	if ($aux !== true) {
+		$array[3] = $aux;
+		$correcto = false;
+	}
+
+	return $correcto == true ? true : $array; 
+}
+
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
 //existe ya en la tabla
 function ADD(){
 
+
+	$comprobarParam = $this->comprobar_atributos_ADD();
+	//si algun atributo no cumple las restricciones
+	if ($comprobarParam !== true) return $comprobarParam;
+	
+	
 	// si el usuario no existe se devolveria true a toRet
 	$toRet = $this->Register();
 	if($toRet == 'true'){

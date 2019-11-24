@@ -1,5 +1,5 @@
-5h
-15 : 20 U 20 30
+14 h
+00:00
 GENERAL, USUARIOS, EDIFICIO, CENTRO, TITULACION have Test implemented fully.
 
 Missing-----
