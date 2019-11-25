@@ -1,32 +1,32 @@
 <?php
-// function TITULACION_comproba_atributos_test()
+// function TITULACION_comprobar_nombre_test()
 // Valida:
-//		Codcentro correcto
-//		Codcentro demasiado largo
-//		Codcentro demasiado corto
-//		Codcentro vacio
-//		Codcentro inesperado
+//		nombre correcto
+//		nombre demasiado largo
+//		nombre demasiado corto
+//		nombre vacio
+//		nombre inesperado
 
-function TITULACION_comprobar_centro_test()
+function TITULACION_comprobar_nombre_test()
 {
 	global $ERRORS_array_test;
 // creo array de almacen de test individual
 	$TITULACION_array_test1 = array();
 
-// Codcentro correcto
+// nombre correcto
 //----------------------------------------------
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['metodo'] = 'nombre';
 	$TITULACION_array_test1['error'] = 'correcto';
 	$TITULACION_array_test1['error_esperado'] = 'true';
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
-	$Codcentro = 'codCent';
+	$nombre = 'codCent';
 	// creo el modelo
-	$TITULACION = new TITULACION_Model('',$Codcentro,'','');
+	$TITULACION = new TITULACION_Model('','',$nombre,'');
 
-	if ($TITULACION->comprobar_titulacion()) $res = 'true';
+	if ($TITULACION->comprobar_nombre()) $res = 'true';
 	else $res = 'false';
 
 	$TITULACION_array_test1['error_obtenido'] = $res;
@@ -42,21 +42,21 @@ function TITULACION_comprobar_centro_test()
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
 
-	//Codcentro demasiado largo
+	//nombre demasiado largo
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['metodo'] = 'nombre';
 	$TITULACION_array_test1['error'] = 'demasiado largo';
 	$TITULACION_array_test1['error_esperado'] = '00002';
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
 
 	// Relleno los datos de TITULACION	
-	$codCent = 'miTITULACIONesElMasLargoDelMundoYCabraEnLaBaseDeDatosPorqueSoyGenial';
+	$nombre = 'miTITULACIONesElMasLargoDelMundoYCabraEnLaBaseDeDatosPorqueSoyGenial';
 	// creo el modelo
-	$TITULACION = new TITULACION_Model('',$codCent,'','');
+	$TITULACION = new TITULACION_Model('','',$nombre,'');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_nombre();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -69,21 +69,21 @@ function TITULACION_comprobar_centro_test()
 
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
-	//Codcentro demasiado corto
+	//nombre demasiado corto
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['metodo'] = 'nombre';
 	$TITULACION_array_test1['error'] = 'demasiado corto';
 	$TITULACION_array_test1['error_esperado'] = '00003';
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
 
 	// Relleno los datos de TITULACION	
-	$codCent = 'm';
+	$nombre = 'm';
 	// creo el modelo
-	$TITULACION = new TITULACION_Model('',$codCent,'','');
+	$TITULACION = new TITULACION_Model('','',$nombre,'');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_nombre();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -96,21 +96,21 @@ function TITULACION_comprobar_centro_test()
 
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
-	//Codcentro vacio
+	//nombre vacio
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['metodo'] = 'nombre';
 	$TITULACION_array_test1['error'] = 'vacio';
 	$TITULACION_array_test1['error_esperado'] = '00001';
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
 
 	// Relleno los datos de TITULACION	
-	$codCent = '';
+	$nombre = '';
 	// creo el modelo
-	$TITULACION = new TITULACION_Model('',$codCent,'','');
+	$TITULACION = new TITULACION_Model('','',$nombre,'');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_nombre();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -124,21 +124,21 @@ function TITULACION_comprobar_centro_test()
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
 
-	//Codcentro formato erroneo
+	//nombre formato erroneo
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['metodo'] = 'nombre';
 	$TITULACION_array_test1['error'] = 'formato erroneo';
-	$TITULACION_array_test1['error_esperado'] = '00060';
+	$TITULACION_array_test1['error_esperado'] = '00030';
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
 
 	// Relleno los datos de TITULACION	
-	$Codcentro = 'mi|pass.14';
+	$nombre = 'mi|pass.14';
 	// creo el modelo
-	$TITULACION = new TITULACION_Model($Codcentro,'','','');
+	$TITULACION = new TITULACION_Model('','',$nombre,'');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_nombre();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -152,6 +152,6 @@ function TITULACION_comprobar_centro_test()
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 }
 
-
+TITULACION_comprobar_nombre_test();
 
 ?>
