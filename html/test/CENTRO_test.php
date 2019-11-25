@@ -57,36 +57,6 @@ function CENTRO_ADD_test()
 	$CENTRO->DELETE();	
 
 
-// Comprobar error en la inserción
-	$CENTRO_array_test1['entidad'] = 'CENTRO';
-    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
-	$CENTRO_array_test1['metodo'] = 'ADD';
-	$CENTRO_array_test1['error'] = 'Error en la inserción';
-	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$CENTRO_array_test1['error_obtenido'] = '';
-	$CENTRO_array_test1['resultado'] = '';
-	
-	$login = 'jrodeiro\' , \'lklkjlkjasdasdadasds';
-	$codEdi = 'CodEdi23';
-	$nombre = 'javkdfalkj'; 
-	$apellidos = 'rodeiro';
-	$email = 'jrodeiro';
-
-	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,'');
-	$CENTRO_array_test1['error_obtenido'] = $CENTRO->ADD();
-	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
-	{
-		$CENTRO_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$CENTRO_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $CENTRO_array_test1);	
-
-	$CENTRO->DELETE();
-
 // Comprobar Inserción realizada con éxito
 	$CENTRO_array_test1['entidad'] = 'CENTRO';
     $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
@@ -96,11 +66,11 @@ function CENTRO_ADD_test()
 	$CENTRO_array_test1['error_obtenido'] = '';
 	$CENTRO_array_test1['resultado'] = '';
 	
-	$login = 'jrodeiro1';
+	$login = 'jrodeiro';
 	$codEdi = 'CodEdi';
 	$nombre = 'javi'; 
 	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1';
+	$email = 'jrodeiro';
 
 	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,$email);
 	$CENTRO_array_test1['error_obtenido'] = $CENTRO->ADD();
@@ -122,8 +92,7 @@ function CENTRO_ADD_test()
 
 
 // function CENTRO_RellenaDatos_test()
-// Valida:
-//		el usuario a rellenar no existe
+// Valida: 
 //		Devuelve recordset
 //		
 
@@ -133,35 +102,6 @@ function CENTRO_RellenaDatos_test()
 	global $ERRORS_array_test;
 // creo array de almacen de test individual
 	$CENTRO_array_test1 = array();
-
-// Comprobar el login no existe
-//--------------------------------------------------
-	$CENTRO_array_test1['entidad'] = 'CENTRO';
-    $CENTRO_array_test1['tipo'] = 'P_UNITARIA';	
-	$CENTRO_array_test1['metodo'] = 'RellenaDatos';
-	$CENTRO_array_test1['error'] = 'El usuario a rellenar no existe';
-	$CENTRO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$CENTRO_array_test1['error_obtenido'] = '';
-	$CENTRO_array_test1['resultado'] = '';
-	
-	// Relleno los datos de usuario	
-	$login = 'hola\' , \' que tal';
-	$codigo = 'CodEdi';
-	
-// creo el modelo
-	$CENTRO = new CENTRO_Model($login,$codigo,'nom','dir','resp');
-
-	$CENTRO_array_test1['error_obtenido'] = $CENTRO->RellenaDatos();
-	if ($CENTRO_array_test1['error_obtenido'] == $CENTRO_array_test1['error_esperado'])
-	{
-		$CENTRO_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$CENTRO_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $CENTRO_array_test1);
 
 // Comprobar devuelve recordset
 //----------------------------------------------
@@ -177,11 +117,10 @@ function CENTRO_RellenaDatos_test()
 	$codEdi = 'CodEdi';
 	$nombre = 'javi'; 
 	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1';
+	$email = 'jrodeiro';
 
 	$CENTRO = new CENTRO_Model($login,$codEdi,$nombre,$apellidos,$email);
 	$CENTRO->ADD();
-
 
 	$CENTRO_array_test1['error_obtenido'] = gettype($CENTRO->RellenaDatos());
 	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])

@@ -55,35 +55,6 @@ function TITULACION_ADD_test()
 	$TITULACION->DELETE();	
 
 
-// Comprobar error en la inserción
-	$TITULACION_array_test1['entidad'] = 'TITULACION';
-    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
-	$TITULACION_array_test1['metodo'] = 'ADD';
-	$TITULACION_array_test1['error'] = 'Error en la inserción';
-	$TITULACION_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$TITULACION_array_test1['error_obtenido'] = '';
-	$TITULACION_array_test1['resultado'] = '';
-	
-	$login = 'jo\',\'lds';
-	$CodCent = 'CodCent';
-	$nombre = 'javkdfalkj'; 
-	$resp = 'rodeiro';
-
-	$TITULACION = new TITULACION_Model($login,$CodCent,$nombre,$resp);
-	$TITULACION_array_test1['error_obtenido'] = $TITULACION->ADD();
-	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
-	{
-		$TITULACION_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$TITULACION_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $TITULACION_array_test1);	
-
-	$TITULACION->DELETE();
-
 // Comprobar Inserción realizada con éxito
 	$TITULACION_array_test1['entidad'] = 'TITULACION';
     $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
@@ -130,34 +101,6 @@ function TITULACION_RellenaDatos_test()
 // creo array de almacen de test individual
 	$TITULACION_array_test1 = array();
 
-// Comprobar el login no existe
-//--------------------------------------------------
-	$TITULACION_array_test1['entidad'] = 'TITULACION';
-    $TITULACION_array_test1['tipo'] = 'P_UNITARIA';	
-	$TITULACION_array_test1['metodo'] = 'RellenaDatos';
-	$TITULACION_array_test1['error'] = 'El usuario a rellenar no existe';
-	$TITULACION_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$TITULACION_array_test1['error_obtenido'] = '';
-	$TITULACION_array_test1['resultado'] = '';
-	
-	// Relleno los datos de usuario	
-	$login = 'hola\' , \' tu';
-	$codigo = 'CodCent';
-	
-// creo el modelo
-	$TITULACION = new TITULACION_Model($login,$codigo,'nom','resp');
-
-	$TITULACION_array_test1['error_obtenido'] = $TITULACION->RellenaDatos();
-	if ($TITULACION_array_test1['error_obtenido'] == $TITULACION_array_test1['error_esperado'])
-	{
-		$TITULACION_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$TITULACION_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
 // Comprobar devuelve recordset
 //----------------------------------------------
@@ -246,10 +189,13 @@ function TITULACION_Delete_test()
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
 	
-	$login = 'grvidal25';
-	$codCent = 'CodCent';
-
-	$TITULACION = new TITULACION_Model($login,$codCent,'','','');
+	// Relleno los datos de usuario	
+	$login = 'codTest';
+	$CodCent = 'CodCent';
+	$nombre = 'nom'; 
+	$resp = 'resp';
+// creo el modelo
+	$TITULACION = new TITULACION_Model($login,$CodCent,$nombre,$resp);
 	$TITULACION->ADD();
 
 	$TITULACION_array_test1['error_obtenido'] = $TITULACION->DELETE();
@@ -316,14 +262,17 @@ function TITULACION_Edit_test()
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
 	
-	$login = 'grvidal25';
+	// Relleno los datos de usuario	
+	$login = 'codTest';
 	$CodCent = 'CodCent';
-
-	$TITULACION = new TITULACION_Model($login,$CodCent,'nom','dir','resp');
+	$nombre = 'nom'; 
+	$resp = 'resp';
+// creo el modelo
+	$TITULACION = new TITULACION_Model($login,$CodCent,$nombre,$resp);
 	
 	//Lo añado a la base de datos
 	$TITULACION->ADD();
-	$TITULACION = new TITULACION_Model($login,$CodCent,'nom2','dir2','resp2');
+	
 	$TITULACION_array_test1['error_obtenido'] = $TITULACION->EDIT();
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{

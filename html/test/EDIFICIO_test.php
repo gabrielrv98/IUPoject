@@ -55,35 +55,6 @@ function EDIFICIO_ADD_test()
 	$EDIFICIO->DELETE();	
 
 
-// Comprobar error en la inserción
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
-    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
-	$EDIFICIO_array_test1['metodo'] = 'ADD';
-	$EDIFICIO_array_test1['error'] = 'Error en la inserción';
-	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$EDIFICIO_array_test1['error_obtenido'] = '';
-	$EDIFICIO_array_test1['resultado'] = '';
-	
-	$login = 'jrodeirolklkjlkj';
-	$password = 'javi';
-	$nombre = 'javi\' ,\'kdfalkj';  
-	$campus = 'campus';
-
-	$EDIFICIO = new EDIFICIO_Model($login,$password,$nombre,$campus);
-	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->ADD();
-	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
-	{
-		$EDIFICIO_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$EDIFICIO_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $EDIFICIO_array_test1);	
-
-	$EDIFICIO->DELETE();
-
 // Comprobar Inserción realizada con éxito
 	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
     $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
@@ -119,7 +90,6 @@ function EDIFICIO_ADD_test()
 
 // function EDIFICIO_RellenaDatos_test()
 // Valida:
-//		el usuario a rellenar no existe
 //		Devuelve recordset
 //		
 
@@ -129,35 +99,6 @@ function EDIFICIO_RellenaDatos_test()
 	global $ERRORS_array_test;
 // creo array de almacen de test individual
 	$EDIFICIO_array_test1 = array();
-
-// Comprobar el login no existe
-//--------------------------------------------------
-	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';
-    $EDIFICIO_array_test1['tipo'] = 'P_UNITARIA';	
-	$EDIFICIO_array_test1['metodo'] = 'RellenaDatos';
-	$EDIFICIO_array_test1['error'] = 'El usuario a rellenar no existe';
-	$EDIFICIO_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$EDIFICIO_array_test1['error_obtenido'] = '';
-	$EDIFICIO_array_test1['resultado'] = '';
-	
-	// Relleno los datos de usuario	
-	$login = 'javi ,\'hola';
-	
-// creo el modelo
-	$EDIFICIO = new EDIFICIO_Model($login,'','','');
-
-
-	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->RellenaDatos();
-	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
-	{
-		$EDIFICIO_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$EDIFICIO_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
 
 // Comprobar devuelve recordset
 //----------------------------------------------
@@ -249,7 +190,7 @@ function EDIFICIO_Delete_test()
 	
 	$login = 'grvidal25';
 
-	$EDIFICIO = new EDIFICIO_Model($login,'','','');
+	$EDIFICIO = new EDIFICIO_Model($login,'nombre','direccion','campus');
 	$EDIFICIO->ADD();
 
 	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->DELETE();
@@ -290,7 +231,7 @@ function EDIFICIO_Edit_test()
 	$login = 'grvidal25';
 	
 // creo el modelo sin añadirlo a la base de datos
-	$editado = new EDIFICIO_Model($login,'1','2','3');
+	$editado = new EDIFICIO_Model($login,'nombre','direccion','campus');
 
 //Intento editar la tupla
 	$EDIFICIO_array_test1['error_obtenido'] = $editado->EDIT();
