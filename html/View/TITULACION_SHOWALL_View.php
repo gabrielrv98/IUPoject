@@ -93,7 +93,7 @@ class TITULACION_SHOWALL {
 		</table>
 
 		<br>
-		<a href="../../Controller/TITULACION_Controller.php"> <?php echo $strings['Volver'] ; ?> </a>
+		<a href="../../Controller/TITULACION_Controller.php"><img src="../View/icon/back.ico" height="32" width="32"> </a>
 		<?php
 		include '../View/Footer.php';
 	}

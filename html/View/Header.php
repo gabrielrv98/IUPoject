@@ -80,7 +80,7 @@
 	else{
 		echo $strings['Usuario no autenticado']; 
 ?>
-		<a href='../Controller/Register_Controller.php'>Registrar</a>
+		<a href='../Controller/Register_Controller.php'> <img src="../View/icon/register.png" height="32" width="32"> </a>
 <?php
 	}	
 ?>

@@ -74,28 +74,12 @@
 			</form>	 
 				
 		
-			<a href='../Controller/Index_Controller.php'> <?php echo $strings['Volver']; ?> </a>
+			<a href='../Controller/Index_Controller.php'><img src="../View/icon/back.ico" height="32" width="32"> </a>
 		
 		<?php
 			include '../View/Footer.php';
 		} //fin metodo render
 
-	} //fin REGISTER  . " " . echo $nombre['APELLIDOSPROFESOR'];
-
-
-/*
-Nombre del profesor: <select name='DNI' >
-
-				 				<?php $i = 0; 
-				 				 while ($this->nombre != 'null'){ ?>
-    							<option value="<?php echo $this->nombre['DNI']; ?>">
-    							 <?php  echo $this->nombre['NOMBREPROFESOR'] ." ". $i ." ". $this->nombre['APELLIDOSPROFESOR']; ?>
-    								
-    							</option>
-
-    							<?php  $this->nombre->fetch_array(); 
-    							$i++;} ?>
-							</select>*/
-
+	} //fin REGISTER 
 
 ?>

@@ -96,7 +96,7 @@ class USUARIOS_SHOWALL {
 		</table>
 	</div>
 		<br>
-		<a href="../../Controller/USUARIOS_Controller.php"> <?php echo $strings['Volver'] ; ?> </a>
+		<a href="../../Controller/USUARIOS_Controller.php"> <img src="../View/icon/back.ico" height="32" width="32"> </a>
 
 		<?php
 		include '../View/Footer.php';
