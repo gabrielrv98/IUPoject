@@ -294,10 +294,9 @@ function DELETE()
 //Busco si profesor existe con todas las caracteristicas
 	$sql = "SELECT *
 			FROM PROFESOR
-			WHERE (DNI = '$this->dni)";
+			WHERE (DNI = '$this->dni')";
 
 	$obj = $this->mysqli->query($sql);
-
 	if( mysqli_num_rows($obj) == 1 ){
 
 		$sql = "SELECT *
@@ -330,7 +329,7 @@ function comprobar_atributos_RellenaDatos(){
 	$array = array();
 	$correcto = true;
 
-	$aux = $this->comprobar_login();
+	$aux = $this->comprobar_dni();
 	if ($aux !== true) {
 		$array[0] = $aux;
 		$correcto = false;
@@ -544,7 +543,7 @@ function registrar(){
 			return 'Error de gestor de base de datos';
 		}
 		else{
-			return 'Inserción realizada con exito'; //operacion de insertado correcta
+			return 'Inserción realizada con éxito'; //operacion de insertado correcta
 		}		
 	}
 
