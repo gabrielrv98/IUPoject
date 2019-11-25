@@ -26,6 +26,8 @@
 	include_once '../test/PROFESOR_VADLICACION_test.php';
 	include_once '../test/PROF_TITULACION_VADLICACION_test.php';
 	include_once '../test/ESPACIO_VADLICACION_test.php';
+	include_once '../test/EDIFICIO_VADLICACION_test.php';
+
 			
 
 ?>
