@@ -237,10 +237,10 @@ function TITULACION_Edit_test()
 	$CodCent = 'CodCent';
 	
 // creo el modelo sin añadirlo a la base de datos
-	$TITULACION = new TITULACION_Model($login,$CodCent,'nom','dir','resp');
+	$editado = new TITULACION_Model($login,$CodCent,'nom','dir','resp');
 
 //Intento editar la tupla
-	$TITULACION_array_test1['error_obtenido'] = $TITULACION->EDIT();
+	$TITULACION_array_test1['error_obtenido'] = $editado->EDIT();
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
 		$TITULACION_array_test1['resultado'] = 'OK';
@@ -368,13 +368,7 @@ function TITULACION_Search_test()
 	TITULACION_Delete_test();
 	TITULACION_Search_test();
 
-	// Relleno los datos de usuario	
-	$CodCent = 'CodCent';
-	$nombre = 'nom'; 
-	$resp = 'resp';
-	// creo el modelo
-	$TITULACION = new TITULACION_Model('codTest',$CodCent,$nombre,$resp);
-	$TITULACION->ADD();
+	//search
 
 ?>
 

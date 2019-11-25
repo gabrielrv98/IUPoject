@@ -384,9 +384,6 @@ function PROFESOR_Search_test()
 	PROFESOR_Delete_test();
 	PROFESOR_Search_test();
 
-	// creo el modelo
-	$PROFESOR = new PROFESOR_Model('09635517N','grvidalasd','apellido','area','dep');
-	$PROFESOR->ADD();
 
 ?>
 

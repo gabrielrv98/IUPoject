@@ -428,7 +428,7 @@ function registrar(){
 					
 
 			if ($this->mysqli->query($sql)) 
-				return 'Inserción realizada con éxito'; //operacion de insertado correcta
+				return 'Inserción realizada con exito'; //operacion de insertado correcta
 			
 		} 
 			return 'Error de gestor de base de datos';		
