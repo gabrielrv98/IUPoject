@@ -23,6 +23,8 @@
 	include_once '../test/CLEAN_test.php';
 	include_once '../test/USUARIOS_VADLICACION_test.php';
 	include_once '../test/TITULACION_VADLICACION_test.php';
+	include_once '../test/PROFESOR_VADLICACION_test.php';
+			
 
 ?>
 
