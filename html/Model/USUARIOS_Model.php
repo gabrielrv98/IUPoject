@@ -265,7 +265,7 @@ function comprobar_email()
 		return $array;
 
 	}else if( !preg_match('/^[a-zñ0-9]+@([ña-z]+.)+(es|org|com)$/', $this->email) ){//comprobamos si coincide con la expresion esperada
-		$array[1] = "00020";
+		$array[1] = "00120";
 		$array[2] = "emailErrorCode";
 
 		return $array;

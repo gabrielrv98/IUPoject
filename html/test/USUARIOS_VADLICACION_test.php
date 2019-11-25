@@ -929,7 +929,7 @@ function USUARIOS_comprobar_email_test()
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'email';
 	$USUARIO_array_test1['error'] = 'formato incorrecto';
-	$USUARIO_array_test1['error_esperado'] = '00020';
+	$USUARIO_array_test1['error_esperado'] = '00120';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
 

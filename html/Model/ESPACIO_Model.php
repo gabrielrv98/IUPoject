@@ -32,102 +32,6 @@ function __construct($espacio,$edificio,$centro,$tipo,$superficie,$nInventario){
 
 
 //comprueba que sean solo letras y numeros
-function comprobar_nInventario()
-{
-	$array = array();
-	$array[0] = 'nInventary';
-
-	$this->nInventario = trim($this->nInventario);
-
-	if(empty($this->nInventario)){//comprobamos si esta vacio
-		$array[1] = "00001";
-		$array[2] = "paramVacio";
-
-		return $array;
-
-	}else if(strlen($this->nInventario) > 8){//comprobamos si es muy larga
-		$array[1] = "00002";
-		$array[2] = "toolong";
-
-		return $array;
-
-	}else if(strlen($this->nInventario) < 1){//comprobamos si es muy corta
-		$array[1] = "00004";
-		$array[2] = "tooshort";
-
-		return $array;
-
-	}else if( !preg_match('/^[0-9]*$/i', $this->nInventario) ){//comprobamos si coincide con la expresion esperada
-		$array[1] = "00070";
-		$array[2] = "onlynumbers";
-
-		return $array;
-	}
-
-	return true;
-}
-
-//comprueba que sean solo letras y numeros
-function comprobar_superficie()
-{
-	$array = array();
-	$array[0] = 'supEspacio';
-
-	$this->superficie = trim($this->superficie);
-
-	if(empty($this->superficie)){//comprobamos si esta vacio
-		$array[1] = "00001";
-		$array[2] = "paramVacio";
-
-		return $array;
-
-	}else if(strlen($this->superficie) > 4){//comprobamos si es muy larga
-		$array[1] = "00002";
-		$array[2] = "toolong";
-
-		return $array;
-
-	}else if(strlen($this->superficie) < 1){//comprobamos si es muy corta
-		$array[1] = "00004";
-		$array[2] = "tooshort";
-
-		return $array;
-
-	}else if( !preg_match('/^[0-9]*$/i', $this->superficie) ){//comprobamos si coincide con la expresion esperada
-		$array[1] = "00070";
-		$array[2] = "onlynumbers";
-
-		return $array;
-	}
-
-	return true;
-}
-
-//comprueba que sean solo letras y numeros
-function comprobar_tipo()
-{
-	$array = array();
-	$array[0] = 'tipo';
-
-	$this->tipo = trim($this->tipo);
-
-	if(empty($this->tipo)){//comprobamos si esta vacio
-		$array[1] = "00001";
-		$array[2] = "paramVacio";
-
-		return $array;
-
-	}else if( !preg_match('/^(DESPACHO|LABORATORIO|PAS)$/i', $this->tipo) ){//comprobamos si coincide con la expresion esperada
-		$array[1] = "00080";
-		$array[2] = "alfNumguion";
-
-		return $array;
-	}
-
-	return true;
-}
-
-//comprueba que sean solo letras y numeros
 function comprobar_codEspacio()
 {
 	$array = array();
@@ -154,7 +58,7 @@ function comprobar_codEspacio()
 		return $array;
 
 	}else if( !preg_match('/^[a-z0-9-]*$/i', $this->espacio) ){//comprobamos si coincide con la expresion esperada
-		$array[1] = "00060";
+		$array[1] = "00040";
 		$array[2] = "alfNumguion";
 
 		return $array;
@@ -162,6 +66,7 @@ function comprobar_codEspacio()
 
 	return true;
 }
+
 
 //comprueba que sean solo letras y numeros
 function comprobar_edificio()
@@ -234,6 +139,104 @@ function comprobar_centro()
 
 	return true;
 }
+
+
+//comprueba que sean solo letras y numeros
+function comprobar_tipo()
+{
+	$array = array();
+	$array[0] = 'tipo';
+
+	$this->tipo = trim($this->tipo);
+
+	if(empty($this->tipo)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if( !preg_match('/^(DESPACHO|LABORATORIO|PAS)$/i', $this->tipo) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00080";
+		$array[2] = "tipoError";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_superficie()
+{
+	$array = array();
+	$array[0] = 'supEspacio';
+
+	$this->superficie = trim($this->superficie);
+
+	if(empty($this->superficie)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->superficie) > 4){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->superficie) < 1){//comprobamos si es muy corta
+		$array[1] = "00004";
+		$array[2] = "tooshort";
+
+		return $array;
+
+	}else if( !preg_match('/^[0-9]*$/i', $this->superficie) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00070";
+		$array[2] = "onlynumbers";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y numeros
+function comprobar_nInventario()
+{
+	$array = array();
+	$array[0] = 'nInventary';
+
+	$this->nInventario = trim($this->nInventario);
+
+	if(empty($this->nInventario)){//comprobamos si esta vacio
+		$array[1] = "00001";
+		$array[2] = "paramVacio";
+
+		return $array;
+
+	}else if(strlen($this->nInventario) > 8){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->nInventario) < 1){//comprobamos si es muy corta
+		$array[1] = "00004";
+		$array[2] = "tooshort";
+
+		return $array;
+
+	}else if( !preg_match('/^[0-9]*$/i', $this->nInventario) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00070";
+		$array[2] = "onlynumbers";
+
+		return $array;
+	}
+
+	return true;
+}
+
 
 //funcion de destrucción del objeto: se ejecuta automaticamente
 //al finalizar el script

@@ -25,9 +25,14 @@
 	include_once '../test/TITULACION_VADLICACION_test.php';
 	include_once '../test/PROFESOR_VADLICACION_test.php';
 	include_once '../test/PROF_TITULACION_VADLICACION_test.php';
+	include_once '../test/ESPACIO_VADLICACION_test.php';
 			
 
 ?>
+<head>
+	<title>Tests</title>
+	<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
+</head>
 
 <h1> RESUMEN</h1>
 <h2>Numero de pruebas: <?php echo count($ERRORS_array_test); ?> -Numero de errores :  
@@ -46,7 +51,7 @@
 ?>
 <h2>Pruebas Globales</h2>
 
-<table>
+<table  border="1" >
 	<tr>
 		<th>
 			Error testeado
@@ -87,7 +92,7 @@
 </table>
 
 <h2>Pruebas Unitarias</h2>
-<table>
+<table  border="1">
 	<tr>
 		<th>
 			Entidad
@@ -140,7 +145,7 @@
 </table>
 
 <h2>Pruevas Validación</h2>
-<table>
+<table border="1">
 	<tr>
 		<th>
 			Entidad

@@ -1,6 +1,6 @@
 18 h
+16:00 17:00 u  19:40 
 
-GENERAL, USUARIOS, EDIFICIO, CENTRO, TITULACION have Test implemented fully.
 
 Missing-----
 param validations
@@ -15,10 +15,6 @@ defET3
 https://docs.google.com/document/d/1T5ZHd18UndElZQe2haheGBRSwsvJlbepHM7m1UPQqzo/edit
 
 
-Falta comprobar subir foto
-falta un buen codigo para comprobar que el email tiene la expresion regular
-verificaciones comprobar_email()
-array[1]= solotexto ? ninguno vale realmente
 
 general_test y index.php tiene una linea que suprimen los warnings
 
