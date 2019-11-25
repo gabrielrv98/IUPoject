@@ -128,32 +128,32 @@ function comprobar_tipo()
 }
 
 //comprueba que sean solo letras y numeros
-function comprobar_codEspacio()
+function comprobar_espacio()
 {
 	$array = array();
 	$array[0] = 'CodEspacio';
 
-	$this->codEspacio = trim($this->codEspacio);
+	$this->espacio = trim($this->espacio);
 
-	if(empty($this->codEspacio)){//comprobamos si esta vacio
+	if(empty($this->espacio)){//comprobamos si esta vacio
 		$array[1] = "00001";
 		$array[2] = "paramVacio";
 
 		return $array;
 
-	}else if(strlen($this->codEspacio) > 10){//comprobamos si es muy larga
+	}else if(strlen($this->espacio) > 10){//comprobamos si es muy larga
 		$array[1] = "00002";
 		$array[2] = "toolong";
 
 		return $array;
 
-	}else if(strlen($this->codEspacio) < 3){//comprobamos si es muy corta
+	}else if(strlen($this->espacio) < 3){//comprobamos si es muy corta
 		$array[1] = "00003";
 		$array[2] = "tooshortNoNNum";
 
 		return $array;
 
-	}else if( !preg_match('/^[a-z0-9-]*$/i', $this->codEspacio) ){//comprobamos si coincide con la expresion esperada
+	}else if( !preg_match('/^[a-z0-9-]*$/i', $this->espacio) ){//comprobamos si coincide con la expresion esperada
 		$array[1] = "00060";
 		$array[2] = "alfNumguion";
 
@@ -315,7 +315,7 @@ function comprobar_atributos_DELETE(){
 	$array = array();
 	$correcto = true;
 
-	$aux = $this->comprobar_codEspacio();
+	$aux = $this->comprobar_espacio();
 	if ($aux !== true) {
 		$array[0] = $aux;
 		$correcto = false;
@@ -373,7 +373,7 @@ function comprobar_atributos_RellenaDatos(){
 	$array = array();
 	$correcto = true;
 
-	$aux = $this->comprobar_codEspacio();
+	$aux = $this->comprobar_espacio();
 	if ($aux !== true) {
 		$array[0] = $aux;
 		$correcto = false;
@@ -403,7 +403,7 @@ function comprobar_atributos_EDIT(){
 	$array = array();
 	$correcto = true;
 
-	$aux = $this->comprobar_codEspacio();
+	$aux = $this->comprobar_espacio();
 	if ($aux !== true) {
 		$array[0] = $aux;
 		$correcto = false;
@@ -462,19 +462,23 @@ function EDIT()
 				}
 		}
 
+	$sql =  "SELECT *
+		FROM ESPACIO
+		WHERE CODESPACIO = '$this->espacio'";
+
+	$response = $this->mysqli->query($sql)->num_rows;
+	if ($response == 1) {
+
 		$sql = "UPDATE ESPACIO
 			SET TIPO = '$this->tipo',
 				SUPERFICIEESPACIO = '$this->superficie',
 				NUMINVENTARIOESPACIO = '$this->nInventario',
 				CODCENTRO = '$this->centro'
 
-			WHERE ( CODESPACIO = '$this->espacio' AND 
-					CODEDIFICIO = '$this->edificio')";
-
-		$result = $this->mysqli->query($sql);
-
-		if($result = 1) return 'Actualización realizada con éxito';
-		else return 'Error de gestor de base de datos';
+			WHERE ( CODESPACIO = '$this->espacio')";
+			$result = $this->mysqli->query($sql);
+			return 'Actualización realizada con éxito';
+	}else return 'Error de gestor de base de datos';		
 	
 
 }
@@ -504,7 +508,7 @@ function comprobar_atributos_ADD(){
 	$array = array();
 	$correcto = true;
 
-	$aux = $this->comprobar_codEspacio();
+	$aux = $this->comprobar_espacio();
 	if ($aux !== true) {
 		$array[0] = $aux;
 		$correcto = false;
@@ -631,7 +635,7 @@ function registrar(){
 						'$this->nInventario')
 						";
 			if ($this->mysqli->query($sql)) {
-				return 'Inserción realizada con exito'; //operacion de insertado correcta
+				return 'Inserción realizada con éxito'; //operacion de insertado correcta
 			}else return 'Error de gestor de base de datos';
 	}
 
