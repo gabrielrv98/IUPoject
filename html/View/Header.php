@@ -17,7 +17,6 @@
 	<script type="text/javascript" src="../View/js/md5.js"></script>
 	<script type="text/javascript" src="../View/js/validaciones.js"></script> 
 	 
-	<!--<script type="text/javascript" src="../View/js/comprobar.js"></script> -->
 	<link rel="stylesheet" type="text/css" href="../View/css/JulioCSS-2.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="../View/css/tcal.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="../View/css/modal.css" />
@@ -40,26 +39,6 @@
 ?>
 		</h1>
 	</p>
-	
-	<div width: 50%; align="left">
-		<form name='idiomaform' action="../Functions/CambioIdioma.php" method="post">
-			<?php echo $strings['idioma']; ?>
-			<select name="idioma" onChange='this.form.submit()'>
-				<option value="ENGLISH"
-					<?php if ($_SESSION['idioma'] == "ENGLISH") echo 'selected'; ?> 
-					><?php echo $strings['INGLES']; ?></option>
-
-		        <option value="SPANISH"
-		        	<?php if ($_SESSION['idioma'] == "SPANISH") echo 'selected'; ?>
-		        	><?php echo $strings['ESPAÑOL']; ?></option>
-
-		        <option value="GALLAECIAN"
-		        	<?php if ($_SESSION['idioma'] == "GALLAECIAN") echo 'selected'; ?>
-		        	><?php echo $strings['GALLAECIAN']; ?></option>
-
-			</select>
-		</form>
-	</div>
 
 	<div width: 50%; align="left">
 		<form name='idiomaform' action="../Functions/CambioIdioma.php" method="post">
