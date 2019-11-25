@@ -367,8 +367,14 @@ function TITULACION_Search_test()
 	TITULACION_Edit_test();
 	TITULACION_Delete_test();
 	TITULACION_Search_test();
-
-	//search
+	// Relleno los datos de usuario	
+	$login = 'codTest';
+	$CodCent = 'CodCent';
+	$nombre = 'nom'; 
+	$resp = 'resp';
+// creo el modelo
+	$TITULACION = new TITULACION_Model($login,$CodCent,$nombre,$resp);
+	$TITULACION->ADD();
 
 ?>
 

@@ -51,7 +51,7 @@ function PROF_TITULACION_ADD_test()
 
 	array_push($ERRORS_array_test, $PROF_TITULACION_array_test1);
 
-	echo $PROF_TITULACION->DELETE();	
+	$PROF_TITULACION->DELETE();	
 
 
 // Comprobar Inserción realizada con éxito

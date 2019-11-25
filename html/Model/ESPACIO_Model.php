@@ -133,27 +133,27 @@ function comprobar_codEspacio()
 	$array = array();
 	$array[0] = 'CodEspacio';
 
-	$this->codEspacio = trim($this->codEspacio);
+	$this->espacio = trim($this->espacio);
 
-	if(empty($this->codEspacio)){//comprobamos si esta vacio
+	if(empty($this->espacio)){//comprobamos si esta vacio
 		$array[1] = "00001";
 		$array[2] = "paramVacio";
 
 		return $array;
 
-	}else if(strlen($this->codEspacio) > 10){//comprobamos si es muy larga
+	}else if(strlen($this->espacio) > 10){//comprobamos si es muy larga
 		$array[1] = "00002";
 		$array[2] = "toolong";
 
 		return $array;
 
-	}else if(strlen($this->codEspacio) < 3){//comprobamos si es muy corta
+	}else if(strlen($this->espacio) < 3){//comprobamos si es muy corta
 		$array[1] = "00003";
 		$array[2] = "tooshortNoNNum";
 
 		return $array;
 
-	}else if( !preg_match('/^[a-z0-9-]*$/i', $this->codEspacio) ){//comprobamos si coincide con la expresion esperada
+	}else if( !preg_match('/^[a-z0-9-]*$/i', $this->espacio) ){//comprobamos si coincide con la expresion esperada
 		$array[1] = "00060";
 		$array[2] = "alfNumguion";
 
@@ -462,19 +462,24 @@ function EDIT()
 				}
 		}
 
+	$sql =  "SELECT *
+		FROM ESPACIO
+		WHERE CODESPACIO = '$this->espacio'";
+
+	$response = $this->mysqli->query($sql)->num_rows;
+	if ($response == 1) {
+
 		$sql = "UPDATE ESPACIO
 			SET TIPO = '$this->tipo',
 				SUPERFICIEESPACIO = '$this->superficie',
 				NUMINVENTARIOESPACIO = '$this->nInventario',
 				CODCENTRO = '$this->centro'
 
-			WHERE ( CODESPACIO = '$this->espacio' AND 
-					CODEDIFICIO = '$this->edificio')";
+			WHERE ( CODESPACIO = '$this->espacio')";
 
 		$result = $this->mysqli->query($sql);
-
-		if($result = 1) return 'Actualización realizada con éxito';
-		else return 'Error de gestor de base de datos';
+		return 'Actualización realizada con éxito';
+	}else return 'Error de gestor de base de datos';
 	
 
 }
@@ -631,7 +636,7 @@ function registrar(){
 						'$this->nInventario')
 						";
 			if ($this->mysqli->query($sql)) {
-				return 'Inserción realizada con exito'; //operacion de insertado correcta
+				return 'Inserción realizada con éxito'; //operacion de insertado correcta
 			}else return 'Error de gestor de base de datos';
 	}
 

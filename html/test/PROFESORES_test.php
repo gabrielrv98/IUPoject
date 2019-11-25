@@ -53,7 +53,7 @@ function PROFESOR_ADD_test()
 
 	array_push($ERRORS_array_test, $PROFESOR_array_test1);
 
-	echo $PROFESOR->DELETE();	
+	$PROFESOR->DELETE();	
 
 
 // Comprobar Inserción realizada con éxito
@@ -384,6 +384,16 @@ function PROFESOR_Search_test()
 	PROFESOR_Delete_test();
 	PROFESOR_Search_test();
 
+	// Relleno los datos de usuario	
+	$DNI = '09635517N';
+	$nombre = 'grvidalasd';
+	$apellido = 'apellido'; 
+	$area = 'area';
+	$dep = 'dep';
+// creo el modelo
+	$PROFESOR = new PROFESOR_Model($DNI,$nombre,$apellido,$area,$dep);
+
+	$PROFESOR->ADD();
 
 ?>
 
