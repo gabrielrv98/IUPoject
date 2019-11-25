@@ -351,19 +351,19 @@ function comprobar_atributos_EDIT(){
 
 	$aux = $this->comprobar_nombre();
 	if ($aux !== true) {
-		$array[0] = $aux;
+		$array[1] = $aux;
 		$correcto = false;
 	}
 
 	$aux = $this->comprobar_direccion();
 	if ($aux !== true) {
-		$array[0] = $aux;
+		$array[2] = $aux;
 		$correcto = false;
 	}
 
 	$aux = $this->comprobar_campus();
 	if ($aux !== true) {
-		$array[0] = $aux;
+		$array[3] = $aux;
 		$correcto = false;
 	}
 
@@ -412,19 +412,19 @@ function comprobar_atributos_ADD(){
 
 	$aux = $this->comprobar_nombre();
 	if ($aux !== true) {
-		$array[0] = $aux;
+		$array[1] = $aux;
 		$correcto = false;
 	}
 
 	$aux = $this->comprobar_direccion();
 	if ($aux !== true) {
-		$array[0] = $aux;
+		$array[2] = $aux;
 		$correcto = false;
 	}
 
 	$aux = $this->comprobar_campus();
 	if ($aux !== true) {
-		$array[0] = $aux;
+		$array[3] = $aux;
 		$correcto = false;
 	}
 

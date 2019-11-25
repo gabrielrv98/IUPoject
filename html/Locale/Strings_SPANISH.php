@@ -170,10 +170,11 @@ array(
 	'sexoError' => 'solo puede ser hombre o mujer.',
 	'dateError' => 'no tiene el formato correcto, formato requerido yyyy-mm-dd.',
 	'emailErrorCode' => 'no tiene el formato correcto, formato requerido x.@x.(com|es|org)',
-	'alfNumguion' => 'solo esta permitido letras, numeros y guien \'-\'.',
+	'alfNumguion' => 'solo esta permitido letras, numeros y guión \'-\'.',
 	'alfNum' => 'solo esta permitido numeros y letras.',
 	'anhoAcadCode' => 'Solo se permiten dddd-dddd (año académico) donde d es un dígito.',
 	'onlynumbers' => 'solo esta permitido numeros.',
-	'dirError' => 'solo puede contener letras, numerosy los símbolos  “- / º ª.'
+	'dirError' => 'solo puede contener letras, numerosy los símbolos  “- / º ª.',
+	'errorIn' => 'Error en'
 	);
 ?>

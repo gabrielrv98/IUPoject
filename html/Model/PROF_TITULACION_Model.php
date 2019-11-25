@@ -272,7 +272,7 @@ function comprobar_atributos_EDIT(){
 
 	$aux = $this->comprobar_anhoAcademico();
 	if ($aux !== true) {
-		$array[1] = $aux;
+		$array[2] = $aux;
 		$correcto = false;
 	}
 
@@ -350,7 +350,7 @@ function comprobar_atributos_ADD(){
 
 	$aux = $this->comprobar_anhoAcademico();
 	if ($aux !== true) {
-		$array[1] = $aux;
+		$array[2] = $aux;
 		$correcto = false;
 	}
 
