@@ -12,7 +12,7 @@ function comprobarAlfabetico(campo, size) {
     if(!comprobarExpresionRegular(campo,abc,size)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
          
         return false;
-    } 
+    }else if(campo.value.length < 3)  return false;
     return true;
 }
 
@@ -35,7 +35,9 @@ function comprobarTexto( campo, size ) {
     var comprueba=/^[A-Za-zñáéíóú]{1}[A-Za-zñáéíóú ]*$/i;
     if(!comprobarExpresionRegular(campo,comprueba,size)){//comprueba que la expresión enviada en comprueba sea cumplida por el campo enviado si no lo hace devuelve false
         return false;
-    }//envía true en caso contrario
+    }
+    else if(campo.value.length < 3){  return false; }
+    //envía true en caso contrario
     else {
         campo.style.border = "2px solid green";
         return true;
