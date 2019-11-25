@@ -16,7 +16,7 @@
 	include_once '../test/EDIFICIO_test.php';
 	include_once '../test/CENTRO_test.php';
 	include_once '../test/TITULACION_test.php';
-	include_once '../test/PROFESORES_test.php';
+	include_once '../test/PROFESOR_test.php';
 	include_once '../test/PROF_TITULACION_test.php';
 	include_once '../test/ESPACIO_test.php';
 	include_once '../test/PROF_ESPACIO_test.php';
@@ -24,6 +24,7 @@
 	include_once '../test/USUARIOS_VADLICACION_test.php';
 	include_once '../test/TITULACION_VADLICACION_test.php';
 	include_once '../test/PROFESOR_VADLICACION_test.php';
+	include_once '../test/PROF_TITULACION_VADLICACION_test.php';
 			
 
 ?>
