@@ -81,6 +81,7 @@
 				<div class="form-group">
 				 	<label for="tipo"><?php echo $strings['tipo'] ?> </label>  
 				 	<select name="tipo">
+				 		<option value=""> <?php echo $strings['mix'] ; ?> </option>
 						<option value="DESPACHO"> <?php echo $strings['despacho'] ; ?> </option>
 						<option value="LABORATORIO"> <?php echo $strings['laboratorio'] ; ?> </option>
 						<option value="PAS"> PAS </option>

@@ -469,6 +469,10 @@ function Register(){
 
 	}
 
+
+//Metodo registrar
+//Confirma que el centro exista
+//Sube la titulacion a la base de datos
 function registrar(){
 
 			

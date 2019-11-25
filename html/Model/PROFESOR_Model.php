@@ -523,6 +523,9 @@ function Register(){
 
 	}
 
+
+//Metodo registrar
+//Sube el profesor a la base de datos
 function registrar(){
 
 			

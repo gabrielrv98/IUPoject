@@ -402,6 +402,11 @@ function Register(){
 
 	}
 
+
+
+//Metodo registrar
+//Confirma que profesor y titulacion existan
+//Sube la relacion a la base de datos
 function registrar(){
 
 		$sql = "SELECT *

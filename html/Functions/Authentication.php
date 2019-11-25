@@ -1,4 +1,11 @@
 <?php
+
+//Clase : Authentication.php
+//Creado el : 15-10-2019
+//Creado por: grvidal
+//Gestiona si el usuario esta o no autentificado
+//-------------------------------------------------------
+
 /*
 function IsAuthenticated()
 jrodeiro

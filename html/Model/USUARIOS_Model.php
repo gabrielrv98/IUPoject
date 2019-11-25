@@ -705,7 +705,7 @@ function Register(){
 	}
 
 //Metodo registrar
-//inserta los valores en l tabla
+//inserta los valores en la tabla
 function registrar(){
 
 			

@@ -60,6 +60,25 @@
 			</select>
 		</form>
 	</div>
+
+	<div width: 50%; align="left">
+		<form name='idiomaform' action="../Functions/CambioIdioma.php" method="post">
+			<?php echo $strings['idioma']; ?>
+			<br>
+			<img alt="" src="../View/icon/english.png"   style="height: 32px; width: 32px" />
+			<input type="radio" name="idioma" value="ENGLISH" onChange='this.form.submit()'>
+			<br>
+
+			<img alt="" src="../View/icon/spain.jpg"   style="height: 32px; width: 32px" />
+			<input type="radio" name="idioma" value="SPANISH" onChange='this.form.submit()'>
+			<br>
+
+			<img alt="" src="../View/icon/galicia.jpg"   style="height: 32px; width: 32px" />
+			<input type="radio" name="idioma" value="GALLAECIAN" onChange='this.form.submit()'>
+			<br>
+		</form>
+	</div>
+
 <?php
 	
 	if (IsAuthenticated()){

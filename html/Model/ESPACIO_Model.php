@@ -621,6 +621,8 @@ function registrar(){
 	}
 
 
+//Metodo upload
+//Sube el espacio a la base de datos
 	public function upload()
 	{
 		$sql = "INSERT INTO ESPACIO (

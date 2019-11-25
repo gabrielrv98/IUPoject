@@ -358,6 +358,10 @@ function Register(){
 
 	}
 
+
+//Metodo registrar
+//Confirma que profesor y espacio existan
+//Sube la relacion a la base de datos
 function registrar(){
 
 

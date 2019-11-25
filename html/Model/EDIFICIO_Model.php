@@ -473,6 +473,8 @@ function Register(){
 
 	}
 
+//Metodo registrar
+//Sube el edificio a la base de datos
 function registrar(){
 
 			

@@ -540,6 +540,9 @@ function Register(){
 
 	}
 
+//Metodo registrar
+//Confirma que edificio exista
+//Sube el centro a la base de datos
 function registrar(){
 
 			
