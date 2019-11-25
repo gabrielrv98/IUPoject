@@ -6,21 +6,6 @@
 //	Saca por pantalla el resultado de los test
 //-------------------------------------------------------
 
-/*
-// Relleno los datos de usuario	
-	$login = 'miusuario';
-	$password = 'mipassword';
-	$dni = '13170208V';
-	$nombre = 'minombre'; 
-	$apellidos = 'miapellido';
-	$tlf = '123123123';
-	$email = 'miemail@uvigo.es';
-	$bday = '1111-11-11';
-	$sexo = 'hombre';
-	// creo el modelo
-	$USUARIO = new USUARIOS_Model($login,$password,$dni,$nombre,$apellidos,$tlf,$email,$bday,'',$sexo);
-	*/
-
 // function USUARIOS_comproba_atributos_test()
 // Valida:
 //		Login correcto
@@ -40,7 +25,7 @@ function USUARIOS_comprobar_login_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'login';
-	$USUARIO_array_test1['error'] = 'login correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -68,7 +53,7 @@ function USUARIOS_comprobar_login_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'login';
-	$USUARIO_array_test1['error'] = 'login demasiado largo';
+	$USUARIO_array_test1['error'] = 'demasiado largo';
 	$USUARIO_array_test1['error_esperado'] = '00002';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -95,7 +80,7 @@ function USUARIOS_comprobar_login_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'login';
-	$USUARIO_array_test1['error'] = 'login demasiado corto';
+	$USUARIO_array_test1['error'] = 'demasiado corto';
 	$USUARIO_array_test1['error_esperado'] = '00003';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -122,7 +107,7 @@ function USUARIOS_comprobar_login_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'login';
-	$USUARIO_array_test1['error'] = 'login vacio';
+	$USUARIO_array_test1['error'] = 'vacio';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -150,7 +135,7 @@ function USUARIOS_comprobar_login_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'login';
-	$USUARIO_array_test1['error'] = 'login demasiado largo';
+	$USUARIO_array_test1['error'] = 'formato erroneo';
 	$USUARIO_array_test1['error_esperado'] = '00090';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -192,7 +177,7 @@ function USUARIOS_comprobar_password_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'password';
-	$USUARIO_array_test1['error'] = 'password correcta';
+	$USUARIO_array_test1['error'] = 'correcta';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -220,7 +205,7 @@ function USUARIOS_comprobar_password_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'password';
-	$USUARIO_array_test1['error'] = 'password vacia';
+	$USUARIO_array_test1['error'] = 'vacia';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -246,7 +231,7 @@ function USUARIOS_comprobar_password_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'password';
-	$USUARIO_array_test1['error'] = 'password muy larga';
+	$USUARIO_array_test1['error'] = 'muy larga';
 	$USUARIO_array_test1['error_esperado'] = '00002';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -273,7 +258,7 @@ function USUARIOS_comprobar_password_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'password';
-	$USUARIO_array_test1['error'] = 'password muy corta';
+	$USUARIO_array_test1['error'] = 'muy corta';
 	$USUARIO_array_test1['error_esperado'] = '00003';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -300,7 +285,7 @@ function USUARIOS_comprobar_password_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'password';
-	$USUARIO_array_test1['error'] = 'password erronea';
+	$USUARIO_array_test1['error'] = 'erronea';
 	$USUARIO_array_test1['error_esperado'] = '00090';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -341,7 +326,7 @@ function USUARIOS_comprobar_dni_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'dni';
-	$USUARIO_array_test1['error'] = 'dni correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -369,7 +354,7 @@ function USUARIOS_comprobar_dni_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'dni';
-	$USUARIO_array_test1['error'] = 'dni vacia';
+	$USUARIO_array_test1['error'] = 'vacia';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -395,7 +380,7 @@ function USUARIOS_comprobar_dni_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'dni';
-	$USUARIO_array_test1['error'] = 'dni no coincide con lo esperado';
+	$USUARIO_array_test1['error'] = 'no coincide con lo esperado';
 	$USUARIO_array_test1['error_esperado'] = '00010';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -439,7 +424,7 @@ function USUARIOS_comprobar_nombre_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'nombre';
-	$USUARIO_array_test1['error'] = 'nombre correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -467,7 +452,7 @@ function USUARIOS_comprobar_nombre_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'nombre';
-	$USUARIO_array_test1['error'] = 'nombre vacio';
+	$USUARIO_array_test1['error'] = 'vacio';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -493,7 +478,7 @@ function USUARIOS_comprobar_nombre_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'nombre';
-	$USUARIO_array_test1['error'] = 'nombre muy largo';
+	$USUARIO_array_test1['error'] = 'muy largo';
 	$USUARIO_array_test1['error_esperado'] = '00002';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -520,7 +505,7 @@ function USUARIOS_comprobar_nombre_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'nombre';
-	$USUARIO_array_test1['error'] = 'nombre muy corto';
+	$USUARIO_array_test1['error'] = 'muy corto';
 	$USUARIO_array_test1['error_esperado'] = '00003';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -547,7 +532,7 @@ function USUARIOS_comprobar_nombre_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'nombre';
-	$USUARIO_array_test1['error'] = 'nombre erronea';
+	$USUARIO_array_test1['error'] = 'erronea';
 	$USUARIO_array_test1['error_esperado'] = '00030';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -589,7 +574,7 @@ function USUARIOS_comprobar_apellido_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'apellido';
-	$USUARIO_array_test1['error'] = 'apellido correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -618,7 +603,7 @@ function USUARIOS_comprobar_apellido_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'apellido';
-	$USUARIO_array_test1['error'] = 'apellido vacio';
+	$USUARIO_array_test1['error'] = 'vacio';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -644,7 +629,7 @@ function USUARIOS_comprobar_apellido_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'apellido';
-	$USUARIO_array_test1['error'] = 'apellido muy largo';
+	$USUARIO_array_test1['error'] = 'muy largo';
 	$USUARIO_array_test1['error_esperado'] = '00002';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -671,7 +656,7 @@ function USUARIOS_comprobar_apellido_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'apellido';
-	$USUARIO_array_test1['error'] = 'apellido muy corto';
+	$USUARIO_array_test1['error'] = 'muy corto';
 	$USUARIO_array_test1['error_esperado'] = '00003';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -698,7 +683,7 @@ function USUARIOS_comprobar_apellido_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'apellido';
-	$USUARIO_array_test1['error'] = 'apellido erronea';
+	$USUARIO_array_test1['error'] = 'erroneo';
 	$USUARIO_array_test1['error_esperado'] = '00030';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -738,7 +723,7 @@ function USUARIOS_comprobar_tlf_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'telefono';
-	$USUARIO_array_test1['error'] = 'telefono correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -766,7 +751,7 @@ function USUARIOS_comprobar_tlf_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'telefono';
-	$USUARIO_array_test1['error'] = 'telefono vacio';
+	$USUARIO_array_test1['error'] = 'vacio';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -792,7 +777,7 @@ function USUARIOS_comprobar_tlf_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'telefono';
-	$USUARIO_array_test1['error'] = 'telefono incorrecto';
+	$USUARIO_array_test1['error'] = 'incorrecto';
 	$USUARIO_array_test1['error_esperado'] = '00070';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -835,7 +820,7 @@ function USUARIOS_comprobar_email_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'email';
-	$USUARIO_array_test1['error'] = 'email correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -863,7 +848,7 @@ function USUARIOS_comprobar_email_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'email';
-	$USUARIO_array_test1['error'] = 'email vacio';
+	$USUARIO_array_test1['error'] = 'vacio';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -889,7 +874,7 @@ function USUARIOS_comprobar_email_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'email';
-	$USUARIO_array_test1['error'] = 'email demasiado largo';
+	$USUARIO_array_test1['error'] = 'demasiado largo';
 	$USUARIO_array_test1['error_esperado'] = '00002';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -916,7 +901,7 @@ function USUARIOS_comprobar_email_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'email';
-	$USUARIO_array_test1['error'] = 'email demasiado corto';
+	$USUARIO_array_test1['error'] = 'demasiado corto';
 	$USUARIO_array_test1['error_esperado'] = '00003';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -943,7 +928,7 @@ function USUARIOS_comprobar_email_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'email';
-	$USUARIO_array_test1['error'] = 'email formato incorrecto';
+	$USUARIO_array_test1['error'] = 'formato incorrecto';
 	$USUARIO_array_test1['error_esperado'] = '00020';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -984,7 +969,7 @@ function USUARIOS_comprobar_fecha_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'fecha';
-	$USUARIO_array_test1['error'] = 'fecha correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -1012,7 +997,7 @@ function USUARIOS_comprobar_fecha_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'fecha';
-	$USUARIO_array_test1['error'] = 'fecha vacio';
+	$USUARIO_array_test1['error'] = 'vacio';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -1038,7 +1023,7 @@ function USUARIOS_comprobar_fecha_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'fecha';
-	$USUARIO_array_test1['error'] = 'fecha formato incorrecto';
+	$USUARIO_array_test1['error'] = 'formato incorrecto';
 	$USUARIO_array_test1['error_esperado'] = '00020';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -1078,7 +1063,7 @@ function USUARIOS_comprobar_sexo_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'sexo';
-	$USUARIO_array_test1['error'] = 'sexo correcto';
+	$USUARIO_array_test1['error'] = 'correcto';
 	$USUARIO_array_test1['error_esperado'] = 'true';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -1106,7 +1091,7 @@ function USUARIOS_comprobar_sexo_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'sexo';
-	$USUARIO_array_test1['error'] = 'sexo vacio';
+	$USUARIO_array_test1['error'] = 'vacio';
 	$USUARIO_array_test1['error_esperado'] = '00001';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -1132,7 +1117,7 @@ function USUARIOS_comprobar_sexo_test()
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
 	$USUARIO_array_test1['metodo'] = 'sexo';
-	$USUARIO_array_test1['error'] = 'sexo formato incorrecto';
+	$USUARIO_array_test1['error'] = 'formato incorrecto';
 	$USUARIO_array_test1['error_esperado'] = '00100';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
@@ -1169,5 +1154,3 @@ function USUARIOS_comprobar_sexo_test()
 	USUARIOS_comprobar_sexo_test();
 
 ?>
-
-

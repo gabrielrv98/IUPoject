@@ -22,6 +22,7 @@
 	include_once '../test/PROF_ESPACIO_test.php';
 	include_once '../test/CLEAN_test.php';
 	include_once '../test/USUARIOS_VADLICACION_test.php';
+	include_once '../test/TITULACION_VADLICACION_test.php';
 
 ?>
 
@@ -31,7 +32,7 @@
 		foreach ($ERRORS_array_test as $test ) {
 			if ($test['resultado'] == 'FALSE') $n++; 
 		}
-		echo $n
+		echo $n ;
 	?> 
 </h2>
 <br>

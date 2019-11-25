@@ -1,130 +1,157 @@
 <?php
-// function USUARIOS_comprobar_sexo_test()
+// function TITULACION_comproba_atributos_test()
 // Valida:
-//		sexo correcto
-//		sexo vacio
-//		sexo formato incorrecto
+//		Codcentro correcto
+//		Codcentro demasiado largo
+//		Codcentro demasiado corto
+//		Codcentro vacio
+//		Codcentro inesperado
 
-function USUARIOS_comprobar_sexo_test()
+function TITULACION_comprobar_centro_test()
 {
 	global $ERRORS_array_test;
 // creo array de almacen de test individual
-	$USUARIO_array_test1 = array();
+	$TITULACION_array_test1 = array();
 
-	//sexo correcto
-	$USUARIO_array_test1['tipo'] = 'VALIDACION';
-	$USUARIO_array_test1['entidad'] = 'USUARIO';	
-	$USUARIO_array_test1['metodo'] = 'sexo';
-	$USUARIO_array_test1['error'] = 'sexo correcto';
-	$USUARIO_array_test1['error_esperado'] = 'true';
-	$USUARIO_array_test1['error_obtenido'] = '';
-	$USUARIO_array_test1['resultado'] = '';
-
-	// Relleno los datos de usuario	
-	$sexo = 'hombre';
+// Codcentro correcto
+//----------------------------------------------
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['error'] = 'correcto';
+	$TITULACION_array_test1['error_esperado'] = 'true';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+	$Codcentro = 'codCent';
 	// creo el modelo
-	$USUARIO = new USUARIOS_Model('','','','','','','','','',$sexo);
+	$TITULACION = new TITULACION_Model('',$Codcentro,'','');
 
-	if ($USUARIO->comprobar_sexo()) $res = 'true';
-		else $res = 'false';
-	$USUARIO_array_test1['error_obtenido'] = $res;
-	if ($USUARIO_array_test1['error_obtenido'] === $USUARIO_array_test1['error_esperado'])
+	if ($TITULACION->comprobar_titulacion()) $res = 'true';
+	else $res = 'false';
+
+	$TITULACION_array_test1['error_obtenido'] = $res;
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
-		$USUARIO_array_test1['resultado'] = 'OK';
+		$TITULACION_array_test1['resultado'] = 'OK';
 	}
 	else
 	{
-		$USUARIO_array_test1['resultado'] = 'FALSE';
+		$TITULACION_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIO_array_test1);
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
-	//sexo vacia
-	$USUARIO_array_test1['tipo'] = 'VALIDACION';
-	$USUARIO_array_test1['entidad'] = 'USUARIO';	
-	$USUARIO_array_test1['metodo'] = 'sexo';
-	$USUARIO_array_test1['error'] = 'sexo vacio';
-	$USUARIO_array_test1['error_esperado'] = '00001';
-	$USUARIO_array_test1['error_obtenido'] = '';
-	$USUARIO_array_test1['resultado'] = '';
 
-	// Relleno los datos de usuario	
-	$sexo = '';
+	//Codcentro demasiado largo
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['error'] = 'demasiado largo';
+	$TITULACION_array_test1['error_esperado'] = '00002';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// Relleno los datos de TITULACION	
+	$codCent = 'miTITULACIONesElMasLargoDelMundoYCabraEnLaBaseDeDatosPorqueSoyGenial';
 	// creo el modelo
-	$USUARIO = new USUARIOS_Model('','','','','','','','','',$sexo);
-	$result = $USUARIO->comprobar_sexo();
-	$USUARIO_array_test1['error_obtenido'] = $result[1];
-	if ($USUARIO_array_test1['error_obtenido'] === $USUARIO_array_test1['error_esperado'])
+	$TITULACION = new TITULACION_Model('',$codCent,'','');
+
+	$result = $TITULACION->comprobar_titulacion();
+	$TITULACION_array_test1['error_obtenido'] = $result[1];
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
-		$USUARIO_array_test1['resultado'] = 'OK';
+		$TITULACION_array_test1['resultado'] = 'OK';
 	}
 	else
 	{
-		$USUARIO_array_test1['resultado'] = 'FALSE';
+		$TITULACION_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIO_array_test1);
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
-	//sexo formato incorrecto
-	$USUARIO_array_test1['tipo'] = 'VALIDACION';
-	$USUARIO_array_test1['entidad'] = 'USUARIO';	
-	$USUARIO_array_test1['metodo'] = 'sexo';
-	$USUARIO_array_test1['error'] = 'sexo formato incorrecto';
-	$USUARIO_array_test1['error_esperado'] = '00002';
-	$USUARIO_array_test1['error_obtenido'] = '';
-	$USUARIO_array_test1['resultado'] = '';
+	//Codcentro demasiado corto
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['error'] = 'demasiado corto';
+	$TITULACION_array_test1['error_esperado'] = '00003';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
 
-	// Relleno los datos de usuario	
-	$sexo = 'ojala';
+	// Relleno los datos de TITULACION	
+	$codCent = 'm';
 	// creo el modelo
-	$USUARIO = new USUARIOS_Model('','','','','','','','','',$sexo);
+	$TITULACION = new TITULACION_Model('',$codCent,'','');
 
-	$result = $USUARIO->comprobar_sexo();
-	$USUARIO_array_test1['error_obtenido'] = $result[1];
-	if ($USUARIO_array_test1['error_obtenido'] === $USUARIO_array_test1['error_esperado'])
+	$result = $TITULACION->comprobar_titulacion();
+	$TITULACION_array_test1['error_obtenido'] = $result[1];
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
-		$USUARIO_array_test1['resultado'] = 'OK';
+		$TITULACION_array_test1['resultado'] = 'OK';
 	}
 	else
 	{
-		$USUARIO_array_test1['resultado'] = 'FALSE';
+		$TITULACION_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIO_array_test1);
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+
+	//Codcentro vacio
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['error'] = 'vacio';
+	$TITULACION_array_test1['error_esperado'] = '00001';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// Relleno los datos de TITULACION	
+	$codCent = '';
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('',$codCent,'','');
+
+	$result = $TITULACION->comprobar_titulacion();
+	$TITULACION_array_test1['error_obtenido'] = $result[1];
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
 
+	//Codcentro formato erroneo
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'Codcentro';
+	$TITULACION_array_test1['error'] = 'formato erroneo';
+	$TITULACION_array_test1['error_esperado'] = '00060';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// Relleno los datos de TITULACION	
+	$Codcentro = 'mi|pass.14';
+	// creo el modelo
+	$TITULACION = new TITULACION_Model($Codcentro,'','','');
+
+	$result = $TITULACION->comprobar_titulacion();
+	$TITULACION_array_test1['error_obtenido'] = $result[1];
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
 }
 
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-//comprueba los atributos que utilizara add
-function comprobar_atributos_RellenaDatos(){
-	$array = array();
-	$correcto = true;
-
-	$aux = $this->comprobar_edificio();
-	if ($aux !== true) {
-		$array[0] = $aux;
-		$correcto = false;
-	}
-
-	return $correcto == true ? true : $array; 
-}
-
-
-
-$check = $this->comprobar_atributos_DELETE();
-	//si algun atributo no cumple las restricciones
-	if ($check !== true) return $check;
-	

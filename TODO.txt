@@ -1,5 +1,5 @@
-14 h
-00:00
+18 h
+
 GENERAL, USUARIOS, EDIFICIO, CENTRO, TITULACION have Test implemented fully.
 
 Missing-----
@@ -15,9 +15,12 @@ defET3
 https://docs.google.com/document/d/1T5ZHd18UndElZQe2haheGBRSwsvJlbepHM7m1UPQqzo/edit
 
 
-
+Falta comprobar subir foto
 falta un buen codigo para comprobar que el email tiene la expresion regular
 verificaciones comprobar_email()
 array[1]= solotexto ? ninguno vale realmente
 
 general_test y index.php tiene una linea que suprimen los warnings
+
+
+acabar espacio_test, y luego prof_espacio_test
