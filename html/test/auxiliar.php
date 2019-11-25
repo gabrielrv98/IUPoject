@@ -1,157 +1,67 @@
 <?php
-// function PROFESOR_comprobar_departamento_test()
-// Valida:
-//		departamento correcto
-//		departamento demasiado largo
-//		departamento demasiado corto
-//		departamento vacio
-//		departamento inesperado
 
-function PROFESOR_comprobar_departamento_test()
+function PROF_TITULACION_comprobar_year_test()
 {
 	global $ERRORS_array_test;
 // creo array de almacen de test individual
-	$PROFESOR_array_test1 = array();
+	$PROF_TITULACION_array_test1 = array();
 
-// departamento correcto
+// año correcto
 //----------------------------------------------
-	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
-	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
-	$PROFESOR_array_test1['metodo'] = 'departamento';
-	$PROFESOR_array_test1['error'] = 'correcto';
-	$PROFESOR_array_test1['error_esperado'] = 'true';
-	$PROFESOR_array_test1['error_obtenido'] = '';
-	$PROFESOR_array_test1['resultado'] = '';
-	$departamento = 'departamento';
+	$PROF_TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$PROF_TITULACION_array_test1['entidad'] = 'PROF_TITULACION';	
+	$PROF_TITULACION_array_test1['metodo'] = 'año';
+	$PROF_TITULACION_array_test1['error'] = 'correcto';
+	$PROF_TITULACION_array_test1['error_esperado'] = 'true';
+	$PROF_TITULACION_array_test1['error_obtenido'] = '';
+	$PROF_TITULACION_array_test1['resultado'] = '';
+	$year = '2010-2011';
 	// creo el modelo
-	$PROFESOR = new PROFESOR_Model('','','','',$departamento);
+	$PROF_TITULACION = new PROF_TITULACION_Model('','',$year);
 
-	if ($PROFESOR->comprobar_departamento()) $res = 'true';
+	if ($PROF_TITULACION->comprobar_anhoAcademico()) $res = 'true';
 	else $res = 'false';
 
-	$PROFESOR_array_test1['error_obtenido'] = $res;
-	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	$PROF_TITULACION_array_test1['error_obtenido'] = $res;
+	if ($PROF_TITULACION_array_test1['error_obtenido'] === $PROF_TITULACION_array_test1['error_esperado'])
 	{
-		$PROFESOR_array_test1['resultado'] = 'OK';
+		$PROF_TITULACION_array_test1['resultado'] = 'OK';
 	}
 	else
 	{
-		$PROFESOR_array_test1['resultado'] = 'FALSE';
+		$PROF_TITULACION_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+	array_push($ERRORS_array_test, $PROF_TITULACION_array_test1);
 
 
-	//departamento demasiado largo
-	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
-	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
-	$PROFESOR_array_test1['metodo'] = 'departamento';
-	$PROFESOR_array_test1['error'] = 'demasiado largo';
-	$PROFESOR_array_test1['error_esperado'] = '00002';
-	$PROFESOR_array_test1['error_obtenido'] = '';
-	$PROFESOR_array_test1['resultado'] = '';
+	//año formato erroneo
+	$PROF_TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$PROF_TITULACION_array_test1['entidad'] = 'PROF_TITULACION';	
+	$PROF_TITULACION_array_test1['metodo'] = 'año';
+	$PROF_TITULACION_array_test1['error'] = 'formato erroneo';
+	$PROF_TITULACION_array_test1['error_esperado'] = '00110';
+	$PROF_TITULACION_array_test1['error_obtenido'] = '';
+	$PROF_TITULACION_array_test1['resultado'] = '';
 
-	// Relleno los datos de PROFESOR	
-	$departamento = 'miPROFESOResElMasLargoDelMundoYCabraEnLaBaseDeDatosPorqueSoyGenial';
+	// Relleno los datos de PROF_TITULACION	
+	$year = 'mi|pass.14';
 	// creo el modelo
-	$PROFESOR = new PROFESOR_Model('','','','',$departamento);
+	$PROF_TITULACION = new PROF_TITULACION_Model('','',$year);
 
-	$result = $PROFESOR->comprobar_departamento();
-	$PROFESOR_array_test1['error_obtenido'] = $result[1];
-	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	$result = $PROF_TITULACION->comprobar_anhoAcademico();
+	$PROF_TITULACION_array_test1['error_obtenido'] = $result[1];
+	if ($PROF_TITULACION_array_test1['error_obtenido'] === $PROF_TITULACION_array_test1['error_esperado'])
 	{
-		$PROFESOR_array_test1['resultado'] = 'OK';
+		$PROF_TITULACION_array_test1['resultado'] = 'OK';
 	}
 	else
 	{
-		$PROFESOR_array_test1['resultado'] = 'FALSE';
+		$PROF_TITULACION_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $PROFESOR_array_test1);
-
-	//departamento demasiado corto
-	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
-	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
-	$PROFESOR_array_test1['metodo'] = 'departamento';
-	$PROFESOR_array_test1['error'] = 'demasiado corto';
-	$PROFESOR_array_test1['error_esperado'] = '00003';
-	$PROFESOR_array_test1['error_obtenido'] = '';
-	$PROFESOR_array_test1['resultado'] = '';
-
-	// Relleno los datos de PROFESOR	
-	$departamento = 'm';
-	// creo el modelo
-	$PROFESOR = new PROFESOR_Model('','','','',$departamento);
-
-	$result = $PROFESOR->comprobar_departamento();
-	$PROFESOR_array_test1['error_obtenido'] = $result[1];
-	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
-	{
-		$PROFESOR_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$PROFESOR_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $PROFESOR_array_test1);
-
-	//departamento vacio
-	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
-	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
-	$PROFESOR_array_test1['metodo'] = 'departamento';
-	$PROFESOR_array_test1['error'] = 'vacio';
-	$PROFESOR_array_test1['error_esperado'] = '00001';
-	$PROFESOR_array_test1['error_obtenido'] = '';
-	$PROFESOR_array_test1['resultado'] = '';
-
-	// Relleno los datos de PROFESOR	
-	$departamento = '';
-	// creo el modelo
-	$PROFESOR = new PROFESOR_Model('','','','',$departamento);
-
-	$result = $PROFESOR->comprobar_departamento();
-	$PROFESOR_array_test1['error_obtenido'] = $result[1];
-	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
-	{
-		$PROFESOR_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$PROFESOR_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $PROFESOR_array_test1);
-
-
-	//departamento formato erroneo
-	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
-	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
-	$PROFESOR_array_test1['metodo'] = 'departamento';
-	$PROFESOR_array_test1['error'] = 'formato erroneo';
-	$PROFESOR_array_test1['error_esperado'] = '00030';
-	$PROFESOR_array_test1['error_obtenido'] = '';
-	$PROFESOR_array_test1['resultado'] = '';
-
-	// Relleno los datos de PROFESOR	
-	$departamento = 'mi|pass.14';
-	// creo el modelo
-	$PROFESOR = new PROFESOR_Model('','','','',$departamento);
-
-	$result = $PROFESOR->comprobar_departamento();
-	$PROFESOR_array_test1['error_obtenido'] = $result[1];
-	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
-	{
-		$PROFESOR_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$PROFESOR_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+	array_push($ERRORS_array_test, $PROF_TITULACION_array_test1);
 }
 
-PROFESOR_comprobar_departamento_test();
 
 ?>

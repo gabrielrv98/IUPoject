@@ -1,5 +1,5 @@
 <?php
-//Clase : TITULACION__VAlidacion_test.php
+//Clase : TITULACION__Validacion_test.php
 //Creado el : 20-11-2019
 //Creado por: grvidal
 //Fichero de test de unidad de la entidad TITULACION
