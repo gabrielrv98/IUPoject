@@ -162,6 +162,19 @@ array(
 	'sexoError' => 'Sex not expected',
 	'anhoError' => 'Expected string as xxxx-xxxx',
 	'tipoError' => 'Type must be "laboratorio", "despacho" or "PAS".',
-	'numberError' => 'Numbers only'
+	'numberError' => 'Numbers only',
+	'paramVacio' => 'can\'t be empty.',
+	'toolong' => 'is too long.',
+	'tooshort' => 'is too short, it needs at least 1 character.',
+	'tooshortNoNNum' => 'is too short, it needs at least 3 character.',
+	'sexoError' => 'only "male" or "female"',
+	'dateError' => 'doesn\'t have the properly format, format needed yyyy-mm-dd.',
+	'emailErrorCode' => 'doesn\'t have the properly format, format needed x.@x.(com|es|org)',
+	'alfNumguion' => 'only letters, numbers and hyphen \'-\' allowed.',
+	'alfNum' => 'only letters and numbers allowed.',
+	'anhoAcadCode' => 'only allowed format dddd-dddd, where d is a digit.',
+	'onlynumbers' => 'only numbers allowed.',
+	'dirError' => 'only letters, numbers and "- / º ª" are allowed.',
+	'errorIn' => 'Error in'
  );
  ?>

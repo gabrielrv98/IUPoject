@@ -158,7 +158,21 @@ array(
 	'sexoError' => 'O sexo non coincide co esperado',
 	'anhoError' => 'Cadea esperada xxxx-xxxx',
 	'tipoError' => 'O tipo ten que ser despacho, laboratorio o pas',
-	'numberError' => 'Só numeros'
+	'numberError' => 'Só números',
+
+	'paramVacio' => 'nom pode estar vacio.',
+	'toolong' => 'é demasiado longo.',
+	'tooshort' => 'é demasiado corto, compre al menos 1 caracteres.',
+	'tooshortNoNNum' => 'é demasiado corto, compre al menos 3 caracteres.',
+	'sexoError' => 'só pode ser home ou muller.',
+	'dateError' => 'non ten o formato correcto, formato requerido yyyy-mm-dd.',
+	'emailErrorCode' => 'non ten o formato correcto, formato requerido x.@x.(com|es|org)',
+	'alfNumguion' => 'só estan permitido letras, números e guión \'-\'.',
+	'alfNum' => 'só esta permitido números e letras.',
+	'anhoAcadCode' => 'Solo se permite dddd-dddd (ano académico) onde d es un dígito.',
+	'onlynumbers' => 'só esta permitido números.',
+	'dirError' => 'só pode conter letras, numeros e os símbolos  “- / º ª.',
+	'errorIn' => 'Error en'
 
 );
 ?>

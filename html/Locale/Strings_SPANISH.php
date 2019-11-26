@@ -174,7 +174,7 @@ array(
 	'alfNum' => 'solo esta permitido numeros y letras.',
 	'anhoAcadCode' => 'Solo se permiten dddd-dddd (año académico) donde d es un dígito.',
 	'onlynumbers' => 'solo esta permitido numeros.',
-	'dirError' => 'solo puede contener letras, numerosy los símbolos  “- / º ª.',
+	'dirError' => 'solo puede contener letras, numeros y los símbolos  “- / º ª.',
 	'errorIn' => 'Error en'
 	);
 ?>
