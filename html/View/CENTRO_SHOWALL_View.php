@@ -21,7 +21,6 @@ class CENTRO_SHOWALL {
 	
 		include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
 		?>
-		
 		<head>
 			<title><?php echo $strings['TShowAll']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 

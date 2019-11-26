@@ -6,6 +6,7 @@
 //-------------------------------------------------------
 $strings = 
 array(
+	'bienvenido' =>'Bienvenido al proyecto de IU',
 	'Portal de Gestión' => 'Portal de Gestión',
 	'Usuario no autenticado' => 'Usuario no autenticado',
 	'Login' => 'Login',
@@ -175,6 +176,7 @@ array(
 	'anhoAcadCode' => 'Solo se permiten dddd-dddd (año académico) donde d es un dígito.',
 	'onlynumbers' => 'solo esta permitido numeros.',
 	'dirError' => 'solo puede contener letras, numeros y los símbolos  “- / º ª.',
-	'errorIn' => 'Error en'
+	'errorIn' => 'Error en',
+	'open' => 'Abrir'
 	);
 ?>

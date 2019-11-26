@@ -7,6 +7,7 @@
 
 $strings = 
 array(
+	'bienvenido' =>'Welcome to IU project',
 	'Portal de Gestión' => 'Management website',
 	'Usuario no autenticado' => 'User not logged',
 	'Login' => 'Login', 
@@ -175,6 +176,7 @@ array(
 	'anhoAcadCode' => 'only allowed format dddd-dddd, where d is a digit.',
 	'onlynumbers' => 'only numbers allowed.',
 	'dirError' => 'only letters, numbers and "- / º ª" are allowed.',
-	'errorIn' => 'Error in'
+	'errorIn' => 'Error in',
+	'open' => 'Open'
  );
  ?>

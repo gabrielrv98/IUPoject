@@ -42,7 +42,8 @@
 					<?php echo $strings['Gestión Usuarios']; ?>
 				</a>
 			</div>
-			<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+			<?php include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; ?>
+			<span style="font-size:27px;cursor:pointer" onclick="openNav()">&#9776; <?php echo $strings['open']; ?></span>
 
 		</div>
 		

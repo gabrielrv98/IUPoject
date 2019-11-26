@@ -9,17 +9,12 @@
 ?>
 <html>
 <head>
-	<title>
-		Ejemplo arquitectura IU
-	</title>
-	<meta charset="UTF-8"> 
+	<title>Ejemplo arquitectura IU</title>
+<meta charset="UTF-8"> 
 	<script type="text/javascript" src="../View/js/tcal.js"></script> 
 	<script type="text/javascript" src="../View/js/md5.js"></script>
 	<script type="text/javascript" src="../View/js/validaciones.js"></script> 
-	 
-	<link rel="stylesheet" type="text/css" href="../View/css/JulioCSS-2.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../View/css/tcal.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../View/css/modal.css" />
+
 </head>
 <body>
 		<div id="modal" style="display:none">
@@ -31,14 +26,17 @@
 				</a>
 			</div>
 		</div>
-<header>
-	<p style="text-align:center">
-		<h1>
-<?php
-			echo $strings['Portal de Gestión'];
-?>
-		</h1>
-	</p>
+<header class="MainHeader">
+	<div>
+		<p style="text-align:center">
+			<h1>
+	<?php
+				echo $strings['Portal de Gestión'];
+	?>
+			</h1>
+		</p>
+	</div>
+	
 
 	<div width: 50%; align="left">
 		<form name='idiomaform' action="../Functions/CambioIdioma.php" method="post">
@@ -66,7 +64,7 @@
 <?php
 		echo $strings['Usuario'] . ' : ' . $_SESSION['login'] . '<br>';
 ?>			
-	<div width: 50%; align="right">
+	<div width: 50%; align="right" style="margin-right:20px">
 		<a href='../Functions/Desconectar.php'>
 			<img src='../View/icon/exit.ico'>
 		</a>
@@ -78,7 +76,7 @@
 	else{
 		echo $strings['Usuario no autenticado']; 
 ?>
-		<a href='../Controller/Register_Controller.php'> <img src="../View/icon/register.png" height="32" width="32"> </a>
+		<a  href='../Controller/Register_Controller.php'> <img src="../View/icon/register.png" height="32" width="32"> </a>
 <?php
 	}	
 ?>

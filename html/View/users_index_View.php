@@ -11,7 +11,7 @@ class Index {
 		include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
 		include '../View/Header.php';
 ?>
-		<H1> BIENVENIDO A LA ARQUITECTURA BASE DE IU' </H1>
+		<H1> <?php echo $strings['bienvenido']; ?> </H1>
 		<BR>
 <?php
 		include '../View/Footer.php';
