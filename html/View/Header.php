@@ -84,7 +84,7 @@
 
 </header>
 
-<div id = 'main'>
+<div id = 'main' class="MainDiv">
 <?php
 	//session_start();
 	if (IsAuthenticated()){

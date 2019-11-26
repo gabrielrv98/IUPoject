@@ -94,7 +94,7 @@ class EDIFICIO_SHOWALL {
 			
 		</table>
 		<br>
-		<a href="../../Controller/EDIFICIO_Controller.php"> <?php echo $strings['Volver'] ; ?> </a>
+		<a href="../../Controller/EDIFICIO_Controller.php"> <img src="../View/icon/back.ico" height="32" width="32"></a>
  
 		<br>
 

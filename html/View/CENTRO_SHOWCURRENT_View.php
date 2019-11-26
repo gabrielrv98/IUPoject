@@ -113,7 +113,7 @@ class CENTRO_SHOWCURRENT {
 
 		<br>
 
-		<a href='../Controller/CENTRO_Controller.php'> <?php echo $strings['Volver']; ?> </a>
+		<a href='../Controller/CENTRO_Controller.php'> <img src="../View/icon/back.ico" height="32" width="32"> </a>
 
 		<?php
 		include '../View/Footer.php';

@@ -8,9 +8,19 @@
 .form-group{
   min-width: 10px;
 }
+.menuBut{
+  margin:20px;
+  font-size:27px;
+  cursor:pointer;
+}
 
 .MainHeader{
   width: 100%;
+}
+
+.MainDiv{
+  margin: -10px;
+  background-color: white; 
 }
 
 .errormsg{
@@ -81,7 +91,9 @@ header i{
 footer{
     border-top: black 1px solid;
     padding-left:10px;
-
+    background-color: white;
+    height: 100%;
+    margin: -10px;
 
 }
 
@@ -106,4 +118,8 @@ td,tr{
 
 article{
   margin-left: 200px;
+}
+
+body{
+  background-color: #bbe9fb;
 }

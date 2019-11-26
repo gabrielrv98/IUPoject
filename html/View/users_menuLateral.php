@@ -43,7 +43,7 @@
 				</a>
 			</div>
 			<?php include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; ?>
-			<span style="font-size:27px;cursor:pointer" onclick="openNav()">&#9776; <?php echo $strings['open']; ?></span>
+			<span class="menuBut" onclick="openNav()">&#9776; <?php echo $strings['open']; ?></span>
 
 		</div>
 		
