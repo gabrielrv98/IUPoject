@@ -47,155 +47,157 @@
 	?> 
 </h2>
 <br>
+<div class="MainDiv">
+		
+	<h1>DETALLE</h1>
+	<?php
+	// presentacion de resultados
+	?>
+	<h2>Pruebas Globales</h2>
 
-<h1>DETALLE</h1>
-<?php
-// presentacion de resultados
-?>
-<h2>Pruebas Globales</h2>
-
-<table  border="1" >
-	<tr>
-		<th>
-			Error testeado
-		</th>
-		<th>
-			Valor Esperado
-		</th>
-		<th>
-			Valor Obtenido
-		</th>
-		<th>
-			Resultado
-		</th>
-	</tr>
-<?php
-	foreach ($ERRORS_array_test as $test)
-	{
-		if ($test['tipo'] == 'GLOBAL') {
-?>
-	<tr>
-		<td>
-			<?php echo $test['error']; ?>
-		</td>
-		<td>
-			<?php echo $test['error_esperado']; ?>
-		</td>
-		<td>
-			<?php echo $test['error_obtenido']; ?>
-		</td>
-		<td>
-			<?php echo $test['resultado']; ?>
-		</td>
-	</tr>
-<?php
+	<table  border="1" >
+		<tr>
+			<th>
+				Error testeado
+			</th>
+			<th>
+				Valor Esperado
+			</th>
+			<th>
+				Valor Obtenido
+			</th>
+			<th>
+				Resultado
+			</th>
+		</tr>
+	<?php
+		foreach ($ERRORS_array_test as $test)
+		{
+			if ($test['tipo'] == 'GLOBAL') {
+	?>
+		<tr>
+			<td>
+				<?php echo $test['error']; ?>
+			</td>
+			<td>
+				<?php echo $test['error_esperado']; ?>
+			</td>
+			<td>
+				<?php echo $test['error_obtenido']; ?>
+			</td>
+			<td>
+				<?php echo $test['resultado']; ?>
+			</td>
+		</tr>
+	<?php
+			}
 		}
-	}
-?>
-</table>
+	?>
+	</table>
 
-<h2>Pruebas Unitarias</h2>
-<table  border="1">
-	<tr>
-		<th>
-			Entidad
-		</th>
-		<th>
-			Método
-		</th>
-		<th>
-			Error testeado
-		</th>
-		<th>
-			Valor Esperado
-		</th>
-		<th>
-			Valor Obtenido
-		</th>
-		<th>
-			Resultado
-		</th>
-	</tr>
-<?php
-	foreach ($ERRORS_array_test as $test)
-	{
-		if ($test['tipo'] == 'P_UNITARIA') {
-?>
-	<tr>
-		<td>
-			<?php echo $test['entidad'];?>
-		</td>
-		<td>
-			<?php echo $test['metodo']; ?>
-		</td>
-		<td>
-			<?php echo $test['error']; ?>
-		</td>
-		<td>
-			<?php echo $test['error_esperado']; ?>
-		</td>
-		<td>
-			<?php echo $test['error_obtenido']; ?>
-		</td>
-		<td>
-			<?php echo $test['resultado']; ?>
-		</td>
-	</tr>
-<?php	
+	<h2>Pruebas Unitarias</h2>
+	<table  border="1">
+		<tr>
+			<th>
+				Entidad
+			</th>
+			<th>
+				Método
+			</th>
+			<th>
+				Error testeado
+			</th>
+			<th>
+				Valor Esperado
+			</th>
+			<th>
+				Valor Obtenido
+			</th>
+			<th>
+				Resultado
+			</th>
+		</tr>
+	<?php
+		foreach ($ERRORS_array_test as $test)
+		{
+			if ($test['tipo'] == 'P_UNITARIA') {
+	?>
+		<tr>
+			<td>
+				<?php echo $test['entidad'];?>
+			</td>
+			<td>
+				<?php echo $test['metodo']; ?>
+			</td>
+			<td>
+				<?php echo $test['error']; ?>
+			</td>
+			<td>
+				<?php echo $test['error_esperado']; ?>
+			</td>
+			<td>
+				<?php echo $test['error_obtenido']; ?>
+			</td>
+			<td>
+				<?php echo $test['resultado']; ?>
+			</td>
+		</tr>
+	<?php	
+			}
 		}
-	}
-?>
-</table>
+	?>
+	</table>
 
-<h2>Pruevas Validación</h2>
-<table border="1">
-	<tr>
-		<th>
-			Entidad
-		</th>
-		<th>
-			Atributo
-		</th>
-		<th>
-			Error testeado
-		</th>
-		<th>
-			Valor Esperado
-		</th>
-		<th>
-			Valor Obtenido
-		</th>
-		<th>
-			Resultado
-		</th>
-	</tr>
-<?php
-	foreach ($ERRORS_array_test as $test)
-	{
-		if($test['tipo'] == 'VALIDACION' ){
-?>
-	<tr>
-		<td>
-			<?php echo $test['entidad'];?>
-		</td>
-		<td>
-			<?php echo $test['metodo']; ?>
-		</td>
-		<td>
-			<?php echo $test['error']; ?>
-		</td>
-		<td>
-			<?php echo $test['error_esperado']; ?>
-		</td>
-		<td>
-			<?php echo $test['error_obtenido']; ?>
-		</td>
-		<td>
-			<?php echo $test['resultado']; ?>
-		</td>
-	</tr>
-<?php	
+	<h2>Pruevas Validación</h2>
+	<table border="1">
+		<tr>
+			<th>
+				Entidad
+			</th>
+			<th>
+				Atributo
+			</th>
+			<th>
+				Error testeado
+			</th>
+			<th>
+				Valor Esperado
+			</th>
+			<th>
+				Valor Obtenido
+			</th>
+			<th>
+				Resultado
+			</th>
+		</tr>
+	<?php
+		foreach ($ERRORS_array_test as $test)
+		{
+			if($test['tipo'] == 'VALIDACION' ){
+	?>
+		<tr>
+			<td>
+				<?php echo $test['entidad'];?>
+			</td>
+			<td>
+				<?php echo $test['metodo']; ?>
+			</td>
+			<td>
+				<?php echo $test['error']; ?>
+			</td>
+			<td>
+				<?php echo $test['error_esperado']; ?>
+			</td>
+			<td>
+				<?php echo $test['error_obtenido']; ?>
+			</td>
+			<td>
+				<?php echo $test['resultado']; ?>
+			</td>
+		</tr>
+	<?php	
+			}
 		}
-	}
-?>
-</table>
+	?>
+	</table>
+</div>
