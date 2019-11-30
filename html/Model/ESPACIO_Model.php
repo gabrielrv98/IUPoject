@@ -173,13 +173,7 @@ function comprobar_superficie()
 
 	$this->superficie = trim($this->superficie);
 
-	if(empty($this->superficie)){//comprobamos si esta vacio
-		$array[1] = "00001";
-		$array[2] = "paramVacio";
-
-		return $array;
-
-	}else if(strlen($this->superficie) > 4){//comprobamos si es muy larga
+	if(strlen($this->superficie) > 4){//comprobamos si es muy larga
 		$array[1] = "00002";
 		$array[2] = "toolong";
 
@@ -209,13 +203,7 @@ function comprobar_nInventario()
 
 	$this->nInventario = trim($this->nInventario);
 
-	if(empty($this->nInventario)){//comprobamos si esta vacio
-		$array[1] = "00001";
-		$array[2] = "paramVacio";
-
-		return $array;
-
-	}else if(strlen($this->nInventario) > 8){//comprobamos si es muy larga
+	if(strlen($this->nInventario) > 8){//comprobamos si es muy larga
 		$array[1] = "00002";
 		$array[2] = "toolong";
 

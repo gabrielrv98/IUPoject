@@ -98,32 +98,6 @@ function ESPACIO_comprobar_codEspacio_test()
 
 	array_push($ERRORS_array_test, $ESPACIO_array_test1);
 
-	//codEspacio vacio
-	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
-	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
-	$ESPACIO_array_test1['metodo'] = 'codEspacio';
-	$ESPACIO_array_test1['error'] = 'vacio';
-	$ESPACIO_array_test1['error_esperado'] = '00001';
-	$ESPACIO_array_test1['error_obtenido'] = '';
-	$ESPACIO_array_test1['resultado'] = '';
-
-	// Relleno los datos de ESPACIO	
-	$codEspacio = '';
-	// creo el modelo
-	$ESPACIO = new ESPACIO_Model($codEspacio,'','','','','');
-
-	$result = $ESPACIO->comprobar_codEspacio();
-	$ESPACIO_array_test1['error_obtenido'] = $result[1];
-	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
-	{
-		$ESPACIO_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$ESPACIO_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $ESPACIO_array_test1);
 
 
 	//codEspacio formato erroneo
@@ -467,7 +441,6 @@ function ESPACIO_comprobar_centro_test()
 //		Superficie correcto
 //		Superficie demasiado largo
 //		Superficie demasiado corto
-//		Superficie vacio
 //		Superficie inesperado
 
 function ESPACIO_comprobar_superficie_test()
@@ -543,33 +516,6 @@ function ESPACIO_comprobar_superficie_test()
 	$ESPACIO_array_test1['resultado'] = '';
 
 	// Relleno los datos de ESPACIO	
-	$Superficie = '1';
-	// creo el modelo
-	$ESPACIO = new ESPACIO_Model('','','','',$Superficie,'');
-
-	$result = $ESPACIO->comprobar_superficie();
-	$ESPACIO_array_test1['error_obtenido'] = $result[1];
-	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
-	{
-		$ESPACIO_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$ESPACIO_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $ESPACIO_array_test1);
-
-	//Superficie vacio
-	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
-	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
-	$ESPACIO_array_test1['metodo'] = 'Superficie';
-	$ESPACIO_array_test1['error'] = 'vacio';
-	$ESPACIO_array_test1['error_esperado'] = '00001';
-	$ESPACIO_array_test1['error_obtenido'] = '';
-	$ESPACIO_array_test1['resultado'] = '';
-
-	// Relleno los datos de ESPACIO	
 	$Superficie = '';
 	// creo el modelo
 	$ESPACIO = new ESPACIO_Model('','','','',$Superficie,'');
@@ -621,7 +567,6 @@ function ESPACIO_comprobar_superficie_test()
 //		Numero de inventario correcto
 //		Numero de inventario demasiado largo
 //		Numero de inventario demasiado corto
-//		Numero de inventario vacio
 //		Numero de inventario inesperado
 
 function ESPACIO_comprobar_nInventario_test()
@@ -693,33 +638,6 @@ function ESPACIO_comprobar_nInventario_test()
 	$ESPACIO_array_test1['metodo'] = 'Numero de inventario';
 	$ESPACIO_array_test1['error'] = 'demasiado corto';
 	$ESPACIO_array_test1['error_esperado'] = '00004';
-	$ESPACIO_array_test1['error_obtenido'] = '';
-	$ESPACIO_array_test1['resultado'] = '';
-
-	// Relleno los datos de ESPACIO	
-	$nInventario = '1';
-	// creo el modelo
-	$ESPACIO = new ESPACIO_Model('','','','','',$nInventario);
-
-	$result = $ESPACIO->comprobar_nInventario();
-	$ESPACIO_array_test1['error_obtenido'] = $result[1];
-	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
-	{
-		$ESPACIO_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$ESPACIO_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $ESPACIO_array_test1);
-
-	//Numero de inventario vacio
-	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
-	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
-	$ESPACIO_array_test1['metodo'] = 'Numero de inventario';
-	$ESPACIO_array_test1['error'] = 'vacio';
-	$ESPACIO_array_test1['error_esperado'] = '00001';
 	$ESPACIO_array_test1['error_obtenido'] = '';
 	$ESPACIO_array_test1['resultado'] = '';
 
