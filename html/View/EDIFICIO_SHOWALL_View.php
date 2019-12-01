@@ -25,13 +25,13 @@ class EDIFICIO_SHOWALL {
 		?>
 		
 		<head>
-			<title><?php echo $strings['TShowAll']; ?></title>
+			<title class="TShowAll"><?php echo $strings['TShowAll']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
  
-		<h1><?php echo $strings['TShowAll']; ?></h1>
+		<h1 class="TShowAll"><?php echo $strings['TShowAll']; ?></h1>
 		<a href = '../Controller/EDIFICIO_Controller.php?action=ADD' style="color:#FFFFFF;">
 			 <img src='../View/icon/adduser.ico'>
 		</a> 
@@ -40,16 +40,16 @@ class EDIFICIO_SHOWALL {
 		</a>
 		<br>
 		<table border ="1">
-			<th>
+			<th class="CodEdificio">
 				<?php echo $strings['CodEdificio']; ?>
 			</th>
-			<th>
+			<th class="NomEdificio">
 				<?php echo $strings['NomEdificio']; ?>
 			</th>
-			<th>
+			<th class="DirEdificio">
 				<?php echo $strings['DirEdificio']; ?>
 			</th>
-			<th>
+			<th class="CampusEdifio">
 				<?php echo $strings['CampusEdifio']; ?>
 			</th>
 

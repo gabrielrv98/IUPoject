@@ -67,7 +67,7 @@ function comprobarExpresionRegular(campo, exprreg, size) {
 
 /*Comprueba si el campo es null o 0 y devuelve false, si existe algo devuelve true*/
 function comprobarVacio( campo ) {
-    if ( ( campo.value == null ) || ( campo.value.length == 0  ) {//comprueba si es null o 0
+    if ( ( campo.value == null ) || ( campo.value.length == 0  ) ){//comprueba si es null o 0
             campo.style.border = "2px solid red";
             return false;
     } else {//si existe algo devuelve true

@@ -22,33 +22,33 @@
 			<head>
 				<link rel="stylesheet" type="text/css" href="../css/estilo.css"> 
 				<script type="text/javascript" src='../js/validaciones.js'></script>
-				<title> <?php echo $strings['Tdelete']; ?> </title>
+				<title class="Tdelete"> <?php echo $strings['Tdelete']; ?> </title>
 			</head> 
 
 			<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1><?php echo $strings['deleteEdificio']; ?></h1>	
+			<h1 class="deleteEdificio"><?php echo $strings['deleteEdificio']; ?></h1>	
 			<form name = 'Form' action='../Controller/EDIFICIO_Controller.php?action=DELETE' method='post' >
 
 				 	<div class="form-group">
-				 	<label for="codigo"><?php echo $strings['CodEdificio'] ?> </label>  
+				 	<label for="codigo" class="CodEdificio"><?php echo $strings['CodEdificio'] ?> </label>  
 				 	 
 				 	<input class="form-control" type = 'text' name = 'codigo' id = 'codigo' value = '<?php echo $this->valores['CODEDIFICIO']; ?>' placeholder = 'Letras y numeros' size = '10' value = '' onblur="comprobarAlfabetico(this,10)" readonly>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="nombre"><?php echo $strings['NomEdificio'] ?> </label>  
+				 	<label for="nombre" class="NomEdificio"><?php echo $strings['NomEdificio'] ?> </label>  
 				 	 
 				 	 <input class="form-control" type = 'text' name = 'nombre' id = 'nombre' value = '<?php echo $this->valores['NOMBREEDIFICIO']; ?>' placeholder = 'Solo letras' size = '30'  onblur="comprobarTexto(this,50)" readonly>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="direccion"><?php echo $strings['DirEdificio'] ?> </label>  
+				 	<label for="direccion" class="DirEdificio"><?php echo $strings['DirEdificio'] ?> </label>  
 				 	 
 				 	 <input class="form-control" type = 'text' name = 'direccion' id = 'direccion' value = '<?php echo $this->valores['DIRECCIONEDIFICIO']; ?>' placeholder = 'Letras y numeros' size = '50' onblur="comprobarAlfabetico(this,150)" readonly>
 				</div>&nbsp;&nbsp; 
 
 				<div class="form-group">
-				 	<label for="campus">Campus </label>  
+				 	<label for="campus" class="Campus">Campus </label>  
 				 	 
 				 	 <input class="form-control" type = 'text' name = 'campus' id = 'campus' value = '<?php echo $this->valores['CAMPUSEDIFICIO']; ?>' placeholder = 'Solo letras' size = '10' value = '' onblur="comprobarTexto(this,10)" readonly >
 				</div>&nbsp;&nbsp; 
@@ -60,7 +60,7 @@
 			</form>
 				
 		
-			<a href='../Controller/Index_Controller.php'><img src="../View/icon/back.ico" height="32" width="32"> </a>
+			<a href='../Controller/EDIFICIO_Controller.php'><img src="../View/icon/back.ico" height="32" width="32"> </a>
 		
 		<?php
 			include '../View/Footer.php';

@@ -23,30 +23,30 @@ class ESPACIO_SHOWCURRENT {
 
 		?>
 		<head>
-			<title><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-<h1><?php echo $strings['TShowC']; ?></h1>
+<h1 class="TShowC"><?php echo $strings['TShowC']; ?></h1>
 		<table border="1">
-			<th>
+			<th class="CodEspacio">
 				<?php echo $strings['CodEspacio']; ?>
 			</th>
-			<th>
+			<th class="CodEdificio">
 				<?php echo $strings['CodEdificio']; ?>
 			</th>
-			<th>
+			<th class="CodCentro">
 				<?php echo $strings['CodCentro']; ?>
 			</th>
-			<th>
+			<th class="tipo">
 				<?php echo $strings['tipo']; ?>
 			</th>
-			<th>
+			<th class="supEspacio">
 				<?php echo $strings['supEspacio']; ?>
 			</th>
-			<th>
+			<th class="nInventary">
 				<?php echo $strings['nInventary']; ?>
 			</th>
 

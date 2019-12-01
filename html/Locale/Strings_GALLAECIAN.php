@@ -6,6 +6,7 @@
 //-------------------------------------------------------
 $strings = 
 array(
+	'Campus' => 'Campus',
 	'bienvenido' =>'Benvido o proxecto de IU',
 	'Portal de Gestión' => 'Portal de Xestión',
 	'Usuario no autenticado' => 'Usuario no autenticado',

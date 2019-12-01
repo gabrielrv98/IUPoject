@@ -25,23 +25,23 @@ class EDIFICIO_SHOWCURRENT {
 
 		?>
 		<head>
-			<title><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-		<h1><?php echo $strings['TShowC']; ?></h1>
+		<h1 class="TShowC"><?php echo $strings['TShowC']; ?></h1>
 		<table border="1">
-			<th>
+			<th class="CodEdificio">
 				<?php echo $strings['CodEdificio']; ?>
 			</th>
-			<th>
+			<th class="NomEdificio">
 				<?php echo $strings['NomEdificio']; ?>
 			</th>
-			<th>
+			<th class="DirEdificio">
 				<?php echo $strings['DirEdificio']; ?>
 			</th>
-			<th>
+			<th class="CampusEdifio">
 				<?php echo $strings['CampusEdifio']; ?>
 			</th>
 
@@ -73,7 +73,7 @@ class EDIFICIO_SHOWCURRENT {
 			</tr>
 		</table>
 
-		<p><?php echo $strings['centAso']?></p>
+		<p class="centAso"><?php echo $strings['centAso']?></p>
 		<?php if($this->centros != null){ ?>
 		<ul>
 			<?php foreach ($this->centros as $key ) {?>
@@ -88,7 +88,7 @@ class EDIFICIO_SHOWCURRENT {
 
 		<?php } ?>
 
-		<p><?php echo $strings['espAso']?></p>
+		<p class="espAso"><?php echo $strings['espAso']?></p>
 		<?php if($this->espacios != null){ ?>
 		<ul>
 			<?php foreach ($this->espacios as $key ) {?>

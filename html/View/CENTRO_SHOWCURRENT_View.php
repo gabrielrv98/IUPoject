@@ -25,27 +25,27 @@ class CENTRO_SHOWCURRENT {
 
 		?>
 		<head>
-			<title><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
-		<h1><?php echo $strings['TShowC']; ?></h1>
+		<h1 class="TShowC"><?php echo $strings['TShowC']; ?></h1>
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
 		<table border="1">
-			<th>
+			<th class="CodCentro">
 				<?php echo $strings['CodCentro']; ?>
 			</th>
-			<th>
+			<th class="CodEdificio">
 				<?php echo $strings['CodEdificio']; ?>
 			</th>
-			<th>
+			<th class="NomCentro">
 				<?php echo $strings['NomCentro']; ?>
 			</th>
-			<th>
+			<th class="DirCentro">
 				<?php echo $strings['DirCentro']; ?>
 			</th>
-			<th>
+			<th class="RespCentro">
 				<?php echo $strings['RespCentro']; ?>
 			</th>
 
@@ -81,13 +81,13 @@ class CENTRO_SHOWCURRENT {
 
 		</table>
 
-		<p><?php echo $strings['titAso']?></p>
+		<p class="titAso"><?php echo $strings['titAso']?></p>
 		<?php if($this->titulaciones != null){ ?>
 		<ul>
 			<?php foreach ($this->titulaciones as $key ) {?>
 
 				<li>
-					<a href = "../Controller/TITULACION_Controller.php?action=SHOWCURRENT&&CODTITULACION=<?php echo $key['CODTITULACION']; ?>">
+					<a href = "../Controller/TITULACION_Controller.php?action=SHOWCURRENT&&CODTITULACION=<?php echo $key['CODTITULACION']; ?>" >
 						<?php echo $key['NOMBRETITULACION']; ?>
 					</a>
 				</li>
@@ -96,7 +96,7 @@ class CENTRO_SHOWCURRENT {
 
 		<?php } ?>
 
-		<p><?php echo $strings['espAso']?></p>
+		<p class="espAso"><?php echo $strings['espAso']?></p>
 		<?php if($this->espacios != null){ ?>
 		<ul>
 			<?php foreach ($this->espacios as $key ) {?>
