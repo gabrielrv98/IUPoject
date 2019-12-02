@@ -14,22 +14,22 @@
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 			<script type="text/javascript" src='../js/validaciones.js'></script>
-			<title> <?php echo $strings['Login']; ?></title>
+			<title class="ISesion"> <?php echo $strings['Login']; ?></title>
 		</head>
 
-			<h1><?php echo $strings['Login']; ?></h1>	 
+			<h1 class="ISesion"><?php echo $strings['ISesion']; ?></h1>	 
 			<form name = 'Form' action='../Controller/Login_Controller.php' method='post' onsubmit="return comprobar_login();">
 		
 				 	<div class="form-group">
-				 	<label for="login"><?php echo $strings['Login'] ?> </label>  
+				 	<label for="login" class="Login"><?php echo $strings['Login'] ?> </label>  
 				 	<input class="form-control" type = 'text' name = 'login' id = 'login' placeholder = 'Utiliza tu login' size = '10' onblur="comprobarAlfabetico(this,15);" required>
-				 	<label class="errormsg" for="login" id="login_error" > <?php echo $strings['letrasynumeros'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="login" id="login_error" > <?php echo $strings['letrasynumeros'] ?> </label>
 				</div>&nbsp;&nbsp;
 				 	
 				<div class="form-group">
-				 	<label for="password"><?php echo $strings['password'] ?> </label> 
-				 	<input class="form-control" type = 'text' name = 'password' id = 'password' placeholder = 'letras y numeros' size = '15' value = '' onblur="comprobarAlfabetico(this,128)" required >
-				 	<label class="errormsg" for="password" id="password_error" > <?php echo $strings['letrasynumeros'] ?> </label>
+				 	<label for="password" class="password"><?php echo $strings['password'] ?> </label> 
+				 	<input class="form-control" type = 'password' name = 'password' id = 'password' placeholder = 'letras y numeros' size = '15' value = '' onblur="comprobarAlfabetico(this,128)" required >
+				 	<label class="errormsg letrasynumeros" for="password" id="password_error" > <?php echo $strings['letrasynumeros'] ?> </label>
 				</div>&nbsp;&nbsp;
 
 					<input type='submit' name='action' value='Login'>

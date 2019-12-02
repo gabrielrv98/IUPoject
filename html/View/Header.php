@@ -2,10 +2,15 @@
 	include_once '../Functions/Authentication.php';
 	if (!isset($_COOKIE['idioma'])) {
 		$_COOKIE['idioma'] = 'SPANISH';
-	}
-	else{
+		$_SESSION['idioma'] = 'SPANISH';
+	}else{
+		$_SESSION['idioma'] = 'SPANISH';
 	}
 	include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php';
+
+	if (!isset($_SESSION['idioma'])) {
+		$_SESSION['idioma'] = $_COOKIE['idioma'];
+	}
 ?>
 <html>
 <head>
@@ -37,9 +42,8 @@
 		</p>
 	</div>
 	
-
-	<button onclick="traducirIU('ENGLISH');">
-		<img src="../View/icon/english.png" style="height: 32px; width: 32px">
+	<button  onclick="traducirIU('ENGLISH');">
+		<img  src="../View/icon/english.png" style="height: 32px; width: 32px">
 	</button> 
 	<button onclick="traducirIU('SPANISH');">
 		<img alt="" src="../View/icon/spain.jpg"   style="height: 32px; width: 32px" />

@@ -31,31 +31,31 @@ class USUARIOS_SHOWCURRENT {
 
 		<h1> <?php echo $strings['TShowC']; ?> </h1>
 		<table border="1">
-			<th>
+			<th class="Login">
 				<?php echo $strings['Login']; ?>
 			</th>
-			<th>
+			<th class="DNI">
 				DNI
 			</th>
-			<th>
+			<th class="name">
 				<?php echo $strings['name']; ?>
 			</th>
-			<th>
+			<th class="surname">
 				<?php echo $strings['surname']; ?>
 			</th>
-			<th>
+			<th class="tlf">
 				<?php echo $strings['tlf']; ?>
 			</th>
-			<th>
+			<th class="email">
 				Email
 			</th>
-			<th>
+			<th class="bDate">
 				<?php echo $strings['bDate']; ?>
 			</th>
-			<th>
+			<th class="picture">
 				<?php echo $strings['picture']; ?>
 			</th>
-			<th>
+			<th class="sexo">
 				<?php echo $strings['sexo']; ?>
 			</th>
 			<tr>
@@ -83,7 +83,7 @@ class USUARIOS_SHOWCURRENT {
 				<td>
 					<img src="<?php echo $this->lista['fotopersonal'];?>" height="42" width="42">
 				</td>
-				<td>
+				<td class="<?php echo $this->lista['sexo']; ?>">
 					<?php echo $strings[$this->lista['sexo']]; ?>
 				</td>
 			</tr>
@@ -91,7 +91,7 @@ class USUARIOS_SHOWCURRENT {
 		</table>
 		<br>
 
-		<a href='../../Controller/Index_Controller.php'> <img src="../View/icon/back.ico" height="32" width="32"> </a>
+		<a href='../../Controller/USUAIOS_CONTROLER.php'> <img src="../View/icon/back.ico" height="32" width="32"> </a>
 
 
 		<?php

@@ -31,15 +31,15 @@
 			<head>
 				<link rel="stylesheet" type="text/css" href="../css/estilo.css"> 
 				<script type="text/javascript" src='../js/validaciones.js'></script>
-				<title> <?php echo $strings['Tdelete']; ?> </title>
+				<title class="Tdelete"> <?php echo $strings['Tdelete']; ?> </title>
 			</head> 
 
 			<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1><?php echo $strings['deletePROF_TIT']; ?></h1>	
+			<h1 class="deletePROF_TIT"><?php echo $strings['deletePROF_TIT']; ?></h1>	
 			<form name = 'Form' action='../Controller/PROF_ESPACIO_Controller.php?action=DELETE' method='post' >
 
 				<div class="form-group">
-				 	<label for="DNI"><?php echo $strings['profName'] ?> </label>  
+				 	<label for="DNI" class="profName"><?php echo $strings['profName'] ?> </label>  
 				 	<select name='DNI' required>
 
 				 			<?php while ($this->nombre != null ){ ?>
@@ -53,7 +53,7 @@
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="codESPACIO"><?php echo $strings['CodEspacio'] ?> </label> 
+				 	<label for="codESPACIO" class="CodEspacio"><?php echo $strings['CodEspacio'] ?> </label> 
 				 	<select name='codESPACIO' required>
 
 				 				<?php while ($this->codigo != null ){ ?>
@@ -69,14 +69,14 @@
 							</select>
 				</div>&nbsp;&nbsp;
 
-				<button type="submit" name='action' class="btn btn-primary" value="DELETE" >
+				<button type="submit" class="submit" name='action' class="btn btn-primary" value="DELETE" >
 					<?php echo $strings['submit'] ; ?>
 				</button> 
 
 			</form>
 				
 		
-			<a href='../Controller/Index_Controller.php'><img src="../View/icon/back.ico" height="32" width="32"> </a>
+			<a href='../Controller/PROF_ESPACIO_Controller.php'><img src="../View/icon/back.ico" height="32" width="32"> </a>
 		
 		<?php
 			include '../View/Footer.php';

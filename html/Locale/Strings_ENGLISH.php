@@ -178,6 +178,6 @@ array(
 	'onlynumbers' => 'only numbers allowed.',
 	'dirError' => 'only letters, numbers and "- / º ª" are allowed.',
 	'errorIn' => 'Error in',
-	'open' => 'Open'
+	'open' => '&#9776;Open'
  );
  ?>

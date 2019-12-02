@@ -25,13 +25,13 @@ class PROF_ESPACIO_SHOWALL {
 		?>
 		
 		<head>
-			<title><?php echo $strings['TShowAll']; ?></title>
+			<title class="TShowAll"><?php echo $strings['TShowAll']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-		<h1><?php echo $strings['TShowAll']; ?></h1>
+		<h1 class="TShowAll"><?php echo $strings['TShowAll']; ?></h1>
 		<a href = '../Controller/PROF_ESPACIO_Controller.php?action=ADD' style="color:#FFFFFF;">
 			<img src='../View/icon/adduser.ico'>
 		</a> 
@@ -43,7 +43,7 @@ class PROF_ESPACIO_SHOWALL {
 			<th>
 				DNI
 			</th>
-			<th>
+			<th class="CodEspacio">
 				<?php echo $strings['CodEspacio']; ?>
 			</th>
 

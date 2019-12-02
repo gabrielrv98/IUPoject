@@ -19,6 +19,7 @@
           idioma = 'SPANISH';
         }
       }
+      sessionStorage.setItem("idioma",getCookie('idioma'));
 
       //Asignamos a la cookie idioma el valor actual de idioma:
       setCookie('idioma', idioma, 1);
@@ -184,7 +185,7 @@
       'Actualización realizada con éxito' : 'Actualización realizada con éxito',
       'Borrado realizado con éxito' : 'Borrado realizado con éxito',
       'noCenter' : 'Sin centro',
-      'submit' : 'aceptar', 
+      'submit' : 'Aceptar', 
       'profName' : 'Nombre del profesor',
       'TShowC' : 'Detalles',
       'TShowAll' : 'Mostrar todos',
@@ -202,6 +203,8 @@
       'profEspAso' : 'Profesores y espacios asociados',
       'hoyes' : 'Hoy es',
       'Campus' : 'Campus',
+      'ISesion' :'Iniciar Sesion',
+      'Area' : 'Area',
 
 
       //verificaiones---------------------------------------------------------
@@ -231,11 +234,12 @@
       'onlynumbers' : 'solo esta permitido numeros.',
       'dirError' : 'solo puede contener letras, numeros y los símbolos  “- / º ª.',
       'errorIn' : 'Error en',
-      'open' : 'Abrir',
+      'open' : '&#9776;Abrir',
          };
 
      //Arrays asociativo de traducciones al gallego:
     const arrayGALLAECIAN = {
+      'bienvenido' :'Bienvenido o proxecto de IU',
       'Portal_de_Gestión' : 'Portal de Xestión',
       'Usuario_no_autenticado' : 'Usuario no autenticado',
       'Login' : 'Login',
@@ -379,6 +383,8 @@
       'profEspAso' : 'Profesores e espazos asociados',
       'hoyes' : 'Hoxe é',
       'Campus' : 'Campus',
+      'ISesion' : 'Iniciar sesión',
+      'Area' : 'Area',
 
       'letrasynumeros' : 'O campo só pode conter letras y números.',
       'dniError' : 'Faltan números o a letra é incorrecta.',
@@ -405,7 +411,7 @@
       'onlynumbers' : 'só esta permitido números.',
       'dirError' : 'só pode conter letras, numeros e os símbolos  “- / º ª.',
       'errorIn' : 'Error en',
-      'open' : 'Abrir',
+      'open' : '&#9776;Abrir',
      };
 
      //Arrays asociativo de traducciones al inglés:
@@ -582,8 +588,10 @@
       'onlynumbers' : 'only numbers allowed.',
       'dirError' : 'only letters, numbers and "- / º ª" are allowed.',
       'errorIn' : 'Error in',
-      'open' : 'Open',
+      'open' : '&#9776;Open',
       'Campus' : 'Campus',
+      'ISesion' : 'Log in',
+      'Area' : 'Area',
      };
 
 //FUNCIÓN: setCookie

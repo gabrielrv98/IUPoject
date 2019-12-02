@@ -133,7 +133,7 @@ array(
 	'Actualización realizada con éxito' => 'Actualización realizada con éxito',
 	'Borrado realizado con éxito' => 'Borrado realizado con éxito',
 	'noCenter' => 'Sin centro',
-	'submit' => 'aceptar', 
+	'submit' => 'Aceptar', 
 	'profName' => 'Nombre del profesor',
 	'TShowC' => 'Detalles',
 	'TShowAll' => 'Mostrar todos',
@@ -178,6 +178,6 @@ array(
 	'onlynumbers' => 'solo esta permitido numeros.',
 	'dirError' => 'solo puede contener letras, numeros y los símbolos  “- / º ª.',
 	'errorIn' => 'Error en',
-	'open' => 'Abrir'
+	'open' => '&#9776;Abrir'
 	);
 ?>

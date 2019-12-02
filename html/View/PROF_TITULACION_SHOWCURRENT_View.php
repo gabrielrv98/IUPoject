@@ -22,21 +22,21 @@ class PROF_TITULACION_SHOWCURRENT {
 
 		?>
 		<head>
-			<title><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-		<h1><?php echo $strings['TShowC']; ?></h1>
+		<h1 class="TShowC"><?php echo $strings['TShowC']; ?></h1>
 		<table border="1">
 			<th>
 				DNI
 			</th>
-			<th>
+			<th class="CODTITULACION">
 				<?php echo $strings['CODTITULACION']; ?>
 			</th>
-			<th>
+			<th class="ANHOACADEMICO">
 				<?php echo $strings['ANHOACADEMICO']; ?>
 			</th>
 

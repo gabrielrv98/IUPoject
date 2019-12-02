@@ -175,7 +175,7 @@ array(
 	'onlynumbers' => 'só esta permitido números.',
 	'dirError' => 'só pode conter letras, numeros e os símbolos  “- / º ª.',
 	'errorIn' => 'Error en',
-	'open' => 'Abrir'
+	'open' => '&#9776;Abrir'
 
 );
 ?>

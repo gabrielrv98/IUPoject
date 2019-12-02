@@ -25,13 +25,13 @@ class PROF_TITULACION_SHOWALL {
 		?>
 		
 		<head>
-			<title><?php echo $strings['TShowAll']; ?></title>
+			<title class="TShowAll"><?php echo $strings['TShowAll']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-		<h1><?php echo $strings['TShowAll']; ?></h1>
+		<h1 class="TShowAll"><?php echo $strings['TShowAll']; ?></h1>
 		<a href = '../Controller/PROF_TITULACION_Controller.php?action=ADD' style="color:#FFFFFF;">
 			<img src='../View/icon/adduser.ico'>
 		</a> 
@@ -40,13 +40,13 @@ class PROF_TITULACION_SHOWALL {
 		</a>
 		<br>
 		<table border="1">
-			<th>
+			<th class="DNI">
 				DNI
 			</th>
-			<th>
+			<th class="CODTITULACION">
 				<?php echo $strings['CODTITULACION']; ?>
 			</th>
-			<th>
+			<th class="ANHOACADEMICO">
 				<?php echo $strings['ANHOACADEMICO']; ?>
 			</th>
 
