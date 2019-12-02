@@ -17,33 +17,34 @@
 			<div id="menuLateral" class="menuLateralCss">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-				<a href='../Controller/EDIFICIO_Controller.php'>
+				<a class="buildingManager" href='../Controller/EDIFICIO_Controller.php'>
 					<?php echo $strings['buildingManager']; ?>
 				</a>
-				<a href='../Controller/CENTRO_Controller.php'>
+				<a class="centerManager" href='../Controller/CENTRO_Controller.php'>
 					<?php echo $strings['centerManager']; ?>
 				</a>
-				<a href='../Controller/TITULACION_Controller.php'>
+				<a class="TitulationManager" href='../Controller/TITULACION_Controller.php'>
 					<?php echo $strings['TitulationManager']; ?>
 				</a>
-				<a href='../Controller/PROF_TITULACION_Controller.php'>
+				<a class="P_TManager" href='../Controller/PROF_TITULACION_Controller.php'>
 					<?php echo $strings['P_TManager']; ?>
 				</a>
-				<a href='../Controller/PROFESOR_Controller.php'>
+				<a class="profesorManager" href='../Controller/PROFESOR_Controller.php'>
 					<?php echo $strings['profesorManager']; ?>
 				</a>
-				<a href='../Controller/PROF_ESPACIO_Controller.php'>
+				<a class="PEmanager" href='../Controller/PROF_ESPACIO_Controller.php'>
 					<?php echo $strings['PEmanager']; ?>
 				</a>
-				<a href='../Controller/ESPACIO_Controller.php'>
+				<a class="spaceManager" href='../Controller/ESPACIO_Controller.php'>
 					<?php echo $strings['spaceManager']; ?>
 				</a>
-				<a href='../Controller/USUARIOS_Controller.php'>
+				<a class="Gestión Usuarios" href='../Controller/USUARIOS_Controller.php'>
 					<?php echo $strings['Gestión Usuarios']; ?>
 				</a>
 			</div>
-			<?php include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; ?>
-			<span class="menuBut" onclick="openNav()">&#9776; <?php echo $strings['open']; ?></span>
+<?php 
+			include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php'; ?>
+			<span class="menuBut open" onclick="openNav()"> <?php echo $strings['open']; ?></span>
 
 		</div>
 		
