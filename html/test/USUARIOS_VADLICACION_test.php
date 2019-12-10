@@ -1139,8 +1139,76 @@ function USUARIOS_comprobar_sexo_test()
 	}
 
 	array_push($ERRORS_array_test, $USUARIO_array_test1);
+}
 
+// function USUARIOS_comprobar_ADD()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
 
+function USUARIOS_comprobar_ADD()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$USUARIO_array_test1 = array();
+
+	//sexo correcto
+	$USUARIO_array_test1['tipo'] = 'VALIDACION';
+	$USUARIO_array_test1['entidad'] = 'USUARIO';	
+	$USUARIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$USUARIO_array_test1['error'] = 'correcto';
+	$USUARIO_array_test1['error_esperado'] = 'true';
+	$USUARIO_array_test1['error_obtenido'] = '';
+	$USUARIO_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$USUARIOS = new USUARIOS_Model('loginerror','1234','88516567D','nom','apel','123123123',
+		'e@e.es','1960-08-10','','hombre');
+
+	$USUARIO_array_test1['error_obtenido'] = $USUARIOS->comprobar_atributos_ADD() == 1 ? 'true' : 'false';
+	if ($USUARIO_array_test1['error_obtenido'] === $USUARIO_array_test1['error_esperado'])
+	{
+		$USUARIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIO_array_test1);
+
+	//sexo vacia
+	$USUARIO_array_test1['tipo'] = 'VALIDACION';
+	$USUARIO_array_test1['entidad'] = 'USUARIO';	
+	$USUARIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$USUARIO_array_test1['error'] = 'login y nombre erroneos';
+	$USUARIO_array_test1['error_esperado'] = 'login-00090-textonly-name-00030-textonly-';
+	$USUARIO_array_test1['error_obtenido'] = '';
+	$USUARIO_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$USUARIOS = new USUARIOS_Model('login espacio','1234','88516567D','n0mbr3','apel','123123123',
+		'e@e.es','1960-08-10','','hombre');
+	$array = $USUARIOS->comprobar_atributos_ADD();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$USUARIO_array_test1['error_obtenido'] = $result;
+	if ($USUARIO_array_test1['error_obtenido'] === $USUARIO_array_test1['error_esperado'])
+	{
+		$USUARIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIO_array_test1);
+
+	
 }
 
 	USUARIOS_comprobar_login_test();
@@ -1152,5 +1220,9 @@ function USUARIOS_comprobar_sexo_test()
 	USUARIOS_comprobar_email_test(); 
 	USUARIOS_comprobar_fecha_test();
 	USUARIOS_comprobar_sexo_test();
+
+
+	USUARIOS_comprobar_ADD();
+	//USUARIOS_comprobar_EDIT();
 
 ?>

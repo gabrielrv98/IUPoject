@@ -5,7 +5,7 @@
 //Fichero de test que llama al resto de ficheros de test 
 //Contiene php para mostrar el resultado de los tests
 //-------------------------------------------------------
-//error_reporting(E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 //error_reporting( E_PARSE);
 
 // crear el array principal de test
