@@ -37,6 +37,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 	<title>Tests</title>
 	<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 </head>
+<body style="margin-left: 20px">
 
 <h1> RESUMEN</h1>
 <h2>Numero de pruebas: <?php echo count($ERRORS_array_test); ?> -Numero de errores :  
@@ -202,3 +203,4 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 	?>
 	</table>
 </div>
+</body>

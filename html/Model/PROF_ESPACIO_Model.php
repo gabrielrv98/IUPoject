@@ -84,7 +84,7 @@ function comprobar_codEspacio()
 		return $array;
 
 	}else if( !preg_match('/^[a-z0-9-]*$/i', $this->codEspacio) ){//comprobamos si coincide con la expresion esperada
-		$array[1] = "00060";
+		$array[1] = "00040";
 		$array[2] = "alfNumguion";
 
 		return $array;

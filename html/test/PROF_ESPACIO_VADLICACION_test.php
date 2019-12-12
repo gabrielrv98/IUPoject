@@ -207,7 +207,7 @@ function PROF_ESPACIO_comprobar_codEspacio_test()
 	$PROF_ESPACIO_array_test1['entidad'] = 'PROF_ESPACIO';	
 	$PROF_ESPACIO_array_test1['metodo'] = 'CodESPACIO';
 	$PROF_ESPACIO_array_test1['error'] = 'formato erroneo';
-	$PROF_ESPACIO_array_test1['error_esperado'] = '00060';
+	$PROF_ESPACIO_array_test1['error_esperado'] = '00040';
 	$PROF_ESPACIO_array_test1['error_obtenido'] = '';
 	$PROF_ESPACIO_array_test1['resultado'] = '';
 
@@ -269,7 +269,7 @@ function PROF_ESPACIO_comprobar_ADD()
 	$PROF_ESPACIO_array_test1['entidad'] = 'PROF_ESPACIO';	
 	$PROF_ESPACIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
 	$PROF_ESPACIO_array_test1['error'] = 'DNI y codigo espacio erroneos';
-	$PROF_ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00060-alfNumguion-';
+	$PROF_ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00040-alfNumguion-';
 	$PROF_ESPACIO_array_test1['error_obtenido'] = '';
 	$PROF_ESPACIO_array_test1['resultado'] = '';
 
@@ -337,7 +337,7 @@ function PROF_ESPACIO_comprobar_EDIT()
 	$PROF_ESPACIO_array_test1['entidad'] = 'PROF_ESPACIO';	
 	$PROF_ESPACIO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
 	$PROF_ESPACIO_array_test1['error'] = 'Codigo espacio y dni erroneos';
-	$PROF_ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00060-alfNumguion-';
+	$PROF_ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00040-alfNumguion-';
 	$PROF_ESPACIO_array_test1['error_obtenido'] = '';
 	$PROF_ESPACIO_array_test1['resultado'] = '';
 
@@ -405,7 +405,7 @@ function PROF_ESPACIO_comprobar_DELETE()
 	$PROF_ESPACIO_array_test1['entidad'] = 'PROF_ESPACIO';	
 	$PROF_ESPACIO_array_test1['metodo'] = 'comprobar_atributos_DELETE';
 	$PROF_ESPACIO_array_test1['error'] = 'DNI y codigo del espacio erroneos';
-	$PROF_ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00060-alfNumguion-';
+	$PROF_ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00040-alfNumguion-';
 	$PROF_ESPACIO_array_test1['error_obtenido'] = '';
 	$PROF_ESPACIO_array_test1['resultado'] = '';
 

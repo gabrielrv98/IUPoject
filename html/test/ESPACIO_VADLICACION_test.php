@@ -786,11 +786,306 @@ function ESPACIO_comprobar_tipo_test()
 }
 
 
+// function ESPACIO_comprobar_ADD()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function ESPACIO_comprobar_ADD()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$ESPACIO_array_test1 = array();
+
+	//sexo correcto
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$ESPACIO_array_test1['error'] = 'correcto';
+	$ESPACIO_array_test1['error_esperado'] = 'true';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	/// Relleno los datos de usuario	
+	$codEsp = 'codEsp';
+	$codEDI = 'CodEdi';
+	$codCent = 'CodCent'; 
+	$tipo = 'PAS';
+	$superficie = '12';
+	$numInv = '2';
+// creo el modelo
+	$ESPACIO = new ESPACIO_Model($codEsp,$codEDI,$codCent,$tipo,$superficie,$numInv);
+	$ESPACIO_array_test1['error_obtenido'] = $ESPACIO->comprobar_atributos_ADD() == 1 ? 'true' : 'false';
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+
+	//sexo vacia
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$ESPACIO_array_test1['error'] = 'tipo y superficie espacio erroneos';
+	$ESPACIO_array_test1['error_esperado'] = 'tipo-00080-tipoError-supEspacio-00070-onlynumbers-';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$codEsp = 'codEsp';
+	$codEDI = 'CodEdi';
+	$codCent = 'CodCent'; 
+	$tipo = 'NOPASO';
+	$superficie = '12abc';
+	$numInv = '2';
+// creo el modelo
+	$ESPACIO = new ESPACIO_Model($codEsp,$codEDI,$codCent,$tipo,$superficie,$numInv);
+	$array = $ESPACIO->comprobar_atributos_ADD();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$ESPACIO_array_test1['error_obtenido'] = $result;
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+
+	
+}
+
+// function ESPACIO_comprobar_EDIT()
+// Valida:
+//		atributos OK
+//		atributos area y departamento mal
+
+function ESPACIO_comprobar_EDIT()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$ESPACIO_array_test1 = array();
+
+	//sexo correcto
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$ESPACIO_array_test1['error'] = 'correcto';
+	$ESPACIO_array_test1['error_esperado'] = 'true';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	/// Relleno los datos de usuario	
+	$codEsp = 'codEsp';
+	$codEDI = 'CodEdi';
+	$codCent = 'CodCent'; 
+	$tipo = 'PAS';
+	$superficie = '12';
+	$numInv = '2';
+// creo el modelo
+	$ESPACIO = new ESPACIO_Model($codEsp,$codEDI,$codCent,$tipo,$superficie,$numInv);
+
+	$ESPACIO_array_test1['error_obtenido'] = $ESPACIO->comprobar_atributos_EDIT() == 1 ? 'true' : 'false';
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+
+	//sexo vacia
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$ESPACIO_array_test1['error'] = 'Codigo espacio y dni erroneos';
+	$ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00060-alfNumguion-';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$ESPACIO = new ESPACIO_Model('885567D','name1!');
+	$array = $ESPACIO->comprobar_atributos_EDIT();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$ESPACIO_array_test1['error_obtenido'] = $result;
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+
+	
+}
+
+// function ESPACIO_comprobar_DELETE()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function ESPACIO_comprobar_DELETE()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$ESPACIO_array_test1 = array();
+
+	//sexo correcto
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$ESPACIO_array_test1['error'] = 'correcto';
+	$ESPACIO_array_test1['error_esperado'] = 'true';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$ESPACIO = new ESPACIO_Model('88516567D','codeTit','');
+
+	$ESPACIO_array_test1['error_obtenido'] = $ESPACIO->comprobar_atributos_DELETE() == 1 ? 'true' : 'false';
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+
+	//sexo vacia
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$ESPACIO_array_test1['error'] = 'DNI y codigo del espacio erroneos';
+	$ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00060-alfNumguion-';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$ESPACIO = new ESPACIO_Model('81657D','code!!','');
+	$array = $ESPACIO->comprobar_atributos_DELETE();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$ESPACIO_array_test1['error_obtenido'] = $result;
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+}
+
+
+// function ESPACIO_comprobar_RellenaDatos()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function ESPACIO_comprobar_RellenaDatos()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$ESPACIO_array_test1 = array();
+
+	//sexo correcto
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$ESPACIO_array_test1['error'] = 'correcto';
+	$ESPACIO_array_test1['error_esperado'] = 'true';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$ESPACIO = new ESPACIO_Model('88516567D','codeTit','');
+
+	$ESPACIO_array_test1['error_obtenido'] = $ESPACIO->comprobar_atributos_RellenaDatos() == 1 ? 'true' : 'false';
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+
+	//sexo vacia
+	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
+	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
+	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$ESPACIO_array_test1['error'] = 'DNI y codigo de la ESPACIO erroneos';
+	$ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00002-toolong-';
+	$ESPACIO_array_test1['error_obtenido'] = '';
+	$ESPACIO_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$ESPACIO = new ESPACIO_Model('81657D','codeasdasdasdasdsad','');
+	$array = $ESPACIO->comprobar_atributos_RellenaDatos();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$ESPACIO_array_test1['error_obtenido'] = $result;
+	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
+	{
+		$ESPACIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$ESPACIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $ESPACIO_array_test1);
+}
+
 	ESPACIO_comprobar_codEspacio_test();
 	ESPACIO_comprobar_edificio_test();
 	ESPACIO_comprobar_centro_test();
 	ESPACIO_comprobar_tipo_test();
 	ESPACIO_comprobar_superficie_test();
 	ESPACIO_comprobar_nInventario_test();
+
+
+	ESPACIO_comprobar_ADD();
+	ESPACIO_comprobar_EDIT();
+	ESPACIO_comprobar_DELETE();
+	ESPACIO_comprobar_RellenaDatos();
 
 ?>
