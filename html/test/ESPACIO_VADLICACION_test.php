@@ -831,7 +831,7 @@ function ESPACIO_comprobar_ADD()
 	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
 	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
 	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
-	$ESPACIO_array_test1['error'] = 'tipo y superficie espacio erroneos';
+	$ESPACIO_array_test1['error'] = 'Tipo y superficie espacio erroneos';
 	$ESPACIO_array_test1['error_esperado'] = 'tipo-00080-tipoError-supEspacio-00070-onlynumbers-';
 	$ESPACIO_array_test1['error_obtenido'] = '';
 	$ESPACIO_array_test1['resultado'] = '';
@@ -913,13 +913,20 @@ function ESPACIO_comprobar_EDIT()
 	$ESPACIO_array_test1['tipo'] = 'VALIDACION';
 	$ESPACIO_array_test1['entidad'] = 'ESPACIO';	
 	$ESPACIO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
-	$ESPACIO_array_test1['error'] = 'Codigo espacio y dni erroneos';
-	$ESPACIO_array_test1['error_esperado'] = 'dni-00010-dniError-codEspacio-00060-alfNumguion-';
+	$ESPACIO_array_test1['error'] = 'Codigo edificio y centro erroneos';
+	$ESPACIO_array_test1['error_esperado'] = 'CodEdificio-00040-alfNumguion-codeCenter-00040-alfNumguion-';
 	$ESPACIO_array_test1['error_obtenido'] = '';
 	$ESPACIO_array_test1['resultado'] = '';
 
-	// creo el modelo
-	$ESPACIO = new ESPACIO_Model('885567D','name1!');
+	/// Relleno los datos de usuario	
+	$codEsp = 'codEsp';
+	$codEDI = 'CodEdi!';
+	$codCent = 'CodCent!'; 
+	$tipo = 'PAS';
+	$superficie = '12';
+	$numInv = '2';
+// creo el modelo
+	$ESPACIO = new ESPACIO_Model($codEsp,$codEDI,$codCent,$tipo,$superficie,$numInv);
 	$array = $ESPACIO->comprobar_atributos_EDIT();
 	//var_dump($array);
 	foreach ($array as $key ) {
@@ -962,8 +969,10 @@ function ESPACIO_comprobar_DELETE()
 	$ESPACIO_array_test1['error_obtenido'] = '';
 	$ESPACIO_array_test1['resultado'] = '';
 
-	// creo el modelo
-	$ESPACIO = new ESPACIO_Model('88516567D','codeTit','');
+	/// Relleno los datos de usuario	
+	$codEsp = 'codEsp';
+// creo el modelo
+	$ESPACIO = new ESPACIO_Model($codEsp,'','','','','');
 
 	$ESPACIO_array_test1['error_obtenido'] = $ESPACIO->comprobar_atributos_DELETE() == 1 ? 'true' : 'false';
 	if ($ESPACIO_array_test1['error_obtenido'] === $ESPACIO_array_test1['error_esperado'])
