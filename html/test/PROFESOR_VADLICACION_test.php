@@ -2,7 +2,7 @@
 //Clase : PROFESOR_VALIDACON_test.php
 //Creado el : 20-11-2019
 //Creado por: grvidal
-//Fichero de test de unidad de la entidad TITULACION
+//Fichero de test de unidad de la entidad PROFESOR
 //	Saca por pantalla el resultado de los test
 //-------------------------------------------------------
 
@@ -690,12 +690,283 @@ function PROFESOR_comprobar_departamento_test()
 
 
 
+// function PROFESOR_comprobar_ADD()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function PROFESOR_comprobar_ADD()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$PROFESOR_array_test1 = array();
+
+	//sexo correcto
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$PROFESOR_array_test1['error'] = 'correcto';
+	$PROFESOR_array_test1['error_esperado'] = 'true';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('88516567D','name','surname','area','departamento');
+	$PROFESOR_array_test1['error_obtenido'] = $PROFESOR->comprobar_atributos_ADD() == 1 ? 'true' : 'false';
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+
+	//sexo vacia
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$PROFESOR_array_test1['error'] = 'DNI y nombre erroneos';
+	$PROFESOR_array_test1['error_esperado'] = 'dni-00010-dniError-name-00030-textonly-';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('8851657D','name1','surname','area','departamento');
+	$array = $PROFESOR->comprobar_atributos_ADD();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$PROFESOR_array_test1['error_obtenido'] = $result;
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+
+	
+}
+
+// function PROFESOR_comprobar_EDIT()
+// Valida:
+//		atributos OK
+//		atributos area y departamento mal
+
+function PROFESOR_comprobar_EDIT()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$PROFESOR_array_test1 = array();
+
+	//sexo correcto
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$PROFESOR_array_test1['error'] = 'correcto';
+	$PROFESOR_array_test1['error_esperado'] = 'true';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('88516567D','name','surname','area','departamento');
+
+	$PROFESOR_array_test1['error_obtenido'] = $PROFESOR->comprobar_atributos_EDIT() == 1 ? 'true' : 'false';
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+
+	//sexo vacia
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$PROFESOR_array_test1['error'] = 'Area y departamento erroneos';
+	$PROFESOR_array_test1['error_esperado'] = 'area-00030-textonly-departamento-00030-textonly-';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('88516567D','name','surname','area1','departamento1');
+	$array = $PROFESOR->comprobar_atributos_EDIT();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$PROFESOR_array_test1['error_obtenido'] = $result;
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+
+	
+}
+
+// function PROFESOR_comprobar_DELETE()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function PROFESOR_comprobar_DELETE()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$PROFESOR_array_test1 = array();
+
+	//sexo correcto
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$PROFESOR_array_test1['error'] = 'correcto';
+	$PROFESOR_array_test1['error_esperado'] = 'true';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('88516567D','','','','');
+
+	$PROFESOR_array_test1['error_obtenido'] = $PROFESOR->comprobar_atributos_DELETE() == 1 ? 'true' : 'false';
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+
+	//sexo vacia
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$PROFESOR_array_test1['error'] = 'DNI erroneo';
+	$PROFESOR_array_test1['error_esperado'] = 'dni-00010-dniError-';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('816567D','','','','');
+	$array = $PROFESOR->comprobar_atributos_DELETE();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$PROFESOR_array_test1['error_obtenido'] = $result;
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+}
+
+
+// function PROFESOR_comprobar_RellenaDatos()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function PROFESOR_comprobar_RellenaDatos()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$PROFESOR_array_test1 = array();
+
+	//sexo correcto
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$PROFESOR_array_test1['error'] = 'correcto';
+	$PROFESOR_array_test1['error_esperado'] = 'true';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('88516567D','','','','');
+
+	$PROFESOR_array_test1['error_obtenido'] = $PROFESOR->comprobar_atributos_RellenaDatos() == 1 ? 'true' : 'false';
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+
+	//sexo vacia
+	$PROFESOR_array_test1['tipo'] = 'VALIDACION';
+	$PROFESOR_array_test1['entidad'] = 'PROFESOR';	
+	$PROFESOR_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$PROFESOR_array_test1['error'] = 'Cdigo de la PROFESOR erroneo';
+	$PROFESOR_array_test1['error_esperado'] = 'dni-00010-dniError-';
+	$PROFESOR_array_test1['error_obtenido'] = '';
+	$PROFESOR_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$PROFESOR = new PROFESOR_Model('886567D','','','','');
+	$array = $PROFESOR->comprobar_atributos_RellenaDatos();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$PROFESOR_array_test1['error_obtenido'] = $result;
+	if ($PROFESOR_array_test1['error_obtenido'] === $PROFESOR_array_test1['error_esperado'])
+	{
+		$PROFESOR_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$PROFESOR_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $PROFESOR_array_test1);
+}
+
 	PROFESOR_comprobar_dni_test();
 	PROFESOR_comprobar_nombre_test();
 	PROFESOR_comprobar_apellido_test();	
 	PROFESOR_comprobar_area_test();
 	PROFESOR_comprobar_departamento_test();
 
-
+	PROFESOR_comprobar_ADD();
+	PROFESOR_comprobar_EDIT();
+	PROFESOR_comprobar_DELETE();
+	PROFESOR_comprobar_RellenaDatos();
 
 ?>
