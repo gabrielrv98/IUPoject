@@ -5,7 +5,7 @@
 //Testing de las funcionalidades globales
 //-------------------------------------------------------
 include '../Model/config.php';
-//error_reporting(E_PARSE);
+error_reporting(E_PARSE);
 
 function ExisteBD()
 {
