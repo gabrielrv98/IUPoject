@@ -25,6 +25,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 	include_once '../test/TITULACION_VADLICACION_test.php';
 	include_once '../test/PROFESOR_VADLICACION_test.php';
 	include_once '../test/PROF_TITULACION_VADLICACION_test.php';
+	include_once '../test/PROF_ESPACIO_VADLICACION_test.php';
 	include_once '../test/ESPACIO_VADLICACION_test.php';
 	include_once '../test/EDIFICIO_VADLICACION_test.php';
 	include_once '../test/CENTRO_VADLICACION_test.php';

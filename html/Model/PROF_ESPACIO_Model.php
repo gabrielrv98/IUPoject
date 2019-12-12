@@ -61,7 +61,7 @@ function comprobar_dni()
 function comprobar_codEspacio()
 {
 	$array = array();
-	$array[0] = 'codeTitulation';
+	$array[0] = 'codEspacio';
 
 	$this->codEspacio = trim($this->codEspacio);
 
