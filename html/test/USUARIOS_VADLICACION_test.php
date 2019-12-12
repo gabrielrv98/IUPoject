@@ -1389,14 +1389,14 @@ function USUARIOS_comprobar_RellenaDatos()
 	//sexo vacia
 	$USUARIO_array_test1['tipo'] = 'VALIDACION';
 	$USUARIO_array_test1['entidad'] = 'USUARIO';	
-	$USUARIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
-	$USUARIO_array_test1['error'] = 'login y nombre erroneos';
+	$USUARIO_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$USUARIO_array_test1['error'] = 'login erroneo';
 	$USUARIO_array_test1['error_esperado'] = 'login-00090-textonly-';
 	$USUARIO_array_test1['error_obtenido'] = '';
 	$USUARIO_array_test1['resultado'] = '';
 
 	// creo el modelo
-	$USUARIOS = new USUARIOS_Model('login espacio','','','','','',
+	$USUARIOS = new USUARIOS_Model('log!io','','','','','',
 		'','','','');
 	$array = $USUARIOS->comprobar_atributos_RellenaDatos();
 	//var_dump($array);

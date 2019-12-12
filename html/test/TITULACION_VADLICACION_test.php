@@ -9,32 +9,32 @@
 
 // function TITULACION_comprobar_tituacion_test()
 // Valida:
-//		codTitulacion correcto
-//		codTitulacion demasiado largo
-//		codTitulacion demasiado corto
-//		codTitulacion vacio
-//		codTitulacion inesperado
+//		codTITULACION correcto
+//		codTITULACION demasiado largo
+//		codTITULACION demasiado corto
+//		codTITULACION vacio
+//		codTITULACION inesperado
 
-function TITULACION_comprobar_titulacion_test()
+function TITULACION_comprobar_TITULACION_test()
 {
 	global $ERRORS_array_test;
 // creo array de almacen de test individual
 	$TITULACION_array_test1 = array();
 
-// codTitulacion correcto
+// codTITULACION correcto
 //----------------------------------------------
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'CodTitulacion';
+	$TITULACION_array_test1['metodo'] = 'CodTITULACION';
 	$TITULACION_array_test1['error'] = 'correcto';
 	$TITULACION_array_test1['error_esperado'] = 'true';
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
-	$codTitulacion = 'codTit';
+	$codTITULACION = 'codTit';
 	// creo el modelo
-	$TITULACION = new TITULACION_Model($codTitulacion,'','','');
+	$TITULACION = new TITULACION_Model($codTITULACION,'','','');
 
-	if ($TITULACION->comprobar_titulacion()) $res = 'true';
+	if ($TITULACION->comprobar_TITULACION()) $res = 'true';
 	else $res = 'false';
 
 	$TITULACION_array_test1['error_obtenido'] = $res;
@@ -50,10 +50,10 @@ function TITULACION_comprobar_titulacion_test()
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
 
-	//codTitulacion demasiado largo
+	//codTITULACION demasiado largo
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'CodTitulacion';
+	$TITULACION_array_test1['metodo'] = 'CodTITULACION';
 	$TITULACION_array_test1['error'] = 'demasiado largo';
 	$TITULACION_array_test1['error_esperado'] = '00002';
 	$TITULACION_array_test1['error_obtenido'] = '';
@@ -64,7 +64,7 @@ function TITULACION_comprobar_titulacion_test()
 	// creo el modelo
 	$TITULACION = new TITULACION_Model($login,'','','');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_TITULACION();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -77,10 +77,10 @@ function TITULACION_comprobar_titulacion_test()
 
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
-	//codTitulacion demasiado corto
+	//codTITULACION demasiado corto
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'CodTitulacion';
+	$TITULACION_array_test1['metodo'] = 'CodTITULACION';
 	$TITULACION_array_test1['error'] = 'demasiado corto';
 	$TITULACION_array_test1['error_esperado'] = '00003';
 	$TITULACION_array_test1['error_obtenido'] = '';
@@ -91,7 +91,7 @@ function TITULACION_comprobar_titulacion_test()
 	// creo el modelo
 	$TITULACION = new TITULACION_Model($login,'','','');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_TITULACION();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -104,10 +104,10 @@ function TITULACION_comprobar_titulacion_test()
 
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
-	//codTitulacion vacio
+	//codTITULACION vacio
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'codTitulacion';
+	$TITULACION_array_test1['metodo'] = 'codTITULACION';
 	$TITULACION_array_test1['error'] = 'vacio';
 	$TITULACION_array_test1['error_esperado'] = '00001';
 	$TITULACION_array_test1['error_obtenido'] = '';
@@ -118,7 +118,7 @@ function TITULACION_comprobar_titulacion_test()
 	// creo el modelo
 	$TITULACION = new TITULACION_Model($login,'','','');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_TITULACION();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -132,21 +132,21 @@ function TITULACION_comprobar_titulacion_test()
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 
 
-	//codTitulacion formato erroneo
+	//codTITULACION formato erroneo
 	$TITULACION_array_test1['tipo'] = 'VALIDACION';
 	$TITULACION_array_test1['entidad'] = 'TITULACION';	
-	$TITULACION_array_test1['metodo'] = 'CodTitulacion';
+	$TITULACION_array_test1['metodo'] = 'CodTITULACION';
 	$TITULACION_array_test1['error'] = 'formato erroneo';
 	$TITULACION_array_test1['error_esperado'] = '00060';
 	$TITULACION_array_test1['error_obtenido'] = '';
 	$TITULACION_array_test1['resultado'] = '';
 
 	// Relleno los datos de TITULACION	
-	$CodTitulacion = 'mi|pass.14';
+	$CodTITULACION = 'mi|pass.14';
 	// creo el modelo
-	$TITULACION = new TITULACION_Model($CodTitulacion,'','','');
+	$TITULACION = new TITULACION_Model($CodTITULACION,'','','');
 
-	$result = $TITULACION->comprobar_titulacion();
+	$result = $TITULACION->comprobar_TITULACION();
 	$TITULACION_array_test1['error_obtenido'] = $result[1];
 	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
 	{
@@ -617,9 +617,285 @@ function TITULACION_comprobar_responsable_test()
 
 	array_push($ERRORS_array_test, $TITULACION_array_test1);
 }
+
+
+// function TITULACION_comprobar_ADD()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function TITULACION_comprobar_ADD()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$TITULACION_array_test1 = array();
+
+	//sexo correcto
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$TITULACION_array_test1['error'] = 'correcto';
+	$TITULACION_array_test1['error_esperado'] = 'true';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('CoddTit','Centro','nombre','responsable');
+
+	$TITULACION_array_test1['error_obtenido'] = $TITULACION->comprobar_atributos_ADD() == 1 ? 'true' : 'false';
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+
+	//sexo vacia
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$TITULACION_array_test1['error'] = 'Codigo TITULACION y centro erroneos';
+	$TITULACION_array_test1['error_esperado'] = 'codeTitulation-00060-alfNum-codeCenter-00040-alfNumguion-';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('CoddTit!','Centro??','codeCenter','responsable');
+	$array = $TITULACION->comprobar_atributos_ADD();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$TITULACION_array_test1['error_obtenido'] = $result;
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+
 	
-	TITULACION_comprobar_titulacion_test();
+}
+
+// function TITULACION_comprobar_EDIT()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function TITULACION_comprobar_EDIT()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$TITULACION_array_test1 = array();
+
+	//sexo correcto
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$TITULACION_array_test1['error'] = 'correcto';
+	$TITULACION_array_test1['error_esperado'] = 'true';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('CoddTit','Centro','nombre','responsable');
+
+	$TITULACION_array_test1['error_obtenido'] = $TITULACION->comprobar_atributos_EDIT() == 1 ? 'true' : 'false';
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+
+	//sexo vacia
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$TITULACION_array_test1['error'] = 'Nombre y responsable erroneos';
+	$TITULACION_array_test1['error_esperado'] = 'nameTitulation-00030-textonly-responsableTitulation-00030-textonly-';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('CoddTit','Centro','codeCenter!!','responsable2');
+	$array = $TITULACION->comprobar_atributos_EDIT();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$TITULACION_array_test1['error_obtenido'] = $result;
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+
+	
+}
+
+// function TITULACION_comprobar_DELETE()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function TITULACION_comprobar_DELETE()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$TITULACION_array_test1 = array();
+
+	//sexo correcto
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$TITULACION_array_test1['error'] = 'correcto';
+	$TITULACION_array_test1['error_esperado'] = 'true';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('codTit','','','');
+
+	$TITULACION_array_test1['error_obtenido'] = $TITULACION->comprobar_atributos_DELETE() == 1 ? 'true' : 'false';
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+
+	//sexo vacia
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$TITULACION_array_test1['error'] = 'Codigo de la TITULACION erroneo';
+	$TITULACION_array_test1['error_esperado'] = 'codeTitulation-00060-alfNum-';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('lo no','','','');
+	$array = $TITULACION->comprobar_atributos_DELETE();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$TITULACION_array_test1['error_obtenido'] = $result;
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+}
+
+
+// function TITULACION_comprobar_RellenaDatos()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function TITULACION_comprobar_RellenaDatos()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$TITULACION_array_test1 = array();
+
+	//sexo correcto
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$TITULACION_array_test1['error'] = 'correcto';
+	$TITULACION_array_test1['error_esperado'] = 'true';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('login','','','','','',
+		'','','','');
+
+	$TITULACION_array_test1['error_obtenido'] = $TITULACION->comprobar_atributos_RellenaDatos() == 1 ? 'true' : 'false';
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+
+	//sexo vacia
+	$TITULACION_array_test1['tipo'] = 'VALIDACION';
+	$TITULACION_array_test1['entidad'] = 'TITULACION';	
+	$TITULACION_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$TITULACION_array_test1['error'] = 'Cdigo de la titulacion erroneo';
+	$TITULACION_array_test1['error_esperado'] = 'codeTitulation-00002-toolong-';
+	$TITULACION_array_test1['error_obtenido'] = '';
+	$TITULACION_array_test1['resultado'] = '';
+
+	// creo el modelo
+	$TITULACION = new TITULACION_Model('login espacio','','','');
+	$array = $TITULACION->comprobar_atributos_RellenaDatos();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$TITULACION_array_test1['error_obtenido'] = $result;
+	if ($TITULACION_array_test1['error_obtenido'] === $TITULACION_array_test1['error_esperado'])
+	{
+		$TITULACION_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$TITULACION_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $TITULACION_array_test1);
+}
+	
+	TITULACION_comprobar_TITULACION_test();
 	TITULACION_comprobar_centro_test();
 	TITULACION_comprobar_nombre_test();
 	TITULACION_comprobar_responsable_test();
+
+	TITULACION_comprobar_ADD();
+	TITULACION_comprobar_EDIT();
+	TITULACION_comprobar_DELETE();
+	TITULACION_comprobar_RellenaDatos();
 ?>
