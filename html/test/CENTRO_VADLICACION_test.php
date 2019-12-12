@@ -766,9 +766,318 @@ function CENTRO_comprobar_responsable_test()
 	array_push($ERRORS_array_test, $CENTRO_array_test1);
 }
 
+
+
+// function CENTRO_comprobar_ADD()
+// Valida:
+//		atributos OK
+//		atributos name y codigo mal
+
+function CENTRO_comprobar_ADD()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$CENTRO_array_test1 = array();
+
+	//sexo correcto
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$CENTRO_array_test1['error'] = 'correcto';
+	$CENTRO_array_test1['error_esperado'] = 'true';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario';
+	$codEdi = 'CodEdi';
+	$nombre = 'minombre'; 
+	$direccion = 'miapellido';
+	$responsable = 'miemail';
+// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,$codEdi,$nombre,$direccion,$responsable);
+
+	$CENTRO_array_test1['error_obtenido'] = $CENTRO->comprobar_atributos_ADD() == 1 ? 'true' : 'false';
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+	//sexo vacia
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$CENTRO_array_test1['error'] = 'Codigo y nombre del edificio erroneos';
+	$CENTRO_array_test1['error_esperado'] = 'CodEdificio-00002-toolong-NomCentro-00030-textonly-';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario';
+	$codEdi = 'CodEdiasdasdasdasdasdasdasdadsd';
+	$nombre = 'minre!!1'; 
+	$direccion = 'miapellido';
+	$responsable = 'miemail';
+// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,$codEdi,$nombre,$direccion,$responsable);
+
+	$array = $CENTRO->comprobar_atributos_ADD();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$CENTRO_array_test1['error_obtenido'] = $result;
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+	
+}
+
+// function CENTRO_comprobar_EDIT()
+// Valida:
+//		atributos OK
+//		atributos area y departamento mal
+
+function CENTRO_comprobar_EDIT()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$CENTRO_array_test1 = array();
+
+	//sexo correcto
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$CENTRO_array_test1['error'] = 'correcto';
+	$CENTRO_array_test1['error_esperado'] = 'true';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario';
+	$codEdi = 'CodEdi';
+	$nombre = 'minombre'; 
+	$direccion = 'miapellido';
+	$responsable = 'miemail';
+	// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,$codEdi,$nombre,$direccion,$responsable);
+
+	$CENTRO_array_test1['error_obtenido'] = $CENTRO->comprobar_atributos_EDIT() == 1 ? 'true' : 'false';
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+	//sexo vacia
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$CENTRO_array_test1['error'] = 'Direccion y campus erroneos';
+	$CENTRO_array_test1['error_esperado'] = 'DirCentro-00050-dirError-RespCentro-00030-textonly-';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario';
+	$codEdi = 'CodEdi';
+	$nombre = 'minombre'; 
+	$direccion = 'miDire!!Creo';
+	$responsable = 'miemail1';
+// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,$codEdi,$nombre,$direccion,$responsable);
+	$array = $CENTRO->comprobar_atributos_EDIT();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$CENTRO_array_test1['error_obtenido'] = $result;
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+	
+}
+
+// function CENTRO_comprobar_DELETE()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function CENTRO_comprobar_DELETE()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$CENTRO_array_test1 = array();
+
+	//sexo correcto
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$CENTRO_array_test1['error'] = 'correcto';
+	$CENTRO_array_test1['error_esperado'] = 'true';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario';
+// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,'','','','');
+
+	$CENTRO_array_test1['error_obtenido'] = $CENTRO->comprobar_atributos_DELETE() == 1 ? 'true' : 'false';
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+	//sexo vacia
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$CENTRO_array_test1['error'] = 'Codigo del centro erroneo';
+	$CENTRO_array_test1['error_esperado'] = 'CodCentro-00040-alfNumguion-';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario!';
+// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,'','','','');
+	$array = $CENTRO->comprobar_atributos_DELETE();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$CENTRO_array_test1['error_obtenido'] = $result;
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+}
+
+
+// function CENTRO_comprobar_RellenaDatos()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function CENTRO_comprobar_RellenaDatos()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$CENTRO_array_test1 = array();
+
+	//sexo correcto
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$CENTRO_array_test1['error'] = 'correcto';
+	$CENTRO_array_test1['error_esperado'] = 'true';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario';
+// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,'','','','');
+
+	$CENTRO_array_test1['error_obtenido'] = $CENTRO->comprobar_atributos_RellenaDatos() == 1 ? 'true' : 'false';
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+
+	//sexo vacia
+	$CENTRO_array_test1['tipo'] = 'VALIDACION';
+	$CENTRO_array_test1['entidad'] = 'CENTRO';	
+	$CENTRO_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$CENTRO_array_test1['error'] = 'Codigo del edificio erroneos';
+	$CENTRO_array_test1['error_esperado'] = 'CodCentro-00040-alfNumguion-';
+	$CENTRO_array_test1['error_obtenido'] = '';
+	$CENTRO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$centro = 'miusuario!';
+// creo el modelo
+	$CENTRO = new CENTRO_Model($centro,'','','','');
+	$array = $CENTRO->comprobar_atributos_RellenaDatos();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$CENTRO_array_test1['error_obtenido'] = $result;
+	if ($CENTRO_array_test1['error_obtenido'] === $CENTRO_array_test1['error_esperado'])
+	{
+		$CENTRO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$CENTRO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $CENTRO_array_test1);
+}
+
 	CENTRO_comprobar_centro_test();
 	CENTRO_comprobar_edificio_test();
 	CENTRO_comprobar_nombre_test();
 	CENTRO_comprobar_direccion_test();
 	CENTRO_comprobar_responsable_test();
+
+	CENTRO_comprobar_ADD();
+	CENTRO_comprobar_EDIT();
+	CENTRO_comprobar_DELETE();
+	CENTRO_comprobar_RellenaDatos();
 ?>

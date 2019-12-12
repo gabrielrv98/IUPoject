@@ -606,9 +606,293 @@ function EDIFICIO_comprobar_campus_test()
 	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
 }
 
+// function EDIFICIO_comprobar_ADD()
+// Valida:
+//		atributos OK
+//		atributos name y codigo mal
+
+function EDIFICIO_comprobar_ADD()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$EDIFICIO_array_test1 = array();
+
+	//sexo correcto
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$EDIFICIO_array_test1['error'] = 'correcto';
+	$EDIFICIO_array_test1['error_esperado'] = 'true';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	$codigo = 'grvidal22';
+
+	$EDIFICIO = new EDIFICIO_Model($codigo,'nombre','direccion','campus');
+	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->comprobar_atributos_ADD() == 1 ? 'true' : 'false';
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+	//sexo vacia
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_ADD';
+	$EDIFICIO_array_test1['error'] = 'Codigo y nombre del edificio erroneos';
+	$EDIFICIO_array_test1['error_esperado'] = 'CodEdificio-00002-toolong-NomEdificio-00030-textonly-';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$codigo = 'grvidal22!!';
+
+	$EDIFICIO = new EDIFICIO_Model($codigo,'nombre!!','direccion','campus');
+	$array = $EDIFICIO->comprobar_atributos_ADD();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$EDIFICIO_array_test1['error_obtenido'] = $result;
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+	
+}
+
+// function EDIFICIO_comprobar_EDIT()
+// Valida:
+//		atributos OK
+//		atributos area y departamento mal
+
+function EDIFICIO_comprobar_EDIT()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$EDIFICIO_array_test1 = array();
+
+	//sexo correcto
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$EDIFICIO_array_test1['error'] = 'correcto';
+	$EDIFICIO_array_test1['error_esperado'] = 'true';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$codigo = 'grvidal22';
+
+	$EDIFICIO = new EDIFICIO_Model($codigo,'nombre','direccion','campus');
+
+	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->comprobar_atributos_EDIT() == 1 ? 'true' : 'false';
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+	//sexo vacia
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_EDIT';
+	$EDIFICIO_array_test1['error'] = 'Direccion y campus erroneos';
+	$EDIFICIO_array_test1['error_esperado'] = 'DirEdificio-00050-dirError-CampusEdifio-00030-textonly-';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	/// Relleno los datos de usuario	
+	$codigo = 'grvidal22';
+
+	$EDIFICIO = new EDIFICIO_Model($codigo,'nombre','direccion1-?','campus1');
+	$array = $EDIFICIO->comprobar_atributos_EDIT();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$EDIFICIO_array_test1['error_obtenido'] = $result;
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+	
+}
+
+// function EDIFICIO_comprobar_DELETE()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function EDIFICIO_comprobar_DELETE()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$EDIFICIO_array_test1 = array();
+
+	//sexo correcto
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$EDIFICIO_array_test1['error'] = 'correcto';
+	$EDIFICIO_array_test1['error_esperado'] = 'true';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$codigo = 'grvidal22';
+	$EDIFICIO = new EDIFICIO_Model($codigo,'','','');
+
+	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->comprobar_atributos_DELETE() == 1 ? 'true' : 'false';
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+	//sexo vacia
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_DELETE';
+	$EDIFICIO_array_test1['error'] = 'Codigo del edificio erroneos';
+	$EDIFICIO_array_test1['error_esperado'] = 'CodEdificio-00040-alfNumguion-';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$codigo = 'grvidal22!';
+	$EDIFICIO = new EDIFICIO_Model($codigo,'','','');
+	$array = $EDIFICIO->comprobar_atributos_DELETE();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$EDIFICIO_array_test1['error_obtenido'] = $result;
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+}
+
+
+// function EDIFICIO_comprobar_RellenaDatos()
+// Valida:
+//		atributos OK
+//		atributos name y login mal
+
+function EDIFICIO_comprobar_RellenaDatos()
+{
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$EDIFICIO_array_test1 = array();
+
+	//sexo correcto
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$EDIFICIO_array_test1['error'] = 'correcto';
+	$EDIFICIO_array_test1['error_esperado'] = 'true';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$codigo = 'grvidal22';
+	$EDIFICIO = new EDIFICIO_Model($codigo,'','','');
+
+	$EDIFICIO_array_test1['error_obtenido'] = $EDIFICIO->comprobar_atributos_RellenaDatos() == 1 ? 'true' : 'false';
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+
+	//sexo vacia
+	$EDIFICIO_array_test1['tipo'] = 'VALIDACION';
+	$EDIFICIO_array_test1['entidad'] = 'EDIFICIO';	
+	$EDIFICIO_array_test1['metodo'] = 'comprobar_atributos_RellenaDatos';
+	$EDIFICIO_array_test1['error'] = 'Codigo del edificio erroneos';
+	$EDIFICIO_array_test1['error_esperado'] = 'CodEdificio-00040-alfNumguion-';
+	$EDIFICIO_array_test1['error_obtenido'] = '';
+	$EDIFICIO_array_test1['resultado'] = '';
+
+	// Relleno los datos de usuario	
+	$codigo = 'grvidal22!';
+	$EDIFICIO = new EDIFICIO_Model($codigo,'','','');
+	$array = $EDIFICIO->comprobar_atributos_RellenaDatos();
+	//var_dump($array);
+	foreach ($array as $key ) {
+		foreach ($key as $key2) {
+			$result .= $key2.'-';
+		}
+	}
+	$EDIFICIO_array_test1['error_obtenido'] = $result;
+	if ($EDIFICIO_array_test1['error_obtenido'] === $EDIFICIO_array_test1['error_esperado'])
+	{
+		$EDIFICIO_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$EDIFICIO_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $EDIFICIO_array_test1);
+}
 
 	EDIFICIO_comprobar_edificio_test();
 	EDIFICIO_comprobar_nombre_test();
 	EDIFICIO_comprobar_direccion_test();
 	EDIFICIO_comprobar_campus_test();
+
+	EDIFICIO_comprobar_ADD();
+	EDIFICIO_comprobar_EDIT();
+	EDIFICIO_comprobar_DELETE();
+	EDIFICIO_comprobar_RellenaDatos();
+
 ?>
