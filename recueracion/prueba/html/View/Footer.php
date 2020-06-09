@@ -9,7 +9,7 @@
 <footer>
 	<?php
 		include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php'; ?>
-		<label class="hoyes"> Hoy es </label> <label> <?php echo date("d-M-Y", mktime()) ," grvidal"; ?> </label>
+		<label class="hoyes"> Hoy es </label> <label> <?php echo date("d-M-Y", mktime()) ," grvidal 10-06-2020"; ?> </label>
 </footer>
 </body>
 </html> 
