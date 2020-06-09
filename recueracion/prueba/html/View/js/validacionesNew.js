@@ -1,8 +1,9 @@
 //Clase : validaciones.js
-//Creado el : 17-10-2019
+//Creado el : 9-06-2020
 //Creado por: grvidal
 //Valida los datos de los formularios
 //-------------------------------------------------------
+
 
 /*Comprueba que sólo haya caracteres alfanuméricos*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
@@ -16,17 +17,21 @@ function comprobarAlfabetico(campo, size) {
     return true;
 }
 
-/*Comprueba que el tipo encaje con uno de los definidos*/
-/*tipos-todos los tipos posibles*/
-function comprobarTipo(campo){
-    var tipos = /^(PAS|DESPACHO|LABORATORIO)$/;
-    if(!comprobarExpresionRegular(campo,tipos,12)){//comprueba que la expresión enviada en comprueba sea cumplida por el campo enviado si no lo hace devuelve false
+/*Comprueba que sólo haya caracteres alfanuméricos o que esta vacio*/
+/*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
+function comprobarAlfabeticoVacio(campo, size) {
+    var abc =/^[\wñº ]*$/;
+
+    if(campo.value.length <= 0){// si el campo esta vacio se acepta como valido
+        document.getElementById(campo.name+"_error").style.visibility = "hidden";
+            campo.style.border = "2px solid green";
+            return true;
+    }else if(!comprobarExpresionRegular(campo,abc,size)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
+         
         return false;
-    }//envía true en caso contrario
-    else {
-        campo.style.border = "2px solid green";
-        return true;
     }
+    return true;
+    
 }
 
 /*Comprueba que el texto sea alfabético y que pueda tener espacios*/
@@ -38,6 +43,25 @@ function comprobarTexto( campo, size ) {
     }
     else if(campo.value.length < 3){  return false; }
     //envía true en caso contrario
+    else {
+        campo.style.border = "2px solid green";
+        return true;
+    }
+}
+
+/*Comprueba que el texto sea un codigo postal*/
+/*comprueba- es una variable que se utiliza para almacenar la expresion regular con la que el codigo postal tiene que coincidir*/
+function comprobarCP( campo) {
+    var comprueba=/^[0-9]{5}$/i;
+
+    if (campo.value.length <= 0) {// si el campo esta vacio se acepta como valido
+
+        document.getElementById(campo.name+"_error").style.visibility = "hidden";
+        campo.style.border = "2px solid green";
+        return true;
+    }else if(!comprobarExpresionRegular(campo,comprueba,5)){//comprueba que la expresión enviada en comprueba sea cumplida por el campo enviado si no lo hace devuelve false
+        return false;
+    }
     else {
         campo.style.border = "2px solid green";
         return true;
@@ -123,14 +147,14 @@ function comprobarDniSearch(campo) {
     if(!comprobarVacio(campo)){//comprueba si está vacío
         return false;
     }
-    else if(comprobarExpresionRegular(campo,exp,9)){
+    else if(comprobarExpresionRegular(campo,exp,9)){// si el DNI esta compuesto por 8 digitos y una letra
 
-        if(campo.value.charAt(8) == letras[(campo.value.substring(0, 8))%23]){
+        if(campo.value.charAt(8) == letras[(campo.value.substring(0, 8))%23]){// se comprueba que la ultima legra encaje con los numeros
             campo.style.border = "2px solid green";
             return true;
         }  
     }
-     else if(comprobarExpresionRegular(campo,exp2,9) ) {//comrueba que el DNI esté formado por 8 digitos y una letra
+     else if(comprobarExpresionRegular(campo,exp2,9) ) {//comrueba que el DNI esté formado por digitos y con o sin una unica letra al final
                     campo.style.border = "2px solid green";     
                     return true;
         
@@ -265,6 +289,10 @@ function comprobarFechaNacimiento(campo) {
             }
         }
     }
+    else if (comprobarVacio(campo)){//comprobar si esta vacio
+            return false;
+
+    }
     document.getElementById(campo.name+"_error").style.visibility = "hidden";
     campo.style.border = "2px solid green";
     return true;
@@ -279,20 +307,21 @@ function comprobarExtension(campo){
     var parts = campo.value.split(".");
     var ext = parts[parts.length-1];
 
-    if (exp.test(ext) == false ){
+    if (exp.test(ext) == false ){// se comprueba que la extension tenga el formato adecuado
         document.getElementById(campo.name+"_error").style.visibility = "visible";
         campo.style.border = "2px solid red";
         return false;
+    }else {
+        document.getElementById(campo.name+"_error").style.visibility = "hidden";
+        campo.style.border = "2px solid green";
+        return true;
     }
-    document.getElementById(campo.name+"_error").style.visibility = "hidden";
-    campo.style.border = "2px solid green";
-   return true;
 }
 
 /*Comprueba que el sexo pertenece a el enumerado*/
 function comprobarSexo(campo){
     var exp= /^(hombre|mujer)$/;
-    if (!comprobarExpresionRegular(campo, exp,10)){
+    if (!comprobarExpresionRegular(campo, exp,10)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer"
          campo.style.border = "2px solid red";
             return false;
 
@@ -306,11 +335,11 @@ function comprobarSexo(campo){
 /*Comprueba que el sexo pertenece a el enumerado o es vacio*/
 function comprobarSexoSearch(campo){
     var exp= /^(hombre|muje)?$/;
-    if (!comprobarExpresionRegular(campo, exp,10)){
+    if (!comprobarExpresionRegular(campo, exp,10)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer" o este vacio
          campo.style.border = "2px solid green";
             return true;
 
-        }else{
+        }else{  // en caso de que no coincida con ninguno
             alert("El valor no coincide con los dados.");
             campo.style.border = "2px solid red";
             return false;
@@ -370,22 +399,30 @@ function comprobarUsuarios(Formu){
             Formu.tlf.style.border = "2px solid red";
             correcto = false;
         } 
-        if(!comprobarEmail(Formu.email, 60)){//comprobamos que el apellidos esté bien escrito
+        if(!comprobarEmail(Formu.email, 60)){//comprobamos que el email esté bien escrito
             Formu.email.style.border = "2px solid red";
             correcto = false;
         } 
         if(!comprobarFechaNacimiento(Formu.bday)){//comprobamos que la fecha sea anterior a la actual
             Formu.bday.style.border = "2px solid red";
             correcto = false; 
-        }    
-        if(!comprobarExtension(Formu.foto)){//comprobamos que la fecha sea anterior a la actual
-            Formu.foto.style.border = "2px solid red";
-            correcto = false; 
-        } 
+        }
         if(!comprobarSexo(Formu.sexo)){//comprobamos que el sexo es un enumerado
             Formu.sexo.style.border = "2px solid red";
             correcto = false; 
-        }    
+        }
+        if(!comprobarAlfabeticoVacio(Formu.alergias,50)){//comprobamos que las alergias es una cadena de texto o numeros
+            Formu.alergias.style.border = "2px solid red";
+            correcto = false; 
+        }
+        if(!comprobarAlfabeticoVacio(Formu.direccion,250)){//comprobamos que la direccion es una cadena de texto o numeros
+            Formu.alergias.style.border = "2px solid red";
+            correcto = false; 
+        }
+        if(!comprobarCP(Formu.cp)){//comprobamos que el cp es valido
+            Formu.alergias.style.border = "2px solid red";
+            correcto = false; 
+        }
     return correcto;
 }
 
@@ -794,8 +831,4 @@ function comprobarEspacioSearch(Formu) {
         correcto = false;
     }
     return correcto;
-}
-
-function showAlert(){
-    alert("soy un alert");
 }

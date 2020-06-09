@@ -19,13 +19,13 @@ class USUARIOS_Model {
 	var $bday;
 	var $alergias;
 	var $direccion;
-	var $cp
+	var $cp;
 	var $sexo;
 	var $mysqli;
 
 //Constructor de la clase
 //Recive como entrada los datos persnales y crea la clase USUARIO_Model
-function __construct($login,$password,$nombre,$apellidos,$dni,$tlf,$email,$bday,$alergias,$direccion,$cp,$sexo){
+function __construct($login,$password,$nombre,$apellidos,$email,$dni,$tlf,$bday,$alergias,$direccion,$cp,$sexo){
 	$this->login = $login;
 	$this->password = $password;
 	$this->dni = $dni;
@@ -231,7 +231,6 @@ function comprobar_tlf()
 		return $array;
 
 	}else if( !preg_match('/^(\+34|0034|34)?[0-9]{9}$/', $this->tlf) ){//comprobamos si coincide con la expresion esperada
-		//}else if( !preg_match('/^([00|\+|](0-9){2})?[0-9]{9}$/', $this->tlf) ){ //version mejorada?
 		$array[1] = "00070";
 		$array[2] = "tlfError";
 
@@ -383,6 +382,36 @@ function comprobar_codigoPostal()
 		return $array;
 
 	}else if( !preg_match('/^[0-9]{5}$/i', $this->direccion) ){//comprobamos si coincide con la expresion esperada
+		$array[1] = "00050";
+		$array[2] = "dirError";
+
+		return $array;
+	}
+
+	return true;
+}
+
+//comprueba que sean solo letras y espacios
+function comprobar_alergias()
+{
+	$array = array();
+	$array[0] = 'alergias';
+
+	$this->alergias = trim($this->alergias);
+
+	if(strlen($this->alergias) > 50){//comprobamos si es muy larga
+		$array[1] = "00002";
+		$array[2] = "toolong";
+
+		return $array;
+
+	}else if(strlen($this->alergias) < 3){//comprobamos si es muy corta
+		$array[1] = "00003";
+		$array[2] = "tooshortNoNNum";
+
+		return $array;
+
+	}else if( !preg_match('/^[a-z][a-zñ0-9 ]*$/i', $this->alergias) ){//comprobamos si coincide con la expresion esperada
 		$array[1] = "00050";
 		$array[2] = "dirError";
 
@@ -628,7 +657,19 @@ function comprobar_atributos_EDIT(){
 
 	$aux = $this->comprobar_direccion();
 	if ($aux !== true) {
-		$array[8] = $aux;
+		$array[9] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_codigoPostal();
+	if ($aux !== true) {
+		$array[10] = $aux;
+		$correcto = false;
+	}
+
+	$aux = $this->comprobar_alergias();
+	if ($aux !== true) {
+		$array[11] = $aux;
 		$correcto = false;
 	}
 	
@@ -640,7 +681,34 @@ function comprobar_atributos_EDIT(){
 // funcion Edit: realizar el update de una tupla despues de comprobar que existe
 function EDIT()
 {
+	$check = $this->comprobar_atributos_EDIT();
 
+	//si algun atributo no cumple las restricciones
+	if ($check !== true) return $check;
+	
+	$sql = "SELECT login 
+				FROM USUARIOS
+				WHERE (login = '$this->login')";
+
+//se comprueba que el dni o el email no estan repetidos en otros usuarios
+	$response = $this->mysqli->query($sql)->num_rows;
+	if ($response == 1) {
+		$sql = "UPDATE USUARIOS
+			SET nombre = '$this->nombre',
+				password = '$this->password',
+				apellidos = '$this->apellidos',
+				telefono = '$this->tlf',
+				FechaNacimiento = '$this->bday',
+				sexo = '$this->sexo',
+				alergias = '$this->alergias',
+				direccion = '$this->direccion',
+				codigo_postal = '$this->cp'
+			WHERE (login = '$this->login')";
+		$result = $this->mysqli->query($sql);
+
+		if($result = 1) return 'Actualización realizada con éxito';
+	}
+	return 'Error de gestor de base de datos';
 }
 
 // funcion login: realiza la comprobación de si existe el usuario en la bd y despues si la pass
@@ -660,7 +728,7 @@ function login(){
 	}
 	else{
 		$tupla = $resultado->fetch_array();
-		if ($tupla['password'] == $this->password){
+		if ($tupla['PASSWORD'] == $this->password){
 			return true;
 		}
 		else{
@@ -690,23 +758,43 @@ function registrar(){
 		$sql = "INSERT INTO USUARIOS (
 			login,
 			password,
+			dni,
 			nombre,
 			apellidos,
-			email) 
+			telefono,
+			email,
+			FechaNacimiento,
+			sexo,
+			alergias,
+			codigo_postal,
+			direccion,
+			activado,
+			tipo_usuario) 
 				VALUES (
 					'".$this->login."',
 					'".$this->password."',
+					'".$this->dni."',
 					'".$this->nombre."',
 					'".$this->apellidos."',
-					'".$this->email."'
+					'".$this->tlf."',
+					'".$this->email."',
+					'".$this->bday."',
+					'".$this->sexo."',
+					'".$this->alergias."',
+					'".$this->cp."',
+					'".$this->direccion."',
+					'activado',
+					'usuario'
 					)";
-			
-		if (!$this->mysqli->query($sql)) {
+
+		include '../Model/BD_logger.php';//se incluye el archivo con el log
+
+		if (!writeAndLog($sql, $this->login)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
 			return 'Error en la inserción';
 		}
 		else{
 			return 'Inserción realizada con éxito'; //operacion de insertado correcta
-		}		
+		}
 	}
 
 }//fin de clase

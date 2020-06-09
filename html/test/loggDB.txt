@@ -1,0 +1,31 @@
+loggerDBgrvidal ; Tuesday 9th of June 2020 10:32:29 PM ; INSERT INTO USUARIOS (
+			login,
+			password,
+			dni,
+			nombre,
+			apellidos,
+			telefono,
+			email,
+			FechaNacimiento,
+			sexo,
+			alergias,
+			codigo_postal,
+			direccion,
+			activado,
+			tipo_usuario) 
+				VALUES (
+					'grvidal',
+					'1234',
+					'44658829M',
+					'asd',
+					'asd',
+					'699013768',
+					'robrod@correo.com',
+					'06/02/2020',
+					'hombre',
+					'123',
+					'32004',
+					'fonte dos caños 1ºC',
+					activado,
+					usuario
+					)  

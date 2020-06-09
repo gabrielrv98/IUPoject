@@ -2,7 +2,7 @@
 //Clase : Strings_GALLAECIAN
 //Creado el : 2-10-2019
 //Creado por: grvidal
-//Diccionario con todas las cadenas que hay en la plataforma
+//Diccionario en gallego con todas las cadenas que hay en la plataforma
 //-------------------------------------------------------
 $strings = 
 array(
@@ -178,6 +178,12 @@ array(
 	'open' => '&#9776;Abrir',
 
 
-	'ISesion' =>'Escriba o seu usuario e Contrasinal'
+	'ISesion' =>'Escriba o seu usuario e Contrasinal',
+	'alergias' => 'Alergias',
+	'cp' => 'Codigo postal',
+	'direccion' => 'direccion',
+	'errorCP' => 'So esta permitido un codigo postal valido composto por 5 dixitos.',
+	'Intercambio de tiempo' => 'Intercambio de tempo',
+    'format' =>'mm/dd/aaaa'
 );
 ?>

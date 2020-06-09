@@ -2,7 +2,7 @@
 //Clase : Strings_ENGLISH
 //Creado el : 2-10-2019
 //Creado por: grvidal
-//Diccionario con todas las cadenas que hay en la plataforma
+//Diccionario en ingles con todas las cadenas que hay en la plataforma
 //-------------------------------------------------------
 
 $strings = 
@@ -180,6 +180,12 @@ array(
 	'errorIn' => 'Error in',
 	'open' => '&#9776;Open',
 
-	'ISesion' =>'Write down your user and password'
+	'ISesion' =>'Write down your user and password',
+	'alergias' => 'Allergies',
+	'cp' => 'Postal Code',
+	'direccion' => 'Address',
+	'errorCP' => 'Only allowed a valid postal code formed by 5 digits',
+	'Intercambio de tiempo' => 'Time exchange',
+    'format' =>'mm/dd/yyyy'
  );
  ?>

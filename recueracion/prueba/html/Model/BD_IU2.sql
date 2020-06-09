@@ -26,37 +26,39 @@ GRANT ALL PRIVILEGES ON `IU2018`.* TO `iu2018`@`localhost` WITH GRANT OPTION;
 --
 CREATE TABLE IF NOT EXISTS `USUARIOS` (
 
-`login` varchar(15) NOT NULL,
+`LOGIN` varchar(15) NOT NULL,
 
-`password` varchar(128) NOT NULL,
+`PASSWORD` varchar(128) NOT NULL,
 
 `DNI` varchar(9) NOT NULL,
 
-`nombre` varchar(30) NOT NULL,
+`NOMBRE` varchar(30) NOT NULL,
 
-`apellidos` varchar(50) NOT NULL,
+`APELLIDOS` varchar(50) NOT NULL,
 
-`telefono` varchar(11) NOT NULL,
+`TELEFONO` varchar(11) NOT NULL,
 
-`email` varchar(60) NOT NULL,
+`EMAIL` varchar(60) NOT NULL,
 
-`FechaNacimiento` date NOT NULL,
+`FECHANACIMIENTO` date NOT NULL,
 
-`fotopersonal` varchar(50) NOT NULL,
+`SEXO` enum('hombre','mujer') NOT NULL,
 
-`sexo` enum('hombre','mujer') NOT NULL,
+`ALERGIAS` varchar(50),
 
-`alergias` varchar(50),
+`DIRECCION` varchar(250) NOT NULL,
 
-`direccion` varchar(250) NOT NULL,
+`CODIGO_POSTAL` varchar(5) NOT NULL,
 
-`codigo_postal` varchar(5) NOT NULL,
+`ACTIVADO` enum('activado','desactivado') NOT NULL,
 
-PRIMARY KEY (`login`),
+`TIPO_USUARIO` enum('admin','usuario') NOT NULL,
+
+PRIMARY KEY (`LOGIN`),
 
 UNIQUE KEY `DNI` (`DNI`),
 
-UNIQUE KEY `email` (`email`)
+UNIQUE KEY `EMAIL` (`EMAIL`)
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 --

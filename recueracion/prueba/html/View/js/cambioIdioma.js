@@ -1,8 +1,13 @@
-    //Función: traducirIU
+    
+    /*Clase : estilo.css
+//Creado el : 2-10-2019
+//Creado por: grvidal
+//Función: traducirIU
     //Descripción: recorre el array correspondiente al idioma elegido y traduce
     //los elementos html con la clase indicada por el array. El parámetro idioma
     //toma el valor vacío por defecto (así se puede llamar la función sin 
     //parámetros en el evento onload del body).
+//-------------------------------------------------------*/
     function traducirIU(idioma='') {
       var arrayTraducciones; //Variable que contendrá las traducciones al idioma
       //correspondiente.
@@ -203,7 +208,7 @@
       'profEspAso' : 'Profesores y espacios asociados',
       'hoyes' : 'Hoy es',
       'Campus' : 'Campus',
-      'ISesion' :'Iniciar Sesion',
+      'ISesion' :'Iniciar sesion',
       'Area' : 'Area',
 
 
@@ -235,6 +240,15 @@
       'dirError' : 'solo puede contener letras, numeros y los símbolos  “- / º ª.',
       'errorIn' : 'Error en',
       'open' : '&#9776;Abrir',
+      'Volver' : 'Volver',
+
+      'alergias' : 'Alergias',
+      'cp' : 'Codigo postal',
+      'direccion' : 'Direccion',
+      'errorCP' : 'Solo esta permitido un codigo postal valido compuesto por 5 digitos.',
+      'Intercambio de tiempo' : 'Intercambio de tiempo',
+      'format' :'mm/dd/aaaa'
+
          };
 
      //Arrays asociativo de traducciones al gallego:
@@ -412,6 +426,14 @@
       'dirError' : 'só pode conter letras, numeros e os símbolos  “- / º ª.',
       'errorIn' : 'Error en',
       'open' : '&#9776;Abrir',
+      'Volver' : 'Volver',
+
+      'alergias' : 'Alergias',
+      'cp' : 'Codigo postal',
+      'direccion' : 'Direccion',
+      'errorCP' : 'So esta permitido un codigo postal valido composto por 5 dixitos.',
+      'Intercambio de tiempo' : 'Intercambio de tempo',
+      'format' :'mm/dd/aaaa'
      };
 
      //Arrays asociativo de traducciones al inglés:
@@ -592,6 +614,14 @@
       'Campus' : 'Campus',
       'ISesion' : 'Log in',
       'Area' : 'Area',
+      'Volver' : 'Back',
+
+      'alergias' : 'Allergies',
+      'cp' : 'Postal Code',
+      'direccion' : 'Address',
+      'errorCP' : 'Only allowed a valid postal code formed by 5 digits',
+      'Intercambio de tiempo' : 'Time exchange',
+      'format' :'mm/dd/yyyy'
      };
 
 //FUNCIÓN: setCookie

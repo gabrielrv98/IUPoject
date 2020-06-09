@@ -2,7 +2,7 @@
 //Clase : Strings_SPANISH
 //Creado el : 2-10-2019
 //Creado por: grvidal
-//Diccionario con todas las cadenas que hay en la plataforma
+//Diccionario en castellano con todas las cadenas que hay en la plataforma
 //-------------------------------------------------------
 $strings = 
 array(
@@ -181,6 +181,12 @@ array(
 	'open' => '&#9776;Abrir',
 
 
-	'ISesion' =>'Ecribe tu usuario y Contraseña'
+	'ISesion' =>'Escribe tu usuario y Contraseña',
+	'alergias' => 'Alergias',
+	'cp' => 'Codigo postal',
+	'direccion' => 'Direccion',
+	'errorCP' => 'Solo esta permitido un codigo postal valido compuesto por 5 digitos.',
+	'Intercambio de tiempo' => 'Intercambio de tiempo',
+    'format' =>'mm/dd/aaaa'
 	);
 ?>

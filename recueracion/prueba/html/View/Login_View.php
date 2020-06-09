@@ -12,9 +12,7 @@
 			include '../View/Header.php'; 
 ?>
 		<head>
-			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<script type="text/javascript" src='../js/validaciones.js'></script>
-			<title class="ISesion"> <?php echo $strings['Login']; ?></title>
+			<title> <?php echo $strings['Intercambio de tiempo']; ?> </title>
 		</head>
 
 			<h1 class="ISesion"><?php echo $strings['ISesion']; ?></h1>	 

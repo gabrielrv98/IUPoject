@@ -1,4 +1,10 @@
 <?php
+//Clase : Index_controler
+//Creado el : 2-06-2020
+//Creado por: grvidal
+//Comprueba si el usuario esta autentificado y si es asi lo muestra la vista general
+//-------------------------------------------------------
+
 //session
 session_start();
 //incluir funcion autenticacion

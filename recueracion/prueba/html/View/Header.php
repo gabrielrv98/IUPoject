@@ -5,26 +5,23 @@
 //Pie de la plataforma con la hora y el alias del creador
 //---------------------------------------------------------
 	include_once '../Functions/Authentication.php';
-	if (!isset($_COOKIE['idioma'])) {
-		$_COOKIE['idioma'] = 'SPANISH';
-		$_SESSION['idioma'] = 'SPANISH';
-	}else{
-		$_SESSION['idioma'] = 'SPANISH';
-	}
-	include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php';
-
 	if (!isset($_SESSION['idioma'])) {
-		$_SESSION['idioma'] = $_COOKIE['idioma'];
+		$_COOKIE['idioma'] = 'SPANISH';
 	}
+	$_SESSION['idioma'] = 'SPANISH';
+	include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php';
 ?>
 <html>
 <head>
-<meta charset="UTF-8"> 
+	<meta charset="UTF-8">
+	<title>
+		<?php echo $strings['Intercambio de tiempo']; ?> 
+	</title>
 	<script type="text/javascript" src="../View/js/tcal.js"></script> 
 	<script type="text/javascript" src="../View/js/md5.js"></script>
-	<script type="text/javascript" src="../View/js/validaciones.js"></script> 
-	<script type="text/javascript" src='../View/js/traduccion.js'></script>
-
+	<script type="text/javascript" src="../View/js/validacionesNew.js"></script> 
+	<script type="text/javascript" src='../View/js/cambioIdioma.js'></script>
+	<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 </head>
 <body onload="traducirIU('');">
 		<div id="modal" style="display:none">
@@ -56,7 +53,6 @@
 	<button onclick="traducirIU('GALLAECIAN');">
 		<img alt="" src="../View/icon/galicia.jpg"   style="height: 32px; width: 32px" />
 	</button> <br>
-
 <?php
 	
 	if (IsAuthenticated()){
