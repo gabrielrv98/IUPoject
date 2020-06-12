@@ -1,12 +1,13 @@
 PUNTO 9
 
 
-Cada uno de los tres proyectos está valorado en 70 horas de realización. Desde el día 27 de abril al 27 de Junio hay 8 semanas y seis días. Se asume una dedicación semanal de 8 horas.
+Cada uno de los tres proyectos está valorado en 70 horas de realización. Desde el día 27 de abril al 27 de Junio hay 
+8 semanas y seis días. Se asume una dedicación semanal de 8 horas.
 
 calcular horas aprox
 
 
 php.exe dar permiso a logDB
+	resetear BD
 
-Register View placehodlers right
-''	''	comprobar cambio de idioma
+acabar UsuariosShowCurrent

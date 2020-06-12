@@ -1,0 +1,129 @@
+/*Clase : estilo.css
+//Creado el : 2-10-2019
+//Creado por: grvidal
+//Estilo que se le da a los formularios
+//-------------------------------------------------------*/
+
+
+.btn{
+  margin-top: 20px;
+}
+
+.form-group{
+  min-width: 10px;
+}
+.menuBut{
+  margin:20px;
+  font-size:27px;
+  cursor:pointer;
+}
+
+.MainHeader{
+  width: 100%;
+}
+
+.MainDiv{
+  margin: -10px;
+  background-color: white; 
+}
+
+.errormsg{
+    color: #FF0000;
+    visibility: hidden;
+}
+
+.menuLateralCss {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.menuLateralMain{
+
+    float:left;
+}
+.menuLateralCss a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.menuLateralCss a:hover {
+  color: #f1f1f1;
+}
+
+.menuLateralCss .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .menuLateralCss {padding-top: 15px;}
+  .menuLateralCss a {font-size: 18px;}
+}
+
+form{
+    padding-left: 10px;
+}
+
+header{
+    padding-left:10px;
+}
+
+header span{
+    align: right;
+}
+
+header i{
+    font-size: 200%;
+    margin-top: -30px;
+}
+
+footer{
+    border-top: black 1px solid;
+    padding-left:10px;
+    background-color: white;
+    height: 100%;
+    margin: -10px;
+
+}
+
+nav{
+    margin-bottom: 10px;
+
+}
+
+
+table{
+    word-wrap:break-word;
+    word-break: break-all;
+    table-layout: fixed;
+    border-style: solid black;
+    border-width:3px;
+}
+td,tr{
+
+    border-spacing:5px;
+    padding: 7px; 
+}
+
+article{
+  margin-left: 200px;
+}
+
+body{
+  background-color: #bbe9fb;
+}
