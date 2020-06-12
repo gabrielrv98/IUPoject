@@ -336,7 +336,7 @@ function registrar(){
 					)";
 
 		include '../Model/BD_logger.php';//se incluye el archivo con el log
-
+		$_SESSION['login'] = $this->login;
 		if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
 			return 'Error en la inserción';
 		}

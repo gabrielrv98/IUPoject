@@ -1,5 +1,6 @@
 PUNTO 9
 
+5 h
 
 Cada uno de los tres proyectos está valorado en 70 horas de realización. Desde el día 27 de abril al 27 de Junio hay 
 8 semanas y seis días. Se asume una dedicación semanal de 8 horas.
@@ -11,3 +12,4 @@ php.exe dar permiso a logDB
 	resetear BD
 
 acabar UsuariosShowCurrent
+acabar modelo Producto

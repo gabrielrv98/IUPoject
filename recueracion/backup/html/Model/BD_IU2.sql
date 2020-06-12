@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `USUARIOS` (
 
 `ALERGIAS` varchar(50),
 
-`DIRECCION` varchar(250) NOT NULL,
+`DIRECCION` varchar(250),
 
-`CODIGO_POSTAL` varchar(5) NOT NULL,
+`CODIGO_POSTAL` varchar(5),
 
 `ACTIVADO` enum('activado','desactivado') NOT NULL,
 
@@ -61,12 +61,62 @@ UNIQUE KEY `DNI` (`DNI`),
 UNIQUE KEY `EMAIL` (`EMAIL`)
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
 --
--- Índices para tablas volcadas
+-- Estructura de tabla para la tabla `CATEGORIAS`
 --
+CREATE TABLE IF NOT EXISTS `PRODUCTOS` (
+
+`ID` int NOT NULL AUTO_INCREMENT,
+
+`TITULO` varchar(50) NOT NULL,
+
+`DESCRIPCION` varchar(200) NOT NULL,
+
+`FOTO` varchar(50) NOT NULL,
+
+`VENDEDOR_DNI` varchar(9) NOT NULL,
+
+`COMPRADOR_DNI` varchar(9),
+
+PRIMARY KEY (`ID`)
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
 --
--- Indices de la tabla `datos`
+-- Estructura de tabla para la tabla `CATEGORIAS`
 --
+
+CREATE TABLE IF NOT EXISTS `CATEGORIAS` (
+
+`ID` int NOT NULL AUTO_INCREMENT,
+
+`NOMBRE` varchar(50) NOT NULL,
+
+PRIMARY KEY (`ID`)
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `CATEGORIAS`
+--
+
+CREATE TABLE IF NOT EXISTS `PRODUCTOS_CATEGORIAS` (
+
+`ID_PRODUCTO` int NOT NULL,
+
+`ID_CATEGORIA` int NOT NULL
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
+--
+-- Usuario administrador con login admin y contraseña admin
+--
+
 
 INSERT INTO USUARIOS (
 			login,
