@@ -6,7 +6,6 @@
 //-------------------------------------------------------
 $strings = 
 array(
-	'Campus' => 'Campus',
 	'bienvenido' =>'Bienvenido al proyecto de IU',
 	'Portal de Gestión' => 'Portal de Gestión',
 	'Usuario no autenticado' => 'Usuario no autenticado',
@@ -28,11 +27,9 @@ array(
 	'Volver' => 'Volver',
 	'La password para este usuario no es correcta' => 'La password para este usuario no es correcta',
 	'Registro' => 'Registro',
-	'Inserción realizada con éxito' => 'Inserción realizada con éxito',
-	'Inserción realizada con exito' => 'Inserción realizada con éxito',
-	'Error en la inserción' => 'Error en la inserción',
-	'Gestión Asignatura IU' => 'Gestión Asignatura IU',
 	'El usuario, dni, o email ya existe' => 'El usuario, dni, o email ya existe',
+
+
 	'addUser' => 'Añadir usuario',
 	'edit' => 'Editar',
 	'editUser' => 'Editar usuario',
@@ -52,7 +49,7 @@ array(
 	'mix' => 'Mix',
 	'tlf' => 'Telefono',
 	'bday' => 'Cumpleaños',
-	'picture' => 'Foto personal',
+	'picture' => 'Foto del producto',
 	'La titulacion no existe' => 'La titulacion no existe',
 	'TitulationExist' => 'La titulacion ya existe',
 	'TitulationManager' => 'Gestion de titulaciones',
@@ -204,6 +201,15 @@ array(
     'todoTipo' => 'Cualquier tipo',
     'ofertas' => 'Ofertas activas',
     'transacciones' => 'Transacciones realizadas',
-    'IndexViewLink' => 'Pagina principal'
+    'IndexViewLink' => 'Pagina principal',
+    'Gestión Productos' => 'Gestion de los productos',
+    'addProducto' => 'Nuevo producto',
+    'searchProducto' => 'Buscar producto',
+    'tituloProducto' => 'Titulo del producto',
+    'descripcionProducto' => 'Descripcion del producto',
+    '00001' => '00001 Insercion fallida, el elemento ya existe',
+    '00002' => '00002 Insercion realizada con exito',
+    '00003' => '00003 Error de gestor de base de datos en ADD'
+
 	);
 ?>

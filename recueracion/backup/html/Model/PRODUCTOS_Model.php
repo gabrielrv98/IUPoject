@@ -7,41 +7,25 @@
 //Modelo de usuarios para realizar las acciones sobre la base de datos
 //-------------------------------------------------------
 
-class USUARIOS_Model {
+class PRODUCTOS_Model {
 
-	var $login;
-	var $password;
-	var $nombre;
-	var $apellidos;
-	var $dni;
-	var $tlf;
-	var $email;
-	var $bday;
-	var $alergias;
-	var $direccion;
-	var $cp;
-	var $sexo;
-	var $tipo_usuario;
-	var $activado;
+	var $id;
+	var $titulo;
+	var $descripcion;
+	var $foto;
+	var $vendedorDNI;
+	var $estado;
 	var $mysqli;
 
 //Constructor de la clase
 //Recive como entrada los datos persnales y crea la clase USUARIO_Model
-function __construct($login,$password,$nombre,$apellidos,$email,$dni,$tlf,$bday,$alergias,$direccion,$cp,$sexo,$tipo_usuario,$activado){
-	$this->login = $login;
-	$this->password = $password;
-	$this->dni = $dni;
-	$this->nombre = $nombre;
-	$this->apellidos = $apellidos;
-	$this->tlf = $tlf;
-	$this->email = $email;
-	$this->bday = $bday;
-	$this->alergias = $alergias;
-	$this->direccion = $direccion;
-	$this->cp = $cp;
-	$this->sexo = $sexo;
-	$this->activado = $activado;
-	$this->tipo_usuario = $tipo_usuario;
+function __construct($id,$titulo,$descripcion,$foto,$vendedorDNI,$estado){
+	$this->id = $id;
+	$this->titulo = $titulo;
+	$this->descripcion = $descripcion;
+	$this->foto = $foto;
+	$this->vendedorDNI = $vendedorDNI;
+	$this->estado = $estado;
 
 	include_once '../Model/Access_DB.php';
 	$this->mysqli = ConnectDB();
@@ -49,18 +33,45 @@ function __construct($login,$password,$nombre,$apellidos,$email,$dni,$tlf,$bday,
 
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
-// de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
-//existe ya en la tabla
+// de los atributos del objeto. Los productos se pueden
+// subir todas las veces que quieras ya que es en base a las existencias
+// e intención del vendedor.
 function ADD()
 {	
-	// si el usuario no existe se devolveria true a toRet
-	$toRet = $this->Register();
-	if($toRet == 'true'){
-		// se devuelve la cadena diciendo el exito de la insercion
-		return $this->registrar();
-	} 
-	//se devuelve una cadena con de fallo de insercion
-	else return 'Inserción fallida: el elemento ya existe'; 
+
+
+	if($this->id != '' ){
+		$sql = "select * from PRODUCTOS where ID = '".$this->id."'";
+		$result = $this->mysqli->query($sql);
+		if ($result->num_rows == 1){  // existe el usuario
+				return '00001';
+			}
+	}
+
+	$sql = "INSERT INTO PRODUCTOS (
+			ID,
+			TITULO,
+			DESCRIPCION,
+			FOTO,
+			VENDEDOR_DNI,
+			ESTADO) 
+				VALUES (
+					'".$this->id."',
+					'".$this->titulo."',
+					'".$this->descripcion."',
+					'".$this->foto."',
+					'".$this->vendedorDNI."',
+					'".$this->estado."'
+					)";
+
+		include '../Model/BD_logger.php';//se incluye el archivo con el log
+		if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
+			return '00003';
+		}
+		else{
+			return '00002'; //operacion de insertado correcta
+		}
+
 }
 
 //funcion de destrucción del objeto: se ejecuta automaticamente
@@ -76,84 +87,42 @@ function __destruct()
 function SEARCH()
 {
     $sql = "SELECT * 
-    		FROM USUARIOS
+    		FROM PRODUCTOS
     		WHERE ( ";
 
     $or = false;
 
-    	if($this->login != ''){
-	    	$sql = $sql . "login LIKE '%" .$this->login. "%'";
+    	if($this->id != ''){
+	    	$sql = $sql . "ID LIKE '%" .$this->id. "%'";
 	    	$or = true;
 	    } 
 
-	    if ( $this->dni != '' ){
+	    if ( $this->titulo != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "DNI LIKE '%" .$this->dni. "%'";
+	    	$sql = $sql . "TITULO LIKE '%" .$this->titulo. "%'";
 	    	
 	    }   
 
-	   if ( $this->nombre != '' ){
+	   if ( $this->descripcion != '' ){
 	   		if ($or) $sql = $sql .  ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "nombre LIKE '%" .$this->nombre. "%'";
+	    	$sql = $sql . "DESCRIPCION LIKE '%" .$this->descripcion. "%'";
 	    } 
-	    if ( $this->apellidos != '' ){
+	    if ( $this->vendedorDNI != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "apellidos LIKE '%" .$this->apellidos. "%'";
+	    	$sql = $sql . "VENDEDOR_DNI LIKE '%" .$this->vendedorDNI. "%'";
 	    } 
 
-	    if ( $this->tlf != '' ){
+	    if ( $this->estado != '' ){
 	    	if ($or) $sql = $sql .' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "telefono LIKE '%" .$this->tlf. "%'";
+	    	$sql = $sql . "ESTADO LIKE '%" .$this->estado. "%'";
 	    } 
-
-	    if ( $this->email != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "email LIKE '%" .$this->email. "%'";
-	    } 
-
-	    if ( $this->bday != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "FechaNacimiento LIKE '%" .$this->bday. "%'";
-	    } 
-	    
-	    if ( $this->sexo != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "sexo LIKE '%" .$this->sexo. "%'";
-	    }
-
-	    if ( $this->alergias != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "alergias LIKE '%" .$this->alergias. "%'";
-	    }
-
-	    if ( $this->direccion != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "direccion LIKE '%" .$this->direccion. "%'";
-	    }
-
-	    if ( $this->cp != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "codigo_postal LIKE '%" .$this->cp. "%'";
-	    }
 
 	    if (!$or) $sql = $sql . '1';
 
@@ -167,7 +136,7 @@ function SEARCH()
 // se recojen todas las tuplas de la base de datos y se pasan como array
 function SHOW_ALL(){
 	$sql = "SELECT * 
-			FROM USUARIOS";
+			FROM PRODUCTOS";
 	return $this->mysqli->query($sql);
 }
 
@@ -242,41 +211,6 @@ function EDIT()
 }
 
 
-
-//funcion getUsuariosConProductos(): devuelve los usuarios con algun producto ofertado
-// devuelve un array con los nombres, apellidos y dni de los usuarios
-function getUsuariosConProductos(){
-	$sql = "SELECT DISTINCT VENDEDOR_DNI
-			FROM PRODUCTOS
-			";
-//hacer JOIN de tablas
-	$resultado = $this->mysqli->query($sql);
-	if ( $resultado != false){
-		$sql = "SELECT NOMBRE, APELLIDOS, DNI
-			FROM USUARIOS
-			WHERE (
-				(DNI = '$this->login') 
-			)";
-	}
-	
-	$resultado = $this->mysqli->query($sql);
-	$resultado = $resultado-> fetch_array();
-	return $resultado['DNI'];
-}
-
-//funcion getDNI(): devuelve el DNI del usuario
-// devuelve true si es un administrador, devuelve false si es un usuario
-function getDNI(){
-	$sql = "SELECT DNI
-			FROM USUARIOS
-			WHERE (
-				(login = '$this->login') 
-			)";
-	$resultado = $this->mysqli->query($sql);
-	$resultado = $resultado-> fetch_array();
-	return $resultado['DNI'];
-}
-
 //funcion isAdmin(): se utiliza para comprobar si el usuario actual es administrador
 // devuelve true si es un administrador, devuelve false si es un usuario
 function isAdmin(){
@@ -323,61 +257,14 @@ function login(){
 //
 function Register(){
 
-		$sql = "select * from USUARIOS where login = '".$this->login."'";
-
-		$result = $this->mysqli->query($sql);
-		if ($result->num_rows == 1){  // existe el usuario
-				return 'El usuario ya existe';
-			}
-		else{
-	    		return true; //no existe el usuario
-		}
+		
 
 	}
 
 function registrar(){
 
 			
-		$sql = "INSERT INTO USUARIOS (
-			login,
-			password,
-			dni,
-			nombre,
-			apellidos,
-			telefono,
-			email,
-			FechaNacimiento,
-			sexo,
-			alergias,
-			codigo_postal,
-			direccion,
-			activado,
-			tipo_usuario) 
-				VALUES (
-					'".$this->login."',
-					'".$this->password."',
-					'".$this->dni."',
-					'".$this->nombre."',
-					'".$this->apellidos."',
-					'".$this->tlf."',
-					'".$this->email."',
-					'".$this->bday."',
-					'".$this->sexo."',
-					'".$this->alergias."',
-					'".$this->cp."',
-					'".$this->direccion."',
-					'".$this->activado."',
-					'".$this->tipo_usuario."'
-					)";
-
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
-		$_SESSION['login'] = $this->login;
-		if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
-			return 'Error en la inserción';
-		}
-		else{
-			return 'Inserción realizada con éxito'; //operacion de insertado correcta
-		}
+		
 	}
 
 }//fin de clase

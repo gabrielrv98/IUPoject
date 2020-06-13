@@ -82,7 +82,7 @@
 
 			case 'EDIT':
 				if (!$_POST){ //nos llega el usuario a editar por get
-					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','',''); // Creo el objeto
+					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','',''); // Se crea el objeto
 					$valores = $USUARIOS->RellenaDatos($_REQUEST['login']); // obtengo todos los datos de la tupla
 					new USUARIOS_EDIT($valores); //invoco la vista de edit con los datos precargados
 				}
@@ -107,7 +107,7 @@
 				break;
 
 			case 'SHOWCURRENT':
-				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','',''); // Creo el objeto
+				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','',''); // Se crea el objeto
 				$valores = $USUARIOS->RellenaDatos($_REQUEST['login']);
 				new USUARIOS_SHOWCURRENT($valores);
 				break;
@@ -118,42 +118,6 @@
 				$datos = $USUARIOS->SHOW_ALL();
 				new USUARIOS_SHOWALL($datos);
 		}
-
-
-	function upload_image(){
-
-		$target_dir = "../Files/";
-		$target_file = $target_dir . basename($_FILES["foto"]["name"]);
-		$uploadOk = 1;
-		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-		// Check if image file is a actual image or fake image
-		if(isset($_POST["submit"])) {
-		    $check = getimagesize($_FILES["foto"]["tmp_name"]);
-		    if($check !== false) {
-		        $uploadOk = 1;
-		    } else {
-		        $uploadOk = 0;
-		    } 
-		}
-		// Check file size
-		if ($_FILES["foto"]["size"] > 500000) { //500KB
-		    echo "Sorry, your file is too large.";
-		    $uploadOk = 0;
-		}
-		// Allow certain file formats
-		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-		&& $imageFileType != "gif" ) {
-		    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-		    $uploadOk = 0;
-		}
-		// Check if $uploadOk is set to 0 by an error
-		if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
-			 $oldname = '../Files/' .basename( $_FILES["foto"]["name"]);
-			 $newname = '../Files/' . $_REQUEST['DNI'].'.'.$imageFileType;
-			rename($oldname, $newname);
-			$_REQUEST['foto'] = $newname;
-		}
-}
 
 
 ?>

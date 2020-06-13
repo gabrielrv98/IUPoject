@@ -2,7 +2,10 @@
 
 class Index {
 
-	function __construct(){
+	var $productos;
+
+	function __construct($productos){
+		$this->productos = $productos;
 		$this->render();
 	}
 
@@ -13,10 +16,6 @@ class Index {
 		?>
 	<head>
 			<title class="Intercambio de tiempo"> <?php echo $strings['Intercambio de tiempo']; ?></title>
-			<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  			<link rel="stylesheet" href="/resources/demos/style.css">
-			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	</head>
 
@@ -27,6 +26,27 @@ class Index {
 
 	<label > <h1>Aqui empieza la vista index</h1></label>
 	<p> En esta aplicacion ppuedes comprar o vender productos hechos a mano de agricultura</p>
+
+	<table border = ¨0¨>
+		<?php 
+			foreach ($this->productos as $key ) { ?>
+		<td>			
+			<div>
+				<img src="<?php echo $key['FOTO'];?>" height="42" width="42">
+				<br>
+				<label> 
+					<?php echo $key['TITULO']; ?>
+				</label>
+				<br>
+				<label>
+					<?php echo $key['DESCRIPCION'] ; ?>
+				</label>
+			</div>
+		</td>
+	<?php } ?>
+</table>
+<br><br>
+
 <?php
 	include '../View/Footer.php';
 	}// fin del metodo render

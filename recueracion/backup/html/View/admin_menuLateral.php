@@ -24,6 +24,10 @@
 				<a class="Gestión Usuarios" href='../Controller/USUARIOS_Controller.php'>
 					<?php echo $strings['Gestión Usuarios']; ?>
 				</a>
+
+				<a class="Gestión Productos" href='../Controller/PRODUCTOS_Controller.php'>
+					<?php echo $strings['Gestión Productos']; ?>
+				</a>
 			</div>
 <?php 
 			include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php'; ?>

@@ -9,7 +9,13 @@ calcular horas aprox
 
 
 php.exe dar permiso a logDB
+	dar permiso a Files  u+rwX,go+r
 	resetear BD
 
-acabar UsuariosShowCurrent
+acabar getUsuariosConProductos // Usuarios_Model.php
+validacionesNew descripcion del producto puede contener \n
+acabar user_index_View.php los anunciones tienen que ser clickeables
+acabar UsuariosShowCurrent (msj y productos relativos)
+acabar Usuarios Model (devolver los codigos adecuados)
 acabar modelo Producto
+MI PERFIL USER

@@ -365,28 +365,27 @@ function comprobarExtension(campo){
 function comprobarSexo(campo){
     var exp= /^(hombre|mujer)$/;
     if (!comprobarExpresionRegular(campo, exp,10)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer"
-         campo.style.border = "2px solid red";
-            return false;
+        campo.style.border = "2px solid red";
+        return false;
 
-        }else{ 
-            campo.style.border = "2px solid green";
-            return true;
-        }
-
+    }else{ 
+        campo.style.border = "2px solid green";
+        return true;
+    }
 }
 
 /*Comprueba que el sexo pertenece a el enumerado o es vacio*/
 function comprobarSexoSearch(campo){
     var exp= /^(hombre|muje)?$/;
     if (!comprobarExpresionRegular(campo, exp,10)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer" o este vacio
-         campo.style.border = "2px solid green";
-            return true;
+        campo.style.border = "2px solid green";
+        return true;
 
-        }else{  // en caso de que no coincida con ninguno
-            alert("El valor no coincide con los dados.");
-            campo.style.border = "2px solid red";
-            return false;
-        }
+    }else{  // en caso de que no coincida con ninguno
+        alert("El valor no coincide con los dados.");
+        campo.style.border = "2px solid red";
+        return false;
+    }
 
 }
 
@@ -503,5 +502,25 @@ function comprobarUsuarioSearch(Formu){
             Formu.alergias.style.border = "2px solid red";
             correcto = false; 
         }  
+    return correcto;
+}
+
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarProductos(Formu){
+    var correcto=true; 
+
+        if(!comprobarAlfabetico(Formu.titulo, 50)){//comprobamos que el nombre esté bien escrito
+            Formu.titulo.style.border = "2px solid red";
+            correcto = false;
+        } 
+        if(!comprobarAlfabetico(Formu.descripcion, 200)){//comprobamos que la contraseña esté bien escrito
+            Formu.descripcion.style.border = "2px solid red";
+            correcto = false;
+        } 
+        if(!comprobarExtension(Formu.foto)){//comprobamos que el dni esté bien escrito
+            Formu.DNI.style.border = "2px solid red";
+            correcto = false;
+        } 
     return correcto;
 }

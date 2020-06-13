@@ -16,7 +16,10 @@ if (!IsAuthenticated()){
 //esta autenticado
 else{
 	include '../View/users_index_View.php';
-	new Index();
+	include '../Model/PRODUCTOS_Model.php';
+	$product = new PRODUCTOS_Model('','','','','','tramite');
+	$product = $product->SEARCH();
+	new Index($product);
 }
 
 ?>

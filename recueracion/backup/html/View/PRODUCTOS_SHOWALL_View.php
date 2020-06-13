@@ -2,10 +2,10 @@
 //Clase : USUARIO_SHOWALL_View
 //Creado el : 2-10-2019
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los usuarios
+//Muestra unos campos de todos las tuplas de los PRODUCTOS
 //-------------------------------------------------------
 
-class USUARIOS_SHOWALL {
+class PRODUCTOS_SHOWALL {
 
 	var $lista;
 
@@ -30,17 +30,17 @@ class USUARIOS_SHOWALL {
 
 		
 		<h1 class="TShowAll"><?php echo $strings['TShowAll']; ?></h1>
-		<a href = '../Controller/USUARIOS_Controller.php?action=ADD' style="color:#FFFFFF;">
-			<img src='../View/icon/adduser.ico'>
+		<a href = '../Controller/PRODUCTOS_Controller.php?action=ADD' style="color:#FFFFFF;">
+			<img src='../View/icon/bolsa-de-la-compra.png' height="42" width="42" >
 		</a>
-		<a href = '../Controller/USUARIOS_Controller.php?action=SEARCH'>
+		<a href = '../Controller/PRODUCTOS_Controller.php?action=SEARCH'>
 			<img src='../View/icon/searchuser.ico'>
 		</a>
 		<br>
 		<div>
 		<table border = ¨1¨>
 			<th class="Login">
-				<?php echo $strings['id']; ?>
+				<?php echo $strings['Login']; ?>
 			</th>
 			<th class="DNI">
 				DNI
@@ -61,43 +61,43 @@ class USUARIOS_SHOWALL {
 			foreach ($this->lista as $key ) {  
 				//echo var_dump($key); ?>
 
-				<tr>
+				<tr>			
 					<td>
-						<?php echo $key['LOGIN'] ; ?>
+						<?php echo $key['ID'] ; ?>
 					</td>
 					<td>
 						<?php  
-						echo $key['DNI']; ?>
+						echo $key['TITULO']; ?>
 					</td>
 					<td>
-						<?php echo $key['NOMBRE'] ; ?>
+						<?php echo $key['DESCRIPCION'] ; ?>
 					</td>
 					<td>
-						<?php echo $key['APELLIDOS'] ; ?>
+						<img src="<?php echo $key['FOTO'];?>" height="42" width="42">
 					</td>
 					<td>
 						<?php  
-						echo $key['EMAIL']; 
+						echo $key['VENDEDOR_DNI']; 
 						?>
 					</td>
 					<td>
 						<?php  
-						echo $key['TIPO_USUARIO']; 
+						echo $key['ESTADO']; 
 						?>
 					</td>
 					<td>
-						<a href = "../Controller/USUARIOS_Controller.php?action=EDIT&&login=<?php echo $key['LOGIN']; ?>"  > 
+						<a href = "../Controller/PRODUCTOS_Controller.php?action=EDIT&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/edituser.ico'>
 						</a>
 					</td>
 					<td>
-						<a href = "../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&&login=<?php echo $key['LOGIN']; ?>"  > 
+						<a href = "../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/showuser.ico'>
 						</a>
 					</td>
 					<td>
-						<a href = "../Controller/USUARIOS_Controller.php?action=DELETE&&login=<?php echo $key['LOGIN']; ?>"  > 
-							<img src='../View/icon/deleteuser.ico'>
+						<a href = "../Controller/PRODUCTOS_Controller.php?action=DELETE&&id=<?php echo $key['ID']; ?>"  > 
+							<img src='../View/icon/bolsa-de-la-compra_delete.png' height="42" width="42">
 						</a>
 					</td>
 				</tr>

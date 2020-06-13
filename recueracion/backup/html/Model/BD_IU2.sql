@@ -61,11 +61,19 @@ UNIQUE KEY `DNI` (`DNI`),
 UNIQUE KEY `EMAIL` (`EMAIL`)
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `CATEGORIAS`
 --
+-- ID autogenerado
+-- titulo del producto
+-- descripcion del producto
+-- foto del producto
+-- dni del vendedor
+-- estado actual del producto
 CREATE TABLE IF NOT EXISTS `PRODUCTOS` (
 
 `ID` int NOT NULL AUTO_INCREMENT,
@@ -74,11 +82,13 @@ CREATE TABLE IF NOT EXISTS `PRODUCTOS` (
 
 `DESCRIPCION` varchar(200) NOT NULL,
 
-`FOTO` varchar(50) NOT NULL,
+`FOTO` varchar(50),
 
 `VENDEDOR_DNI` varchar(9) NOT NULL,
 
-`COMPRADOR_DNI` varchar(9),
+--`ORIGEN` enum('fabricado_a_mano','cultivado') NOT NULL,
+
+`ESTADO` enum('tramite','vendido') DEFAULT 'tramite' NOT NULL,
 
 PRIMARY KEY (`ID`)
 
@@ -109,6 +119,58 @@ CREATE TABLE IF NOT EXISTS `PRODUCTOS_CATEGORIAS` (
 `ID_PRODUCTO` int NOT NULL,
 
 `ID_CATEGORIA` int NOT NULL
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `MENSAJEMANAGER`
+--
+-- ID autogenerado
+-- ID_PRODUCTO del producto
+-- CONTENIDO del del mensaje
+-- VENDEDOR_ACCEPT estado de aceptacion del vendedor
+-- COMPRADOR_ACCEPT estado de aceptacion del comprador
+-- COMPRADOR_DNI dni del comprador
+CREATE TABLE IF NOT EXISTS `MENSAJEMANAGER` (
+
+`ID` int NOT NULL AUTO_INCREMENT,
+
+`ID_PRODUCTO` int NOT NULL,
+
+`VENDEDOR_ACCEPT` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
+
+`COMPRADOR_ACCEPT` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
+
+`COMPRADOR_DNI` varchar(9) NOT NULL,
+
+PRIMARY KEY (`ID`),
+
+FOREIGN KEY (`ID_PRODUCTO`) REFERENCES PRODUCTOS (ID) 
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `MENSAJE`
+--
+-- ID autogenerado
+-- ID_MSJMANAGER ID del MENSAJE MANAGER
+-- CONTENIDO del del mensaje
+-- VENDEDOR_ACCEPT estado de aceptacion del vendedor
+-- COMPRADOR_ACCEPT estado de aceptacion del comprador
+-- COMPRADOR_DNI dni del comprador
+CREATE TABLE IF NOT EXISTS `MENSAJE` (
+
+`ID` int NOT NULL AUTO_INCREMENT,
+
+`ID_MSJMANAGER` int NOT NULL,
+
+`CONTENIDO` varchar(200) NOT NULL,
+
+PRIMARY KEY (`ID`),
+
+FOREIGN KEY (`ID_MSJMANAGER`) REFERENCES MENSAJEMANAGER (ID) 
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------
