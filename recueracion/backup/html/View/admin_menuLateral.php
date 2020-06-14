@@ -32,6 +32,10 @@
 				<a class="Gestión Categorias" href='../Controller/CATEGORIAS_Controller.php'>
 					<?php echo $strings['Gestión Categorias']; ?>
 				</a>
+
+				<a class="Gestión Productos-Categorias" href='../Controller/PRODUCTOS_CATEGORIAS_Controller.php'>
+					<?php echo $strings['Gestión Productos-Categorias']; ?>
+				</a>
 			</div>
 <?php 
 			include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php'; ?>

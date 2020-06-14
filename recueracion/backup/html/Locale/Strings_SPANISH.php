@@ -221,6 +221,11 @@ array(
     'idCategoria' => 'ID de la categoria',
     'productosEnCategoria' => 'Productos en esta categoria',
 
+    //Gestion de categorias_productos
+    'Gestión Productos-Categorias' => 'Gestion de produtos-categorias',
+    'idCategoria' => 'Id categoria',
+    'idProducto' => 'Id producto',
+
 
     //codigos de error
     '00001' => '00001 Insercion fallida, el elemento ya existe',
