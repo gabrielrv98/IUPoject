@@ -1,6 +1,6 @@
 <?php
 //Clase : PRODUCTOS_ADD_View
-//Creado el : 5-06-2020
+//Creado el : 3-06-2020
 //Creado por: grvidal
 //Muestra unos campos para ser rellenados y los manda por post al controlador
 //-------------------------------------------------------
@@ -22,7 +22,10 @@
 			<title class="Tadd"> <?php echo $strings['Tadd']; ?></title>
 		</head>
 		
-		<?php include '../View/Header.php'; //header necesita los strings ?>
+		<?php include '../View/Header.php'; //header necesita los strings 
+			include_once '../Model/USUARIOS_Model.php';
+					$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');//Recuperamos el usuario que esta operando
+					$usuariosProductos = $usuario->getUsuariosConProductos();//recuperamos los nombres de las personas con productos en oferta?>
 			<h1 class="searchProducto"><?php echo $strings['searchProducto']; ?></h1>	
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=SEARCH' method='post' onsubmit="return comprobarProductoSearch(this);" enctype="multipart/form-data">
 				 	
@@ -34,14 +37,35 @@
 				 	<label class="errormsg tooShortNoNum" for="titulo" id="titulo_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
 				</div>&nbsp;&nbsp;
 
-				<?php include_once '../Model/USUARIOS_Model.php';
-					$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');//Recuperamos el usuario que esta 
+				<div class="form-group">
+				 	<label for="vendedorDNI" class="persona"><?php echo $strings['persona'] ?>  </label>
+				 	<select name="vendedorDNI" >
+				 		<?php  foreach ($usuariosProductos as $key) { 
+				 			$patata = $key; ?>
+				 			<option value="<?php echo $key['DNI']; ?>" > <?php echo $key['NOMBRE'], "-",$key['APELLIDOS'] ; ?></option>
+
+				 		<?php } ?>
+						<option value="" class="mix" selected> <?php echo $strings['mix'] ; ?></option>
+					</select>
+					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > <?php echo $strings['vendedorDNIError'] ?> </label>
+				</div>&nbsp;&nbsp;
+				<?php 
 					if($usuario->isAdmin()){ // si el usuario es administrador es le ofrece busqeuda por otros usuarios
-						$usuariosProductos = $usuario->getUsuariosConProductos();
 				?>
 
+				
 
-			<?php } ?>
+				<div class="form-group">
+				 	<label for="estado" class="persona"><?php echo $strings['persona'] ?>  </label>
+				 	<select name="estado" >
+						<option value="" class="indiferente" selected> <?php echo $strings['indiferente'] ; ?></option>
+						<option value="tramite" class="tramite" > <?php echo $strings['tramite'] ; ?></option>
+						<option value="vendido" class="vendido" > <?php echo $strings['vendido'] ; ?></option>
+					</select>
+					<label class="errormsg estadoError" for="estado" id="estado_error" > <?php echo $strings['estadoError'] ?> </label>
+				</div>&nbsp;&nbsp;
+
+			<?php }  ?>
 
 				<div class="form-group">
 				 	<label for="descripcion" class="descripcionProducto"><?php echo $strings['descripcionProducto'] ?> </label>

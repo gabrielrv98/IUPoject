@@ -28,6 +28,10 @@
 				<a class="Gestión Productos" href='../Controller/PRODUCTOS_Controller.php'>
 					<?php echo $strings['Gestión Productos']; ?>
 				</a>
+
+				<a class="Gestión Categorias" href='../Controller/CATEGORIAS_Controller.php'>
+					<?php echo $strings['Gestión Categorias']; ?>
+				</a>
 			</div>
 <?php 
 			include '../Locale/Strings_' . $_COOKIE['idioma'] . '.php'; ?>

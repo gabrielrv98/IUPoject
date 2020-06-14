@@ -1,31 +1,22 @@
-
 <?php
-
-//Clase : USUARIOS_Modelo
-//Creado el : 2-06-2020
+//Clase : CATEGORIAS_Model
+//Creado el : 8-06-2020
 //Creado por: grvidal
 //Modelo de usuarios para realizar las acciones sobre la base de datos
 //-------------------------------------------------------
 
-class PRODUCTOS_Model {
+class CATEGORIAS_Model {
 
 	var $id;
-	var $titulo;
-	var $descripcion;
-	var $foto;
-	var $vendedorDNI;
-	var $estado;
+	var $nombre;
+
 	var $mysqli;
 
 //Constructor de la clase
 //Recive como entrada los datos persnales y crea la clase USUARIO_Model
-function __construct($id,$titulo,$descripcion,$foto,$vendedorDNI,$estado){
+function __construct($id,$nombre){
 	$this->id = $id;
-	$this->titulo = $titulo;
-	$this->descripcion = $descripcion;
-	$this->foto = $foto;
-	$this->vendedorDNI = $vendedorDNI;
-	$this->estado = $estado;
+	$this->nombre = $nombre;
 
 	include_once '../Model/Access_DB.php';
 	$this->mysqli = ConnectDB();
@@ -33,26 +24,22 @@ function __construct($id,$titulo,$descripcion,$foto,$vendedorDNI,$estado){
 
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
-// de los atributos del objeto. Los productos se pueden
-// subir todas las veces que quieras ya que es en base a las existencias
-// e intención del vendedor.
+// de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
+//existe ya en la tabla
 function ADD()
 {	
+	$sql = "select * from CATEGORIAS where NOMBRE_CATEGORIA = '".$this->nombre."'";
 
-	if($this->estado == '') $this->estado = 'tramite';//si el estado esta vacio se recoloca
+		$result = $this->mysqli->query($sql);
+		if ($result->num_rows == 1){  // el elemento ya existe
+				return '00001';
+		}
 
-	$sql = "INSERT INTO PRODUCTOS (
-			TITULO,
-			DESCRIPCION,
-			FOTO,
-			VENDEDOR_DNI,
-			ESTADO) 
+
+	$sql = "INSERT INTO CATEGORIAS (
+			NOMBRE_CATEGORIA) 
 				VALUES (
-					'".$this->titulo."',
-					'".$this->descripcion."',
-					'".$this->foto."',
-					'".$this->vendedorDNI."',
-					'".$this->estado."'
+					'".$this->nombre."'
 					)";
 
 		include '../Model/BD_logger.php';//se incluye el archivo con el log
@@ -62,7 +49,6 @@ function ADD()
 		else{
 			return '00002'; //operacion de insertado correcta
 		}
-
 }
 
 //funcion de destrucción del objeto: se ejecuta automaticamente
@@ -78,37 +64,22 @@ function __destruct()
 function SEARCH()
 {
     $sql = "SELECT * 
-    		FROM PRODUCTOS
+    		FROM CATEGORIAS
     		WHERE ( ";
 
     $or = false;
 
-	    if ( $this->titulo != '' ){
+    	if($this->id != ''){
+	    	$sql = $sql . "ID LIKE '%" .$this->id. "%'";
+	    	$or = true;
+	    } 
+
+	    if ( $this->nombre != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "TITULO LIKE '%" .$this->titulo. "%'";
+	    	$sql = $sql . "NOMBRE_CATEGORIA LIKE '%" .$this->nombre. "%'";
 	    	
 	    }   
-
-	   if ( $this->descripcion != '' ){
-	   		if ($or) $sql = $sql .  ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "DESCRIPCION LIKE '%" .$this->descripcion. "%'";
-	    } 
-	    if ( $this->vendedorDNI != '' ){
-	    	if ($or) $sql = $sql . ' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "VENDEDOR_DNI LIKE '%" .$this->vendedorDNI. "%'";
-	    } 
-
-	    if ( $this->estado != '' ){
-	    	if ($or) $sql = $sql .' AND ';
-	    	else $or = true;
-
-	    	$sql = $sql . "ESTADO LIKE '%" .$this->estado. "%'";
-	    } 
 
 	    if (!$or) $sql = $sql . '1';
 
@@ -116,13 +87,13 @@ function SEARCH()
 
     $sql = $sql . " )";
     $toRet = $this->mysqli->query($sql);
-    return $toRet ? $toRet : 'Error de gestor de base de datos';
+    return $toRet ? $toRet : '00004 ';
 }
 
 // se recojen todas las tuplas de la base de datos y se pasan como array
 function SHOW_ALL(){
 	$sql = "SELECT * 
-			FROM PRODUCTOS";
+			FROM CATEGORIAS";
 	return $this->mysqli->query($sql);
 }
 
@@ -131,7 +102,7 @@ function SHOW_ALL(){
 function DELETE()
 {
 	$sql = "SELECT *
-			FROM PRODUCTOS
+			FROM CATEGORIAS
 			WHERE (ID = '$this->id')";
 
 	$obj = $this->mysqli->query($sql);
@@ -140,14 +111,14 @@ function DELETE()
 	if( mysqli_num_rows($obj) == 1 ){
 
 		$sql = "DELETE 
-   			FROM PRODUCTOS
+   			FROM CATEGORIAS
    			WHERE ID = '$this->id'"; 
 
    		include '../Model/BD_logger.php';//se incluye el archivo con el log
    		//se reliza el log del delete	
-   		if (writeAndLog($sql)) return '00005';
-   			
-	}else return '00006';
+   		if (writeAndLog($sql)) return '00005'; 
+	}
+	return '00006';
 }
 
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
@@ -155,12 +126,12 @@ function RellenaDatos()
 {
 
 	$sql = "SELECT * 
-			FROM PRODUCTOS
+			FROM CATEGORIAS
 			WHERE ( ID = '$this->id')";
 
 
 	$toRet = $this->mysqli->query($sql);
-	return $toRet ? $toRet->fetch_array() : 'Error de gestor de base de datos';
+	return $toRet ? $toRet->fetch_array() : '00015';
 }
 
 
@@ -169,21 +140,14 @@ function EDIT()
 {
 
 	$sql = "SELECT ID 
-				FROM PRODUCTOS
+				FROM CATEGORIAS
 				WHERE (ID = '$this->id')";
 
 //se comprueba que el dni o el email no estan repetidos en otros usuarios
-
 	$response = $this->mysqli->query($sql)->num_rows;
 	if ($response == 1) {
-		$sql = "UPDATE PRODUCTOS
-			SET TITULO = '$this->titulo',
-				DESCRIPCION = '$this->descripcion',";
-
-		if($this->foto !='') $sql= $sql."	FOTO = '$this->foto',";
-
-		$sql= $sql . "		VENDEDOR_DNI = '$this->vendedorDNI',
-				ESTADO = '$this->estado'
+		$sql = "UPDATE CATEGORIAS
+			SET NOMBRE_CATEGORIA = '$this->nombre'
 
 			WHERE (ID = '$this->id')";
 		include '../Model/BD_logger.php';//se incluye el archivo con el log
@@ -192,19 +156,6 @@ function EDIT()
 		if($result = 1) return '00007';// si la actualizacion fue existosa
 	}
 	return '00008';// si el numero de tuplas de vuelta es mayor que 1 o la actualizacion tuvo un error
-}
-
-
-//funcion getFoto(): devuelve la ruta de la foto
-function getFoto(){
-	$sql = "SELECT FOTO
-			FROM PRODUCTOS
-			WHERE (
-				(ID = '$this->id') 
-			)";
-	$resultado = $this->mysqli->query($sql);
-	$resultado = $resultado-> fetch_array();
-	return $resultado['FOTO'];
 }
 
 }//fin de clase

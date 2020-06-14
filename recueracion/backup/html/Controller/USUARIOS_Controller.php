@@ -70,7 +70,7 @@
 			case 'DELETE':
 				if (!$_POST){ //nos llega el id a eliminar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','','');
-					$valores = $USUARIOS->RellenaDatos($_REQUEST['login']);
+					$valores = $USUARIOS->RellenaDatos();
 					new USUARIOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 				}
 				else{ // llegan los datos confirmados por post y se eliminan
@@ -83,7 +83,7 @@
 			case 'EDIT':
 				if (!$_POST){ //nos llega el usuario a editar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','',''); // Se crea el objeto
-					$valores = $USUARIOS->RellenaDatos($_REQUEST['login']); // obtengo todos los datos de la tupla
+					$valores = $USUARIOS->RellenaDatos(); // obtengo todos los datos de la tupla
 					new USUARIOS_EDIT($valores); //invoco la vista de edit con los datos precargados
 				}
 				else{
@@ -108,7 +108,7 @@
 
 			case 'SHOWCURRENT':
 				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','',''); // Se crea el objeto
-				$valores = $USUARIOS->RellenaDatos($_REQUEST['login']);
+				$valores = $USUARIOS->RellenaDatos();
 				new USUARIOS_SHOWCURRENT($valores);
 				break;
 

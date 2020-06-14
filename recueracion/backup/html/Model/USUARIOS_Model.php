@@ -47,21 +47,7 @@ function __construct($login,$password,$nombre,$apellidos,$email,$dni,$tlf,$bday,
 	$this->mysqli = ConnectDB();
 }
 
-//Metodo ADD
-//Inserta en la tabla  de la bd  los valores
-// de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
-//existe ya en la tabla
-function ADD()
-{	
-	// si el usuario no existe se devolveria true a toRet
-	$toRet = $this->Register();
-	if($toRet == 'true'){
-		// se devuelve la cadena diciendo el exito de la insercion
-		return $this->registrar();
-	} 
-	//se devuelve una cadena con de fallo de insercion
-	else return 'Inserción fallida: el elemento ya existe'; 
-}
+
 
 //funcion de destrucción del objeto: se ejecuta automaticamente
 //al finalizar el script
@@ -161,7 +147,7 @@ function SEARCH()
 
     $sql = $sql . " )";
     $toRet = $this->mysqli->query($sql);
-    return $toRet ? $toRet : 'Error de gestor de base de datos';
+    return $toRet ? $toRet : '00004';
 }
 
 // se recojen todas las tuplas de la base de datos y se pasan como array
@@ -189,9 +175,11 @@ function DELETE()
    			WHERE login = '$this->login'"; 
 
    		include '../Model/BD_logger.php';//se incluye el archivo con el log
-   		//se reliza el log del delete	
-   		return writeAndLog($sql) ? 'Borrado realizado con éxito' : 'errorDelete';
-	}else return 'Error de gestor de base de datos';
+   		//se reliza el log del delete
+   		if(writeAndLog($sql))	return   '00005';
+
+	}
+	return '00006';
 }
 
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
@@ -204,7 +192,7 @@ function RellenaDatos()
 
 
 	$toRet = $this->mysqli->query($sql);
-	return $toRet ? $toRet->fetch_array() : 'Error de gestor de base de datos';
+	return $toRet ? $toRet->fetch_array() : '00015';
 }
 
 
@@ -236,32 +224,45 @@ function EDIT()
 		include '../Model/BD_logger.php';//se incluye el archivo con el log
 		$result = writeAndLog($sql); // se realiza el log
 
-		if($result = 1) return 'Actualización realizada con éxito';// si la actualizacion fue existosa
+		if($result = 1) return '00007';// si la actualizacion fue existosa
 	}
-	return 'Error de gestor de base de datos';// si el numero de tuplas de vuelta es mayor que 1 o la actualizacion tuvo un error
+	return '00008';// si el numero de tuplas de vuelta es mayor que 1 o la actualizacion tuvo un error
 }
 
+//funcion getUsuarios(): devuelve todos los usuarios
+// devuelve un array con los nombres, apellidos y dni de los usuarios
+function getUsuarios(){
+	$sql = "SELECT DISTINCT NOMBRE, APELLIDOS, DNI
+			FROM USUARIOS 
+			";
+	
+	$resultado = $this->mysqli->query($sql);
+	return $resultado;
+}
 
+//funcion getNombre(): devuelve lel nombre y apellidos en base al DNI
+// devuelve un array con el nombres y apellido
+function getNombre(){
+	$sql = "SELECT DISTINCT NOMBRE, APELLIDOS
+			FROM USUARIOS 
+			WHERE DNI = '".$this->dni."'
+			";
+	
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	return $resultado;
+}
 
 //funcion getUsuariosConProductos(): devuelve los usuarios con algun producto ofertado
 // devuelve un array con los nombres, apellidos y dni de los usuarios
 function getUsuariosConProductos(){
-	$sql = "SELECT DISTINCT VENDEDOR_DNI
-			FROM PRODUCTOS
+	$sql = "SELECT DISTINCT NOMBRE, APELLIDOS, DNI
+			FROM USUARIOS 
+			INNER JOIN  PRODUCTOS ON PRODUCTOS.VENDEDOR_DNI = USUARIOS.DNI
 			";
-//hacer JOIN de tablas
-	$resultado = $this->mysqli->query($sql);
-	if ( $resultado != false){
-		$sql = "SELECT NOMBRE, APELLIDOS, DNI
-			FROM USUARIOS
-			WHERE (
-				(DNI = '$this->login') 
-			)";
-	}
 	
 	$resultado = $this->mysqli->query($sql);
-	$resultado = $resultado-> fetch_array();
-	return $resultado['DNI'];
+	return $resultado;
 }
 
 //funcion getDNI(): devuelve el DNI del usuario
@@ -305,79 +306,110 @@ function login(){
 
 	$resultado = $this->mysqli->query($sql);
 	if ($resultado->num_rows == 0){
-		return 'El login no existe';
+		return '00009';
 	}
 	else{
 		$tupla = $resultado->fetch_array();
 		if ($tupla['PASSWORD'] == $this->password){// si la contraseña es igual
 			if ($tupla['ACTIVADO'] == "activado") {// si el usuario esta activado
-				return true;
-			}else return 'Este usuario esta desactivado';
+				return '00011';
+			}else return '00009';
 		}
 		else{
-			return 'La password para este usuario no es correcta';
+			return '00010';
 		}
 	}
 }//fin metodo login
 
-//
+//Metodo ADD
+//Inserta en la tabla  de la bd  los valores
+// de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
+//existe ya en la tabla
+function ADD()
+{	
+	// si el usuario no existe se devolveria true a toRet
+	$toRet = $this->Register();
+	return $toRet;
+/*
+	switch ($toRet) {
+		case '00012':
+			return '00001';
+			break;
+		case '00013':
+			return '00003';
+			break;
+		case '00014':
+			return '00002';
+			break;
+		default:
+			return '00016';
+			break;
+	}
+*/
+}
+
+//Metodo Register
+//Comprueba si existe un usuario con el mismo login
 function Register(){
 
 		$sql = "select * from USUARIOS where login = '".$this->login."'";
 
 		$result = $this->mysqli->query($sql);
 		if ($result->num_rows == 1){  // existe el usuario
-				return 'El usuario ya existe';
+				return '00012';
 			}
 		else{
-	    		return true; //no existe el usuario
+				$sql = "INSERT INTO USUARIOS (
+					login,
+					password,
+					dni,
+					nombre,
+					apellidos,
+					telefono,
+					email,
+					FechaNacimiento,
+					sexo,
+					alergias,
+					codigo_postal,
+					direccion,
+					activado,
+					tipo_usuario) 
+						VALUES (
+							'".$this->login."',
+							'".$this->password."',
+							'".$this->dni."',
+							'".$this->nombre."',
+							'".$this->apellidos."',
+							'".$this->tlf."',
+							'".$this->email."',
+							'".$this->bday."',
+							'".$this->sexo."',
+							'".$this->alergias."',
+							'".$this->cp."',
+							'".$this->direccion."',
+							'".$this->activado."',
+							'".$this->tipo_usuario."'
+							)";
+
+				include '../Model/BD_logger.php';//se incluye el archivo con el log
+				$_SESSION['login'] = $this->login;
+				if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
+					return '00013';
+				}
+				else{
+					return '00014'; //operacion de insertado correcta
+				}
 		}
 
 	}
 
+
+//Metodo registrar
+//Añade al usuario a la base de datos
 function registrar(){
 
 			
-		$sql = "INSERT INTO USUARIOS (
-			login,
-			password,
-			dni,
-			nombre,
-			apellidos,
-			telefono,
-			email,
-			FechaNacimiento,
-			sexo,
-			alergias,
-			codigo_postal,
-			direccion,
-			activado,
-			tipo_usuario) 
-				VALUES (
-					'".$this->login."',
-					'".$this->password."',
-					'".$this->dni."',
-					'".$this->nombre."',
-					'".$this->apellidos."',
-					'".$this->tlf."',
-					'".$this->email."',
-					'".$this->bday."',
-					'".$this->sexo."',
-					'".$this->alergias."',
-					'".$this->cp."',
-					'".$this->direccion."',
-					'".$this->activado."',
-					'".$this->tipo_usuario."'
-					)";
-
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
-		$_SESSION['login'] = $this->login;
-		if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
-			return 'Error en la inserción';
-		}
-		else{
-			return 'Inserción realizada con éxito'; //operacion de insertado correcta
-		}
+		
 	}
 
 }//fin de clase

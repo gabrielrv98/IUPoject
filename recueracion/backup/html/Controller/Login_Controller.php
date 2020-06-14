@@ -19,7 +19,7 @@ else{
 	$usuario = new USUARIOS_Model($_REQUEST['login'],$_REQUEST['password'],'','','','','','','','','','','','');
 	$respuesta = $usuario->login();
 
-	if ($respuesta == 'true'){
+	if ($respuesta == '00011'){
 		session_start();
 		$_SESSION['login'] = $_REQUEST['login'];
 		header('Location:../index.php');

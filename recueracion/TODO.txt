@@ -9,13 +9,24 @@ calcular horas aprox
 
 
 php.exe dar permiso a logDB
-	dar permiso a Files  u+rwX,go+r
+	dar permiso a Files  u+rwX,go+wr
 	resetear BD
 
-acabar getUsuariosConProductos // Usuarios_Model.php
+cambiar menu lateral por superior
+
+añadir origen a PRODUCTO
+PRODUCTOS no actualiza $_REQUEST['foto']
 validacionesNew descripcion del producto puede contener \n
-acabar user_index_View.php los anunciones tienen que ser clickeables
-acabar UsuariosShowCurrent (msj y productos relativos)
-acabar Usuarios Model (devolver los codigos adecuados)
-acabar modelo Producto
+
+acabar modelo Producto (devolver los codigos adecuados)
+acabar comentarios y marca horaria
+
+//categorias
+acabar showcurrent mostrar productos en las categorias
+
+//usuarios
+acabar user_index_View.php los anunciones tienen que ser clickeables y una busqueda por categorias
+gestion productos
 MI PERFIL USER
+acabar UsuariosShowCurrent (msj y productos relativos)
+restringuir el acceso

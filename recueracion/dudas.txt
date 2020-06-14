@@ -1,1 +1,5 @@
+
+la clase usuario el metodo add devuelve los codigos de add o los de register
+
+
 la clase mensaje no tiene showcurrent o sí, si es muy grande el mensaje??

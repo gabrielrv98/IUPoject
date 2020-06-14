@@ -202,14 +202,52 @@ array(
     'ofertas' => 'Ofertas activas',
     'transacciones' => 'Transacciones realizadas',
     'IndexViewLink' => 'Pagina principal',
+
+    //Gestion de productos
     'Gestión Productos' => 'Gestion de los productos',
     'addProducto' => 'Nuevo producto',
     'searchProducto' => 'Buscar producto',
+    'editProducto' => 'Editar producto',
     'tituloProducto' => 'Titulo del producto',
     'descripcionProducto' => 'Descripcion del producto',
+    'eliminarProducto' => 'Eliminar producto',
+    'fotoProducto' => 'Foto del producto',
+
+    //Gestion de categorias
+    'Gestión Categorias' => 'Gestion de categorias',
+    'addCategoria' => 'Nueva categoria',
+    'nombreCategoria' => 'Nombre de la categoria',
+    'editCategoria' => 'Editar la categoria',
+    'idCategoria' => 'ID de la categoria',
+    'productosEnCategoria' => 'Productos en esta categoria',
+
+
+    //codigos de error
     '00001' => '00001 Insercion fallida, el elemento ya existe',
     '00002' => '00002 Insercion realizada con exito',
-    '00003' => '00003 Error de gestor de base de datos en ADD'
+    '00003' => '00003 Error de gestor de base de datos en ADD',
+    '00004' => '00004 Error de gestor de base de datos en SEARCH',
+    '00005' => '00005 Borrado realizada con exito',
+    '00006' => '00006 Error de gestor de base de datos en DELETE',
+    '00007' => '00007 Actualización realizada con éxito',
+    '00008' => '00008 Error de gestor de base de datos en EDIT',
+    '00009' => '00009 El login no existe',
+    '00010' => '00010 La password para este usuario no es correcta',
+    '00011' => '00011 Login correcto',
+    '00012' => '00012 El usuario ya existe',
+    '00013' => '00013 Error en el registro en la base de datos',
+    '00014' => '00014 Registro realizado con éxito',
+    '00015' => '00015 Error de gestor de base de datos en RellenaDatos',
+    '00016' => '00016 Error inseperado en ADD',
+    'vendedorDNI' => 'DNI del vendedor',
+    'vendedorDNIError' => 'El DNI no coincide con ningun usuario actual',
+    'persona' =>'Persona asociada',
+    'estado' => 'Estado',
+    'estadoError' => 'El estado solo puede ser disponible o vendido',
+    'tramite' => 'Disponible',
+    'vendido' => 'Vendido',
+    'indiferente' => 'Indiferente',
+    'yo' => 'Yo'
 
 	);
 ?>

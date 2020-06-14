@@ -1,6 +1,6 @@
 <?php
 //Clase : USUARIO_SHOWALL_View
-//Creado el : 2-10-2019
+//Creado el : 2-06-20
 //Creado por: grvidal
 //Muestra unos campos de todos las tuplas de los PRODUCTOS
 //-------------------------------------------------------
@@ -39,32 +39,26 @@ class PRODUCTOS_SHOWALL {
 		<br>
 		<div>
 		<table border = ¨1¨>
-			<th class="Login">
-				<?php echo $strings['Login']; ?>
+			<th class="tituloProducto">
+				<?php echo $strings['tituloProducto']; ?>
 			</th>
-			<th class="DNI">
-				DNI
+			<th class="descripcionProducto">
+				<?php echo $strings['descripcionProducto']; ?>
+			</th>
+			<th class="fotoProducto">
+				<?php echo $strings['fotoProducto']; ?>
 			</th>
 			<th class="name">
 				<?php echo $strings['name']; ?>
 			</th>
-			<th class="surname">
-				<?php echo $strings['surname']; ?>
-			</th>
-			<th class="email">
-				Email
-			</th>
-			<th class="tipo_usuario">
-				<?php echo $strings['tipo_usuario']; ?>
+			<th class="estado">
+				<?php echo $strings['estado']; ?>
 			</th>
 			<?php 
 			foreach ($this->lista as $key ) {  
 				//echo var_dump($key); ?>
 
-				<tr>			
-					<td>
-						<?php echo $key['ID'] ; ?>
-					</td>
+				<tr>
 					<td>
 						<?php  
 						echo $key['TITULO']; ?>

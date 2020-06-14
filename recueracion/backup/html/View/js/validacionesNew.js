@@ -43,6 +43,25 @@ function comprobarAlfabeticoVacio(campo, size) {
     
 }
 
+
+
+/*Comprueba que sólo haya caracteres alfanuméricos y \n*/
+/*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
+function comprobarAlfabeticoEnter(campo, size) {
+    var abc =/^\w[\wñº\n ]*$/;
+    
+    if(!comprobarExpresionRegular(campo,abc,size)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
+         
+        return false;
+    }else if(campo.value.length < 3){ // si el campo es menor que 3 caracteres se avisa del error
+        campo.style.border = "2px solid red";
+        document.getElementById(campo.name+"_errorLength").style.visibility = "visible";
+        return false;
+    }  
+    return true;
+}
+
+
 /*Comprueba que el texto sea alfabético y que pueda tener espacios*/
 /*comprueba- es una variable que se utiliza para la comprobación y observa que no haya carácteres no alfabéticos (también permite que haya espacios entre palabras)*/
 function comprobarTexto( campo, size ) {
@@ -510,16 +529,58 @@ function comprobarUsuarioSearch(Formu){
 function comprobarProductos(Formu){
     var correcto=true; 
 
-        if(!comprobarAlfabetico(Formu.titulo, 50)){//comprobamos que el nombre esté bien escrito
+        if(!comprobarAlfabetico(Formu.titulo, 50)){//comprobamos que el titulo esté bien escrito
             Formu.titulo.style.border = "2px solid red";
             correcto = false;
         } 
-        if(!comprobarAlfabetico(Formu.descripcion, 200)){//comprobamos que la contraseña esté bien escrito
+        if(!comprobarAlfabeticoEnter(Formu.descripcion, 200)){//comprobamos que la descripcion esté bien escrita
             Formu.descripcion.style.border = "2px solid red";
             correcto = false;
         } 
-        if(!comprobarExtension(Formu.foto)){//comprobamos que el dni esté bien escrito
+        if(Formu.foto.value.length > 0 && !comprobarExtension(Formu.foto) ){//comprobamos que la extension esté bien escrita
             Formu.DNI.style.border = "2px solid red";
+            correcto = false;
+        } 
+    return correcto;
+}
+
+
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarProductosSearch(Formu){
+    var correcto=true; 
+
+        if(!comprobarAlfabeticoVacio(Formu.titulo, 50)){//comprobamos que el nombre esté bien escrito
+            Formu.titulo.style.border = "2px solid red";
+            correcto = false;
+        } 
+        if(!comprobarAlfabeticoVacio(Formu.descripcion, 200)){//comprobamos que la contraseña esté bien escrito
+            Formu.descripcion.style.border = "2px solid red";
+            correcto = false;
+        } 
+    return correcto;
+}
+
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarCategoria(Formu){
+    var correcto=true; 
+
+        if(!comprobarAlfabeticoVacio(Formu.nombre, 50)){//comprobamos que el nombre esté bien escrito
+            Formu.titulo.style.border = "2px solid red";
+            correcto = false;
+        } 
+    return correcto;
+}
+
+
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarCategoriasSearch(Formu){
+    var correcto=true; 
+
+        if(!comprobarAlfabeticoVacio(Formu.nombre, 50)){//comprobamos que el nombre esté bien escrito
+            Formu.titulo.style.border = "2px solid red";
             correcto = false;
         } 
     return correcto;
