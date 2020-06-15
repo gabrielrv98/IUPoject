@@ -21,7 +21,7 @@
 	<script type="module" src='../View/js/cambioIdioma.js'></script>
 	<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 </head>
-<body onload="traducirIU2('');">
+<body onload="traducirIU('');">
 <header class="MainHeader">
 	<div>
 		<p style="text-align:center">
