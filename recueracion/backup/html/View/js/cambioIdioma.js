@@ -1,6 +1,6 @@
     
-    /*Clase : estilo.css
-//Creado el : 2-10-2019
+    /*Clase : cambioIdioma.js
+//Creado el : 2-06-20
 //Creado por: grvidal
 //Función: traducirIU
     //Descripción: recorre el array correspondiente al idioma elegido y traduce

@@ -1,4 +1,4 @@
--- jrodeiro - 7/10/2017
+-- gabrielrv - 1/06/2020
 -- script de creación de la bd, usuario, asignación de privilegios a ese usuario sobre la bd
 -- creación de tabla e insert sobre la misma.
 --
@@ -87,6 +87,8 @@ CREATE TABLE IF NOT EXISTS `PRODUCTOS` (
 `VENDEDOR_DNI` varchar(9) NOT NULL,
 
 --`ORIGEN` enum('fabricado_a_mano','cultivado') NOT NULL,
+
+--`HORAS_UNIDADES` int NOT NULL,
 
 `ESTADO` enum('tramite','vendido') DEFAULT 'tramite' NOT NULL,
 

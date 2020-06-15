@@ -116,7 +116,7 @@ function SEARCH()
 
     $sql = $sql . " )";
     $toRet = $this->mysqli->query($sql);
-    return $toRet ? $toRet : 'Error de gestor de base de datos';
+    return $toRet ? $toRet : '00004';
 }
 
 // se recojen todas las tuplas de la base de datos y se pasan como array
@@ -160,7 +160,7 @@ function RellenaDatos()
 
 
 	$toRet = $this->mysqli->query($sql);
-	return $toRet ? $toRet->fetch_array() : 'Error de gestor de base de datos';
+	return $toRet ? $toRet->fetch_array() : '00015';
 }
 
 

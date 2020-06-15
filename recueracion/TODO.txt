@@ -16,9 +16,7 @@ cambiar menu lateral por superior
 
 añadir origen a PRODUCTO
 PRODUCTOS no actualiza $_REQUEST['foto']
-validacionesNew descripcion del producto puede contener \n
 
-acabar modelo Producto (devolver los codigos adecuados)
 acabar comentarios y marca horaria
 
 //categorias

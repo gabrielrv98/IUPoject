@@ -1,6 +1,6 @@
     
-    /*Clase : estilo.css
-//Creado el : 2-10-2019
+    /*Clase : cambioIdioma.js
+//Creado el : 2-06-20
 //Creado por: grvidal
 //Función: traducirIU
     //Descripción: recorre el array correspondiente al idioma elegido y traduce
@@ -9,7 +9,7 @@
     //parámetros en el evento onload del body).
 //-------------------------------------------------------*/
     
-    function traducirIU2(idioma='') {
+    function traducirIU(idioma) {
       const arraySPANISH = require('./strings_SPANISH');
       const arrayENGLISH = require('./strings_ENGLISH');
       const arrayGALLAECIAN = require('./Strings_GALLAECIAN');
