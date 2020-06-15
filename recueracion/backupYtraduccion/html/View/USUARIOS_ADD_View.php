@@ -14,8 +14,6 @@
 		}
 
 		function render(){
-
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; 
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
@@ -23,11 +21,11 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="addUser"><?php echo $strings['addUser']; ?></h1>	
+			<h1 class="addUser">Añadir usuario</h1>	
 			<form name = 'Form' action='../Controller/USUARIOS_Controller.php?action=ADD' method='post' onsubmit="return comprobarUsuarios(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">
-				 	<label for="login" class="Login"><?php echo $strings['Login'] ?> </label>  
+				 	<label for="login" class="Login">Login </label>  
 				 	<input class="form-control" type = 'text' name = 'login' id = 'login' placeholder = 'Utiliza tu login' size = '10' onblur="comprobarAlfabetico(this,15);" required>
 				 	<label class="errormsg letrasynumeros" for="login" id="login_error" > <?php echo $strings['letrasynumeros'] ?> </label>
 				 	<label class="errormsg tooShortNoNum" for="login" id="login_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
@@ -109,8 +107,8 @@
 				<div class="form-group">
 				 	<label for="tipo_usuario" class="tipo_usuario"><?php echo $strings['tipo_usuario']; ?></label>
 				 	<select name="tipo_usuario" required>
-    						<option value="admin" class="admin"> <?php echo $strings['admin'] ; ?></option>
-    						<option value="usuario" class="usuario"> <?php echo $strings['usuario'] ; ?></option>
+    						<option value="admin" class="admin">Administrador</option>
+    						<option value="usuario" class="usuario"> Usuario</option>
 					</select>
 
 				 	<label class="errormsg tipo_usuarioError" for="tipo_usuario" id="tipo_usuario_error" > <?php echo $strings['tipo_usuarioError'] ?> </label>
@@ -118,9 +116,9 @@
 
 				<div class="form-group">
 				 	<label for="activado" class="activado"><?php echo $strings['activado']; ?></label>
-				 	<select name="activado" required>
-    						<option value="activado" class="activado"> <?php echo $strings['activado'] ; ?></option>
-    						<option value="desactivado" class="desactivado"> <?php echo $strings['desactivado'] ; ?></option>
+				 	<select name="activado" id="activado" required>
+    						<option value="activado" class="activado"> Activado</option>
+    						<option value="desactivado" class="desactivado"> Desctivado </option>
 					</select>
 
 				 	<label class="errormsg activadoError" for="activado" id="activado_error" > <?php echo $strings['activadoError'] ?> </label>

@@ -72,6 +72,9 @@ const arraySPANISH =  {
       'dirError' : 'solo puede contener letras, numeros y los símbolos  “- / º ª.',
       'errorIn' : 'Error en',
       'menuBut open' : '&#9776;Abrir',
+      'tipo_usuarioError' : 'El tipo de usuario tiene que ser admin o usuario',
+      'dirError' : 'La direccion contiene algun error, solo letras, numeros, comas y \'º\'',
+      'tooShortNoNum' : 'Necesita al menos 3 caracteres',
 
       // Header
       'Intercambio de tiempo' : 'Intercambio de tiempo',
@@ -81,7 +84,7 @@ const arraySPANISH =  {
       'cp' : 'Codigo postal',
       'direccion' : 'Direccion',
       'errorCP' : 'Solo esta permitido un codigo postal valido compuesto por 5 digitos.',
-      'Gestion_Usuarios' : 'Gestion de usuarios',
+      'Gestión Usuarios' : 'Gestion de usuarios',
       'tipo_usuario' :'Tipo de usuario',
       'Usuario_no_autenticado' : 'Usuario no autenticado',
       'Login' : 'Login',
@@ -93,11 +96,23 @@ const arraySPANISH =  {
       'bDate' : 'Fecha de nacimiento',
       'idioma' : 'Idioma',
       'Usuario' : 'Usuario',
+      'admin' : 'Administrador',
+      'Usuario' : 'Usuario / Cliente',
+      'activado': 'Activado',
+      'desactivado' : 'Desactivado',
+      'activadoError' : 'El usuario solo puede estar activado o desactivado',
+      'todoTipo' : 'Cualquier tipo',
+      'ofertas' : 'Ofertas activas',
+      'transacciones' : 'Transacciones realizadas',
 
       //Index View
       'indexTitle' : 'Bienvenido a Intercambio de tiempo',
       'indexDescrip' :'Aqui puedes buscar ofertas para inercambiarlas por otras ofertas tuyas, puden ser productos hechos a mano o cultivados o incluso trabajo fisico!',
       'IndexViewLink' : 'Pagina principal',
+
+      //noPermiso
+      'noPermisoT' : 'No tienes permiso para estar aqui',
+      'noTienesPermiso' : 'Lo lamento pero no tienes permiso para estar aqui :D, por favor vuelve a la pagina principal',
 
       //Pie de pagina
       'hoyes' : 'Hoy es',
@@ -112,6 +127,7 @@ const arraySPANISH =  {
     'descripcionProducto' : 'Descripcion del producto',
     'eliminarProducto' : 'Eliminar producto',
     'fotoProducto' : 'Foto del producto',
+    'disponibilidad' : 'Disponibilidad',
 
     //Gestion de categorias
     'Gestión Categorias' : 'Gestion de categorias',
@@ -143,7 +159,7 @@ const arraySPANISH =  {
     '00013' : '00013 Error en el registro en la base de datos',
     '00014' : '00014 Registro realizado con éxito',
     '00015' : '00015 Error de gestor de base de datos en RellenaDatos',
-    '00016' : '00016 Error inseperado en ADD',
+    '00016' : '00016 Error inesperado en ADD',
     'vendedorDNI' : 'DNI del vendedor',
     'vendedorDNIError' : 'El DNI no coincide con ningun usuario actual',
     'persona' :'Persona asociada',

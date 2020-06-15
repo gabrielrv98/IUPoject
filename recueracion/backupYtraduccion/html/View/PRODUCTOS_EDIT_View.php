@@ -16,8 +16,6 @@
 		}
 
 		function render(){
-
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; 
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
@@ -41,14 +39,14 @@
 				<div class="form-group">
 				 	<label for="descripcion" class="descripcionProducto"><?php echo $strings['descripcionProducto'] ?> </label>
 				 	<br> 
-				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabetico(this,200)"  rows="5" required ><?php echo $this->valores['DESCRIPCION']; ?> </textarea> 
+				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoEnter(this,200)"  rows="5" required ><?php echo $this->valores['DESCRIPCION']; ?> </textarea> 
 				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
 				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
 				</div>&nbsp;
 
 
 				<div class="form-group">
-					<img src="<?php echo $this->valores['FOTO'];?>" height="42" width="42">
+					<img src="<?php echo $this->valores['FOTO'];?>" height="42" width="42"><br>
 				 	<label for="foto" class="picture"><?php echo $strings['picture'] ?>  </label><br>
 				 	<input type = 'file' name = 'foto' id = 'foto' onchange="comprobarExtension(this)" > 
 				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>

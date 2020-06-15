@@ -70,16 +70,22 @@ const arrayENGLISH =  {
       'onlynumbers' : 'only numbers allowed.',
       'dirError' : 'only letters, numbers and "- / º ª" are allowed.',
       'errorIn' : 'Error in',
+      'vendedorDNIError' : 'The DNI does not match any current user',
+      'estadoError' : 'Status can only be available or sold',
+      'tipo_usuarioError' : 'User type must be admin or user',
+      'dirError' : 'The address contains an error, only letters, numbers, commas and \'º\'',
+      'tooShortNoNum' : 'You need at least 3 characters',
+
+
       'open' : '&#9776;Open',
-      'Campus' : 'Campus',
       'ISesion' : 'Log in',
-      'Area' : 'Area',
       'Volver' : 'Back',
 
       // Header
       'Intercambio de tiempo' : 'Time exchange',
 
       //Usuarios
+      'tipo_usuario' :'User type',
       'Login' : 'Login', 
       'password' : 'Password',
       'name' : 'Name',
@@ -93,11 +99,23 @@ const arrayENGLISH =  {
       'cp' : 'Postal Code',
       'direccion' : 'Address',
       'errorCP' : 'Only allowed a valid postal code formed by 5 digits',
+      'admin' : 'Administrator',
+      'Usuario' : 'User / Client',
+      'activado': 'Activated',
+      'desactivado' : 'Desctivated',
+      'activadoError' : 'User can only be enabled or disabled',
+      'todoTipo' : 'Any type',
+      'ofertas' : 'Active offers',
+      'transacciones' : 'Transactions made',
 
       //Index View
       'indexTitle' : 'Welcome to Time exchange',
       'indexDescrip' :'Here you can search offers to exchange them for other of yours, it can be handmade products or cultivated, it can even be physical work!',
       'IndexViewLink' : 'Main page',
+
+      //noPermiso
+      'noPermisoT' : 'You don\'t have permission to be here',
+      'noTienesPermiso' : 'I\'m sorry but you don\'t have permission to be here: D, please come back to the Main page',
 
       //Pie de pagina
       'hoyes' : 'Today is',
@@ -112,47 +130,51 @@ const arrayENGLISH =  {
     'descripcionProducto' : 'Product description',
     'eliminarProducto' : 'Delete product',
     'fotoProducto' : 'Product picture',
+    'vendedorDNI' : 'seller\'s ID',
+    'persona' :'Associated person',
+    'tramite' : 'Available',
+    'vendido' : 'Sold',
+    'estado' : 'State',
+    'indiferente' : 'Indifferent',
+    'yo' : 'Yo',
+    'disponibilidad' : 'Availability',
 
     //Gestion de categorias
     'Gestión Categorias' : 'Category manager',
     'addCategoria' : 'New category',
     'nombreCategoria' : 'Category name',
     'editCategoria' : 'Edit category',
-    'idCategoria' : 'Category ID',
     'productosEnCategoria' : 'Products in this category',
+    
 
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Products-Categories manager',
-    'idCategoria' : 'Id categorY',
+    'idCategoria' : 'Id category',
     'idProducto' : 'Id product',
 
 
     //codigos de error
-    '00001' : '00001 Insert failure, element already exists',
-    '00002' : '00002 Insercion realizada con exito',
-    '00003' : '00003 Error de gestor de base de datos en ADD',
-    '00004' : '00004 Error de gestor de base de datos en SEARCH',
-    '00005' : '00005 Borrado realizada con exito',
-    '00006' : '00006 Error de gestor de base de datos en DELETE',
-    '00007' : '00007 Actualización realizada con éxito',
-    '00008' : '00008 Error de gestor de base de datos en EDIT',
-    '00009' : '00009 El login no existe',
-    '00010' : '00010 La password para este usuario no es correcta',
-    '00011' : '00011 Login correcto',
-    '00012' : '00012 El usuario ya existe',
-    '00013' : '00013 Error en el registro en la base de datos',
-    '00014' : '00014 Registro realizado con éxito',
-    '00015' : '00015 Error de gestor de base de datos en RellenaDatos',
-    '00016' : '00016 Error inseperado en ADD',
-    'vendedorDNI' : 'DNI del vendedor',
-    'vendedorDNIError' : 'El DNI no coincide con ningun usuario actual',
-    'persona' :'Persona asociada',
-    'estado' : 'Estado',
-    'estadoError' : 'El estado solo puede ser disponible o vendido',
-    'tramite' : 'Disponible',
-    'vendido' : 'Vendido',
-    'indiferente' : 'Indiferente',
-    'yo' : 'Yo'
+    '00001' : '00001 Insertion failed, element already exists',
+    '00002' : '00002 Insertion done successfully',
+    '00003' : '00003 Database manager error in ADD',
+    '00004' : '00004 Database manager error in SEARCH',
+    '00005' : '00005 Deletion done successfully',
+    '00006' : '00006 Database manager error in DELETE',
+    '00007' : '00007 Update done successfully',
+    '00008' : '00008 Database manager error in EDIT',
+    '00009' : '00009 The login does not exist',
+    '00010' : '00010 The password for this user is not correct',
+    '00011' : '00011 Login correct',
+    '00012' : '00012 User already exists',
+    '00013' : '00013 Registration failed in database',
+    '00014' : '00014 Registration completed successfully',
+    '00015' : '00015 Database manager error in RellenaDatos',
+    '00016' : '00016 Unexpected error in ADD'
+
+
+    
+    
+    
      };
 
       export { arrayENGLISH };

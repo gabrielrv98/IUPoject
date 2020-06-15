@@ -7,9 +7,6 @@ class MESSAGE{
 	private $stringA;
 
 	function __construct($stringM, $volver){
-		
-		//session_start();
-		include '../Locale/Strings_'. htmlspecialchars($_COOKIE["idioma"]) .'.php';
 
 		$this->volver = $volver;	
 		$this->string = $stringM;

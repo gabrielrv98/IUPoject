@@ -8,8 +8,6 @@
 		}
 
 		function render(){
-
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
 		?>
 		<head>
 			

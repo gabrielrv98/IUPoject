@@ -13,7 +13,6 @@
 		}
 
 		function render(){
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
 		?>
 			<head>
 				<link rel="stylesheet" type="text/css" href="../View/css/estilo.css">
@@ -22,11 +21,11 @@
 
 			<?php include '../View/Header.php'; //header necesita los strings ?>
 			
-			<h1><?php echo $strings['searchUser']; ?></h1>	
+			<h1 class="searchUser"></h1>	
 			<form name = 'Form' action='../Controller/USUARIOS_Controller.php?action=SEARCH' method='post' onsubmit=" return comprobarUsuarioSearch(this)" enctype="multipart/form-data">
 
 				<div class="form-group">
-				 	<label for="login"><?php echo $strings['Login'] ?> </label>  
+				 	<label for="login" class="Login">Login </label>  
 				 	<input class="form-control" type = 'text' name = 'login' id = 'login' placeholder = 'Utiliza tu login' size = '10' onblur="comprobarAlfabeticoVacio(this,15);">
 				 	<label class="errormsg" for="login" id="login_error" > <?php echo $strings['letrasynumeros'] ?> </label>
 				</div>&nbsp;&nbsp;

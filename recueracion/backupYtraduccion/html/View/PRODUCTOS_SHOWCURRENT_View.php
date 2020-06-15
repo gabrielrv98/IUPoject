@@ -16,9 +16,7 @@ class PRODUCTOS_SHOWCURRENT {
 		$this->render();
 	}
 
-	function render(){
-	
-		include_once '../Locale/Strings_' . $_SESSION['idioma'] . '.php';  
+	function render(){ 
 		?>
 		
 		<head>

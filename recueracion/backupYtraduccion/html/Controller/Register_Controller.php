@@ -6,7 +6,6 @@
 //-------------------------------------------------------
 
 session_start();
-include_once '../Locale/Strings_'.$_SESSION['idioma'].'.php';
 
 //session_start();
 if(!isset($_POST['login'])){// si la variable login no existe se muestra la interfaz de registro

@@ -12,10 +12,10 @@
 			include '../View/Header.php'; 
 ?>
 		<head>
-			<title> <?php echo $strings['Intercambio de tiempo']; ?> </title>
+			<title class="Intercambio de tiempo"> Intercambio de tiempo </title>
 		</head>
 
-			<h1 class="ISesion"><?php echo $strings['ISesion']; ?></h1>	 
+			<h1 class="ISesion">Inicio</h1>	 
 			<form name = 'Form' action='../Controller/Login_Controller.php' method='post' onsubmit="return comprobar_login();">
 		
 				 	<div class="form-group">

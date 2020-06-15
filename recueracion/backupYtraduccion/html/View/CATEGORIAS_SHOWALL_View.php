@@ -16,8 +16,7 @@ class CATEGORIAS_SHOWALL {
 	}
 
 	function render(){
-	
-		include_once '../Locale/Strings_' . $_SESSION['idioma'] . '.php';  
+
 		?>
 		
 		<head>
@@ -30,7 +29,7 @@ class CATEGORIAS_SHOWALL {
 					$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');//Recuperamos el usuario que esta operando ?>
 
 		
-		<h1 class="TShowAll"><?php echo $strings['TShowAll']; ?></h1>
+		<h1 class="TShowAll"></h1>
 		<?php 
 				if($usuario->isAdmin()){ // si el usuario es administrador puede añadir categorias
 					?>

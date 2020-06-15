@@ -18,8 +18,6 @@
 		}
 
 		function render(){
-
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
 		?>
 			<head>
 				<title class="Tedit"> <?php echo $strings['Tedit']; ?> </title>
@@ -28,7 +26,7 @@
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 		
 			<body>
-				<h1 class="editUseri"><?php echo $strings['editUser']; ?></h1>	
+				<h1 class="editUser"><?php echo $strings['editUser']; ?></h1>	
 				<form name = 'Form' action='../Controller/USUARIOS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarUsuarios(this);" enctype="multipart/form-data">
 
 					<div class="form-group">
@@ -100,8 +98,8 @@
 					<div class="form-group">
 					 	<label for="sexo" class="sexo"><?php echo $strings['sexo'] ?>  </label>
 					 	<select name="sexo" required>
-	    							<option class="male" value="hombre"  <?php if($this->valores['sexo'] == "hombre") echo 'selected'; ?> > <?php echo $strings['male'] ; ?></option>
-	    							<option class="female" value="mujer" <?php if($this->valores['sexo'] == "mujer") echo 'selected'; ?> > <?php echo $strings['female'] ; ?></option>
+	    							<option class="male" value="hombre"  <?php if($this->valores['SEXO'] == "hombre") echo 'selected'; ?> > <?php echo $strings['male'] ; ?></option>
+	    							<option class="female" value="mujer" <?php if($this->valores['SEXO'] == "mujer") echo 'selected'; ?> > <?php echo $strings['female'] ; ?></option>
 								</select>
 								<label class="errormsg" for="sexo" id="sexo_error" > <?php echo $strings['sexoError'] ?> </label>
 					</div>&nbsp;&nbsp;

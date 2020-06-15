@@ -15,8 +15,6 @@
 		}
 
 		function render(){
-
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; 
 		?>
 			<head>
 				<link rel="stylesheet" type="text/css" href="../css/estilo.css"> 
@@ -24,7 +22,7 @@
 			</head> 
 
 			<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="deleteUser"><?php echo $strings['deleteUser']; ?></h1>	
+			<h1 class="deleteUser">Eliminar usuario</h1>	
 			<form name = 'Form' action='../Controller/USUARIOS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarUsuarios(this);">
 
 

@@ -17,8 +17,7 @@ class USUARIOS_SHOWALL {
 	}
 
 	function render(){
-	
-		include_once '../Locale/Strings_' . $_SESSION['idioma'] . '.php';  
+	  
 		?>
 		
 		<head>
@@ -29,7 +28,7 @@ class USUARIOS_SHOWALL {
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
 		
-		<h1 class="TShowAll"><?php echo $strings['TShowAll']; ?></h1>
+		<h1 class="TShowAll"></h1>
 		<a href = '../Controller/USUARIOS_Controller.php?action=ADD' style="color:#FFFFFF;">
 			<img src='../View/icon/adduser.ico'>
 		</a>

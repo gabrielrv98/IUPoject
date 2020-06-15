@@ -14,8 +14,6 @@
 		}
 
 		function render(){
-
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; 
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
@@ -56,7 +54,7 @@
 				
 
 				<div class="form-group">
-				 	<label for="estado" class="persona"><?php echo $strings['persona'] ?>  </label>
+				 	<label for="estado" class="disponibilidad">Disponibilidad </label>
 				 	<select name="estado" >
 						<option value="" class="indiferente" selected> <?php echo $strings['indiferente'] ; ?></option>
 						<option value="tramite" class="tramite" > <?php echo $strings['tramite'] ; ?></option>

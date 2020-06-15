@@ -133,13 +133,25 @@ function SEARCH()
 
 	    	$sql = $sql . "direccion LIKE '%" .$this->direccion. "%'";
 	    }
-
-	    if ( $this->cp != '' ){
+		if ( $this->cp != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
 	    	$sql = $sql . "codigo_postal LIKE '%" .$this->cp. "%'";
 	    }
+	    if ( $this->tipo_usuario != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "TIPO_USUARIO LIKE '%" .$this->tipo_usuario. "%'";
+	    }
+	    if ( $this->activado != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "ACTIVADO LIKE '%" .$this->activado. "%'";
+	    }
+
 
 	    if (!$or) $sql = $sql . '1';
 
@@ -392,7 +404,7 @@ function Register(){
 							)";
 
 				include '../Model/BD_logger.php';//se incluye el archivo con el log
-				$_SESSION['login'] = $this->login;
+				if( !isset($_SESSION['login'])) $_SESSION['login'] = $this->login;
 				if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
 					return '00013';
 				}

@@ -19,17 +19,16 @@ class USUARIOS_SHOWCURRENT {
 
 	function render(){
 	
-		include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; 
 
 		?>
 		<head>
-			<title><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-		<h1> <?php echo $strings['TShowC']; ?> </h1>
+		<h1 class="TShowC"> <?php echo $strings['TShowC']; ?> </h1>
 		<table border="1">
 			<th class="Login">
 				<?php echo $strings['Login']; ?>

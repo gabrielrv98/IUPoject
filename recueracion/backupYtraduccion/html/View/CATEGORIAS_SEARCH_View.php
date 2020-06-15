@@ -12,9 +12,7 @@
 			$this->render();
 		}
 
-		function render(){
-
-			include '../Locale/Strings_' . $_SESSION['idioma'] . '.php'; 
+		function render(){ 
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 

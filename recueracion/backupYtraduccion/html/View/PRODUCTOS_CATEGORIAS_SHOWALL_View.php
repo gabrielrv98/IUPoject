@@ -16,8 +16,6 @@ class CATEGORIAS_SHOWALL {
 	}
 
 	function render(){
-	
-		include_once '../Locale/Strings_' . $_SESSION['idioma'] . '.php';  
 		?>
 		
 		<head>

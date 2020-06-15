@@ -177,7 +177,7 @@ array(
 	'errorIn' => 'Error en',
 	'open' => '&#9776;Abrir',
 
-
+//desde aqui
 	'ISesion' =>'Escribe tu usuario y Contraseña',
 	'alergias' => 'Alergias',
 	'cp' => 'Codigo postal',
@@ -202,6 +202,7 @@ array(
     'ofertas' => 'Ofertas activas',
     'transacciones' => 'Transacciones realizadas',
     'IndexViewLink' => 'Pagina principal',
+
 
     //Gestion de productos
     'Gestión Productos' => 'Gestion de los productos',

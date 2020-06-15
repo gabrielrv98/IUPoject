@@ -13,7 +13,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>
-		<?php echo $strings['Intercambio de tiempo']; ?> 
+		Intercambio de tiempo
 	</title>
 	<script type="text/javascript" src="../View/js/validacionesNew.js"></script> 
 	<script type="module" src='../Locale/strings_SPANISH.js'></script>
@@ -48,7 +48,7 @@
 	if (IsAuthenticated()){
 ?>
 	<div>
-		<label class="Usuario"> <?php echo $strings['Usuario'] ?> </label> <label class="dosP">:</label> <label> <?php echo $_SESSION['login']; ?></label>
+		<label class="Usuario"> </label> <label class="dosP">:</label> <label> <?php echo $_SESSION['login']; ?></label>
 	</div>
 	<br>
 	<div width: 50%; align="right" style="margin-right:20px">
