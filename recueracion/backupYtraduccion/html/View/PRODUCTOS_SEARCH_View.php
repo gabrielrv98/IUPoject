@@ -17,7 +17,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tadd"> <?php echo $strings['Tadd']; ?></title>
+			<title class="Tsearch"> Buscar</title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings 

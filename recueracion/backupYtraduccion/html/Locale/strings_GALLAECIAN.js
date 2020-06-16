@@ -150,11 +150,13 @@ const arrayGALLAECIAN =  {
     'editCategoria' : 'Editar a categoria',
     'idCategoria' : 'ID da categoria',
     'productosEnCategoria' : 'Productos nesta categoria',
+    'idCategoriaError' :'Error na categoria',
 
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Xestion de produtos-categorias',
     'idCategoria' : 'Id categoria',
     'idProducto' : 'Id producto',
+    'addProdCate' : 'Añadir Producto-Categoria',
 
 
     //codigos de error

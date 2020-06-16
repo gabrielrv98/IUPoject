@@ -1,6 +1,6 @@
 ﻿<?php
 //Clase : Usuarios_Controller
-//Creado el : 4-06-2020
+//Creado el : 2-06-2020
 //Creado por: grvidal
 //Controla y administra las acciones enviadas por get
 //-------------------------------------------------------

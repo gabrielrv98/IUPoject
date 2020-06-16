@@ -145,12 +145,14 @@ const arrayENGLISH =  {
     'nombreCategoria' : 'Category name',
     'editCategoria' : 'Edit category',
     'productosEnCategoria' : 'Products in this category',
+    'idCategoriaError' :'Error in the category',
     
 
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Products-Categories manager',
     'idCategoria' : 'Id category',
     'idProducto' : 'Id product',
+    'addProdCate' : 'Add Product-Category',
 
 
     //codigos de error

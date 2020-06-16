@@ -136,11 +136,13 @@ const arraySPANISH =  {
     'editCategoria' : 'Editar la categoria',
     'idCategoria' : 'ID de la categoria',
     'productosEnCategoria' : 'Productos en esta categoria',
-
+    'idCategoriaError' :'Error en la categoria',
+    
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Gestion de produtos-categorias',
     'idCategoria' : 'Id categoria',
     'idProducto' : 'Id producto',
+    'addProdCate' : 'Añadir Producto-Categoria',
 
 
     //codigos de error

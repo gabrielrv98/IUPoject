@@ -1,6 +1,6 @@
 ﻿<?php
-//Clase : Usuarios_Controller
-//Creado el : 8-06-2020
+//Clase : PRODUCTOS_CATEGORIAS_CONTROLLER
+//Creado el : 10-06-2020
 //Creado por: grvidal
 //Controla y administra las acciones enviadas por get
 //-------------------------------------------------------
@@ -17,10 +17,10 @@
 	include_once '../Model/PRODUCTOS_CATEGORIAS_Model.php';
 	//include '../View/PRODUCTOS_CATEGORIAS_SHOWCURRENT_View.php';
 	include '../View/PRODUCTOS_CATEGORIAS_SHOWALL_View.php';   
-	//include '../View/PRODUCTOS_CATEGORIAS_SEARCH_View.php';   
+	include '../View/PRODUCTOS_CATEGORIAS_SEARCH_View.php';   
 	//include '../View/PRODUCTOS_CATEGORIAS_DELETE_View.php';	 
 	//include '../View/PRODUCTOS_CATEGORIAS_EDIT_View.php';   
-	//include '../View/PRODUCTOS_CATEGORIAS_ADD_View.php';   
+	include '../View/PRODUCTOS_CATEGORIAS_ADD_View.php';   
 	include '../View/MESSAGE_View.php';
 	include '../View/noPermiso.php';
 	
@@ -48,7 +48,15 @@
 		Switch ($_REQUEST['action']){
 			case 'ADD':
 					if (!$_POST){ // se incoca la vista de add de usuarios
-						new PRODUCTOS_CATEGORIAS_ADD();
+						include_once '../Model/CATEGORIAS_Model.php';
+						$datosCategorias = new CATEGORIAS_Model('','');
+						$datosCategorias = $datosCategorias->SEARCH();// se recogen todas las categorias con su nombre
+
+						include_once '../Model/PRODUCTOS_Model.php';
+						$datosProductos = new PRODUCTOS_Model('','','','','','');
+						$datosProductos = $datosProductos->SEARCH();// se recogen todos los productos con su nombre
+
+						new PRODUCTOS_CATEGORIAS_ADD($datosCategorias,$datosProductos);
 					}
 					else{
 						$PRODUCTOS_CATEGORIAS = get_data_form(); //se recogen los datos del formulario

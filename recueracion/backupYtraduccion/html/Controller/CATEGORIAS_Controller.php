@@ -1,5 +1,5 @@
 ﻿<?php
-//Clase : Usuarios_Controller
+//Clase : CATEGORIAS_Controller
 //Creado el : 8-06-2020
 //Creado por: grvidal
 //Controla y administra las acciones enviadas por get

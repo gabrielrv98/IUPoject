@@ -15,7 +15,7 @@
 	<title>
 		Intercambio de tiempo
 	</title>
-	<script type="text/javascript" src="../View/js/validacionesNew.js"></script> 
+	<script type="text/javascript" src="../View/js/validaciones.js"></script> 
 	<script type="module" src='../Locale/strings_SPANISH.js'></script>
 	<script type="module" src='../Locale/strings_ENGLISH.js'></script>
 	<script type="module" src='../Locale/strings_GALLAECIAN.js'></script>
@@ -51,7 +51,7 @@
 		<label class="Usuario"> </label> <label class="dosP">:</label> <label> <?php echo $_SESSION['login']; ?></label>
 	</div>
 	<br>
-	<div width: 50%; align="right" style="margin-right:20px">
+	<div width: 50%; align="left" style="margin-left:20px">
 		<a href='../Functions/Desconectar.php'>
 			<img src='../View/icon/exit.ico'>
 		</a>
