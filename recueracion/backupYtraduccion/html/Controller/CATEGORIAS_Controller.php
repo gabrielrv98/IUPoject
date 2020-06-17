@@ -100,8 +100,13 @@
 
 			case 'SHOWCURRENT':
 				$CATEGORIAS = new CATEGORIAS_Model($_REQUEST['id'],''); // Se crea el objeto
-				$valores = $CATEGORIAS->RellenaDatos();
-				new CATEGORIAS_SHOWCURRENT($valores);
+				$valores = $CATEGORIAS->RellenaDatos();//se rellenan los datos
+
+				include_once '../Model/PRODUCTOS_CATEGORIAS_Model.php';
+				$productos = new PRODUCTOS_CATEGORIAS_Model('',$_REQUEST['id']);
+				$productos = $productos->getProductos();//devuelve los productos en dicha categoria
+
+				new CATEGORIAS_SHOWCURRENT($valores,$productos);
 				break;
 
 			default:

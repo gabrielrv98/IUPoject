@@ -212,6 +212,18 @@ function getCategorias()
 	return $this->mysqli->query($sql);
 }
 
+// funcion getProductos: devuevle los productos a partir del id de la categoria
+function getProductos()
+{
+
+	$sql = "SELECT ID_PRODUCTO, PRODUCTOS.TITULO
+				FROM PRODUCTOS_CATEGORIAS
+				INNER JOIN PRODUCTOS ON PRODUCTOS_CATEGORIAS.ID_PRODUCTO = PRODUCTOS.ID
+				WHERE ( ID_CATEGORIA = '".$this->idCategoria."') ";
+
+	return $this->mysqli->query($sql);
+}
+
 
 }//fin de clase
 

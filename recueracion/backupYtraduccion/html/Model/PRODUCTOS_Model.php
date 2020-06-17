@@ -208,7 +208,7 @@ function getFoto(){
 	return $resultado['FOTO'];
 }
 
-//funcion getFoto(): devuelve la ruta de la foto
+//funcion recoverID(): devuelve el ID del Prodcto subido
 function recoverID(){
 	$sql = "SELECT ID
 			FROM PRODUCTOS
@@ -222,6 +222,17 @@ function recoverID(){
 	$resultado = $this->mysqli->query($sql);
 	$resultado = $resultado-> fetch_array();
 	return $resultado['ID'];
+}
+
+//funcion getVendedorDNI(): devuelve el DNI del vendedor
+function getVendedorDNI(){
+	$sql = "SELECT VENDEDOR_DNI
+			FROM PRODUCTOS
+			WHERE (
+				ID = '$this->id')";
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	return $resultado['VENDEDOR_DNI'];
 }
 
 }//fin de clase

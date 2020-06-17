@@ -21,6 +21,7 @@
 	include '../View/MESSAGE_View.php';
 	include_once '../Model/PRODUCTOS_CATEGORIAS_Model.php';
 	include_once '../Model/CATEGORIAS_Model.php';
+	include_once '../View/noPermiso.php';
 	
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia PRODUCTOS y la devuelve
@@ -78,39 +79,45 @@
 				}
 				break;
 			case 'DELETE':
-				if (!$_POST){ //nos llega el id a eliminar por get
-					$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','');
-					$valores = $PRODUCTOS->RellenaDatos();
-					new PRODUCTOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
-				}
-				else{
-					$PRODUCTOS = get_data_form(); // llegan los datos confirmados por post y se eliminan
-					$fotoPath = $PRODUCTOS->getFoto();//recuperamos el path de la foto
-					$respuestaP = $PRODUCTOS->DELETE();//eliminamos al usuario
-					$respuesta = array($respuestaP); // se crea el array de las salidas
-
-					if($respuestaP == '00005'){// si la tupla se ha eliminado eliminamos tambien sus categorias asociadas
-						if ($fotoPath != '') {//si existe foto
-							unlink($fotoPath);// si la tupla se ha eliminado correctamente tambien se elimina la foto
-						}
-						
-
-						$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');// creamos el producto_categoria
-						$prodCat = $prodCat->getCategorias();//recuperamos todas las categorias del producto
-						foreach ($prodCat as $key) {// para categoria del producto se hace un DELETE
-							$actual = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$key['ID_CATEGORIA']);//creamos la clase que vamos a eliminar
-							array_push($respuesta, $actual->DELETE());//se almacena la salida en el array
-						}
+				$producto = new PRODUCTOS_Model($_REQUEST['id'],'','','','','');
+				if( $usuario->isAdmin() || $usuario->getDNI() == $producto->getVendedorDNI()){
+					if (!$_POST){ //nos llega el id a eliminar por get
+						$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','');
+						$valores = $PRODUCTOS->RellenaDatos();
+						new PRODUCTOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 					}
-					new MESSAGE($respuesta, '../Controller/PRODUCTOS_Controller.php');
-				}
+					else{
+						$PRODUCTOS = get_data_form(); // llegan los datos confirmados por post y se eliminan
+						$fotoPath = $PRODUCTOS->getFoto();//recuperamos el path de la foto
+						$respuestaP = $PRODUCTOS->DELETE();//eliminamos al usuario
+						$respuesta = array($respuestaP); // se crea el array de las salidas
+
+						if($respuestaP == '00005'){// si la tupla se ha eliminado eliminamos tambien sus categorias asociadas
+							if ($fotoPath != '') {//si existe foto
+								unlink($fotoPath);// si la tupla se ha eliminado correctamente tambien se elimina la foto
+							}
+							
+
+							$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');// creamos el producto_categoria
+							$prodCat = $prodCat->getCategorias();//recuperamos todas las categorias del producto
+							foreach ($prodCat as $key) {// para categoria del producto se hace un DELETE
+								$actual = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$key['ID_CATEGORIA']);//creamos la clase que vamos a eliminar
+								array_push($respuesta, $actual->DELETE());//se almacena la salida en el array
+							}
+						}
+						new MESSAGE($respuesta, '../Controller/PRODUCTOS_Controller.php');
+					}
+				}else new NoPermiso();
+				
 				break;
 
 			case 'EDIT':
+
 				if (!$_POST){ //nos llega el usuario a editar por get
-					$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','',''); // Se crea el objeto
+					$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','',''); // Se crea el objeto PRODUCTO
 					$valores = $PRODUCTOS->RellenaDatos(); // obtengo todos los datos de la tupla
-					$categorias = new CATEGORIAS_Model('','');
+
+					$categorias = new CATEGORIAS_Model('','');// Se crea el objeto CATEGORIAS
 					$categorias = $categorias->SEARCH();//recogemos todas las categorias
 
 					$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');
@@ -202,6 +209,8 @@
 
 				$PRODUCTOS = get_data_form();
 				$datos = $PRODUCTOS->SHOW_ALL();
+
+				//conseguir nombre para DNI
 				new PRODUCTOS_SHOWALL($datos);
 		}
 

@@ -13,11 +13,13 @@ php.exe dar permiso a logDB
 	resetear BD
 
 cambiar menu lateral por superior
+acabar comentarios y marca horaria
+revisar todos los h1 y vaciar
 
+//productos
 añadir origen a PRODUCTO
 PRODUCTOS no actualiza $_REQUEST['foto']
 
-acabar comentarios y marca horaria
 
 //categorias
 acabar showcurrent mostrar productos en las categorias
