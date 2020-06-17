@@ -55,11 +55,12 @@ function ADD()
 					'".$this->estado."'
 					)";
 
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
+		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
 		if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
 			return '00003';
-		}
-		else{
+
+		}else{
+
 			return '00002'; //operacion de insertado correcta
 		}
 
@@ -143,7 +144,7 @@ function DELETE()
    			FROM PRODUCTOS
    			WHERE ID = '$this->id'"; 
 
-   		include '../Model/BD_logger.php';//se incluye el archivo con el log
+   		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
    		//se reliza el log del delete	
    		if (writeAndLog($sql)) return '00005';
    			
@@ -186,7 +187,7 @@ function EDIT()
 				ESTADO = '$this->estado'
 
 			WHERE (ID = '$this->id')";
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
+		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
 		$result = writeAndLog($sql); // se realiza el log
 
 		if($result = 1) return '00007';// si la actualizacion fue existosa
@@ -205,6 +206,22 @@ function getFoto(){
 	$resultado = $this->mysqli->query($sql);
 	$resultado = $resultado-> fetch_array();
 	return $resultado['FOTO'];
+}
+
+//funcion getFoto(): devuelve la ruta de la foto
+function recoverID(){
+	$sql = "SELECT ID
+			FROM PRODUCTOS
+			WHERE (
+				TITULO = '$this->titulo' AND
+				 DESCRIPCION = '$this->descripcion' AND
+				 FOTO = '$this->foto' AND
+				 VENDEDOR_DNI = '$this->vendedorDNI' AND
+				 ESTADO = '$this->estado' 
+			)";
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	return $resultado['ID'];
 }
 
 }//fin de clase

@@ -19,19 +19,21 @@
 	include '../View/PRODUCTOS_ADD_View.php';   
 	include_once '../Model/PRODUCTOS_Model.php';
 	include '../View/MESSAGE_View.php';
+	include_once '../Model/PRODUCTOS_CATEGORIAS_Model.php';
+	include_once '../Model/CATEGORIAS_Model.php';
 	
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia PRODUCTOS y la devuelve
 	function get_data_form(){
 
-		if (!isset($_SESSION['id'])) $_SESSION['id'] = null;
+		if (!isset($_REQUEST['id'])) $_REQUEST['id'] = null;
 		if (!isset($_REQUEST['titulo'])) $_REQUEST['titulo'] = null;
 		if (!isset($_REQUEST['descripcion'])) $_REQUEST['descripcion'] = null;
 		if (!isset($_REQUEST['foto'])) $_REQUEST['foto'] = null;
 		if (!isset($_REQUEST['vendedorDNI'])) $_REQUEST['vendedorDNI'] = null;
 		if (!isset($_REQUEST['estado'])) $_REQUEST['estado'] = null;
 
-		return new PRODUCTOS_Model($_SESSION['id'],$_REQUEST['titulo'],$_REQUEST['descripcion'],
+		return new PRODUCTOS_Model($_REQUEST['id'],$_REQUEST['titulo'],$_REQUEST['descripcion'],
 		$_REQUEST['foto'],$_REQUEST['vendedorDNI'],$_REQUEST['estado']);// se Crea el modelo de Producto
 
 	}
@@ -47,16 +49,31 @@
 
 		Switch ($_REQUEST['action']){
 			case 'ADD':
+				
 				if (!$_POST){ // se incoca la vista de add de productos
-					new PRODUCTOS_ADD();
+					
+					$categorias = new CATEGORIAS_Model('','');
+					$categorias = $categorias->SEARCH();//recogemos todas las categorias
+					new PRODUCTOS_ADD($categorias);
 				}
 				else{
-					echo var_dump($_REQUEST);
+					//echo var_dump($_REQUEST); falta las fotos
 					if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
 					if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
 					if( isset($_REQUEST['foto']) && $_REQUEST['foto'] != '' ) upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
 					$PRODUCTOS = get_data_form(); //se recogen los datos del formulario
-					$respuesta = $PRODUCTOS->ADD();
+					$respuestaP = $PRODUCTOS->ADD();// se añade el producto
+
+					$respuesta = array($respuestaP); // se crea el array de las salidas
+					if($respuestaP == '00002' && isset($_REQUEST['categorias'])){//el producto se ha añadido y hay categorias que asignar
+						
+						$id = $PRODUCTOS->recoverID();
+						foreach ($_REQUEST['categorias'] as $key ) {
+					 		$prodCat = new PRODUCTOS_CATEGORIAS_Model($id,$key);
+					 		array_push($respuesta, $prodCat->ADD());//se almacena la salida en el array
+					 	} 
+					}
+
 					new MESSAGE($respuesta, '../Controller/PRODUCTOS_Controller.php');
 				}
 				break;
@@ -66,13 +83,26 @@
 					$valores = $PRODUCTOS->RellenaDatos();
 					new PRODUCTOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 				}
-				else{ // llegan los datos confirmados por post y se eliminan
-					$PRODUCTOS = get_data_form();
-					$fotoPath = $PRODUCTOS->getFoto();
-					$respuesta = $PRODUCTOS->DELETE();
+				else{
+					$PRODUCTOS = get_data_form(); // llegan los datos confirmados por post y se eliminan
+					$fotoPath = $PRODUCTOS->getFoto();//recuperamos el path de la foto
+					$respuestaP = $PRODUCTOS->DELETE();//eliminamos al usuario
+					$respuesta = array($respuestaP); // se crea el array de las salidas
+
+					if($respuestaP == '00005'){// si la tupla se ha eliminado eliminamos tambien sus categorias asociadas
+						if ($fotoPath != '') {//si existe foto
+							unlink($fotoPath);// si la tupla se ha eliminado correctamente tambien se elimina la foto
+						}
+						
+
+						$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');// creamos el producto_categoria
+						$prodCat = $prodCat->getCategorias();//recuperamos todas las categorias del producto
+						foreach ($prodCat as $key) {// para categoria del producto se hace un DELETE
+							$actual = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$key['ID_CATEGORIA']);//creamos la clase que vamos a eliminar
+							array_push($respuesta, $actual->DELETE());//se almacena la salida en el array
+						}
+					}
 					new MESSAGE($respuesta, '../Controller/PRODUCTOS_Controller.php');
-					if($respuesta == '00005') unlink($fotoPath);
-					
 				}
 				break;
 
@@ -80,14 +110,68 @@
 				if (!$_POST){ //nos llega el usuario a editar por get
 					$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','',''); // Se crea el objeto
 					$valores = $PRODUCTOS->RellenaDatos(); // obtengo todos los datos de la tupla
-					new PRODUCTOS_EDIT($valores); //invoco la vista de edit con los datos precargados
+					$categorias = new CATEGORIAS_Model('','');
+					$categorias = $categorias->SEARCH();//recogemos todas las categorias
+
+					$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');
+					$prodCat = $prodCat->getCategorias();//recogemos todas las categorias a las que el producto ya pertenezca
+
+					new PRODUCTOS_EDIT($valores,$categorias,$prodCat); //invoco la vista de edit con los datos precargados
 				}
 				else{
 					if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
 					if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
 					if( isset($_REQUEST['foto']) && $_REQUEST['foto'] != '' ) upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
 					$PRODUCTOS = get_data_form(); //recojo los valores del formulario
-					$respuesta = $PRODUCTOS->EDIT(); // update en la bd 
+					$respuestaP = $PRODUCTOS->EDIT(); // update en la bd 
+					$respuesta = array($respuestaP);
+
+					if($respuestaP= '00007' ){//Si se ha actualizado exitosamente y hay alguna categoria
+						
+						if(isset($_REQUEST['categorias'])){// si hay alguna categoria seleccionada
+
+							//cogemos las viejas, las comparamos con las nuevas, las que no coinciden se hace delete
+							$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
+							$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
+
+							foreach ($prodCat as $oldCat) {//recorremos todas las categorias antiguas
+								$eliminar = true;// en principio se marca para eliminar
+								foreach ($_REQUEST['categorias'] as $newCat) {//recorremos las categorias nuevas
+									if($oldCat['ID_CATEGORIA'] == $newCat) $eliminar = false;// si la antigua esta entre las nuevas no se marca para eliminar
+								}
+								if($eliminar == true){//si esta marcada para eliminar se elimina
+									$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$oldCat['ID_CATEGORIA']);//creamos el objeto
+									array_push($respuesta, $aux->DELETE()); //se elimina desde el modelo
+								}
+								
+							}
+
+							//cogemos las nuevas, las comparamos con las viejas, las que no coinicden se hace add
+							foreach ($_REQUEST['categorias'] as $newCat) {//recorremos las categorias nuevas
+								$insertar = true;// en principio se marca para añadir
+								foreach ( $prodCat as $oldCat) {//recorremos todas las categorias antiguas
+									if($oldCat['ID_CATEGORIA'] == $newCat) $insertar = false;// si la nueva esta entre las antiguas no se marca para añadir
+								}
+								if($insertar == true){//si esta marcada para añadir se añade
+									$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$newCat);//creamos el objeto
+									array_push($respuesta, $aux->ADD()); //se añade desde el modelo
+								}
+								
+							}
+						}else{//si no hay ninguna categoria marcada se eliminan todas
+
+							$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
+							$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
+
+							foreach ($prodCat as $key) {
+								$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$key['ID_CATEGORIA']);//creamos el objeto
+								array_push($respuesta, $aux->DELETE()); //se eliminan desde el modelo
+							}
+						}
+					}
+
+					//control de añadir/eliminar las categorias
+
 					new MESSAGE($respuesta, '../Controller/PRODUCTOS_Controller.php');
 				}
 
@@ -107,7 +191,11 @@
 			case 'SHOWCURRENT':
 				$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','',''); // Se crea el objeto
 				$valores = $PRODUCTOS->RellenaDatos();
-				new PRODUCTOS_SHOWCURRENT($valores);
+
+				$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
+				$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
+
+				new PRODUCTOS_SHOWCURRENT($valores,$prodCat);
 				break;
 
 			default:

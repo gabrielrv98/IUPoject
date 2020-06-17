@@ -15,11 +15,11 @@
 	}
 
 	include_once '../Model/PRODUCTOS_CATEGORIAS_Model.php';
-	//include '../View/PRODUCTOS_CATEGORIAS_SHOWCURRENT_View.php';
+	include '../View/PRODUCTOS_CATEGORIAS_SHOWCURRENT_View.php';
 	include '../View/PRODUCTOS_CATEGORIAS_SHOWALL_View.php';   
 	include '../View/PRODUCTOS_CATEGORIAS_SEARCH_View.php';   
-	//include '../View/PRODUCTOS_CATEGORIAS_DELETE_View.php';	 
-	//include '../View/PRODUCTOS_CATEGORIAS_EDIT_View.php';   
+	include '../View/PRODUCTOS_CATEGORIAS_DELETE_View.php';	 
+	include '../View/PRODUCTOS_CATEGORIAS_EDIT_View.php';   
 	include '../View/PRODUCTOS_CATEGORIAS_ADD_View.php';   
 	include '../View/MESSAGE_View.php';
 	include '../View/noPermiso.php';
@@ -27,7 +27,7 @@
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia PRODUCTOS_CATEGORIAS y la devuelve
 	function get_data_form(){
-
+		
 		if (!isset($_REQUEST['idProducto'])) $_REQUEST['idProducto'] = null;
 		if (!isset($_REQUEST['idCategoria'])) $_REQUEST['idCategoria'] = null;
 
@@ -66,9 +66,8 @@
 
 				break;
 			case 'DELETE':
-				if( $usuario->isAdmin() ){// solo los administradores pueden añadir categorias
 					if (!$_POST){ //nos llega el id a eliminar por get
-						$PRODUCTOS_CATEGORIAS = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');
+						$PRODUCTOS_CATEGORIAS = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['idP'],$_REQUEST['idC']);
 						$valores = $PRODUCTOS_CATEGORIAS->RellenaDatos();
 						new PRODUCTOS_CATEGORIAS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 					}
@@ -77,27 +76,40 @@
 						$respuesta = $PRODUCTOS_CATEGORIAS->DELETE();
 						new MESSAGE($respuesta, '../Controller/PRODUCTOS_CATEGORIAS_Controller.php');
 					}
-				}else new noPermiso();// si no es admin se le muestra la ventana noPermiso	
 				break;
 
 			case 'EDIT':
-				if( $usuario->isAdmin() ){// solo los administradores pueden añadir categorias
 					if (!$_POST){ //nos llega el usuario a editar por get
-						$PRODUCTOS_CATEGORIAS = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],''); // Se crea el objeto
+						include_once '../Model/CATEGORIAS_Model.php';
+						$datosCategorias = new CATEGORIAS_Model('','');
+						$datosCategorias = $datosCategorias->SEARCH();// se recogen todas las categorias con su nombre
+
+						include_once '../Model/PRODUCTOS_Model.php';
+						$datosProductos = new PRODUCTOS_Model('','','','','','');
+						$datosProductos = $datosProductos->SEARCH();// se recogen todos los productos con su nombre
+
+						$PRODUCTOS_CATEGORIAS = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['idP'],$_REQUEST['idC']); // Se crea el objeto
 						$valores = $PRODUCTOS_CATEGORIAS->RellenaDatos(); // obtengo todos los datos de la tupla
-						new PRODUCTOS_CATEGORIAS_EDIT($valores); //invoco la vista de edit con los datos precargados
+						new PRODUCTOS_CATEGORIAS_EDIT($valores,$datosProductos,$datosCategorias); //invoco la vista de edit con los datos precargados
 					}
 					else{
 						$PRODUCTOS_CATEGORIAS = get_data_form(); //recojo los valores del formulario
 						$respuesta = $PRODUCTOS_CATEGORIAS->EDIT(); // update en la bd 
 						new MESSAGE($respuesta, '../Controller/PRODUCTOS_CATEGORIAS_Controller.php');
 					}
-				}else new noPermiso();// si no es admin se le muestra la ventana noPermiso	
 				break;
 
 			case 'SEARCH':
 				if (!$_POST){
-					new PRODUCTOS_CATEGORIAS_SEARCH();
+					include_once '../Model/CATEGORIAS_Model.php';
+						$datosCategorias = new CATEGORIAS_Model('','');
+						$datosCategorias = $datosCategorias->SEARCH();// se recogen todas las categorias con su nombre
+
+						include_once '../Model/PRODUCTOS_Model.php';
+						$datosProductos = new PRODUCTOS_Model('','','','','','');
+						$datosProductos = $datosProductos->SEARCH();// se recogen todos los productos con su nombre
+
+					new PRODUCTOS_CATEGORIAS_SEARCH($datosProductos, $datosCategorias);
 				}
 				else{
 					$PRODUCTOS_CATEGORIAS = get_data_form();
@@ -107,7 +119,7 @@
 				break;
 
 			case 'SHOWCURRENT':
-				$PRODUCTOS_CATEGORIAS = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],''); // Se crea el objeto
+				$PRODUCTOS_CATEGORIAS = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['idP'],$_REQUEST['idC']); // Se crea el objeto
 				$valores = $PRODUCTOS_CATEGORIAS->RellenaDatos();
 				new PRODUCTOS_CATEGORIAS_SHOWCURRENT($valores);
 				break;

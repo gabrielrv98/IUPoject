@@ -28,3 +28,6 @@ gestion productos
 MI PERFIL USER
 acabar UsuariosShowCurrent (msj y productos relativos)
 restringuir el acceso
+
+//productos categorias
+el js del submit no funciona bien

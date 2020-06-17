@@ -43,6 +43,45 @@ function comprobarAlfabeticoVacio(campo, size) {
     
 }
 
+/*Comprueba que sólo haya caracteres alfanuméricos o que esta vacio*/
+/*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
+function comprobarEntero(campo) {
+    var abc =/^[0-9]+$/;
+
+    if(!comprobarExpresionRegular(campo,abc,100)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
+         
+        return false;
+    }else if(comprobarVacio(campo)){// si el campo esta vacio no se acepta como valido
+            return false;
+    }else{
+
+    
+        campo.style.border = "2px solid green";
+        return true;
+    }
+}
+
+/*Comprueba que sólo haya caracteres alfanuméricos o que esta vacio*/
+/*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
+function comprobarEnteroVacio(campo) {
+    var abc =/^[0-9]+$/;
+
+    if(campo.value.length <= 0){// si el campo esta vacio se acepta como valido
+        
+        var elem = document.getElementById(campo.name+"_error");
+        if (elem != null) elem.style.visibility = "hidden";
+        campo.style.border = "2px solid green";
+        return true;
+
+    }else if(!comprobarExpresionRegular(campo,abc,100)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
+         
+        return false;
+    }else {
+        campo.style.border = "2px solid green";
+        return true;
+    }
+}
+
 
 
 /*Comprueba que sólo haya caracteres alfanuméricos y \n*/
@@ -567,7 +606,7 @@ function comprobarCategoria(Formu){
     var correcto=true; 
 
         if(!comprobarAlfabeticoVacio(Formu.nombre, 50)){//comprobamos que el nombre esté bien escrito
-            Formu.titulo.style.border = "2px solid red";
+            Formu.nombre.style.border = "2px solid red";
             correcto = false;
         } 
     return correcto;
@@ -580,8 +619,46 @@ function comprobarCategoriasSearch(Formu){
     var correcto=true; 
 
         if(!comprobarAlfabeticoVacio(Formu.nombre, 50)){//comprobamos que el nombre esté bien escrito
-            Formu.titulo.style.border = "2px solid red";
+            Formu.nombre.style.border = "2px solid red";
             correcto = false;
         } 
     return correcto;
+}
+
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarProductosCategoria(Formu){
+    var correcto=true; 
+
+        if(!comprobarEntero(Formu.idCategoria)){//comprobamos que el id de las categorias no esté vacio
+            Formu.idCategoria.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarEntero(Formu.idProducto)){//comprobamos que el id de las categorias no esté vacio
+            Formu.idProducto.style.border = "2px solid red";
+            correcto = false;
+        }
+    return correcto;
+}
+
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarProductosCategoriaSearch(Formu){
+    var correcto=true; 
+    
+        if(!comprobarEnteroVacio(Formu.idCategoria)){//comprobamos que el id de las categorias no esté vacio
+            correcto = false;
+        }
+        if(!comprobarEnteroVacio(Formu.idProducto)){//comprobamos que el id de las categorias no esté vacio
+            correcto = false;
+        }
+    return correcto;
+}
+
+//cambia el valor del campo idProducto en caso de que se modifique el select
+//ext- extension del archivo subido
+function changeIDCategorias(campo,obj){
+    var elem = document.getElementById(obj);
+    elem.value = campo.value;
+    return true;
 }

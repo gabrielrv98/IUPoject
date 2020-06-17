@@ -25,7 +25,7 @@
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 			<h1 class="addProdCate">Añadir producto-categoria</h1>	
-			<form name = 'Form' action='../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=ADD' method='post' onsubmit="return comprobarCategoria(this);" enctype="multipart/form-data">
+			<form name = 'Form' action='../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=ADD' method='post' onsubmit="return comprobarProductosCategoria(this);" enctype="multipart/form-data">
 
 
 

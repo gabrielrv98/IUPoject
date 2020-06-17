@@ -151,12 +151,18 @@ const arrayGALLAECIAN =  {
     'idCategoria' : 'ID da categoria',
     'productosEnCategoria' : 'Productos nesta categoria',
     'idCategoriaError' :'Error na categoria',
+    'categorias' : 'Categorias',
 
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Xestion de produtos-categorias',
     'idCategoria' : 'Id categoria',
     'idProducto' : 'Id producto',
     'addProdCate' : 'Añadir Producto-Categoria',
+    'searchProductoCategoria' : 'Buscar producto-categoria',
+    'eliminarProductoCategoria' : 'Eliminar producto-categoria',
+    'editarProductoCategoria' : 'Editar producto-categoria',
+    'enlaceProducto' : 'Enlace o producto',
+    'enlaceCategoria' : 'Enlace a categoria',
 
 
     //codigos de error
@@ -184,7 +190,8 @@ const arrayGALLAECIAN =  {
     'tramite' : 'Disponible',
     'vendido' : 'Vendido',
     'indiferente' : 'Indiferente',
-    'yo' : 'Eu'
+    'yo' : 'Eu',
+    'ClavesForaneasPermanentes': 'As claves foraneas non se pueden cambiar'
 
 
      };

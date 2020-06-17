@@ -8,9 +8,13 @@
 	class PRODUCTOS_EDIT{
 
 		var $valores;
+		var $categorias;
+		var $misCategorias;
 
-		function __construct($valores){	
-			//session_start();
+		function __construct($valores,$categorias,$misCategorias){	
+			
+			$this->misCategorias = $misCategorias;
+			$this->categorias = $categorias;
 			$this->valores = $valores;
 			$this->render();
 		}
@@ -22,11 +26,14 @@
 			<title class="Tedit"> <?php echo $strings['Tedit']; ?></title>
 		</head>
 		
-		<?php include '../View/Header.php'; //header necesita los strings 
-		
-		$_SESSION['id'] = $this->valores['ID'];//se asigna el id para no perderlo ?>
+		<?php include '../View/Header.php'; //header necesita los strings ?>
 			<h1 class="editProducto"><?php echo $strings['editProducto']; ?></h1>	
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarProductos(this);" enctype="multipart/form-data">
+
+				<div class="form-group">
+					<label class="idProducto">ID del producto</label>
+					<input type="text" name="id" value="<?php echo $this->valores['ID']; ?>" readonly>
+				</div>&nbsp;&nbsp;
 				 	
 				<div class="form-group">
 				 	<label for="titulo" class="tituloProducto"><?php echo $strings['tituloProducto'] ?> </label> 
@@ -83,6 +90,19 @@
 				</div>&nbsp;&nbsp;
 
 				<?php } ?>
+
+				<div class="form-group">
+					<label class="categorias" style="font-size: 150%; text-decoration: underline;">Categorias</label><br><br>
+				<?php foreach ($this->categorias as $key ) { ?>
+					<label> <?php echo $key['NOMBRE_CATEGORIA']; ?> </label>
+					<input type="checkbox" name="categorias[]" value="<?php echo $key['ID'] ?>" 
+					<?php  foreach($this->misCategorias as $misCat){ 
+						if($misCat['ID_CATEGORIA'] == $key['ID'])  echo "checked"; 
+					}  ?> ><br>
+
+				<?php } ?>
+				</div><br>
+
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="EDIT" >
 					<?php echo $strings['submit'] ; ?>

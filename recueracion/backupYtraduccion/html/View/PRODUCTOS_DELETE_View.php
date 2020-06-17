@@ -33,6 +33,11 @@
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarProducto(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">
+					<label class="idProducto">ID del producto</label>
+					<input type="text" name="id" value="<?php echo $this->valores['ID']; ?>" readonly>
+				</div>&nbsp;&nbsp;
+
+				<div class="form-group">
 				 	<label for="titulo" class="tituloProducto"><?php echo $strings['tituloProducto'] ?> </label> 
 				 	<br> 
 				 	<input class="form-control" type = 'text' name = 'titulo' id = 'titulo' placeholder = 'Letras y numeros' size = '30' onblur="comprobarAlfabetico(this,50);" value = '<?php echo $this->valores['TITULO']; ?>' readonly>

@@ -23,21 +23,13 @@ class PRODUCTOS_CATEGORIAS_SHOWALL {
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
-		<?php include '../View/Header.php'; //header necesita los strings
-		include_once '../Model/USUARIOS_Model.php';
-					$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');//Recuperamos el usuario que esta operando ?>
+		<?php include '../View/Header.php'; //header necesita los strings?>
 
 		
 		<h1 class="TShowAll"><?php echo $strings['TShowAll']; ?></h1>
-		<?php 
-				if($usuario->isAdmin()){ // si el usuario es administrador puede añadir categorias
-					?>
 		<a href = '../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=ADD' style="color:#FFFFFF;">
 			<img src='../View/icon/bolsa-de-la-compra.png' height="42" width="42" >
 		</a>
-
-		<?php } ?>
-
 		<a href = '../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=SEARCH'>
 			<img src='../View/icon/searchuser.ico'>
 		</a>
@@ -64,36 +56,32 @@ class PRODUCTOS_CATEGORIAS_SHOWALL {
 						<?php echo $key['PRODUCTO_ID'] ; ?>
 					</td>
 					<td>
-						<?php echo $key['TITULO'] ; ?>	
+						<?php echo $key['TITULO'] ; ?>
+					</td>	
 					<td>
 						<?php echo $key['CATEGORIAS_ID'] ; ?>
 					</td>
 					<td>
 						<?php echo $key['NOMBRE_CATEGORIA'] ; ?>
 					</td>
-					</td>
-				<?php if($usuario->isAdmin()){ // si el usuario es administrador es le ofrece busqeuda por otros usuarios
-					?>
+
 					<td>
-						<a href = "../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=EDIT&&id=<?php echo $key['ID']; ?>"  > 
+						<a href = "../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=EDIT&&idP=<?php echo $key['PRODUCTO_ID']; ?>&&idC=<?php echo $key['CATEGORIAS_ID'];?>"> 
 							<img src='../View/icon/edituser.ico'>
 						</a>
 					</td>
 
-				<?php } ?>
 					<td>
-						<a href = "../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"  > 
+						<a href = "../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=SHOWCURRENT&&idP=<?php echo $key['PRODUCTO_ID']; ?>&&idC=<?php echo $key['CATEGORIAS_ID'];?>"> 
 							<img src='../View/icon/showuser.ico'>
 						</a>
 					</td>
-					<?php if($usuario->isAdmin()){ // si el usuario es administrador es le ofrece busqeuda por otros usuarios		
-					?>
+					
 					<td>
-						<a href = "../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=DELETE&&id=<?php echo $key['ID']; ?>"  > 
+						<a href = "../Controller/PRODUCTOS_CATEGORIAS_Controller.php?action=DELETE&&idP=<?php echo $key['PRODUCTO_ID']; ?>&&idC=<?php echo $key['CATEGORIAS_ID'];?>"> 
 							<img src='../View/icon/bolsa-de-la-compra_delete.png' height="42" width="42">
 						</a>
 					</td>
-					<?php } ?>
 				</tr>
 			<?php }		?>
 			

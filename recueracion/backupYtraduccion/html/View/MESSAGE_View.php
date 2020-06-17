@@ -52,22 +52,12 @@ class MESSAGE{
 		<br>
 		<br>
 		<p>
-
-		<label class="errorIn" ></label>
 		<br>
 
 		<?php
 			foreach ($this->string as $key ) {
 				?>
-				<label class="<?php echo $key[0]; ?>" > <?php echo $strings[$key[0]]; ?> </label>
-<?php		
-		echo " : ";
-?>
-		<label  > <?php echo $key[1]; ?> </label>
-<?php		
-		echo " : ";
-?>
-		<label class="<?php echo $key[2]; ?>" > <?php echo $strings[$key[2]]; ?> </label>
+				<label class="<?php echo $key; ?>" ></label>
 		<br>
 <?php
 			}

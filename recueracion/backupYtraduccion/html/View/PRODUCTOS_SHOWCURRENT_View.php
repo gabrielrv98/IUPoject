@@ -8,11 +8,13 @@
 class PRODUCTOS_SHOWCURRENT {
 
 	var $lista;
+	var $categorias;
 
 
-	function __construct($datos){
-		//session_start();
+	function __construct($datos,$categorias){
+		
 		$this->lista = $datos;
+		$this->categorias = $categorias;
 		$this->render();
 	}
 
@@ -72,6 +74,14 @@ class PRODUCTOS_SHOWCURRENT {
 				</tr>
 			
 		</table>
+	</div>
+
+	<div>
+		<label class="categorias"></label> <br>
+		<?php foreach ($this->categorias as $key) { ?>
+			<a href="../Controller/CATEGORIAS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID_CATEGORIA']; ?>"> <?php echo $key['NOMBRE_CATEGORIA'] ?> </a><br>
+		<?php } ?>
+
 	</div>
 
 		<br>

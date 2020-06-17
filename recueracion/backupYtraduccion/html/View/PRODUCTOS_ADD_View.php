@@ -7,8 +7,10 @@
 
 	class PRODUCTOS_ADD{
 
+		var $categorias;
 
-		function __construct(){	 
+		function __construct($categorias){	
+			$this->categorias = $categorias;
 			$this->render();
 		}
 
@@ -66,6 +68,14 @@
 				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>
 				</div>&nbsp;&nbsp;
 
+				<div class="form-group">
+					<label class="categorias" style="font-size: 150%; text-decoration: underline;">Categorias</label><br><br>
+					<?php foreach ($this->categorias as $key ) { ?>
+					<label> <?php echo $key['NOMBRE_CATEGORIA']; ?> </label>
+					<input type="checkbox" name="categorias[]" value="<?php echo $key['ID'] ?>" ><br>
+
+					<?php } ?>
+				</div><br>
 				<button type="submit" name='action' class="btn btn-primary submit" value="ADD" >
 					<?php echo $strings['submit'] ; ?>
 				</button>

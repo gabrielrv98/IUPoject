@@ -30,6 +30,33 @@ function __construct($idProducto,$idCategoria){
 // e intención del vendedor.
 function ADD()
 {	
+	$sql = "SELECT * 
+			FROM PRODUCTOS_CATEGORIAS 
+			WHERE ID_PRODUCTO = '".$this->idProducto."' AND
+					ID_CATEGORIA = '".$this->idCategoria."' ";
+
+
+    $result = $this->mysqli->query($sql);
+	if ($result->num_rows >= 1){  // el elemento ya existe
+		return '00001';
+	} 
+
+	$sql = "SELECT * 
+			FROM PRODUCTOS 
+			WHERE ID = '".$this->idProducto."'";
+	$result = $this->mysqli->query($sql);
+	if ($result->num_rows <= 0){  // el Producto no existe
+		return '00003';
+	}
+
+	$sql = "SELECT * 
+			FROM CATEGORIAS 
+			WHERE ID = '".$this->idCategoria."'";
+	$result = $this->mysqli->query($sql);
+	if ($result->num_rows <= 0){  // la categoria no existe
+		return '00003';
+	}		
+
 
 	$sql = "INSERT INTO PRODUCTOS_CATEGORIAS (
 			ID_PRODUCTO,
@@ -39,13 +66,13 @@ function ADD()
 					'".$this->idCategoria."'
 					)";
 
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
-		if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
-			return '00003';
-		}
-		else{
-			return '00002'; //operacion de insertado correcta
-		}
+	include_once '../Model/BD_logger.php';//se incluye el archivo con el log
+	if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
+		return '00003';
+	
+	}else{
+		return '00002'; //operacion de insertado correcta
+	}
 
 }
 
@@ -115,7 +142,8 @@ function DELETE()
 {
 	$sql = "SELECT *
 			FROM PRODUCTOS_CATEGORIAS
-			WHERE (ID = '$this->id')";
+			WHERE ( ID_PRODUCTO = '".$this->idProducto."' AND
+					ID_CATEGORIA = '".$this->idCategoria."' ) ";
 
 	$obj = $this->mysqli->query($sql);
 
@@ -124,9 +152,10 @@ function DELETE()
 
 		$sql = "DELETE 
    			FROM PRODUCTOS_CATEGORIAS
-   			WHERE ID = '$this->id'"; 
+   			WHERE ( ID_PRODUCTO = '".$this->idProducto."' AND
+					ID_CATEGORIA = '".$this->idCategoria."' ) ";
 
-   		include '../Model/BD_logger.php';//se incluye el archivo con el log
+   		include_once '../Model/BD_logger.php';//se incluye el archivo con el log
    		//se reliza el log del delete	
    		if (writeAndLog($sql)) return '00005';
    			
@@ -136,59 +165,53 @@ function DELETE()
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
 function RellenaDatos()
 {
-
-	$sql = "SELECT * 
+	$sql = "SELECT PRODUCTOS.ID AS PRODUCTO_ID, 
+					PRODUCTOS.TITULO,
+					CATEGORIAS.ID AS CATEGORIAS_ID,
+					CATEGORIAS.NOMBRE_CATEGORIA
 			FROM PRODUCTOS_CATEGORIAS
-			WHERE ( ID = '$this->id')";
-
+			INNER JOIN PRODUCTOS ON PRODUCTOS_CATEGORIAS.ID_PRODUCTO = PRODUCTOS.ID
+			INNER JOIN CATEGORIAS ON PRODUCTOS_CATEGORIAS.ID_CATEGORIA = CATEGORIAS.ID
+			WHERE ( ID_PRODUCTO = '".$this->idProducto."' AND
+					ID_CATEGORIA = '".$this->idCategoria."' ) ";
 
 	$toRet = $this->mysqli->query($sql);
 	return $toRet ? $toRet->fetch_array() : '00015';
 }
 
 
-// funcion Edit: realizar el update de una tupla despues de comprobar que existe
+// funcion Edit: Productos_Categorias solo esta compuesta de dos claves foraneas, por lo tanto nunca se puede edit,
+//es necesario borrar y crear una nueva relacion
 function EDIT()
 {
 
-	$sql = "SELECT ID 
+	$sql = "SELECT * 
 				FROM PRODUCTOS_CATEGORIAS
-				WHERE (ID = '$this->id')";
+				WHERE ( ID_PRODUCTO = '".$this->idProducto."' AND
+					ID_CATEGORIA = '".$this->idCategoria."' ) ";
 
-//se comprueba que el dni o el email no estan repetidos en otros usuarios
-
+//se comprueba que el dni o el codigo de la ESPACIO no estan repetidos en otro PROF_ESPACIO
 	$response = $this->mysqli->query($sql)->num_rows;
-	if ($response == 1) {
-		$sql = "UPDATE PRODUCTOS_CATEGORIAS
-			SET TITULO = '$this->titulo',
-				DESCRIPCION = '$this->descripcion',";
-
-		if($this->foto !='') $sql= $sql."	FOTO = '$this->foto',";
-
-		$sql= $sql . "		VENDEDOR_DNI = '$this->vendedorDNI',
-				ESTADO = '$this->estado'
-
-			WHERE (ID = '$this->id')";
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
-		$result = writeAndLog($sql); // se realiza el log
-
-		if($result = 1) return '00007';// si la actualizacion fue existosa
+	if ($response == 1) {// si solo hay una tupla
+		
+		//esta clase no tiene datos que no sean claves foraneas
+		return '00007';
 	}
-	return '00008';// si el numero de tuplas de vuelta es mayor que 1 o la actualizacion tuvo un error
+	return '00008';// devuelve error siempre
 }
 
+// funcion getCategorias: devuevle las categorias a partir del id del producto
+function getCategorias()
+{
 
-//funcion getFoto(): devuelve la ruta de la foto
-function getFoto(){
-	$sql = "SELECT FOTO
-			FROM PRODUCTOS_CATEGORIAS
-			WHERE (
-				(ID = '$this->id') 
-			)";
-	$resultado = $this->mysqli->query($sql);
-	$resultado = $resultado-> fetch_array();
-	return $resultado['FOTO'];
+	$sql = "SELECT ID_CATEGORIA, CATEGORIAS.NOMBRE_CATEGORIA
+				FROM PRODUCTOS_CATEGORIAS
+				INNER JOIN CATEGORIAS ON PRODUCTOS_CATEGORIAS.ID_CATEGORIA = CATEGORIAS.ID
+				WHERE ( ID_PRODUCTO = '".$this->idProducto."') ";
+
+	return $this->mysqli->query($sql);
 }
+
 
 }//fin de clase
 

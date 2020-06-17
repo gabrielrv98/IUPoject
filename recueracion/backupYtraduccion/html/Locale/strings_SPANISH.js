@@ -118,7 +118,7 @@ const arraySPANISH =  {
       'hoyes' : 'Hoy es',
       'fcreacion' :'Fecha de creacion',
 
-      //Gestion de productos
+      //Gestion de producto
     'Gestión Productos' : 'Gestion de los productos',
     'addProducto' : 'Nuevo producto',
     'searchProducto' : 'Buscar producto',
@@ -137,12 +137,19 @@ const arraySPANISH =  {
     'idCategoria' : 'ID de la categoria',
     'productosEnCategoria' : 'Productos en esta categoria',
     'idCategoriaError' :'Error en la categoria',
-    
+    'categorias' : 'Categorias',
+
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Gestion de produtos-categorias',
     'idCategoria' : 'Id categoria',
     'idProducto' : 'Id producto',
     'addProdCate' : 'Añadir Producto-Categoria',
+    'searchProductoCategoria' : 'Buscar producto-categoria',
+    'eliminarProductoCategoria' : 'Eliminar producto-categoria',
+    'editarProductoCategoria' : 'Editar producto-categoria',
+    'enlaceProducto' : 'Enlace al producto',
+    'enlaceCategoria' : 'Enlace al categoria',
+
 
 
     //codigos de error
@@ -170,7 +177,8 @@ const arraySPANISH =  {
     'tramite' : 'Disponible',
     'vendido' : 'Vendido',
     'indiferente' : 'Indiferente',
-    'yo' : 'Yo'
+    'yo' : 'Yo',
+    'ClavesForaneasPermanentes': 'Las claves foraneas no se pueden cambiar'
 
       };
       export { arraySPANISH };

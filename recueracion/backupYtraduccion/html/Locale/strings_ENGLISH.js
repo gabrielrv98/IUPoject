@@ -146,6 +146,10 @@ const arrayENGLISH =  {
     'editCategoria' : 'Edit category',
     'productosEnCategoria' : 'Products in this category',
     'idCategoriaError' :'Error in the category',
+    'searchProductoCategoria' : 'Search product-category',
+    'eliminarProductoCategoria' : 'Delete product-category',
+    'editarProductoCategoria' : 'Edit product-category',
+    'categorias' : 'Categories',
     
 
     //Gestion de categorias_productos
@@ -153,6 +157,8 @@ const arrayENGLISH =  {
     'idCategoria' : 'Id category',
     'idProducto' : 'Id product',
     'addProdCate' : 'Add Product-Category',
+    'enlaceProducto' : 'Product link',
+    'enlaceCategoria' : 'Category link',
 
 
     //codigos de error
@@ -171,9 +177,11 @@ const arrayENGLISH =  {
     '00013' : '00013 Registration failed in database',
     '00014' : '00014 Registration completed successfully',
     '00015' : '00015 Database manager error in RellenaDatos',
-    '00016' : '00016 Unexpected error in ADD'
+    '00016' : '00016 Unexpected error in ADD',
 
 
+
+    'ClavesForaneasPermanentes': 'Foreign keys can\'t be changed'
     
     
     
