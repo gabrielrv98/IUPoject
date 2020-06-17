@@ -15,9 +15,9 @@
 			<title> <?php echo $strings['Intercambio de tiempo']; ?> </title>
 		</head>
 
-			<h1 class="noPermisoT"><?php echo $strings['noPermisoT']; ?></h1>	 
+			<h1 class="noPermisoT">No tienes permiso</h1>	 
 
-			<label class="noTienesPermiso"><?php echo $strings['noTienesPermiso'] ?> </label>  
+			<label class="noTienesPermiso"></label>  
 			<br><br>
 
 			<a href='../Controller/Index_Controller.php' ><img src="../View/icon/back.ico" height="32" width="32"> </a>

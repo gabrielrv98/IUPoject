@@ -21,7 +21,7 @@ class CATEGORIAS_SHOWCURRENT {
 		?>
 		
 		<head>
-			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC"></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
@@ -29,7 +29,7 @@ class CATEGORIAS_SHOWCURRENT {
 		?>
 
 		
-		<h1 class="TShowC"><?php echo $strings['TShowC']; ?></h1>
+		<h1 class="TShowC"></h1>
 		<div>
 		<table border = ¨1¨>
 			<th>

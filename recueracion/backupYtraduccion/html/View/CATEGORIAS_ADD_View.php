@@ -21,7 +21,7 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="addCategoria"><?php echo $strings['addCategoria']; ?></h1>	
+			<h1 class="addCategoria"></h1>	
 			<form name = 'Form' action='../Controller/CATEGORIAS_Controller.php?action=ADD' method='post' onsubmit="return comprobarCategoria(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">

@@ -29,7 +29,7 @@
 	<div>
 		<p style="text-align:center">
 			<h1 class="Intercambio de tiempo">
-				Intercambio de tiempo (titulo)
+				Intercambio de tiempo
 			</h1>
 		</p>
 	</div>

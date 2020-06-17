@@ -18,7 +18,7 @@
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
 				<a class="IndexViewLink" href='../Controller/Index_Controller.php'>
-					<?php echo $strings['IndexViewLink']; ?>
+					Index Controller
 				</a>
 
 				<a class="Gestión Usuarios" href='../Controller/USUARIOS_Controller.php'>
@@ -38,7 +38,7 @@
 				</a>
 			</div>
 			
-			<span class="menuBut open" onclick="openNav()"> <?php echo $strings['open']; ?></span>
+			<span class="menuBut open" onclick="openNav()"></span>
 
 		</div>
 		

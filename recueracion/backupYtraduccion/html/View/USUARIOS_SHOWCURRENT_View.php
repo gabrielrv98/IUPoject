@@ -28,7 +28,7 @@ class USUARIOS_SHOWCURRENT {
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-		<h1 class="TShowC"> <?php echo $strings['TShowC']; ?> </h1>
+		<h1 class="TShowC"></h1>
 		<table border="1">
 			<th class="Login">
 				<?php echo $strings['Login']; ?>

@@ -29,7 +29,7 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="editProducto"><?php echo $strings['editProducto']; ?></h1>	
+			<h1 class="editProducto"></h1>	
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarProductos(this);" enctype="multipart/form-data">
 
 				<div class="form-group">

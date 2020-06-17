@@ -26,7 +26,7 @@
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 		
 			<body>
-				<h1 class="editUser"><?php echo $strings['editUser']; ?></h1>	
+				<h1 class="editUser"></h1>	
 				<form name = 'Form' action='../Controller/USUARIOS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarUsuarios(this);" enctype="multipart/form-data">
 
 					<div class="form-group">

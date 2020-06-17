@@ -21,7 +21,7 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="addUser">Añadir usuario</h1>	
+			<h1 class="addUser"></h1>	
 			<form name = 'Form' action='../Controller/USUARIOS_Controller.php?action=ADD' method='post' onsubmit="return comprobarUsuarios(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">

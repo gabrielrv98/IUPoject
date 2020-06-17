@@ -34,7 +34,7 @@ class PRODUCTOS_SHOWCURRENT {
 		?>
 
 		
-		<h1 class="TShowC"><?php echo $strings['TShowC']; ?></h1>
+		<h1 class="TShowC"></h1>
 		<div>
 		<table border = ¨1¨>
 			<th class="tituloProducto">

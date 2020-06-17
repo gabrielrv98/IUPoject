@@ -21,7 +21,7 @@ class USUARIOS_SHOWALL {
 		?>
 		
 		<head>
-			<title class="TShowAll"><?php echo $strings['TShowAll']; ?></title>
+			<title class="TShowAll"></title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 

@@ -24,7 +24,7 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="editCategoria"><?php echo $strings['editCategoria']; ?></h1>	
+			<h1 class="editCategoria"></h1>	
 			<form name = 'Form' action='../Controller/CATEGORIAS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarCategoria(this);" enctype="multipart/form-data">
 
 				<div class="form-group">

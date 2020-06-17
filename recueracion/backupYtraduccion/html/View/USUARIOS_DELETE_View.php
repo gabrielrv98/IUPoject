@@ -22,7 +22,7 @@
 			</head> 
 
 			<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="deleteUser">Eliminar usuario</h1>	
+			<h1 class="deleteUser"></h1>	
 			<form name = 'Form' action='../Controller/USUARIOS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarUsuarios(this);">
 
 

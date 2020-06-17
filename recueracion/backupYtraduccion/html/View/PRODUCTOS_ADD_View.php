@@ -22,7 +22,7 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
-			<h1 class="addProducto"><?php echo $strings['addProducto']; ?></h1>	
+			<h1 class="addProducto">Añadir producto</h1>	
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=ADD' method='post' onsubmit="return comprobarProductos(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">

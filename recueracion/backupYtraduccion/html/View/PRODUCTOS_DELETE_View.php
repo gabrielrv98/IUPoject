@@ -29,7 +29,7 @@
 		$nombre =  $usuario->getNombre();//obtenemos su nombre y apellidos
 		$nombre = $nombre['NOMBRE'] . ' ' . $nombre['APELLIDOS'] .'-';// y los colocamos visualmente
 		 ?>
-			<h1 class="eliminarProducto"><?php echo $strings['eliminarProducto']; ?></h1>	
+			<h1 class="eliminarProducto"></h1>	
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarProducto(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">

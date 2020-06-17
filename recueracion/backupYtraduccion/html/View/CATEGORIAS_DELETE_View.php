@@ -22,7 +22,7 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings?>
-			<h1 class="eliminarProducto"><?php echo $strings['eliminarProducto']; ?></h1>	
+			<h1 class="eliminarProducto"></h1>	
 			<form name = 'Form' action='../Controller/CATEGORIAS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarProducto(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">

@@ -23,7 +23,7 @@
 			include_once '../Model/USUARIOS_Model.php';
 					$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');//Recuperamos el usuario que esta operando
 					$usuariosProductos = $usuario->getUsuariosConProductos();//recuperamos los nombres de las personas con productos en oferta?>
-			<h1 class="searchProducto"><?php echo $strings['searchProducto']; ?></h1>	
+			<h1 class="searchProducto"></h1>	
 			<form name = 'Form' action='../Controller/CATEGORIAS_Controller.php?action=SEARCH' method='post' onsubmit="return comprobarCategoriasSearch(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">
