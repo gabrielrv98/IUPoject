@@ -73,6 +73,8 @@ UNIQUE KEY `EMAIL` (`EMAIL`)
 -- descripcion del producto
 -- foto del producto
 -- dni del vendedor
+-- origen, el tipo de origen
+-- horas_unidades, horas o undades del producto
 -- estado actual del producto
 CREATE TABLE IF NOT EXISTS `PRODUCTOS` (
 
@@ -86,9 +88,9 @@ CREATE TABLE IF NOT EXISTS `PRODUCTOS` (
 
 `VENDEDOR_DNI` varchar(9) NOT NULL,
 
---`ORIGEN` enum('fabricado_a_mano','cultivado') NOT NULL,
+`ORIGEN` enum('fabricado_a_mano','cultivado','trabajo') NOT NULL,
 
---`HORAS_UNIDADES` int NOT NULL,
+`HORAS_UNIDADES` int NOT NULL,
 
 `ESTADO` enum('tramite','vendido') DEFAULT 'tramite' NOT NULL,
 
@@ -131,26 +133,29 @@ CREATE TABLE IF NOT EXISTS `PRODUCTOS_CATEGORIAS` (
 -- Estructura de tabla para la tabla `MENSAJEMANAGER`
 --
 -- ID autogenerado
--- ID_PRODUCTO del producto
--- CONTENIDO del del mensaje
--- VENDEDOR_ACCEPT estado de aceptacion del vendedor
--- COMPRADOR_ACCEPT estado de aceptacion del comprador
--- COMPRADOR_DNI dni del comprador
-CREATE TABLE IF NOT EXISTS `MENSAJEMANAGER` (
+-- ID_PRODUCTO1 id del producto1
+-- ID_PRODUCTO2 id del producto2
+-- ACCEPT1 estado de aceptacion del user 1
+-- ACCEPT2 estado de aceptacion del user 2
+-- UNIDADES1 unidades del producto 1
+-- UNIDADES2 unidades del producto 2
+CREATE TABLE IF NOT EXISTS `INTERCAMBIO` (
 
 `ID` int NOT NULL AUTO_INCREMENT,
 
-`ID_PRODUCTO` int NOT NULL,
+`ID_PRODUCTO1` int NOT NULL,
 
-`VENDEDOR_ACCEPT` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
+`ID_PRODUCTO2` int NOT NULL,
 
-`COMPRADOR_ACCEPT` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
+`UNIDADES1` int NOT NULL,
 
-`COMPRADOR_DNI` varchar(9) NOT NULL,
+`UNIDADES2` int NOT NULL,
 
-PRIMARY KEY (`ID`),
+`ACCEPT1` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
 
-FOREIGN KEY (`ID_PRODUCTO`) REFERENCES PRODUCTOS (ID) 
+`ACCEPT2` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
+
+PRIMARY KEY (`ID`)
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------

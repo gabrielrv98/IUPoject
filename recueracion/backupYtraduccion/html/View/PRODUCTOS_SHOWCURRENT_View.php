@@ -31,6 +31,7 @@ class PRODUCTOS_SHOWCURRENT {
 		$usuario = new USUARIOS_Model('','','','','',$this->lista['VENDEDOR_DNI'],'','','','','','','','');//Recuperamos el usuario  
 		$nombre =  $usuario->getNombre();//obtenemos su nombre y apellidos
 		$nombre = $nombre['NOMBRE'] . ' ' . $nombre['APELLIDOS'];// y los colocamos visualmente
+		$login = $usuario->getLogin();
 		?>
 
 		
@@ -38,19 +39,25 @@ class PRODUCTOS_SHOWCURRENT {
 		<div>
 		<table border = ¨1¨>
 			<th class="tituloProducto">
-				<?php echo $strings['tituloProducto']; ?>
+				titulo
 			</th>
 			<th class="descripcionProducto">
-				<?php echo $strings['descripcionProducto']; ?>
+				descripcion
 			</th>
 			<th class="fotoProducto">
-				<?php echo $strings['fotoProducto']; ?>
+				foto
 			</th>
 			<th class="name">
-				<?php echo $strings['name']; ?>
+				nombre
+			</th>				
+			<th class="origen">
+				Origen
+			</th>
+			<th class="horasUnidades">
+				Horas unidades
 			</th>
 			<th class="estado">
-				<?php echo $strings['estado']; ?>
+				estado
 			</th>
 				<tr>
 					<td>
@@ -64,16 +71,28 @@ class PRODUCTOS_SHOWCURRENT {
 						<img src="<?php echo $this->lista['FOTO'];?>" height="42" width="42">
 					</td>
 					<td>
-						<?php  
-						echo $nombre;
-						?>
+						<?php  echo $nombre; ?>
+					</td>
+					<td class="<?php echo $this->lista['ORIGEN']; ?>">
+						<?php echo $this->lista['ORIGEN']; ?>
+					</td>
+					<td>
+						<?php  echo $this->lista['HORAS_UNIDADES']; ?>
 					</td>
 					<td class="<?php echo $this->lista['ESTADO']; ?>">
-						<?php echo $strings[$this->lista['ESTADO']]; ?>
+						<?php echo $this->lista['ESTADO']; ?>
 					</td>
 				</tr>
 			
 		</table>
+	</div>
+
+	<div>
+		<br>
+		<label class="verUser" style="font-size: 150%; text-decoration: underline;"></label> <br>
+		
+			<a href="../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&&login=<?php echo $login; ?>"> <?php echo $nombre ?> </a><br>
+
 	</div>
 
 	<div>

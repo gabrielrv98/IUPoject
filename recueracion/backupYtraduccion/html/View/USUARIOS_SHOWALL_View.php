@@ -39,26 +39,25 @@ class USUARIOS_SHOWALL {
 		<div>
 		<table border = ¨1¨>
 			<th class="Login">
-				<?php echo $strings['id']; ?>
+				id
 			</th>
 			<th class="DNI">
 				DNI
 			</th>
 			<th class="name">
-				<?php echo $strings['name']; ?>
+				nombre
 			</th>
 			<th class="surname">
-				<?php echo $strings['surname']; ?>
+				apellido
 			</th>
 			<th class="email">
 				Email
 			</th>
 			<th class="tipo_usuario">
-				<?php echo $strings['tipo_usuario']; ?>
+				tipo
 			</th>
 			<?php 
-			foreach ($this->lista as $key ) {  
-				//echo var_dump($key); ?>
+			foreach ($this->lista as $key ) { ?>
 
 				<tr>
 					<td>

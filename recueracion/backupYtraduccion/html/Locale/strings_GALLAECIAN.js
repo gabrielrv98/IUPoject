@@ -142,6 +142,14 @@ const arrayGALLAECIAN =  {
     'eliminarProducto' : 'Eliminar producto',
     'fotoProducto' : 'Foto do producto',
     'disponibilidad' : 'Disponibilidad',
+    'origen' : 'Orixen',
+    'fabricado_a_mano' : 'Fabricado a man',
+    'cultivado' : 'Cultivado',
+    'trabajo' : 'Traballo fisico',
+    'horasUnidades' : 'Unidades ou horas',
+    'verUser' : 'Ver usuario',
+    'producto' : 'Producto',
+    
 
     //Gestion de categorias
     'Gestión Categorias' : 'Xestion de categorias',
@@ -163,6 +171,24 @@ const arrayGALLAECIAN =  {
     'editarProductoCategoria' : 'Editar producto-categoria',
     'enlaceProducto' : 'Enlace o producto',
     'enlaceCategoria' : 'Enlace a categoria',
+
+    //Gestion de Intercambios
+    'intercambios' : 'Intercambios',
+    'idProd1' : 'ID producto 1',
+    'idProd2' : 'ID producto 2',
+    'unid1' : 'Unidades do producto 1',
+    'unid2' : 'Unidades do producto 2',
+    'accept1' : 'Estado aceptacion usuario 1',
+    'accept2' : 'Estado aceptacion usuario 2',
+    'addInter' : 'Añadir intercambio',
+    'editInter' : 'Editar intercambio',
+    'idRepetidos' :'Os productos non poden estar repetidos',
+    'noMayor' : 'Este tiene que estar entre 1 e o maximo',
+    'aceptado' : 'Aceptado',
+    'denegado' : 'Rechazado',
+    'acceptError' : 'Error no estado de aceptacion',
+    'noPodraDeshacerse' : 'Si ambos usuarios marcais o estado de aceptacion como aceptado, non podreis deshacer o intercambio',
+    'noEditable' : 'Os usuarios non poden modificar un intercambio despois de haber sido aceptado por ambas partes',
 
 
     //codigos de error

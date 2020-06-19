@@ -8,12 +8,12 @@
 class USUARIOS_SHOWCURRENT {
 
 	var $lista;
-	var $datos;
+	var $productos;
 
 
-	function __construct($lista){
-		//session_start();
+	function __construct($lista,$productos){ 
 		$this->lista = $lista;
+		$this->productos = $productos;
 		$this->render();
 	}
 
@@ -31,43 +31,43 @@ class USUARIOS_SHOWCURRENT {
 		<h1 class="TShowC"></h1>
 		<table border="1">
 			<th class="Login">
-				<?php echo $strings['Login']; ?>
+				Login
 			</th>
 			<th class="DNI">
 				DNI
 			</th>
 			<th class="name">
-				<?php echo $strings['name']; ?>
+				nombre
 			</th>
 			<th class="surname">
-				<?php echo $strings['surname']; ?>
+				apellido
 			</th>
 			<th class="tlf">
-				<?php echo $strings['tlf']; ?>
+				tlf
 			</th>
 			<th class="email">
 				Email
 			</th>
 			<th class="bDate">
-				<?php echo $strings['bDate']; ?>
+				Nacimiento
 			</th>
 			<th class="alergias">
-				<?php echo $strings['alergias']; ?>
+				Alergias
 			</th>
 			<th class="direccion">
-				<?php echo $strings['direccion']; ?>
+				Direccion
 			</th>
 			<th class="cp">
-				<?php echo $strings['cp']; ?>
+				CP
 			</th>
 			<th class="sexo">
-				<?php echo $strings['sexo']; ?>
+				Sexo
 			</th>
 			<th class="tipo_usuario">
-				<?php echo $strings['tipo_usuario']; ?>
+				tipo
 			</th>
 			<th class="activado">
-				<?php echo $strings['activado']; ?>
+				activado
 			</th>
 			<tr>
 				<td>
@@ -102,13 +102,13 @@ class USUARIOS_SHOWCURRENT {
 					<?php echo $this->lista['CODIGO_POSTAL']; ?>
 				</td>
 				<td class="<?php echo $this->lista['SEXO']; ?>">
-					<?php echo $strings[$this->lista['SEXO']]; ?>
+					sexo
 				</td>
 				<td class="<?php echo $this->lista['TIPO_USUARIO']; ?>">
-					<?php echo $strings[$this->lista['TIPO_USUARIO']]; ?>
+					tipo
 				</td>
 				<td class="<?php echo $this->lista['ACTIVADO']; ?>">
-					<?php echo $strings[$this->lista['ACTIVADO']]; ?>
+					activado
 				</td>
 			</tr>
 
@@ -116,12 +116,16 @@ class USUARIOS_SHOWCURRENT {
 		<br>
 
 		<div>
-			<label class="ofertas"> <?php echo $strings['ofertas'] ; ?></label>
+			<label class="ofertas" style="font-size: 150%; text-decoration: underline;"> Ofertas</label><br>
+
+			<?php foreach ($this->productos as $key) { ?>
+				<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"> <?php echo $key['TITULO'] ?> </a><br>
+			 <?php } ?>
 
 		</div>
 
 		<div>
-			<label class="transacciones"> <?php echo $strings['transacciones'] ; ?></label>
+			<label class="transacciones" style="font-size: 150%; text-decoration: underline;"> transacciones</label>
 			
 		</div>
 

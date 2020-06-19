@@ -49,9 +49,8 @@ function comprobarEntero(campo) {
     var abc =/^[0-9]+$/;
 
     if(!comprobarExpresionRegular(campo,abc,100)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
-         
         return false;
-    }else if(comprobarVacio(campo)){// si el campo esta vacio no se acepta como valido
+    }else if(!comprobarVacio(campo)){// si el campo esta vacio no se acepta como valido
             return false;
     }else{
 
@@ -194,7 +193,9 @@ function comprobarExpresionRegular(campo, exprreg, size) {
         return false;
     }//si cumple todas las condiciones devuelve true
         else {
+            if ( document.getElementById(campo.name+"_error") != null)
             document.getElementById(campo.name+"_error").style.visibility = "hidden";
+        if ( document.getElementById(campo.name+"_errorLength") != null)
             document.getElementById(campo.name+"_errorLength").style.visibility = "hidden";
             campo.style.border = "2px solid green";
             return true;
@@ -204,6 +205,7 @@ function comprobarExpresionRegular(campo, exprreg, size) {
 /*Comprueba si el campo es null o 0 y devuelve false, si existe algo devuelve true*/
 function comprobarVacio( campo ) {
     if ( ( campo.value == null ) || ( campo.value.length == 0  ) ){//comprueba si es null o 0
+            document.getElementById(campo.name+"_errorLength").style.visibility = "visible";
             campo.style.border = "2px solid red";
             return false;
     } else {//si existe algo devuelve true
@@ -389,7 +391,7 @@ function comprobarFechaNacimiento(campo) {
                 return false;
             }
         }
-    }else if (comprobarVacio(campo)){//comprobar si esta vacio
+    }else if (!comprobarVacio(campo)){//comprobar si esta vacio
             return false;
     }
     document.getElementById(campo.name+"_error").style.visibility = "hidden";
@@ -399,7 +401,71 @@ function comprobarFechaNacimiento(campo) {
     
 }
 
+/*Comprueba que los productos no esten repetidos*/
+/*string- string con el nombre del campo a comparar*/
+/*prod1- el campo que se obtuvo a partir del nombre del campo*/
+function checkEquals(numero,campo){
+    var string = "idProd"+numero;
+    var prod1 = document.getElementById(string);
+    if(campo.value == prod1.value){// si los campos son iguales se muestra el error
+        document.getElementById(campo.name+'_error').style.visibility = "visible";
+        return false;
+    } 
+    document.getElementById(campo.name+'_error').style.visibility = "hidden";
+    return true;
+}
 
+/*Situa el maximo de horas/unidades*/
+/*exp- expresion que define un el año academico*/
+function setMax(numero){
+
+    var select =document.getElementById("idProd"+numero);// se coge el campo del select
+    var max = select.options[select.selectedIndex].text.split(':')[1];// se coge la segunda mitad del texto
+
+    var string = "unid"+numero+"Max";//se recoge el campo objetivo para escribir
+    var prod1 = document.getElementById(string);// se coge el elemento con dicha id
+    prod1.innerHTML = max;// se sobreescribe
+
+    var input = document.getElementById("unidades"+numero);// se coge el campo de la input
+
+    input.value = "1"; //se vacia el campo
+    return true;
+}
+
+/*Comprueba que no es mayor que su maximo*/
+/*exp- expresion que define un el año academico*/
+function noMayor(campo,numero){
+
+    var max =document.getElementById("unid"+numero+"Max");// se coge el valor maximo
+    let maxValue = parseInt(max.innerHTML, 10);
+    let actualValue = parseInt(campo.value, 10);
+
+    if(actualValue >  maxValue || actualValue <= 0 ){
+        //console.log( actualValue + " grater than "+maxValue );
+        campo.style.border = "2px solid red";
+        document.getElementById(campo.name+'_error').style.visibility = "visible";
+        return false
+    }else{
+        //console.log( campo.value + " less than "+max.innerText);
+        document.getElementById(campo.name+'_error').style.visibility = "hidden";
+        campo.style.border = "2px solid green";
+        return true;
+    }
+    
+}
+
+//Comprueba que el estado de aceptacion sea correcto
+//ext- extension del archivo subido
+function comprobarAccept(campo){
+    var exp = /^(aceptado|denegado)$/;
+
+    if(!comprobarExpresionRegular(campo,exp,15)){//comprueba que la expresión enviada en telef sea cumplida por el campo enviado si no lo hace devuelve false
+        return false;
+    }else {
+            campo.style.border = "2px solid green";
+            return true;
+    }
+}
 
 //Comprueba que la extension del archivo subido es una extension correspondiente a una foto
 //ext- extension del archivo subido
@@ -419,6 +485,34 @@ function comprobarExtension(campo){
     }
 }
 
+/*Comprueba el origen encaja con lo esperado*/
+/*abc- es una expresión regular que comprueba si origen es del tipo enum*/
+function comprobarOrigen(campo) {
+    var exp= /^(fabricado_a_mano|cultivado|trabajo)$/;
+    if (!comprobarExpresionRegular(campo, exp,100)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer"
+        campo.style.border = "2px solid red";
+        return false;
+
+    }else{ 
+        campo.style.border = "2px solid green";
+        return true;
+    }
+}
+
+/*Comprueba el Estado encaja con lo esperado*/
+/*abc- es una expresión regular que comprueba si origen es del tipo enum*/
+function comprobarEstado(campo) {
+    var exp= /^(tramite|vendido)$/;
+    if (!comprobarExpresionRegular(campo, exp,100)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer"
+        campo.style.border = "2px solid red";
+        return false;
+
+    }else{ 
+        campo.style.border = "2px solid green";
+        return true;
+    }
+}
+
 /*Comprueba que el sexo pertenece a el enumerado*/
 function comprobarSexo(campo){
     var exp= /^(hombre|mujer)$/;
@@ -431,6 +525,7 @@ function comprobarSexo(campo){
         return true;
     }
 }
+
 
 /*Comprueba que el sexo pertenece a el enumerado o es vacio*/
 function comprobarSexoSearch(campo){
@@ -576,10 +671,24 @@ function comprobarProductos(Formu){
             Formu.descripcion.style.border = "2px solid red";
             correcto = false;
         } 
-        if(Formu.foto.value.length > 0 && !comprobarExtension(Formu.foto) ){//comprobamos que la extension esté bien escrita
-            Formu.DNI.style.border = "2px solid red";
+        if(Formu.foto != null){//cuadno se borra un producto no hay un campo foto
+            if(Formu.foto.value.length > 0 && !comprobarExtension(Formu.foto) ){//comprobamos que la extension esté bien escrita
+                Formu.foto.style.border = "2px solid red";
+                correcto = false;
+            }
+        }
+        if(!comprobarOrigen(Formu.origen)){//comprobamos que las origen estén bien 
+            Formu.origen.style.border = "2px solid red";
             correcto = false;
-        } 
+        }
+        if(!comprobarEntero(Formu.horasUnidades) || !mayorQueCero(Formu.horasUnidades)){//comprobamos que las horasUnidades estén bien 
+            Formu.horasUnidades.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarEstado(Formu.estado)){//comprobamos que las horasUnidades estén bien 
+            Formu.horasUnidades.style.border = "2px solid red";
+            correcto = false;
+        }
     return correcto;
 }
 
@@ -661,4 +770,58 @@ function changeIDCategorias(campo,obj){
     var elem = document.getElementById(obj);
     elem.value = campo.value;
     return true;
+}
+
+//function mayorQueCero(campo) //comprueba que el campo es mayor que 0
+function mayorQueCero(campo){
+    let valor = parseInt(campo.value , 10);
+    if (valor <= 0) {
+        document.getElementById(campo.name+"_errorLength").style.visibility="visible";
+        campo.style.border="2px solid red";
+        return false;
+    }else {
+        document.getElementById(campo.name+"_errorLength").style.visibility="hidden";
+        campo.style.border="2px solid green";
+        return true;
+    }
+}
+
+function comprobarIntercambio(Formu){
+    var correcto=true; 
+
+        if(!checkEquals(2,Formu.idProd1)){//comprobamos que los productos no sean iguales
+            Formu.idProd1.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!checkEquals(1,Formu.idProd2)){//comprobamos que los productos no sean iguales
+            Formu.idProd1.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarEntero(Formu.unidades1)){//comprobamos las unidades sean numeros
+            Formu.unidades1.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarEntero(Formu.unidades2)){//comprobamos las unidades sean numeros
+            Formu.unidades2.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!noMayor(Formu.unidades1,1)){//comprobamos las unidades sean numeros
+            Formu.unidades1.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!noMayor(Formu.unidades2,2)){//comprobamos las unidades sean numeros
+            Formu.unidades2.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarAccept(Formu.accept1)){//comprobamos las unidades sean numeros
+            Formu.accept1.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarAccept(Formu.accept2)){//comprobamos las unidades sean numeros
+            Formu.accept2.style.border = "2px solid red";
+            correcto = false;
+        }
+    return correcto;
+
+
 }

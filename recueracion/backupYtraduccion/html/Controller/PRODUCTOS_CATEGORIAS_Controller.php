@@ -53,7 +53,7 @@
 						$datosCategorias = $datosCategorias->SEARCH();// se recogen todas las categorias con su nombre
 
 						include_once '../Model/PRODUCTOS_Model.php';
-						$datosProductos = new PRODUCTOS_Model('','','','','','');
+						$datosProductos = new PRODUCTOS_Model('','','','','','','','');
 						$datosProductos = $datosProductos->SEARCH();// se recogen todos los productos con su nombre
 
 						new PRODUCTOS_CATEGORIAS_ADD($datosCategorias,$datosProductos);
@@ -85,7 +85,7 @@
 						$datosCategorias = $datosCategorias->SEARCH();// se recogen todas las categorias con su nombre
 
 						include_once '../Model/PRODUCTOS_Model.php';
-						$datosProductos = new PRODUCTOS_Model('','','','','','');
+						$datosProductos = new PRODUCTOS_Model('','','','','','','','');
 						$datosProductos = $datosProductos->SEARCH();// se recogen todos los productos con su nombre
 
 						$PRODUCTOS_CATEGORIAS = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['idP'],$_REQUEST['idC']); // Se crea el objeto
@@ -106,7 +106,7 @@
 						$datosCategorias = $datosCategorias->SEARCH();// se recogen todas las categorias con su nombre
 
 						include_once '../Model/PRODUCTOS_Model.php';
-						$datosProductos = new PRODUCTOS_Model('','','','','','');
+						$datosProductos = new PRODUCTOS_Model('','','','','','','','');
 						$datosProductos = $datosProductos->SEARCH();// se recogen todos los productos con su nombre
 
 					new PRODUCTOS_CATEGORIAS_SEARCH($datosProductos, $datosCategorias);

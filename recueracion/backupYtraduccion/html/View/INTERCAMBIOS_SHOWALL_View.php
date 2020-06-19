@@ -1,11 +1,11 @@
 <?php
-//Clase : USUARIO_SHOWALL_View
-//Creado el : 2-06-20
+//Clase : INTERCAMBIOS_SHOWALL_View
+//Creado el : 15-06-20
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los CATEGORIAS
+//Muestra unos campos de todos las tuplas de los INTERCAMBIOS
 //-------------------------------------------------------
 
-class CATEGORIAS_SHOWALL {
+class INTERCAMBIOS_SHOWALL {
 
 	var $lista;
 
@@ -33,46 +33,73 @@ class CATEGORIAS_SHOWALL {
 		<?php 
 				if($usuario->isAdmin()){ // si el usuario es administrador puede añadir categorias
 					?>
-		<a href = '../Controller/CATEGORIAS_Controller.php?action=ADD' style="color:#FFFFFF;">
+		<a href = '../Controller/INTERCAMBIOS_Controller.php?action=ADD' style="color:#FFFFFF;">
 			<img src='../View/icon/bolsa-de-la-compra.png' height="42" width="42" >
 		</a>
 
 		<?php } ?>
 
-		<a href = '../Controller/CATEGORIAS_Controller.php?action=SEARCH'>
+		<a href = '../Controller/INTERCAMBIOS_Controller.php?action=SEARCH'>
 			<img src='../View/icon/searchuser.ico'>
 		</a>
 		<br>
 		<div>
 		<table border = ¨1¨>
-			<th class="name">
-				nombre
+			<th class="idProd1">
+				Prod 1
+			</th>
+			<th class="idProd2">
+				Prod 2
+			</th>
+			<th class="unid1">
+				Unidades 1
+			</th>
+			<th class="unid2">
+				Unidades 2
+			</th>
+			<th class="accept1">
+				aceptacion 1
+			</th>
+			<th class="accept2">
+				aceptacion 1
 			</th>
 			<?php 
 			foreach ($this->lista as $key ) {  ?>
 
 				<tr>			
 					<td>
-						<?php echo $key['NOMBRE_CATEGORIA'] ; ?>
+						<?php echo $key['ID_PRODUCTO1'] , '-', "a lo mejor el titulo" ; ?>
 					</td>
-				<?php if($usuario->isAdmin()){ // si el usuario es administrador es le ofrece busqeuda por otros usuarios
-					?>
 					<td>
-						<a href = "../Controller/CATEGORIAS_Controller.php?action=EDIT&&id=<?php echo $key['ID']; ?>"  > 
+						<?php echo $key['ID_PRODUCTO2'] , '-', "a lo mejor el titulo" ; ?>
+					</td>
+					<td>
+						<?php echo $key['UNIDADES1'] ; ?>
+					</td>
+					<td>
+						<?php echo $key['UNIDADES2']  ; ?>
+					</td>
+					<td class="<?php echo $key['ACCEPT1']  ; ?>">
+						<?php echo $key['ACCEPT1']  ; ?>
+					</td>
+					<td class="<?php echo $key['ACCEPT2']  ; ?>">
+						<?php echo $key['ACCEPT2']  ; ?>
+					</td>
+					<td>
+						<a href = "../Controller/INTERCAMBIOS_Controller.php?action=EDIT&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/edituser.ico'>
 						</a>
 					</td>
 
-				<?php } ?>
 					<td>
-						<a href = "../Controller/CATEGORIAS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"  > 
+						<a href = "../Controller/INTERCAMBIOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/showuser.ico'>
 						</a>
 					</td>
 					<?php if($usuario->isAdmin()){ // si el usuario es administrador es le ofrece busqeuda por otros usuarios		
 					?>
 					<td>
-						<a href = "../Controller/CATEGORIAS_Controller.php?action=DELETE&&id=<?php echo $key['ID']; ?>"  > 
+						<a href = "../Controller/INTERCAMBIOS_Controller.php?action=DELETE&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/bolsa-de-la-compra_delete.png' height="42" width="42">
 						</a>
 					</td>

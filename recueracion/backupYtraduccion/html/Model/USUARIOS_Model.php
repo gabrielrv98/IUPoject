@@ -277,6 +277,19 @@ function getUsuariosConProductos(){
 	return $resultado;
 }
 
+//funcion getProductos(): devuelve los productos a partir del dni del usuario
+// devuelve un array con el id y titulo del producto
+function getProductos(){
+	$sql = "SELECT DISTINCT TITULO, ID
+			FROM PRODUCTOS 
+			INNER JOIN  USUARIOS ON PRODUCTOS.VENDEDOR_DNI = USUARIOS.DNI
+			WHERE (DNI = '$this->dni')
+			";
+	
+	$resultado = $this->mysqli->query($sql);
+	return $resultado;
+}
+
 //funcion getDNI(): devuelve el DNI del usuario
 // devuelve true si es un administrador, devuelve false si es un usuario
 function getDNI(){
@@ -288,6 +301,19 @@ function getDNI(){
 	$resultado = $this->mysqli->query($sql);
 	$resultado = $resultado-> fetch_array();
 	return $resultado['DNI'];
+}
+
+//funcion getLogin(): devuelve el login del usuario
+// devuelve true si es un administrador, devuelve false si es un usuario
+function getLogin(){
+	$sql = "SELECT LOGIN
+			FROM USUARIOS
+			WHERE (
+				(DNI = '$this->dni') 
+			)";
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	return $resultado['LOGIN'];
 }
 
 //funcion isAdmin(): se utiliza para comprobar si el usuario actual es administrador
@@ -304,6 +330,34 @@ function isAdmin(){
 		return true;
 	}else return false;
 }
+
+//funcion getIntercambios(): devuelve los productos del usuario
+// Recoje los productos a partir de ID del usuario
+function getIntercambios(){
+
+	$sql = "SELECT DNI
+			FROM USUARIOS
+			WHERE 
+				(login = '$this->login') 
+			";
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	$dni = $resultado['DNI'];
+
+
+	$sql = "SELECT * , INTERCAMBIO.ID as ID
+			FROM INTERCAMBIO, PRODUCTOS
+			WHERE 
+				(VENDEDOR_DNI = '$dni'
+				AND
+				(PRODUCTOS.ID = INTERCAMBIO.ID_PRODUCTO1 or
+				 PRODUCTOS.ID = INTERCAMBIO.ID_PRODUCTO2) )
+			";
+
+	return $this->mysqli->query($sql);
+}
+
+
 
 // funcion login: realiza la comprobación de si existe el usuario en la bd y despues si la pass
 // es correcta para ese usuario. Si es asi devuelve true, en cualquier otro caso devuelve el 
@@ -415,14 +469,6 @@ function Register(){
 
 	}
 
-
-//Metodo registrar
-//Añade al usuario a la base de datos
-function registrar(){
-
-			
-		
-	}
 
 }//fin de clase
 

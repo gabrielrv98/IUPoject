@@ -47,11 +47,6 @@
 					</select>
 					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > <?php echo $strings['vendedorDNIError'] ?> </label>
 				</div>&nbsp;&nbsp;
-				<?php 
-					if($usuario->isAdmin()){ // si el usuario es administrador es le ofrece busqeuda por otros usuarios
-				?>
-
-				
 
 				<div class="form-group">
 				 	<label for="estado" class="disponibilidad">Disponibilidad </label>
@@ -63,7 +58,6 @@
 					<label class="errormsg estadoError" for="estado" id="estado_error" > <?php echo $strings['estadoError'] ?> </label>
 				</div>&nbsp;&nbsp;
 
-			<?php }  ?>
 
 				<div class="form-group">
 				 	<label for="descripcion" class="descripcionProducto"><?php echo $strings['descripcionProducto'] ?> </label>
@@ -72,6 +66,26 @@
 				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
 				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
 				</div>&nbsp;
+
+				<div class="form-group">
+					<label class="origen" for="origen">Origen</label>
+					<select name="origen" onchange="comprobarOrigen(this);" >
+							<option value="" class="indiferente"> indiferente</option>
+				 			<option value="fabricado_a_mano" class="fabricado_a_mano"> Fabricado a mano</option>
+				 			<option value="cultivado" class="cultivado"> cultivado</option>
+				 			<option value="trabajo" class="trabajo"> trabajo</option>
+					</select>
+					<label class="errormsg origenError" for="origen" id="origen_error" > Error en oirgen </label>
+				</div>
+				<br>
+
+				<div class="form-group">
+					<label for="horasUnidades" class="horasUnidades">Horas o unidades</label>
+					<input type="number" name="horasUnidades" onblur="comprobarEnteroVacio(this);">
+					<label class="errormsg numberError" for="horasUnidades" id="horasUnidades_error" > Solo numeros </label>
+					<label class="errormsg tooshort" for="horasUnidades" id="horasUnidades_errorLength" > Al menos un numero </label>
+				</div>
+				<br>
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="SEARCH" >
 					<?php echo $strings['submit'] ; ?>

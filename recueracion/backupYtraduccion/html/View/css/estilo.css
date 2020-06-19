@@ -32,6 +32,10 @@
     visibility: hidden;
 }
 
+.tituloStyle{
+  font-size: 150%; 
+  text-decoration: underline;"
+}
 .menuLateralCss {
   height: 100%;
   width: 0;

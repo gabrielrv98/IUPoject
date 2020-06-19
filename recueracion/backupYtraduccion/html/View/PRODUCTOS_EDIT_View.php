@@ -61,6 +61,26 @@
 				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>
 				</div>&nbsp;&nbsp;
 
+				<div class="form-group">
+					<label class="origen" for="origen">Origen</label>
+					<select name="origen" onchange="comprobarOrigen(this);" required>
+				 			<option value="fabricado_a_mano" class="fabricado_a_mano" <?php if( $this->valores['ORIGEN'] == 'fabricado_a_mano') echo "selected" ?> > Fabricado a mano</option>
+				 			<option value="cultivado" class="cultivado" <?php if( $this->valores['ORIGEN'] == 'cultivado') echo "selected" ?>> cultivado</option>
+				 			<option value="trabajo" class="trabajo" <?php if( $this->valores['ORIGEN'] == 'trabajo') echo "selected" ?>> trabajo</option>
+					</select>
+					<label class="errormsg origenError" for="origen" id="origen_error" > Error en oirgen </label>
+				</div>
+				<br>
+
+				<div class="form-group">
+					<label for="horasUnidades" class="horasUnidades">Horas o unidades</label>
+					<input type="number" name="horasUnidades" onblur="comprobarEntero(this);" value="<?php echo $this->valores['HORAS_UNIDADES'] ?>">
+					<label class="errormsg numberError" for="horasUnidades" id="horasUnidades_error" > Solo numeros </label>
+					<label class="errormsg tooshort" for="horasUnidades" id="horasUnidades_errorLength" > Al menos un numero </label>
+				</div>
+				<br>
+
+
 				<?php 
 					if($usuario->isAdmin()){ // si el usuario es administrador es le ofrece busqeuda por otros usuarios
 						$usuariosProductos = $usuario->getUsuarios();

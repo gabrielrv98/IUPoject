@@ -23,7 +23,7 @@
 		
 		<?php include '../View/Header.php'; //header necesita los strings?>
 			<h1 class="eliminarProducto"></h1>	
-			<form name = 'Form' action='../Controller/CATEGORIAS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarProducto(this);" enctype="multipart/form-data">
+			<form name = 'Form' action='../Controller/CATEGORIAS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarCategoria(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">
 				 	<label for="id" class="idCategoria"><?php echo $strings['idCategoria'] ?> </label> 

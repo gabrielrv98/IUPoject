@@ -28,6 +28,9 @@
 				<a class="Gestión Categorias" href='../Controller/CATEGORIAS_Controller.php'>
 					<?php echo $strings['Gestión Categorias']; ?>
 				</a>
+				<a class="intercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
+					Intercambios
+				</a>
 			</div>
 
 			<span class="menuBut open" onclick="openNav()"> <?php echo $strings['open']; ?></span>

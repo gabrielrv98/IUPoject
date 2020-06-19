@@ -37,23 +37,22 @@ class PRODUCTOS_SHOWALL {
 		<div>
 		<table border = ¨1¨>
 			<th class="tituloProducto">
-				<?php echo $strings['tituloProducto']; ?>
+				titulo
 			</th>
 			<th class="descripcionProducto">
-				<?php echo $strings['descripcionProducto']; ?>
+				descripcion
 			</th>
 			<th class="fotoProducto">
-				<?php echo $strings['fotoProducto']; ?>
+				foto
 			</th>
 			<th class="name">
-				<?php echo $strings['name']; ?>
+				nombre
 			</th>
 			<th class="estado">
-				<?php echo $strings['estado']; ?>
+				estado
 			</th>
 			<?php 
-			foreach ($this->lista as $key ) {  
-				//echo var_dump($key); ?>
+			foreach ($this->lista as $key ) {  ?>
 
 				<tr>
 					<td>
@@ -68,7 +67,7 @@ class PRODUCTOS_SHOWALL {
 					</td>
 					<td>
 						<?php  
-						echo $key['VENDEDOR_DNI']; 
+						echo $key['NOMBRE'], " " , $key['APELLIDOS'] ; 
 						?>
 					</td>
 					<td>

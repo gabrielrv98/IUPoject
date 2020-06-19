@@ -109,7 +109,10 @@
 			case 'SHOWCURRENT':
 				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','','','','','','','','',''); // Se crea el objeto
 				$valores = $USUARIOS->RellenaDatos();
-				new USUARIOS_SHOWCURRENT($valores);
+
+				$productos =  new USUARIOS_Model('','','','','',$valores['DNI'],'','','','','','','',''); // Se crea el objeto
+				$productos = $productos->getProductos();// se recogen los productos a partir del dni
+				new USUARIOS_SHOWCURRENT($valores,$productos);
 				break;
 
 			default:

@@ -32,10 +32,12 @@
 		if (!isset($_REQUEST['descripcion'])) $_REQUEST['descripcion'] = null;
 		if (!isset($_REQUEST['foto'])) $_REQUEST['foto'] = null;
 		if (!isset($_REQUEST['vendedorDNI'])) $_REQUEST['vendedorDNI'] = null;
+		if (!isset($_REQUEST['origen'])) $_REQUEST['origen'] = null;
+		if (!isset($_REQUEST['horasUnidades'])) $_REQUEST['horasUnidades'] = null;
 		if (!isset($_REQUEST['estado'])) $_REQUEST['estado'] = null;
 
 		return new PRODUCTOS_Model($_REQUEST['id'],$_REQUEST['titulo'],$_REQUEST['descripcion'],
-		$_REQUEST['foto'],$_REQUEST['vendedorDNI'],$_REQUEST['estado']);// se Crea el modelo de Producto
+		$_REQUEST['foto'],$_REQUEST['vendedorDNI'],$_REQUEST['origen'],$_REQUEST['horasUnidades'],$_REQUEST['estado']);// se Crea el modelo de Producto
 
 	}
 
@@ -79,10 +81,10 @@
 				}
 				break;
 			case 'DELETE':
-				$producto = new PRODUCTOS_Model($_REQUEST['id'],'','','','','');
+				$producto = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','','');
 				if( $usuario->isAdmin() || $usuario->getDNI() == $producto->getVendedorDNI()){
 					if (!$_POST){ //nos llega el id a eliminar por get
-						$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','');
+						$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','','');
 						$valores = $PRODUCTOS->RellenaDatos();
 						new PRODUCTOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 					}
@@ -114,7 +116,7 @@
 			case 'EDIT':
 
 				if (!$_POST){ //nos llega el usuario a editar por get
-					$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','',''); // Se crea el objeto PRODUCTO
+					$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','',''); // Se crea el objeto PRODUCTO
 					$valores = $PRODUCTOS->RellenaDatos(); // obtengo todos los datos de la tupla
 
 					$categorias = new CATEGORIAS_Model('','');// Se crea el objeto CATEGORIAS
@@ -196,7 +198,7 @@
 				break;
 
 			case 'SHOWCURRENT':
-				$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','',''); // Se crea el objeto
+				$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','',''); // Se crea el objeto
 				$valores = $PRODUCTOS->RellenaDatos();
 
 				$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
@@ -210,7 +212,6 @@
 				$PRODUCTOS = get_data_form();
 				$datos = $PRODUCTOS->SHOW_ALL();
 
-				//conseguir nombre para DNI
 				new PRODUCTOS_SHOWALL($datos);
 		}
 
@@ -244,9 +245,9 @@
 		// Check if $uploadOk is set to 0 by an error
 		if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
 			 $oldname = '../Files/' .basename( $_FILES["foto"]["name"]);
-			 $catch = array("\n"," ","\r","\t");
-			 $titulo = str_replace($catch, "_", $_REQUEST['titulo']);
-			 $newname = '../Files/' . $titulo .'_'. $_REQUEST['vendedorDNI'].'.'.$imageFileType;
+			 $catch = array("\n"," ","\r","\t");//caracteres a remplazar
+			 $titulo = str_replace($catch, "_", $_REQUEST['titulo']);//se substituyen los caracteres del titulo y se guardan en $titulo
+			 $newname = '../Files/' . $titulo .'_'. $_REQUEST['vendedorDNI'].'.'.$imageFileType;//se le da el nuevo nombre
 			rename($oldname, $newname);
 			$_REQUEST['foto'] = $newname;
 		}

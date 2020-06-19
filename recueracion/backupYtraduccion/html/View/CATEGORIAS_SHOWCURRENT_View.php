@@ -55,7 +55,7 @@ class CATEGORIAS_SHOWCURRENT {
 	<br>
 
 	<div>
-		<label   class="productosEnCategoria"style="font-size: 150%; text-decoration: underline;"></label> <br>
+		<label   class="productosEnCategoria" style="font-size: 150%; text-decoration: underline;"></label> <br>
 		<br>
 		<?php foreach ($this->productos as $key) { ?>
 			<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID_PRODUCTO']; ?>"> <?php echo $key['TITULO'] ?> </a><br>

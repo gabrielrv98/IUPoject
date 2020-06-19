@@ -128,6 +128,15 @@ const arraySPANISH =  {
     'eliminarProducto' : 'Eliminar producto',
     'fotoProducto' : 'Foto del producto',
     'disponibilidad' : 'Disponibilidad',
+    'origen' : 'Origen',
+    'fabricado_a_mano' : 'Fabricado a mano',
+    'cultivado' : 'Cultivado',
+    'trabajo' : 'Trabajo fisico',
+    'horasUnidades' : 'Unidades o horas',
+    'verUser' : 'Ver usuario',
+    'producto' : 'Producto',
+
+
 
     //Gestion de categorias
     'Gestión Categorias' : 'Gestion de categorias',
@@ -150,7 +159,23 @@ const arraySPANISH =  {
     'enlaceProducto' : 'Enlace al producto',
     'enlaceCategoria' : 'Enlace al categoria',
 
-
+    //Gestion de Intercambios
+    'intercambios' : 'Intercambios',
+    'idProd1' : 'ID producto 1',
+    'idProd2' : 'ID producto 2',
+    'unid1' : 'Unidades del producto 1',
+    'unid2' : 'Unidades del producto 2',
+    'accept1' : 'Estado aceptacion usuario 1',
+    'accept2' : 'Estado aceptacion usuario 2',
+    'addInter' : 'Añadir intercambio',
+    'editInter' : 'Editar intercambio',
+    'idRepetidos' :'Los productos no pueden estar repetidos',
+    'noMayor' : 'Este tiene que estar entre 1 y el maximo',
+    'aceptado' : 'Aceptado',
+    'denegado' : 'Rechazado',
+    'acceptError' : 'Error en el estado de aceptacion',
+    'noPodraDeshacerse' : 'Si ambos usuarios marcais el estado de aceptacion como aceptado, no podreis deshacer el intercambio',
+    'noEditable' : 'Los usuarios no pueden modificar un intercambio despues de haber sido aceptado por ambas partes',
 
     //codigos de error
     '00001' : '00001 Insercion fallida, el elemento ya existe',

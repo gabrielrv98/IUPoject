@@ -27,97 +27,97 @@
 				<div class="form-group">
 				 	<label for="login" class="Login">Login </label>  
 				 	<input class="form-control" type = 'text' name = 'login' id = 'login' placeholder = 'Utiliza tu login' size = '10' onblur="comprobarAlfabeticoVacio(this,15);">
-				 	<label class="errormsg" for="login" id="login_error" > <?php echo $strings['letrasynumeros'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="login" id="login_error" > </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
 				 	<label for="DNI">DNI  </label> 
 				 	<input class="form-control" type = 'text' name = 'DNI' id = 'DNI' placeholder = 'Utiliza tu dni' size = '9' onblur="comprobarDniSearch(this)">
-				 	<label class="errormsg" for="DNI" id="DNI_error" > <?php echo $strings['dniError'] ?> </label>
+				 	<label class="errormsg dniError" for="DNI" id="DNI_error" >  </label>
 				</div>&nbsp;&nbsp; 
 
 				<div class="form-group">
-					<label for="nombre" class="name"><?php echo $strings['name'] ?>  </label>
+					<label for="nombre" class="name">Nombre  </label>
 				 	<input class="form-control" type = 'text' name = 'nombre' id = 'nombre' placeholder = 'Solo letras' size = '20' onblur="comprobarTexto(this,30);"  >
-				 	<label class="errormsg textonly" for="nombre" id="nombre_error" > <?php echo $strings['textonly'] ?> </label>
+				 	<label class="errormsg textonly" for="nombre" id="nombre_error" >  </label>
 				</div>&nbsp;&nbsp; 
  
  				<div class="form-group">
-				 	<label for="apellidos" class="surname"><?php echo $strings['surname'] ?>  </label>
+				 	<label for="apellidos" class="surname">Apellido  </label>
 				 	<input class="form-control" type = 'text' name = 'apellidos' id = 'apellidos' placeholder = 'Solo letras' size = '50' onblur="comprobarTexto(this,50);"  >
-				 	<label class="errormsg textonly" for="apellidos" id="apellidos_error" > <?php echo $strings['textonly'] ?> </label>
+				 	<label class="errormsg textonly" for="apellidos" id="apellidos_error" ></label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="tlf" class="tlf"><?php echo $strings['tlf'] ?>  </label>
+				 	<label for="tlf" class="tlf">Telefono  </label>
 				 	<input class="form-control" type = 'number' name = 'tlf' id = 'tlf' placeholder = 'Numero de telefono' size = '9' onblur="comprobarTelfSearch(this)" >
-				 	<label class="errormsg tlfError" for="tlf" id="tlf_error" > <?php echo $strings['tlfError'] ?> </label>
+				 	<label class="errormsg tlfError" for="tlf" id="tlf_error" > </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
 				 	<label for="email" class="email">Email </label>
 				 	<input class="form-control" type = 'text' name = 'email' id = 'email' placeholder ='Utiliza tu correo' size = '40' onblur="comprobarEmailSearch(this,60)" value = '' >
-				 	<label class="errormsg emailError" for="email" id="email_error" > <?php echo $strings['emailError'] ?> </label>
+				 	<label class="errormsg emailError" for="email" id="email_error" > email </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="fechaNacimiento" class="bDate"><?php echo $strings['bDate'] ?>  </label>
+				 	<label for="fechaNacimiento" class="bDate">Fecha  </label>
 				 	<input class="form-control" type = 'date' name = 'fechaNacimiento' id = 'fechaNacimiento' onblur="comprobarFechaNacimiento(this);" onkeydown=" return false" >
-				 	<label class="errormsg fechaNacimientoError" for="fechaNacimiento" id="fechaNacimiento_error" > <?php echo $strings['fechaNacimientoError'] ?> </label>
+				 	<label class="errormsg fechaNacimientoError" for="fechaNacimiento" id="fechaNacimiento_error" > fecha error </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="alergias" class="alergias"> <?php echo $strings['alergias']; ?>  </label>
+				 	<label for="alergias" class="alergias">Alergias </label>
 				 	<input class="form-control" type = 'text' name = 'alergias' id = 'alergias' placeholder = 'Letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoVacio(this,50)" >
-				 	<label class="errormsg letrasynumeros" for="alergias" id="alergias_error" > <?php echo $strings['letrasynumeros']; ?> </label>
+				 	<label class="errormsg letrasynumeros" for="alergias" id="alergias_error" > error </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="direccion" class="direccion"><?php echo $strings['direccion']; ?>  </label>
+				 	<label for="direccion" class="direccion">direccion  </label>
 				 	<input class="form-control" type = 'text' name = 'direccion' id = 'direccion' placeholder = 'Letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoVacio(this,250)" >
-				 	<label class="errormsg letrasynumeros" for="direccion" id="direccion_error" > <?php echo $strings['letrasynumeros']; ?> </label>
+				 	<label class="errormsg letrasynumeros" for="direccion" id="direccion_error" > error </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="cp" class="cp"><?php echo $strings['cp']; ?>  </label>
+				 	<label for="cp" class="cp">Codigo postal  </label>
 				 	<input class="form-control" type = 'text' name = 'cp' id = 'cp' placeholder = 'codigo postal' size = '5' value = '' onblur="comprobarCPSearch(this)" >
-				 	<label class="errormsg errorCP" for="cp" id="cp_error" > <?php echo $strings['errorCP']; ?> </label>
+				 	<label class="errormsg errorCP" for="cp" id="cp_error" > error CP</label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="sexo" class="sexo"><?php echo $strings['sexo'] ?>  </label>
+				 	<label for="sexo" class="sexo">Sexo  </label>
 				 	<select name="sexo" >
-						<option value="" class="mix"> <?php echo $strings['mix'] ; ?></option>
-    					<option value="hombre" class="male"> <?php echo $strings['male'] ; ?></option>
-    					<option value="mujer" class="female"> <?php echo $strings['female'] ; ?></option>
+						<option value="" class="mix"> Mix</option>
+    					<option value="hombre" class="male"> Hombre</option>
+    					<option value="mujer" class="female"> Mujer</option>
 					</select>
-					<label class="errormsg sexoError" for="sexo" id="sexo_error" > <?php echo $strings['sexoError'] ?> </label>
+					<label class="errormsg sexoError" for="sexo" id="sexo_error" > sexoError </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="tipo_usuario" class="tipo_usuario"><?php echo $strings['tipo_usuario']; ?></label>
+				 	<label for="tipo_usuario" class="tipo_usuario">Tipo usuario</label>
 				 	<select name="tipo_usuario" >
-				 			<option value="" class="todoTipo"> <?php echo $strings['todoTipo'] ; ?></option>
-    						<option value="admin" class="admin"> <?php echo $strings['admin'] ; ?></option>
-    						<option value="usuario" class="usuario"> <?php echo $strings['usuario'] ; ?></option>
+				 			<option value="" class="todoTipo"> Cualquiera</option>
+    						<option value="admin" class="admin"> admin </option>
+    						<option value="usuario" class="usuario">user</option>
 					</select>
 
-				 	<label class="errormsg tipo_usuarioError" for="tipo_usuario" id="tipo_usuario_error" > <?php echo $strings['tipo_usuarioError'] ?> </label>
+				 	<label class="errormsg tipo_usuarioError" for="tipo_usuario" id="tipo_usuario_error" > usuario error</label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="activado" class="activado"><?php echo $strings['activado']; ?></label>
+				 	<label for="activado" class="activado">activado</label>
 				 	<select name="activado" >
-				 			<option value="" class="todoTipo"> <?php echo $strings['todoTipo'] ; ?></option>
-    						<option value="activado" class="activado"> <?php echo $strings['activado'] ; ?></option>
-    						<option value="desactivado" class="desactivado"> <?php echo $strings['desactivado'] ; ?></option>
+				 			<option value="" class="todoTipo"> todo</option>
+    						<option value="activado" class="activado"> activado</option>
+    						<option value="desactivado" class="desactivado"> desactivado</option>
 					</select>
 
-				 	<label class="errormsg activadoError" for="activado" id="activado_error" > <?php echo $strings['activadoError'] ?> </label>
+				 	<label class="errormsg activadoError" for="activado" id="activado_error" > activadoerror </label>
 				</div>&nbsp;&nbsp;
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="SEARCH" >
-					<?php echo $strings['submit'] ; ?>
+					Submit
 				</button>
 			</form>
 				

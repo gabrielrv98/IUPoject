@@ -30,11 +30,11 @@
 		$nombre = $nombre['NOMBRE'] . ' ' . $nombre['APELLIDOS'] .'-';// y los colocamos visualmente
 		 ?>
 			<h1 class="eliminarProducto"></h1>	
-			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarProducto(this);" enctype="multipart/form-data">
+			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarProductos(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">
 					<label class="idProducto">ID del producto</label>
-					<input type="text" name="id" value="<?php echo $this->valores['ID']; ?>" readonly>
+					<input type="text" name="id" value="<?php echo $this->valores['ID']; ?>" onblur="comprobarEntero(this);" readonly>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
@@ -56,23 +56,42 @@
 
 				<div class="form-group">
 				 	<label for="foto" class="picture"><?php echo $strings['picture'] ?>  </label><br> 
-					<img src="<?php echo $this->valores['FOTO'];?>" height="42" width="42">
+					<img src="<?php echo $this->valores['FOTO'];?>" id="foto" height="42" width="42">
 				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>
 				</div>&nbsp;&nbsp;
 
 
 				<div class="form-group">
 				 	<label for="vendedorDNI" class="persona"><?php echo $strings['persona'] ?>  </label>
-				 	<input class="form-control" type = 'text'  value = '<?php echo $nombre; ?>' readonly>
-					<input class="form-control" type = 'text' name = 'vendedorDNI' id = 'vendedorDNI' placeholder = 'Letras y numeros' size = '9'  value = '<?php echo $this->valores['VENDEDOR_DNI']; ?>' readonly>
+				 	<input class="form-control" type = 'text' onblur="comprobarAlfabetico(this,200)" value = '<?php echo $nombre; ?>' readonly>
+					<input class="form-control" type = 'text' name = 'vendedorDNI' id = 'vendedorDNI'  onblur="comprobarDni(this)"  size = '9'  value = '<?php echo $this->valores['VENDEDOR_DNI']; ?>' readonly>
 					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > <?php echo $strings['vendedorDNIError'] ?> </label>
 				</div>&nbsp;&nbsp;
 
+				<div class="form-group">
+					<label class="origen" for="origen">Origen</label>
+					<select name="origen" onchange="comprobarOrigen(this);" required>
+				 			<option value="fabricado_a_mano" class="fabricado_a_mano"  <?php if( $this->valores['ORIGEN'] != 'fabricado_a_mano') echo "disabled" ?> > Fabricado a mano</option>
+				 			<option value="cultivado" class="cultivado" <?php if( $this->valores['ORIGEN'] != 'cultivado') echo "disabled" ?>> cultivado</option>
+				 			<option value="trabajo" class="trabajo" <?php if( $this->valores['ORIGEN'] != 'trabajo') echo "disabled" ?> >trabajo</option>
+					</select>
+					<label class="errormsg origenError" for="origen" id="origen_error" > Error en oirgen </label>
+				</div>
+				<br>
 
 				<div class="form-group">
-				 	<label for="estado" class="estado"><?php echo $strings['estado'] ?>  </label>
-				 	<input class="form-control" type = 'text' name = 'estado' id = 'estado' placeholder = 'Letras y numeros' size = '9'  value = '<?php echo $this->valores['ESTADO']; ?>' readonly>
-					<label class="errormsg estadoError" for="estado" id="estado_error" > <?php echo $strings['estadoError'] ?> </label>
+					<label for="horasUnidades" class="horasUnidades">Horas o unidades</label>
+					<input type="number" name="horasUnidades" onblur="comprobarEntero(this);" value="<?php echo $this->valores['HORAS_UNIDADES'] ?>" readonly="">
+					<label class="errormsg numberError" for="horasUnidades" id="horasUnidades_error" > Solo numeros </label>
+					<label class="errormsg tooshort" for="horasUnidades" id="horasUnidades_errorLength" > Al menos un numero </label>
+				</div>
+				<br>
+
+
+				<div class="form-group">
+				 	<label for="estado" class="estado">Estado </label>
+				 	<input class="form-control" type = 'text' name = 'estado' id = 'estado' placeholder = 'Letras y numeros' size = '9'  value = '<?php echo $this->valores['ESTADO']; ?>' onblur="comprobarEstado(this)" readonly>
+					<label class="errormsg estadoError" for="estado" id="estado_error" > estado error </label>
 				</div>&nbsp;&nbsp;
 
 

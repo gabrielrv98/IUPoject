@@ -14,11 +14,14 @@ php.exe dar permiso a logDB
 
 cambiar menu lateral por superior
 acabar comentarios y marca horaria
-revisar todos los h1 y vaciar
+revisar todos los $string y vaciar
+revisar todos los js
+
 
 //productos
-añadir origen a PRODUCTO
 PRODUCTOS no actualiza $_REQUEST['foto']
+UNIDADES >= 1
+edit, unidades 0 = producto vendido
 
 
 //categorias

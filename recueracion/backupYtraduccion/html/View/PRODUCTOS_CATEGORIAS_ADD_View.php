@@ -33,7 +33,6 @@
 				 	<label for="idCategoria" class="nombreCategoria">Nombre de la categoria</label>
 				 	<select name="idCategoria" id="idCategoria" required>
 				 		<?php foreach ($this->datosCategorias as $key) { ?>
-				 			<?php echo var_dump($key) ?>
 				 			<option value="<?php echo $key['ID'];?>"> <?php echo $key['NOMBRE_CATEGORIA']; ?></option>
 				 		<?php }  ?>
 					</select>
@@ -45,7 +44,6 @@
 				 	<label for="idProducto" class="nombreCategoria">Nombre del producto</label>
 				 	<select name="idProducto" id="idProducto" required>
 				 		<?php foreach ($this->datosProductos as $key) { ?>
-				 			<?php echo var_dump($key) ?>
 				 			<option value="<?php echo $key['ID'];?>"> <?php echo $key['TITULO']; ?></option>
 				 		<?php }  ?>
 					</select>

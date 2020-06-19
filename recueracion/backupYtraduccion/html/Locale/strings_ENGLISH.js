@@ -18,7 +18,7 @@ const arrayENGLISH =  {
       'edit' : 'Edit',
       'editUser' : 'Edit user',
       'searchUser' : 'Search user',
-      'dniOrEmailRepeted' : 'Dni or email are repeted',
+      'dniOrEmailRepeted' : 'Dni or email are repited',
       'unknownError' : 'Unknown error',
       'showCurrent' : 'Show user',
       'show' : 'Show',
@@ -138,6 +138,13 @@ const arrayENGLISH =  {
     'indiferente' : 'Indifferent',
     'yo' : 'Yo',
     'disponibilidad' : 'Availability',
+    'origen' : 'Origin',
+    'fabricado_a_mano' : 'Handmade',
+    'cultivado' : 'Cultivated',
+    'trabajo' : 'Physical work',
+    'horasUnidades' : 'Units or hours',
+    'verUser' : 'See usuer',
+    'producto' : 'Product',
 
     //Gestion de categorias
     'Gestión Categorias' : 'Category manager',
@@ -160,6 +167,23 @@ const arrayENGLISH =  {
     'enlaceProducto' : 'Product link',
     'enlaceCategoria' : 'Category link',
 
+    //Gestion de Intercambios
+    'intercambios' : 'Exchange',
+    'idProd1' : 'ID product 1',
+    'idProd2' : 'ID product 2',
+    'unid1' : 'Units product 1',
+    'unid2' : 'Units product 2',
+    'accept1' : 'Aceptation state user 1',
+    'accept2' : 'Aceptation state user 2',
+    'addInter' : 'Add exchange',
+    'editInter' : 'Edit exchange',
+    'idRepetidos' :'Productos cannot be repited',
+    'aceptado' : 'Accepted',
+    'denegado' : 'Refused',
+    'acceptError' : 'Error in aceptance state',
+    'noMayor' : 'This input must be between 1 and its max',
+    'noPodraDeshacerse' : 'If both users mark the acceptance status as accepted, you will not be able to undo the exchange',
+    'noEditable' : 'Users cannot modify an exchange after it has been accepted by both parties',
 
     //codigos de error
     '00001' : '00001 Insertion failed, element already exists',
@@ -185,6 +209,6 @@ const arrayENGLISH =  {
     
     
     
-     };
+     };//fin diccionario
 
-      export { arrayENGLISH };
+      export { arrayENGLISH };//se exporta el array

@@ -22,19 +22,23 @@
 				</a>
 
 				<a class="Gestión Usuarios" href='../Controller/USUARIOS_Controller.php'>
-					<?php echo $strings['Gestión Usuarios']; ?>
+					'Gestión Usuarios
 				</a>
 
 				<a class="Gestión Productos" href='../Controller/PRODUCTOS_Controller.php'>
-					<?php echo $strings['Gestión Productos']; ?>
+					Gestión Productos
 				</a>
 
 				<a class="Gestión Categorias" href='../Controller/CATEGORIAS_Controller.php'>
-					<?php echo $strings['Gestión Categorias']; ?>
+					Gestión Categorias
 				</a>
 
 				<a class="Gestión Productos-Categorias" href='../Controller/PRODUCTOS_CATEGORIAS_Controller.php'>
-					<?php echo $strings['Gestión Productos-Categorias']; ?>
+					Productos-Categorias
+				</a>
+
+				<a class="intercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
+					Intercambios
 				</a>
 			</div>
 			

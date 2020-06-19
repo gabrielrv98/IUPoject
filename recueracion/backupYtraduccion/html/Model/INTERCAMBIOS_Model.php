@@ -1,35 +1,33 @@
 
 <?php
 
-//Clase : USUARIOS_Modelo
-//Creado el : 2-06-2020
+//Clase : INTERCAMBIO_Model
+//Creado el : 15-06-2020
 //Creado por: grvidal
-//Modelo de usuarios para realizar las acciones sobre la base de datos
+//Modelo de intercambio para realizar las acciones sobre la base de datos
 //-------------------------------------------------------
 
-class PRODUCTOS_Model {
+class INTERCAMBIOS_Model {
 
 	var $id;
-	var $titulo;
-	var $descripcion;
-	var $foto;
-	var $vendedorDNI;
-	var $origen;
-	var $horasUnidades;
-	var $estado;
+	var $idProd1;
+	var $idProd2;
+	var $unidades1;
+	var $unidades2;
+	var $accept1;
+	var $accept2;
 	var $mysqli;
 
 //Constructor de la clase
-//Recive como entrada los datos persnales y crea la clase USUARIO_Model
-function __construct($id,$titulo,$descripcion,$foto,$vendedorDNI,$origen,$horasUnidades,$estado){
+//Recive como entrada los datos persnales y crea la clase INTERCAMBIOS_Model
+function __construct($id,$idProd1,$idProd2,$unidades1,$unidades2,$accept1,$accept2){
 	$this->id = $id;
-	$this->titulo = $titulo;
-	$this->descripcion = $descripcion;
-	$this->foto = $foto;
-	$this->vendedorDNI = $vendedorDNI;
-	$this->origen = $origen;
-	$this->horasUnidades = $horasUnidades;
-	$this->estado = $estado;
+	$this->idProd1 = $idProd1;
+	$this->idProd2 = $idProd2;
+	$this->unidades1 = $unidades1;
+	$this->unidades2 = $unidades2;
+	$this->accept1 = $accept1;
+	$this->accept2 = $accept2; 
 
 	include_once '../Model/Access_DB.php';
 	$this->mysqli = ConnectDB();
@@ -43,24 +41,24 @@ function __construct($id,$titulo,$descripcion,$foto,$vendedorDNI,$origen,$horasU
 function ADD()
 {	
 
-	if($this->estado == '') $this->estado = 'tramite';//si el estado esta vacio se recoloca
+	if($this->accept1 == '') $this->accept1 = 'denegado';//si el estado de aceptacion1 esta vacio se recoloca a denegado
+	if($this->accept2 == '') $this->accept2 = 'denegado';//si el estado de aceptacion2 esta vacio se recoloca a denegado
 
-	$sql = "INSERT INTO PRODUCTOS (
-			TITULO,
-			DESCRIPCION,
-			FOTO,
-			VENDEDOR_DNI,
-			ORIGEN,
-			HORAS_UNIDADES,
-			ESTADO) 
+
+	$sql = "INSERT INTO INTERCAMBIO (
+			ID_PRODUCTO1,
+			ID_PRODUCTO2,
+			UNIDADES1,
+			UNIDADES2,
+			ACCEPT1,
+			ACCEPT2) 
 				VALUES (
-					'".$this->titulo."',
-					'".$this->descripcion."',
-					'".$this->foto."',
-					'".$this->vendedorDNI."',
-					'".$this->origen."',
-					'".$this->horasUnidades."',
-					'".$this->estado."'
+					'".$this->idProd1."',
+					'".$this->idProd2."',
+					'".$this->unidades1."',
+					'".$this->unidades2."',
+					'".$this->accept1."',
+					'".$this->accept2."'
 					)";
 
 		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
@@ -87,7 +85,7 @@ function __destruct()
 function SEARCH()
 {
     $sql = "SELECT * 
-    		FROM PRODUCTOS
+    		FROM INTERCAMBIO
     		WHERE ( ";
 
     $or = false;
@@ -141,9 +139,8 @@ function SEARCH()
 
 // se recojen todas las tuplas de la base de datos y se pasan como array
 function SHOW_ALL(){
-	$sql = "SELECT * , USUARIOS.NOMBRE, USUARIOS.APELLIDOS 
-			FROM PRODUCTOS
-			INNER JOIN USUARIOS ON PRODUCTOS.VENDEDOR_DNI = USUARIOS.DNI";
+	$sql = "SELECT *
+			FROM INTERCAMBIO";
 	return $this->mysqli->query($sql);
 }
 
@@ -152,7 +149,7 @@ function SHOW_ALL(){
 function DELETE()
 {
 	$sql = "SELECT *
-			FROM PRODUCTOS
+			FROM INTERCAMBIO
 			WHERE (ID = '$this->id')";
 
 	$obj = $this->mysqli->query($sql);
@@ -161,7 +158,7 @@ function DELETE()
 	if( mysqli_num_rows($obj) == 1 ){
 
 		$sql = "DELETE 
-   			FROM PRODUCTOS
+   			FROM INTERCAMBIO
    			WHERE ID = '$this->id'"; 
 
    		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
@@ -176,7 +173,7 @@ function RellenaDatos()
 {
 
 	$sql = "SELECT * 
-			FROM PRODUCTOS
+			FROM INTERCAMBIO
 			WHERE ( ID = '$this->id')";
 
 
@@ -190,23 +187,51 @@ function EDIT()
 {
 
 	$sql = "SELECT ID 
-				FROM PRODUCTOS
+				FROM INTERCAMBIO
 				WHERE (ID = '$this->id')";
 
-//se comprueba que el dni o el email no estan repetidos en otros usuarios
+//se comprueba que la tupla existe
 
 	$response = $this->mysqli->query($sql)->num_rows;
 	if ($response == 1) {
-		$sql = "UPDATE PRODUCTOS
-			SET TITULO = '$this->titulo',
-				DESCRIPCION = '$this->descripcion',";
 
-		if($this->foto !='') $sql= $sql."	FOTO = '$this->foto',";
+		include_once '../Model/USUARIOS_Model.php';
+		$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');
+		$intercambio = new INTERCAMBIOS_Model($this->id,'','','','','','');//creamos el objeto Antiguo
+		$datosIntercambio = $intercambio->RellenaDatos();
 
-		$sql= $sql . "	ORIGEN = '$this->origen',
-						HORAS_UNIDADES = '$this->horasUnidades',	
-				VENDEDOR_DNI = '$this->vendedorDNI',
-				ESTADO = '$this->estado'
+		if(!$usuario->isAdmin()){
+			if ($usuario->getDNI() == $intercambio->getDNIPord1()){// si eres el propietario del producto 1
+				$cambio = false; // no es necesario resetear el estado de aceptacion del otro usuario
+
+				if($datosIntercambio['ID_PRODUCTO1'] != $this->idProd1)// si el usuario cambio su producto
+					$cambio = true;
+				if($datosIntercambio['UNIDADES1'] != $this->unidades1)// si el usuario cambio sus unidades
+					$cambio = true;
+
+				if($cambio == true) $this->accept2 = 'denegado';// se resetea el estado de aceptacion del otro usuario para que confirme que le interesa el cambio
+
+			}else if($usuario->getDNI() == $intercambio->getDNIPord2()){// si eres el propietario del producto 2
+				$cambio = false; // no es necesario resetear el estado de aceptacion del otro usuario
+
+				if($datosIntercambio['ID_PRODUCTO2'] != $this->idProd2)// si el usuario cambio su producto
+					$cambio = true;
+				if($datosIntercambio['UNIDADES2'] != $this->unidades2)// si el usuario cambio sus unidades
+					$cambio = true;
+
+				if($cambio == true) $this->accept1 = 'denegado';// se resetea el estado de aceptacion del otro usuario para que confirme que le interesa el cambio
+
+			}
+		}
+		
+		if ($usuario->getDNI() == $intercambio->getDNIPord1()) $this->accept2 = 'denegado';
+		$sql = "UPDATE INTERCAMBIO
+			SET ID_PRODUCTO1 = '$this->idProd1',
+				ID_PRODUCTO2 = '$this->idProd2',
+				UNIDADES1 = '$this->unidades1',
+				UNIDADES2 = '$this->unidades2',	
+				ACCEPT1 = '$this->accept1',
+				ACCEPT2 = '$this->accept2'
 
 			WHERE (ID = '$this->id')";
 		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
@@ -217,60 +242,26 @@ function EDIT()
 	return '00008';// si el numero de tuplas de vuelta es mayor que 1 o la actualizacion tuvo un error
 }
 
-// actualiza la cantidad del producto
-//devuelve true si fue exitoso
-function setCantidad(){
 
-	$sql = "UPDATE PRODUCTOS
-			SET HORAS_UNIDADES = '$this->horasUnidades'";
+//funcion getDNIPord1(): devuelve el DNI del producto 1
+function getDNIPord1(){
 
-	if($this->horasUnidades <= 0) $sql = $sql .	", ESTADO = 'vendido' ";
-	else  $sql = $sql .	", ESTADO = 'tramite' ";
-	$sql = $sql .	" WHERE (ID = '$this->id')";
-
-	include_once'../Model/BD_logger.php';//se incluye el archivo con el log
-	$result = writeAndLog($sql); // se realiza el log
-
-	if($result = 1) return '00007';// si la actualizacion fue existosa
-	else return '00008';// la actualizacion tuvo un error
-}
-
-//funcion getFoto(): devuelve la ruta de la foto
-function getFoto(){
-	$sql = "SELECT FOTO
-			FROM PRODUCTOS
-			WHERE (
-				(ID = '$this->id') 
-			)";
-	$resultado = $this->mysqli->query($sql);
-	$resultado = $resultado-> fetch_array();
-	return $resultado['FOTO'];
-}
-
-//funcion recoverID(): devuelve el ID del Prodcto subido
-function recoverID(){
-	$sql = "SELECT ID
-			FROM PRODUCTOS
-			WHERE (
-				TITULO = '$this->titulo' AND
-				 DESCRIPCION = '$this->descripcion' AND
-				 FOTO = '$this->foto' AND
-				 VENDEDOR_DNI = '$this->vendedorDNI' AND
-				 ORIGEN = '$this->origen' AND
-				 HORAS_UNIDADES = '$this->horasUnidades' AND
-				 ESTADO = '$this->estado' 
-			)";
-	$resultado = $this->mysqli->query($sql);
-	$resultado = $resultado-> fetch_array();
-	return $resultado['ID'];
-}
-
-//funcion getVendedorDNI(): devuelve el DNI del vendedor
-function getVendedorDNI(){
 	$sql = "SELECT VENDEDOR_DNI
 			FROM PRODUCTOS
-			WHERE (
-				ID = '$this->id')";
+			INNER JOIN INTERCAMBIO ON INTERCAMBIO.ID_PRODUCTO1 = PRODUCTOS.ID
+			WHERE ( INTERCAMBIO.ID = '$this->id')";
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	return $resultado['VENDEDOR_DNI'];
+}
+
+//funcion getDNIPord2(): devuelve el DNI del producto 2
+function getDNIPord2(){
+
+	$sql = "SELECT VENDEDOR_DNI
+			FROM PRODUCTOS
+			INNER JOIN INTERCAMBIO ON INTERCAMBIO.ID_PRODUCTO2 = PRODUCTOS.ID
+			WHERE ( INTERCAMBIO.ID = '$this->id')";
 	$resultado = $this->mysqli->query($sql);
 	$resultado = $resultado-> fetch_array();
 	return $resultado['VENDEDOR_DNI'];

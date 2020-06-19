@@ -36,7 +36,7 @@
 				<div class="form-group">
 				 	<label for="descripcion" class="descripcionProducto"><?php echo $strings['descripcionProducto'] ?> </label>
 				 	<br> 
-				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoEnter(this,200)" rows="5" required ></textarea> 
+				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoEnter(this,200);" rows="5" required ></textarea> 
 				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
 				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
 				</div>&nbsp;
@@ -50,22 +50,50 @@
 				<div class="form-group">
 				 	<label for="vendedorDNI" class="persona"><?php echo $strings['persona'] ?>  </label>
 				 	<select name="vendedorDNI" >
-				 		<?php  foreach ($usuariosProductos as $key) { 
-				 			$patata = $key; ?>
+				 		<?php  foreach ($usuariosProductos as $key) { ?>
 				 			<option value="<?php echo $key['DNI']; ?>" > <?php echo $key['NOMBRE'], "-",$key['APELLIDOS'] ; ?></option>
 
 				 		<?php } ?>
-						<option value="" class="yo" selected> <?php echo $strings['yo'] ; ?></option>
+						<option value="" class="yo" selected> Yo</option>
 					</select>
-					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > <?php echo $strings['vendedorDNIError'] ?> </label>
+					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > Error en vendedor dni </label>
 				</div>&nbsp;&nbsp;
 
 				<?php } ?>
 
 				<div class="form-group">
+					<label class="origen" for="origen">Origen</label>
+					<select name="origen" onchange="comprobarOrigen(this);" required>
+				 			<option value="fabricado_a_mano" class="fabricado_a_mano"> Fabricado a mano</option>
+				 			<option value="cultivado" class="cultivado"> cultivado</option>
+				 			<option value="trabajo" class="trabajo"> trabajo</option>
+					</select>
+					<label class="errormsg origenError" for="origen" id="origen_error" > Error en oirgen </label>
+				</div>
+				<br>
+
+				<div class="form-group">
+					<label for="horasUnidades" class="horasUnidades">Horas o unidades</label>
+					<input type="number" name="horasUnidades" onblur="comprobarEntero(this);mayorQueCero(this)">
+					<label class="errormsg numberError" for="horasUnidades" id="horasUnidades_error" > Solo numeros </label>
+					<label class="errormsg tooshort" for="horasUnidades" id="horasUnidades_errorLength" > Al menos un numero </label>
+				</div>
+				<br>
+
+				<div class="form-group">
 				 	<label for="foto" class="picture"><?php echo $strings['picture'] ?>  </label><br>
-				 	<input type = 'file' name = 'foto' id = 'foto' onchange="comprobarExtension(this)">
+				 	<input type = 'file' name = 'foto' id = 'foto' onchange="comprobarExtension(this);">
 				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>
+				</div>&nbsp;&nbsp;
+
+				<div class="form-group">
+				 	<label for="estado" class="estado">estado  </label>
+				 	<select name="estado" >
+				 		<option value="tramite" class="tramite" selected > tramite</option>
+
+						<option value="vendido" class="vendido" <?php if( !$usuario->isAdmin()) echo "disabled"  ?> > vendido </option>
+					</select>
+					<label class="errormsg estadoError" for="estado" id="estado_error" > <?php echo $strings['estadoError'] ?> </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
@@ -75,7 +103,9 @@
 					<input type="checkbox" name="categorias[]" value="<?php echo $key['ID'] ?>" ><br>
 
 					<?php } ?>
-				</div><br>
+				</div>
+				<br>
+
 				<button type="submit" name='action' class="btn btn-primary submit" value="ADD" >
 					<?php echo $strings['submit'] ; ?>
 				</button>

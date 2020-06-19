@@ -10,7 +10,7 @@
 <footer>
 	
 		<label class="hoyes"> Hoy es </label> <label> <?php echo date("d-M-Y", mktime()) ," grvidal, "  ?> </label>
-		<label class="fcreacion"> <?php echo $strings['fcreacion']; ?> </label> 10-06-2020
+		<label class="fcreacion"> creacion </label> 10-06-2020
 </footer>
 </body>
 </html> 
