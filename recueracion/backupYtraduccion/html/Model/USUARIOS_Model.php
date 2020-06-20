@@ -345,7 +345,7 @@ function getIntercambios(){
 	$dni = $resultado['DNI'];
 
 
-	$sql = "SELECT * , INTERCAMBIO.ID as ID
+	$sql = "SELECT DISTINCT * , INTERCAMBIO.ID as ID
 			FROM INTERCAMBIO, PRODUCTOS
 			WHERE 
 				(VENDEDOR_DNI = '$dni'

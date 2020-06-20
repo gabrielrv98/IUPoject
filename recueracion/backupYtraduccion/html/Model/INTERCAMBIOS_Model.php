@@ -90,42 +90,42 @@ function SEARCH()
 
     $or = false;
 
-	    if ( $this->titulo != '' ){
+	    if ( $this->idProd1 != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "TITULO LIKE '%" .$this->titulo. "%'";
+	    	$sql = $sql . "ID_PRODUCTO1 LIKE '%" .$this->idProd1. "%'";
 	    	
 	    }   
 
-	   if ( $this->descripcion != '' ){
+	   if ( $this->idProd2 != '' ){
 	   		if ($or) $sql = $sql .  ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "DESCRIPCION LIKE '%" .$this->descripcion. "%'";
+	    	$sql = $sql . "ID_PRODUCTO2 LIKE '%" .$this->idProd2. "%'";
 	    } 
-	    if ( $this->vendedorDNI != '' ){
+	    if ( $this->unidades1 != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "VENDEDOR_DNI LIKE '%" .$this->vendedorDNI. "%'";
+	    	$sql = $sql . "UNIDADES1 LIKE '%" .$this->unidades1. "%'";
 	    } 
-	    if ( $this->origen != '' ){
+	    if ( $this->unidades2 != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "ORIGEN LIKE '%" .$this->origen. "%'";
+	    	$sql = $sql . "UNIDADES2 LIKE '%" .$this->unidades2. "%'";
 	    } 
-	    if ( $this->horasUnidades != '' ){
+	    if ( $this->accept1 != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "HORAS_UNIDADES LIKE '%" .$this->horasUnidades. "%'";
+	    	$sql = $sql . "ACCEPT1 LIKE '%" .$this->accept1. "%'";
 	    } 
-	    if ( $this->estado != '' ){
+	    if ( $this->accept2 != '' ){
 	    	if ($or) $sql = $sql .' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "ESTADO LIKE '%" .$this->estado. "%'";
+	    	$sql = $sql . "ACCEPT2 LIKE '%" .$this->accept2. "%'";
 	    } 
 
 	    if (!$or) $sql = $sql . '1';

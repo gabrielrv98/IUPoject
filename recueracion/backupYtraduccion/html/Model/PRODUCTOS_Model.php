@@ -160,6 +160,16 @@ function DELETE()
 	//Comprobacion de que la tupla es unica
 	if( mysqli_num_rows($obj) == 1 ){
 
+		$sql = "SELECT *
+			FROM INTERCAMBIO
+			WHERE (ID_PRODUCTO1 = '$this->id' OR
+					ID_PRODUCTO2 = '$this->id')";
+
+	$obj = $this->mysqli->query($sql);
+
+	if( mysqli_num_rows($obj) >= 1 ){
+		return '00017';
+	}
 		$sql = "DELETE 
    			FROM PRODUCTOS
    			WHERE ID = '$this->id'"; 

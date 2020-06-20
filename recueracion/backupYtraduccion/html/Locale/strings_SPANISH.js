@@ -169,6 +169,8 @@ const arraySPANISH =  {
     'accept2' : 'Estado aceptacion usuario 2',
     'addInter' : 'Añadir intercambio',
     'editInter' : 'Editar intercambio',
+    'deleteInter' :'Eliminar intercambio',
+    'searchInter' : 'Buscar intercambio',
     'idRepetidos' :'Los productos no pueden estar repetidos',
     'noMayor' : 'Este tiene que estar entre 1 y el maximo',
     'aceptado' : 'Aceptado',
@@ -176,6 +178,8 @@ const arraySPANISH =  {
     'acceptError' : 'Error en el estado de aceptacion',
     'noPodraDeshacerse' : 'Si ambos usuarios marcais el estado de aceptacion como aceptado, no podreis deshacer el intercambio',
     'noEditable' : 'Los usuarios no pueden modificar un intercambio despues de haber sido aceptado por ambas partes',
+    'verProd' : 'Ver producto',
+
 
     //codigos de error
     '00001' : '00001 Insercion fallida, el elemento ya existe',
@@ -194,6 +198,9 @@ const arraySPANISH =  {
     '00014' : '00014 Registro realizado con éxito',
     '00015' : '00015 Error de gestor de base de datos en RellenaDatos',
     '00016' : '00016 Error inesperado en ADD',
+    '00017' : '00017 No se puede eliminar porque esta asociado a una transaccion',
+
+
     'vendedorDNI' : 'DNI del vendedor',
     'vendedorDNIError' : 'El DNI no coincide con ningun usuario actual',
     'persona' :'Persona asociada',

@@ -8,9 +8,10 @@
 class INTERCAMBIOS_SHOWALL {
 
 	var $lista;
+	var $productos;
 
-
-	function __construct($datos){ 
+	function __construct($datos,$productos){ 
+		$this->productos = $productos;
 		$this->lista = $datos;
 		$this->render();
 	}
@@ -30,14 +31,12 @@ class INTERCAMBIOS_SHOWALL {
 
 		
 		<h1 class="TShowAll"></h1>
-		<?php 
-				if($usuario->isAdmin()){ // si el usuario es administrador puede añadir categorias
-					?>
+		 
+				
 		<a href = '../Controller/INTERCAMBIOS_Controller.php?action=ADD' style="color:#FFFFFF;">
 			<img src='../View/icon/bolsa-de-la-compra.png' height="42" width="42" >
 		</a>
 
-		<?php } ?>
 
 		<a href = '../Controller/INTERCAMBIOS_Controller.php?action=SEARCH'>
 			<img src='../View/icon/searchuser.ico'>
@@ -68,10 +67,24 @@ class INTERCAMBIOS_SHOWALL {
 
 				<tr>			
 					<td>
-						<?php echo $key['ID_PRODUCTO1'] , '-', "a lo mejor el titulo" ; ?>
+						<?php $nombre; 
+						foreach ($this->productos as $prod) {
+							if($prod['ID'] == $key['ID_PRODUCTO1']){
+								$nombre = $prod['TITULO'];
+								break;
+							}
+						}
+						echo $key['ID_PRODUCTO1'] , '-', $nombre ; ?>
 					</td>
 					<td>
-						<?php echo $key['ID_PRODUCTO2'] , '-', "a lo mejor el titulo" ; ?>
+						<?php $nombre; 
+						foreach ($this->productos as $prod) {
+							if($prod['ID'] == $key['ID_PRODUCTO2']){
+								$nombre = $prod['TITULO'];
+								break;
+							}
+						}
+						echo $key['ID_PRODUCTO2'] , '-', $nombre ; ?>
 					</td>
 					<td>
 						<?php echo $key['UNIDADES1'] ; ?>

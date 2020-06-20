@@ -177,6 +177,8 @@ const arrayENGLISH =  {
     'accept2' : 'Aceptation state user 2',
     'addInter' : 'Add exchange',
     'editInter' : 'Edit exchange',
+    'deleteInter' :'Delete exchange',
+    'searchInter' : 'Search exchange',
     'idRepetidos' :'Productos cannot be repited',
     'aceptado' : 'Accepted',
     'denegado' : 'Refused',
@@ -184,6 +186,7 @@ const arrayENGLISH =  {
     'noMayor' : 'This input must be between 1 and its max',
     'noPodraDeshacerse' : 'If both users mark the acceptance status as accepted, you will not be able to undo the exchange',
     'noEditable' : 'Users cannot modify an exchange after it has been accepted by both parties',
+    'verProd' : 'See product',
 
     //codigos de error
     '00001' : '00001 Insertion failed, element already exists',
@@ -202,7 +205,7 @@ const arrayENGLISH =  {
     '00014' : '00014 Registration completed successfully',
     '00015' : '00015 Database manager error in RellenaDatos',
     '00016' : '00016 Unexpected error in ADD',
-
+    '00017' : '00017 It cannot be removed because it is associated with a transaction',
 
 
     'ClavesForaneasPermanentes': 'Foreign keys can\'t be changed'

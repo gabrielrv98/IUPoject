@@ -415,6 +415,22 @@ function checkEquals(numero,campo){
     return true;
 }
 
+/*Comprueba que los productos no esten repetidos o que esten vacios*/
+/*string- string con el nombre del campo a comparar*/
+/*prod1- el campo que se obtuvo a partir del nombre del campo*/
+function checkEqualsSearch(numero,campo){
+    var string = "idProd"+numero;
+    var prod1 = document.getElementById(string);
+    if (campo.value != "" && prod1.value != "") {
+        if(campo.value == prod1.value){// si los campos son iguales se muestra el error
+            document.getElementById(campo.name+'_error').style.visibility = "visible";
+            return false;
+        } 
+    }
+    document.getElementById(campo.name+'_error').style.visibility = "hidden";
+    return true;
+}
+
 /*Situa el maximo de horas/unidades*/
 /*exp- expresion que define un el año academico*/
 function setMax(numero){
@@ -466,7 +482,18 @@ function comprobarAccept(campo){
             return true;
     }
 }
+//Comprueba que el estado de aceptacion sea correcto
+//ext- extension del archivo subido
+function comprobarAcceptSearch(campo){
+    var exp = /^(aceptado|denegado)?$/;
 
+    if(!comprobarExpresionRegular(campo,exp,15)){//comprueba que la expresión enviada en telef sea cumplida por el campo enviado si no lo hace devuelve false
+        return false;
+    }else {
+            campo.style.border = "2px solid green";
+            return true;
+    }
+}
 //Comprueba que la extension del archivo subido es una extension correspondiente a una foto
 //ext- extension del archivo subido
 function comprobarExtension(campo){

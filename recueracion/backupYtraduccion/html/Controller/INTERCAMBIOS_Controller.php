@@ -1,6 +1,6 @@
 ﻿<?php
 //Clase : INTERCAMBIOS_Controller
-//Creado el : 8-06-2020
+//Creado el : 15-06-2020
 //Creado por: grvidal
 //Controla y administra las acciones enviadas por get
 //-------------------------------------------------------
@@ -14,10 +14,10 @@
 	include_once '../Model/USUARIOS_Model.php';
 	include_once '../Model/INTERCAMBIOS_Model.php';
 	include_once '../Model/PRODUCTOS_Model.php';
-	//include '../View/INTERCAMBIOS_SHOWCURRENT_View.php';
+	include '../View/INTERCAMBIOS_SHOWCURRENT_View.php';
 	include '../View/INTERCAMBIOS_SHOWALL_View.php';   
-	//include '../View/INTERCAMBIOS_SEARCH_View.php';   
-	//include '../View/INTERCAMBIOS_DELETE_View.php';	 
+	include '../View/INTERCAMBIOS_SEARCH_View.php';   
+	include '../View/INTERCAMBIOS_DELETE_View.php';	 
 	include '../View/INTERCAMBIOS_EDIT_View.php';
 	include_once '../View/INTERCAMBIOS_ACEPTADOS_EDIT_View.php';
 	include '../View/INTERCAMBIOS_ADD_View.php';   
@@ -53,22 +53,58 @@
 			case 'ADD':
 					if (!$_POST){ // se incoca la vista de add de usuarios
 
-						$productos1= new PRODUCTOS_Model('','','','','','','','tramite');
-						$productos1 = $productos1->SEARCH();
-						new INTERCAMBIOS_ADD($productos1);
+						$PRODUCTOS= new PRODUCTOS_Model('','','','','','','','tramite');
+						$productos1 = $PRODUCTOS->SEARCH();
+
+						if($usuario->isAdmin()){//Si el usuario es admin puede crear cualquier relacion
+							$productos2 = $PRODUCTOS->SEARCH();
+						}else{//si no lo es solo con uno de los suyos
+							$datos = $usuario->RellenaDatos();
+					 		$PRODUCTOS = new PRODUCTOS_Model('','','','',$datos['DNI'],'','','tramite');//se recogen todos los productos
+							$productos2 = $PRODUCTOS->SEARCH();
+						}
+						new INTERCAMBIOS_ADD($productos1,$productos2,$usuario);
 					}
 					else{
+						// si ambos estados de aceptacion estan aceptados
 						$INTERCAMBIOS = get_data_form(); //se recogen los datos del formulario
-						$respuesta = $INTERCAMBIOS->ADD();
+						$respuestaI = $INTERCAMBIOS->ADD();
+						$respuesta = array($respuestaI );
+						if ($_REQUEST['accept1']== 'aceptado' && $_REQUEST['accept2']== 'aceptado') {
+							//se sobreescribe el nuevo valor de cantidad
+							$producto = new PRODUCTOS_Model($_REQUEST['idProd1'],'','','','','','','');//se recoge el antiguo producto
+							$cantidad = $producto->RellenaDatos()['HORAS_UNIDADES'];// se cogen sus unidades antiguas
+							$cantidad = $cantidad - $_REQUEST['unidades1'];// se calculan sus nuevas unidades
+							$producto = new PRODUCTOS_Model($_REQUEST['idProd1'],'','','','','',$cantidad,'');//se crea el nuevo objeto
+							array_push($respuesta, $producto->setCantidad());// se actualiza
+
+							$producto = new PRODUCTOS_Model($_REQUEST['idProd2'],'','','','','','','');//se recoge el antiguo producto
+							$cantidad = $producto->RellenaDatos()['HORAS_UNIDADES'];// se cogen sus unidades antiguas
+							$cantidad = $cantidad - $_REQUEST['unidades2'];// se calculan sus nuevas unidades
+							$producto = new PRODUCTOS_Model($_REQUEST['idProd2'],'','','','','',$cantidad,'');//se crea el nuevo objeto
+							array_push($respuesta, $producto->setCantidad());// se actualiza
+						}
+						
+						
 						new MESSAGE($respuesta, '../Controller/INTERCAMBIOS_Controller.php');
 					}
 				break;
 			case 'DELETE':
 				if( $usuario->isAdmin() ){// solo los administradores pueden añadir categorias
 					if (!$_POST){ //nos llega el id a eliminar por get
-						$INTERCAMBIOS = new INTERCAMBIOS_Model($_REQUEST['id'],'');
+						$INTERCAMBIOS = new INTERCAMBIOS_Model($_REQUEST['id'],'','','','','',''); // Se crea el objeto
 						$valores = $INTERCAMBIOS->RellenaDatos();
-						new INTERCAMBIOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
+
+						include_once '../Model/PRODUCTOS_Model.php';
+						$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO1'],'','','','','','','');//se recoge el producto en cuestion
+						$productos = $productos->RellenaDatos();//devuelve los datos
+						$nombre1 = $productos['TITULO'];//se guarda su titulo
+
+						$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO2'],'','','','','','','');//se recoge el producto en cuestion
+						$productos = $productos->RellenaDatos();//devuelve los datos
+						$nombre2 = $productos['TITULO'];//se guarda su titulo
+
+						new INTERCAMBIOS_DELETE($valores,$nombre1,$nombre2); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 					}
 					else{ // llegan los datos confirmados por post y se eliminan
 						$INTERCAMBIOS = get_data_form();
@@ -224,35 +260,59 @@
 					}else{ // sino se le muestra la ventana de que no tiene permiso
 						new noPermiso();
 					}
+				break;
 
 			case 'SEARCH':
 				if (!$_POST){
-					new INTERCAMBIOS_SEARCH();
+					if ($usuario->isAdmin()) { // un admin puede buscar todos los productos
+						$PRODUCTOS = new PRODUCTOS_Model('','','','','','','','');//se recogen todos los productos
+					}else{//mientras que un usuario solo puede ver las transacones en las que el participo
+						$datos = $usuario->RellenaDatos();
+					 	$PRODUCTOS = new PRODUCTOS_Model('','','','',$datos['DNI'],'','','');//se recogen todos los productos
+					}
+					new INTERCAMBIOS_SEARCH($PRODUCTOS->SEARCH());// Se inicializa search con los productos para buscar mas facil
 				}
 				else{
 					$INTERCAMBIOS = get_data_form();
-					$datos = $INTERCAMBIOS->SEARCH();
-					new INTERCAMBIOS_SHOWALL($datos);
+
+
+					if (!$usuario->isAdmin() && $_REQUEST['idProd1'] == "" && $_REQUEST['idProd2'] == "") {// si no es administrador y marco los campos de productos como INdiferente, solo se le muestran sus interacciones
+						$datos = $usuario->getIntercambios();
+					}else{
+						$datos = $INTERCAMBIOS->SEARCH();
+					}
+					
+					$PRODUCTOS = new PRODUCTOS_Model('','','','','','','','');//se recoge el producto
+					$PRODUCTOS = $PRODUCTOS->SEARCH(); //Se recogen todos los productos para tener su nombre
+
+					new INTERCAMBIOS_SHOWALL($datos,$PRODUCTOS);
 				}
 				break;
 
 			case 'SHOWCURRENT':
-				$INTERCAMBIOS = new INTERCAMBIOS_Model($_REQUEST['id'],''); // Se crea el objeto
+				$INTERCAMBIOS = new INTERCAMBIOS_Model($_REQUEST['id'],'','','','','',''); // Se crea el objeto
 				$valores = $INTERCAMBIOS->RellenaDatos();//se rellenan los datos
 
-				include_once '../Model/PRODUCTOS_INTERCAMBIOS_Model.php';
-				$productos = new PRODUCTOS_INTERCAMBIOS_Model('',$_REQUEST['id']);
-				$productos = $productos->getProductos();//devuelve los productos en dicha categoria
+				include_once '../Model/PRODUCTOS_Model.php';
+				$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO1'],'','','','','','','');//se recoge el producto en cuestion
+				$productos = $productos->RellenaDatos();//devuelve los datos
+				$nombre1 = $productos['TITULO'];//se guarda su titulo
 
-				new INTERCAMBIOS_SHOWCURRENT($valores,$productos);
+				$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO2'],'','','','','','','');//se recoge el producto en cuestion
+				$productos = $productos->RellenaDatos();//devuelve los datos
+				$nombre2 = $productos['TITULO'];//se guarda su titulo
+
+				new INTERCAMBIOS_SHOWCURRENT($valores,$nombre1,$nombre2);
 				break;
 
 			default:
 
 				$INTERCAMBIOS = get_data_form();
+				$PRODUCTOS = new PRODUCTOS_Model('','','','','','','','');//se recoge el producto
+				$PRODUCTOS = $PRODUCTOS->SEARCH(); //Se recogen todos los productos para tener su nombre
 				if($usuario->isAdmin()) $datos = $INTERCAMBIOS->SHOW_ALL();
 				else $datos = $usuario->getIntercambios();
-				new INTERCAMBIOS_SHOWALL($datos);
+				new INTERCAMBIOS_SHOWALL($datos,$PRODUCTOS);
 		}
 
 
