@@ -1,4 +1,4 @@
--- gabrielrv - 1/06/2020
+﻿-- gabrielrv - 1/06/2020
 -- script de creación de la bd, usuario, asignación de privilegios a ese usuario sobre la bd
 -- creación de tabla e insert sobre la misma.
 --
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `VALORACIONES` (
 
 `PUNTUACION` int NOT NULL,
 
-`COMENTARIO` varchar(100) NOT NULL, NOT NULL,
+`COMENTARIO` varchar(100) NOT NULL,
 
 PRIMARY KEY (`ID`)
 
