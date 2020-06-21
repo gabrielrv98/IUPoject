@@ -286,6 +286,16 @@ function getVendedorDNI(){
 	return $resultado['VENDEDOR_DNI'];
 }
 
+function productosValorados(){
+	$sql = "SELECT * , PRODUCTOS.ID AS ID
+			FROM PRODUCTOS
+			INNER JOIN VALORACIONES ON PRODUCTOS.ID = VALORACIONES.ID_PRODUCTO
+			WHERE (1)";
+	$resultado = $this->mysqli->query($sql);
+
+	return $resultado;
+}
+
 }//fin de clase
 
 ?> 

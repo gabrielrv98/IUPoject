@@ -40,6 +40,9 @@
 				<a class="intercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
 					Intercambios
 				</a>
+				<a class="valoraciones" href='../Controller/VALORACIONES_Controller.php'>
+					valoraciones
+				</a>
 			</div>
 			
 			<span class="menuBut open" onclick="openNav()"></span>

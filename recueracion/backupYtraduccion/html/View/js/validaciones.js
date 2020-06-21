@@ -12,7 +12,7 @@
 /*Comprueba que sólo haya caracteres alfanuméricos*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarAlfabetico(campo, size) {
-    var abc =/^\w[\wñº ]*$/;
+    var abc =/^\w[\wñº,. ]*$/;
     
     if(!comprobarExpresionRegular(campo,abc,size)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
          
@@ -86,7 +86,7 @@ function comprobarEnteroVacio(campo) {
 /*Comprueba que sólo haya caracteres alfanuméricos y \n*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarAlfabeticoEnter(campo, size) {
-    var abc =/^\w[\wñº\n ]*$/;
+    var abc =/^\w[\wñº\n,. ]*$/;
     
     if(!comprobarExpresionRegular(campo,abc,size)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
          
@@ -96,6 +96,27 @@ function comprobarAlfabeticoEnter(campo, size) {
         document.getElementById(campo.name+"_errorLength").style.visibility = "visible";
         return false;
     }  
+    return true;
+}
+
+/*Comprueba que sólo haya caracteres alfanuméricos y \n*/
+/*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
+function comprobarAlfabeticoEnterVacio(campo, size) {
+    var abc =/^\w[\wñº\n,. ]*$/;
+    
+    if(campo.value.length <= 0){ // si el campo es menor que 3 caracteres se avisa del error
+        campo.style.border = "2px solid green";
+        var elem = document.getElementById(campo.name+"_errorLength");
+        if (elem != null) elem.style.visibility = "visible";
+        return false;
+    }
+    if(!comprobarExpresionRegular(campo,abc,size)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
+         
+        return false;
+    }
+        campo.style.border = "2px solid green";
+        var elem = document.getElementById(campo.name+"_errorLength");
+        if (elem != null) elem.style.visibility = "hidden";
     return true;
 }
 
@@ -205,10 +226,13 @@ function comprobarExpresionRegular(campo, exprreg, size) {
 /*Comprueba si el campo es null o 0 y devuelve false, si existe algo devuelve true*/
 function comprobarVacio( campo ) {
     if ( ( campo.value == null ) || ( campo.value.length == 0  ) ){//comprueba si es null o 0
-            document.getElementById(campo.name+"_errorLength").style.visibility = "visible";
+            var elem = document.getElementById(campo.name+"_errorLength");
+        if (elem != null) elem.style.visibility = "visible";
             campo.style.border = "2px solid red";
             return false;
     } else {//si existe algo devuelve true
+        var elem = document.getElementById(campo.name+"_errorLength");
+        if (elem != null) elem.style.visibility = "hidden";
             campo.style.border = "2px solid green";
             return true;
     }
@@ -469,6 +493,102 @@ function noMayor(campo,numero){
     }
     
 }
+/*Desactiva el checkBox contrario*/
+function desactivarCheckBox(campo){
+    if(campo.name == "id1")//si es el campo uno elem es el campo dos
+        var elem =document.getElementById("id2");// el guarda el campo 2
+    else if (campo.name == "id2")//si es el campo dos elem es el campo uno
+        var elem =document.getElementById("id1");// el guarda el campo 1
+    else console.log("hubo un error con los checkbox");//si no coinicde se avisa del error
+
+    elem.checked = campo.checked == true ? false : true;//desactivar el checkbox contrario
+
+    var codigo = document.getElementById("id1");// se coge el campo 1
+    var select = document.getElementById("idInter");//se coge el campo select
+    var id;
+    if(codigo.checked == true){// se coloca el id del primer producto en l campo definitivo
+        id = select.options[select.selectedIndex].text.split(':')[0];//se coge el titulos 1
+    }else id = select.options[select.selectedIndex].text.split('-')[1].split(":")[0];//se coge el titulos 2
+
+    var definitivo = document.getElementById("idProd");//se coge el campo que decidira que producto se valorara
+    definitivo.value = id;
+    console.log("poniendo en definitivo "+id);
+
+    return true;
+}
+
+//Coloca los titulos adecuados de los productos
+//y el ID 
+function colocarProductos(campo){
+    var select = document.getElementById("idInter");
+    var id1 = select.options[select.selectedIndex].text.split(':')[1].split("-")[0];//se coge el titulos 1
+    var id2 = select.options[select.selectedIndex].text.split(':')[2];//se coge el titulos 1
+    
+
+    var idPlaceHolder1 = document.getElementById("tituloProd1");//se coge el lugar donde sera situada
+    idPlaceHolder1.innerHTML = id1;//se coloca
+
+
+    var idPlaceHolder2 = document.getElementById("tituloProd2");//se coge el lugar donde sera situada
+    idPlaceHolder2.innerHTML = id2;//se coloca
+
+    var elem = document.getElementById("idProd");
+    var idDefinitivo = select.options[select.selectedIndex].text.split(':')[0];//se coge el id
+    elem.value = idDefinitivo;
+
+    //se reinician los checkbox
+    var ck =document.getElementById("id1");// el guarda el campo 1
+    ck.checked = true;
+    ck =document.getElementById("id2");// el guarda el campo 1
+    ck.checked = false;
+
+    return true;
+}
+
+//comprueba que la puntuacion este entre 0 y 10
+function  comprobarPuntuacion(campo){
+    var exp = /^[0-9]*$/;
+    let number = parseInt(campo.value,10);
+
+    if(!comprobarExpresionRegular(campo,exp,2)){
+        return false;
+    
+    }else if( number < 0 || number > 10){
+        console.log("out of limits");
+        document.getElementById(campo.name+"_limited").style.visibility ="visible";
+        campo.style.border = "2px solid red";
+        return false;
+    }
+    document.getElementById(campo.name+"_limited").style.visibility ="hidden";
+    campo.style.border = "2px solid green";
+    return true;
+
+}
+
+//comprueba que la puntuacion este entre 0 y 10 o este vacio
+function  comprobarPuntuacionVacio(campo){
+    var exp = /^[0-9]*$/;
+    let number = parseInt(campo.value,10);
+
+    if(campo.value.length <= 0 ){
+        document.getElementById(campo.name+"_limited").style.visibility ="hidden";
+        campo.style.border = "2px solid green";
+        return true;
+    }else if(!comprobarExpresionRegular(campo,exp,2)){
+        return false;
+    
+    }else if( number < 0 || number > 10){
+        console.log("out of limits");
+        document.getElementById(campo.name+"_limited").style.visibility ="visible";
+        campo.style.border = "2px solid red";
+        return false;
+    }
+    document.getElementById(campo.name+"_limited").style.visibility ="hidden";
+    campo.style.border = "2px solid green";
+    return true;
+
+}
+
 
 //Comprueba que el estado de aceptacion sea correcto
 //ext- extension del archivo subido
@@ -849,6 +969,28 @@ function comprobarIntercambio(Formu){
             correcto = false;
         }
     return correcto;
+}
 
+//comprueba la valoracion antes de enviarla por submit
+function comprobarValoracion(Formu){
+    var correcto=true; 
 
+        if(!comprobarEntero(Formu.idInter)){//comprobamos las unidades sean numeros
+            Formu.idInter.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarEntero(Formu.idProd)){//comprobamos las unidades sean numeros
+            Formu.idProd.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarAlfabeticoEnter(Formu.coment,200)){//comprobamos las unidades sean numeros
+            Formu.coment.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarPuntuacion(Formu.punt,2)){//comprobamos las unidades sean numeros
+            Formu.punt.style.border = "2px solid red";
+            correcto = false;
+        }
+        
+    return correcto;
 }

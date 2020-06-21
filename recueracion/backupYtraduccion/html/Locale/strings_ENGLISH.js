@@ -188,6 +188,19 @@ const arrayENGLISH =  {
     'noEditable' : 'Users cannot modify an exchange after it has been accepted by both parties',
     'verProd' : 'See product',
 
+    //Gestion de VALORACIONES
+    'Gestión valoraciones' : 'valuation management',
+    'addValoracion' : 'New valuation',
+    'searchValoracion' : 'Search valuations',
+    'editValoracion' : 'Edit a valuation',
+    'deleteValoracion' : 'Delete a valuation',
+    'idIntercambio' : 'Exchange ID',
+    'puntuacion' : 'Puntuation',
+    'coment' : 'Comments',
+    'valoraciones' : 'Valuations',
+    'outLimit': 'Value is out of limits, please set it between 0 and 10',
+
+
     //codigos de error
     '00001' : '00001 Insertion failed, element already exists',
     '00002' : '00002 Insertion done successfully',

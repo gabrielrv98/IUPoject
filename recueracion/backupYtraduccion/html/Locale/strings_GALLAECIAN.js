@@ -192,6 +192,19 @@ const arrayGALLAECIAN =  {
     'noEditable' : 'Os usuarios non poden modificar un intercambio despois de haber sido aceptado por ambas partes',
     'verProd' : 'Ver produto',
 
+    //Gestion de VALORACIONES
+    'Gestión valoraciones' : 'Xestion das valoracions',
+    'addValoracion' : 'Nova valoracion',
+    'searchValoracion' : 'Buscar valoracions',
+    'editValoracion' : 'Editar a valoracion',
+    'deleteValoracion' : 'Eliminar a valoracion',
+    'idIntercambio' : 'ID do intercambio',
+    'puntuacion' : 'Puntuacion',
+    'coment' : 'Comentario',
+    'valoraciones' : 'Valoracions',
+    'outLimit': 'O valor esta fora dos limites, por favor, entre 0 e 10',
+
+
     //codigos de error
     '00001' : '00001 Insercion fallida, o elemento xa existe',
     '00002' : '00002 Insercion realizada con exito',

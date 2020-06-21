@@ -180,6 +180,18 @@ const arraySPANISH =  {
     'noEditable' : 'Los usuarios no pueden modificar un intercambio despues de haber sido aceptado por ambas partes',
     'verProd' : 'Ver producto',
 
+    //Gestion de VALORACIONES
+    'Gestión valoraciones' : 'Gestion de valoraciones',
+    'addValoracion' : 'Nueva valoracion',
+    'searchValoracion' : 'Buscar valoraciones',
+    'editValoracion' : 'Editar la valoracion',
+    'deleteValoracion' : 'Eliminar la valoracion',
+    'idIntercambio' : 'ID del intercambio',
+    'puntuacion' : 'Puntuacion',
+    'coment' : 'Comentario',
+    'valoraciones' : 'Valoraciones',
+    'outLimit': 'El valor esta fuera de los limites, por favor, entre 0 y 10',
+
 
     //codigos de error
     '00001' : '00001 Insercion fallida, el elemento ya existe',

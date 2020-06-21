@@ -201,6 +201,7 @@ function EDIT()
 		$datosIntercambio = $intercambio->RellenaDatos();
 
 		if(!$usuario->isAdmin()){
+			
 			if ($usuario->getDNI() == $intercambio->getDNIPord1()){// si eres el propietario del producto 1
 				$cambio = false; // no es necesario resetear el estado de aceptacion del otro usuario
 
@@ -223,8 +224,6 @@ function EDIT()
 
 			}
 		}
-		
-		if ($usuario->getDNI() == $intercambio->getDNIPord1()) $this->accept2 = 'denegado';
 		$sql = "UPDATE INTERCAMBIO
 			SET ID_PRODUCTO1 = '$this->idProd1',
 				ID_PRODUCTO2 = '$this->idProd2',

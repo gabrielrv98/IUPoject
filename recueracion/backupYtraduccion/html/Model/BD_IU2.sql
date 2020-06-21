@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `PRODUCTOS_CATEGORIAS` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `MENSAJEMANAGER`
+-- Estructura de tabla para la tabla `INTERCAMBIO`
 --
 -- ID autogenerado
 -- ID_PRODUCTO1 id del producto1
@@ -154,6 +154,31 @@ CREATE TABLE IF NOT EXISTS `INTERCAMBIO` (
 `ACCEPT1` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
 
 `ACCEPT2` enum('aceptado','denegado') DEFAULT 'denegado' NOT NULL,
+
+PRIMARY KEY (`ID`)
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `VALORACIONES`
+--
+-- ID autogenerado
+-- ID_PRODUCTO id del producto
+-- ID_INTERCAMBIO ID del intercambio
+-- PUNTUACION puntuacion del producto
+-- COMENTARIO comentarios acerca del producto
+CREATE TABLE IF NOT EXISTS `VALORACIONES` (
+
+`ID` int NOT NULL AUTO_INCREMENT,
+
+`ID_PRODUCTO` int NOT NULL,
+
+`ID_INTERCAMBIO` int NOT NULL,
+
+`PUNTUACION` int NOT NULL,
+
+`COMENTARIO` varchar(100) NOT NULL, NOT NULL,
 
 PRIMARY KEY (`ID`)
 
