@@ -192,6 +192,16 @@ const arraySPANISH =  {
     'valoraciones' : 'Valoraciones',
     'outLimit': 'El valor esta fuera de los limites, por favor, entre 0 y 10',
 
+    //mensajes
+    'mensajes' : 'Mensajes',
+    'introduccionMensajes' : 'En esta vista se puede ver los ultimos mensajes de cada conversacion que tengas. Recuerda que solo podras añadir mensajes si el tramite no se ha marcado como aceptado por ambas partes.',
+    'titulosMensaje' : 'Titulos de los productos',
+    'fecha' : 'Fecha',
+    'usuario' : 'Usuario',
+    'contenido' : 'Contenido del mensaje',
+    'titulosMsg' : 'Titulos de los productos',
+
+
 
     //codigos de error
     '00001' : '00001 Insercion fallida, el elemento ya existe',

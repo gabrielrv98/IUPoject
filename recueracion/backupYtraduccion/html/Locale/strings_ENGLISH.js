@@ -201,6 +201,16 @@ const arrayENGLISH =  {
     'outLimit': 'Value is out of limits, please set it between 0 and 10',
 
 
+    //mensajes
+    'mensajes' : 'Messages',
+    'introduccionMensajes' : 'In this view you can see the last messages of each conversation you have. Remember that you can only add messages if the process has not been marked as accepted by both parties.',
+    'titulosMensaje' : 'Product titles',
+    'fecha' : 'Date',
+    'usuario' : 'User',
+    'contenido' : 'Message content',
+    'titulosMsg' : 'Products title',
+
+
     //codigos de error
     '00001' : '00001 Insertion failed, element already exists',
     '00002' : '00002 Insertion done successfully',

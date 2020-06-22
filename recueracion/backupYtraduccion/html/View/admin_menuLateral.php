@@ -40,6 +40,9 @@
 				<a class="intercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
 					Intercambios
 				</a>
+				<a class="mensajes" href='../Controller/MENSAJES_Controller.php'>
+					mensajes
+				</a>
 				<a class="valoraciones" href='../Controller/VALORACIONES_Controller.php'>
 					valoraciones
 				</a>

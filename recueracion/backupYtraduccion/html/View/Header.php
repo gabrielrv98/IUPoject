@@ -48,7 +48,7 @@
 	if (IsAuthenticated()){
 ?>
 	<div>
-		<label class="Usuario"> </label> <label class="dosP">:</label> <label> <?php echo $_SESSION['login']; ?></label>
+		<label class="usuario"> </label> <label class="dosP">:</label> <label> <?php echo $_SESSION['login']; ?></label>
 	</div>
 	<br>
 	<div width: 50%; align="left" style="margin-left:20px">
@@ -62,7 +62,7 @@
 	}
 	else{
 ?>
-		<label class="Usuario_no_autenticado" > <?php echo $strings['Usuario_no_autenticado']; ?> </label>
+		<label class="Usuario_no_autenticado" > usuario no autentificado </label>
 		<a  href='../Controller/Register_Controller.php'> <img src="../View/icon/register.png" height="32" width="32"> </a>
 <?php
 	}	

@@ -194,7 +194,7 @@ PRIMARY KEY (`ID`)
 -- VENDEDOR_ACCEPT estado de aceptacion del vendedor
 -- COMPRADOR_ACCEPT estado de aceptacion del comprador
 -- COMPRADOR_DNI dni del comprador
-CREATE TABLE IF NOT EXISTS `MENSAJE` (
+CREATE TABLE IF NOT EXISTS `MENSAJES` (
 
 `ID` int NOT NULL AUTO_INCREMENT,
 

@@ -205,6 +205,15 @@ const arrayGALLAECIAN =  {
     'outLimit': 'O valor esta fora dos limites, por favor, entre 0 e 10',
 
 
+    //mensajes
+    'mensajes' : 'Mensaxes',
+    'introduccionMensajes' : 'Nesta vista podense ver as ultimas mensaxes de cada conversa que teñas. Recorda que só poderas engadir as mensaxes si o tramite non se marcou como aceptado por ambas partes.',
+    'titulosMensaje' : 'Titulos dos produtos',
+    'fecha' : 'Data',
+    'usuario' : 'Usuario',
+    'contenido' : 'Contido di mensaxe',
+    'titulosMsg' : 'Titulos dos produtos',
+
     //codigos de error
     '00001' : '00001 Insercion fallida, o elemento xa existe',
     '00002' : '00002 Insercion realizada con exito',
