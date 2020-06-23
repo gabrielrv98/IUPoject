@@ -27,6 +27,7 @@
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia PRODUCTOS y la devuelve
 	function get_data_form(){
 
+
 		if (!isset($_REQUEST['id'])) $_REQUEST['id'] = null;
 		if (!isset($_REQUEST['titulo'])) $_REQUEST['titulo'] = null;
 		if (!isset($_REQUEST['descripcion'])) $_REQUEST['descripcion'] = null;
@@ -62,8 +63,17 @@
 				else{
 					//echo var_dump($_REQUEST); falta las fotos
 					if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
-					if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
-					if( isset($_REQUEST['foto']) && $_REQUEST['foto'] != '' ) upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
+					else if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
+					if( isset($_FILES['foto']) ){
+						echo "la va a subir";
+						upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
+					} else{
+						echo " que no la va a subir";
+						echo var_dump($_FILES);
+						if (isset($_FILES['foto'])) {
+							echo "Esta set";
+						}echo "- no esta set";
+					}
 					$PRODUCTOS = get_data_form(); //se recogen los datos del formulario
 					$respuestaP = $PRODUCTOS->ADD();// se añade el producto
 
@@ -128,13 +138,17 @@
 					new PRODUCTOS_EDIT($valores,$categorias,$prodCat); //invoco la vista de edit con los datos precargados
 				}
 				else{
-					if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
-					if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
-					if( isset($_REQUEST['foto']) && $_REQUEST['foto'] != '' ) upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
-					$PRODUCTOS = get_data_form(); //recojo los valores del formulario
-					$respuestaP = $PRODUCTOS->EDIT(); // update en la bd 
-					$respuesta = array($respuestaP);
 
+					$respuesta = array();// se almacena en el array
+
+					if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
+					else if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
+					if( isset($_FILES['foto']) ) {// si se adjunto alguna foto
+						$respuestaI = upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
+						if (!$respuestaI) array_push($respuesta, $respuestaI);
+					}
+					$PRODUCTOS = get_data_form(); //recojo los valores del formulario
+					array_push($respuesta, $PRODUCTOS->EDIT()); // update en la bd  y guardado en las respuestas
 					if($respuestaP= '00007' ){//Si se ha actualizado exitosamente y hay alguna categoria
 						
 						if(isset($_REQUEST['categorias'])){// si hay alguna categoria seleccionada
@@ -216,13 +230,15 @@
 		}
 
 
+		//Sube la foto del producto, devuelve true si todo salio bien, o una cadena si hubo algun error
 	function upload_image(){
 
+		$toRet = true;
 		$target_dir = "../Files/";
 		$target_file = $target_dir . basename($_FILES["foto"]["name"]);
 		$uploadOk = 1;
-		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-		// Check if image file is a actual image or fake image
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); 
+		//Comprueba que la foto sea una imagen real
 		if(isset($_POST["submit"])) {
 		    $check = getimagesize($_FILES["foto"]["tmp_name"]);
 		    if($check !== false) {
@@ -231,19 +247,22 @@
 		        $uploadOk = 0;
 		    } 
 		}
-		// Check file size
-		if ($_FILES["foto"]["size"] > 500000) { //500KB
-		    echo "Sorry, your file is too large.";
+		// Comprueba el tamaño
+		if ($_FILES["foto"]["size"] > 500000) { //500KB si es mayor se guarda el retorno
+		    $toRet= "Sorry, your file is too large.";
 		    $uploadOk = 0;
 		}
 		// Allow certain file formats
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-		&& $imageFileType != "gif" ) {
-		    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		&& $imageFileType != "gif" ) {//compruegba que la extension sea la adecuada
+			if ($toRet) {// si la cadena estaba vacia se sobrepone la salida
+				$toRet = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			}else $toRet= $toRet. " 
+		Sorry, only JPG, JPEG, PNG & GIF files are allowed.";// si ya hubo algun error la linea se añade
 		    $uploadOk = 0;
 		}
-		// Check if $uploadOk is set to 0 by an error
-		if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+
+		if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {//comprueba que $uploadOk es 0 debido algun error 
 			 $oldname = '../Files/' .basename( $_FILES["foto"]["name"]);
 			 $catch = array("\n"," ","\r","\t");//caracteres a remplazar
 			 $titulo = str_replace($catch, "_", $_REQUEST['titulo']);//se substituyen los caracteres del titulo y se guardan en $titulo
@@ -251,7 +270,8 @@
 			rename($oldname, $newname);
 			$_REQUEST['foto'] = $newname;
 		}
-}
+		return $toRet;
+	}
 
 
 ?>

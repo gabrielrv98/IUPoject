@@ -112,6 +112,14 @@ const arrayENGLISH =  {
       'indexTitle' : 'Welcome to Time exchange',
       'indexDescrip' :'Here you can search offers to exchange them for other of yours, it can be handmade products or cultivated, it can even be physical work!',
       'IndexViewLink' : 'Main page',
+      'indexFuncion' : 'Use the top bar to search for products that contain that word and have the same or more units than specified.',
+      //ranking   
+      'rankingCategorias' : 'Top-rated categories',
+      'rankingProductos'  :  'Top-rated products',
+      'rankingTransacciones'  :  'Top-rated exchanges',
+      'puesto' : 'Place',
+      'rankingCategoriasExplicacion' : 'Here you can see the categories that have products that have been valued together with the sum of the scores',
+      'rankingProductosExplicacion'  :  'Here you can see the products that have been valued together with the total score obtained',
 
       //noPermiso
       'noPermisoT' : 'You don\'t have permission to be here',
@@ -145,6 +153,7 @@ const arrayENGLISH =  {
     'horasUnidades' : 'Units or hours',
     'verUser' : 'See usuer',
     'producto' : 'Product',
+    'titulo':'Title',
 
     //Gestion de categorias
     'Gestión Categorias' : 'Category manager',
@@ -214,6 +223,9 @@ const arrayENGLISH =  {
     'timeHelp':'Press the button on the left of the input to set the hour',
     'addMSG' : 'Add message',
     'ChatFinalizado' : 'The transaction has been accepted by both users, you cannot add messages to this chat',
+    'fechaSearchAdvice' : 'If you set the date you also have to set the time, and if you set the time you also have to set the day',
+    'explicacionShowAll' : 'Click the view button to open the conversation and see all messages.',
+    'explicaionShowConver' : 'The most recent messages appear at the top. If you hit the add button, you can add a message to this conversation.',
 
 
     //codigos de error

@@ -74,16 +74,16 @@
 
 				<div class="form-group">
 					<label for="horasUnidades" class="horasUnidades">Horas o unidades</label>
-					<input type="number" name="horasUnidades" onblur="comprobarEntero(this);mayorQueCero(this)">
+					<input type="number" name="horasUnidades" value="1" onblur="comprobarEntero(this);mayorQueCero(this)">
 					<label class="errormsg numberError" for="horasUnidades" id="horasUnidades_error" > Solo numeros </label>
 					<label class="errormsg tooshort" for="horasUnidades" id="horasUnidades_errorLength" > Al menos un numero </label>
 				</div>
 				<br>
 
 				<div class="form-group">
-				 	<label for="foto" class="picture"><?php echo $strings['picture'] ?>  </label><br>
-				 	<input type = 'file' name = 'foto' id = 'foto' onchange="comprobarExtension(this);">
-				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>
+				 	<label for="foto" class="picture">Foto  </label><br>
+				 	<input type='file' name='foto' id='foto'>
+				 	<label class="errormsg fotoError" for="foto" id="FOTO_error" > Foto error </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">

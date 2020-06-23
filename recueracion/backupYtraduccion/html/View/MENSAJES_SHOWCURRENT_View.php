@@ -74,7 +74,7 @@ class MENSAJES_SHOWCURRENT {
 	</div>
 		
 		<br>
-		<a href="../../Controller/MENSAJES_Controller.php"> <img src="../View/icon/back.ico" height="32" width="32"> </a>
+		<a href="../../Controller/MENSAJES_Controller.php?action=SHOWCONVER&&idInter=<?php echo $this->lista['ID_INTERCAMBIO']; ?>"> <img src="../View/icon/back.ico" height="32" width="32"> </a>
 		<br><br>
 
 		<?php

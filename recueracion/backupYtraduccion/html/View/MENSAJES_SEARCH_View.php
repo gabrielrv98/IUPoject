@@ -37,6 +37,7 @@
 				 		 <option value="" class="indiferente"></option>
 				 	</select>
 				</div>&nbsp;&nbsp;
+
 				<?php 
 						$control = 0;
 						 foreach ($this->intercambios as $inter) { // se recorren todos los intercambios  
@@ -49,6 +50,11 @@
 				</div>&nbsp;&nbsp;
 
 				<?php $control = 1; }  ?>
+
+				<div class="form-group" >
+
+					 <input type="checkbox" name="" id="" value="" onchange="desactivarCheckBoxIndiferente(this);"><label class="indiferente"  ></label><br>
+				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
 					<label for="loginUser" class="usuario"> </label> 
@@ -65,7 +71,7 @@
 				 	<label class="errormsg tooShortNoNum" for="contenido" id="contenido_errorLength" >demasiado corto sin numeros</label>
 				</div>&nbsp;&nbsp;
 
-				<label> si pones la fecha tambien tienes que poner la hora, y si pones la hora tambien tienes que poner el dia</label>
+				<label class="fechaSearchAdvice tituloStyle">Advertencia</label><br><br>
 
 				<div class="form-group">
 				 	<label for="dia" class="fecha">Fecha</label>

@@ -17,12 +17,12 @@
 	include '../View/MENSAJES_SHOWALL_View.php';  
 	include '../View/MENSAJES_SHOWALLCONVER_View.php';
 	include '../View/MENSAJES_SEARCH_View.php';   
-	//include '../View/MENSAJES_DELETE_View.php';	 
-	//include '../View/MENSAJES_EDIT_View.php';   
+	include '../View/MENSAJES_DELETE_View.php';	 
+	include '../View/MENSAJES_EDIT_View.php';   
 	include '../View/MENSAJES_ADD_View.php';   
 	include '../View/MESSAGE_View.php';
 	include '../View/noPermiso.php';
-	//include '../View/noEditable.php';
+	include '../View/noEditable.php';
 	
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia MENSAJES y la devuelve
@@ -38,9 +38,11 @@
 		if (!isset($_REQUEST['loginUser'])) $_REQUEST['loginUser'] = '';
 
 		$date = "";
-		if($_REQUEST['action']== 'ADD' && !$usuario->isAdmin()){// si esta haciendo add y no es administrador se le pone la fecha actual
+		if($_REQUEST['action']== 'ADD'  && !$usuario->isAdmin()){// si esta haciendo add y no es administrador se le pone la fecha actual
 			$date = date("Y-m-d H:i:s");
 			
+		}else if ($_REQUEST['action']== 'DELETE'){
+			$date = $_REQUEST['dia'];
 		}else{// si es admnistrador o esta haciendo edit ( solo admins) o search, se pone la hora compuesta
 			if($_REQUEST['dia'] != "") // si el dia no esta vacio se completa
 				$date =  $_REQUEST['dia'] ." ".$_REQUEST['hora'].":00";
@@ -103,7 +105,7 @@
 				
 				break;
 			case 'DELETE':
-				if( $usuario->isAdmin() ){// solo los administradores pueden añadir categorias
+				if( $usuario->isAdmin() ){// solo los administradores pueden eliminar mensajesF
 					if (!$_POST){ //nos llega el id a eliminar por get
 						$MENSAJES = new MENSAJES_Model($_REQUEST['id'],'','','','');
 						$valores = $MENSAJES->RellenaDatos();

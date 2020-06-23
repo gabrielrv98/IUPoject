@@ -45,6 +45,9 @@ class PRODUCTOS_SHOWALL {
 			<th class="fotoProducto">
 				foto
 			</th>
+			<th class="horasUnidades">
+				horas o unidades
+			</th>
 			<th class="name">
 				nombre
 			</th>
@@ -66,14 +69,15 @@ class PRODUCTOS_SHOWALL {
 						<img src="<?php echo $key['FOTO'];?>" height="42" width="42">
 					</td>
 					<td>
+						<?php echo $key['HORAS_UNIDADES'] ; ?>
+					</td>
+					<td>
 						<?php  
 						echo $key['NOMBRE'], " " , $key['APELLIDOS'] ; 
 						?>
 					</td>
-					<td>
-						<?php  
-						echo $key['ESTADO']; 
-						?>
+					<td class="<?php  echo $key['ESTADO']; ?>">
+						<?php  echo $key['ESTADO']; ?>
 					</td>
 					<td>
 						<a href = "../Controller/PRODUCTOS_Controller.php?action=EDIT&&id=<?php echo $key['ID']; ?>"  > 

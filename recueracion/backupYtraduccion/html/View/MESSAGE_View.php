@@ -27,11 +27,9 @@ class MESSAGE{
 		<br>
 		<br>
 		<br>
-		<p>
 		<H3 class=" <?php echo $this->string ; ?>" >
 			Mensaje en texto
 		</H3>
-		</p>
 		<br>
 		<br>
 		<br>
@@ -57,13 +55,11 @@ class MESSAGE{
 		<?php
 			foreach ($this->string as $key ) {
 				?>
-				<label class="<?php echo $key; ?>" ></label>
-		<br>
+				<H3 class="<?php echo $key; ?>" ></H3>
 <?php
 			}
 ?>	
 
-		</p>
 		<br>
 		<br>
 		<br>

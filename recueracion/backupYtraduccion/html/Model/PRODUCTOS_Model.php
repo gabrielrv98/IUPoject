@@ -88,6 +88,7 @@ function SEARCH()
 {
     $sql = "SELECT * 
     		FROM PRODUCTOS
+    		INNER JOIN USUARIOS ON USUARIOS.DNI = PRODUCTOS.VENDEDOR_DNI
     		WHERE ( ";
 
     $or = false;
@@ -115,19 +116,19 @@ function SEARCH()
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "ORIGEN LIKE '%" .$this->origen. "%'";
+	    	$sql = $sql . "ORIGEN LIKE '" .$this->origen. "'";
 	    } 
 	    if ( $this->horasUnidades != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "HORAS_UNIDADES LIKE '%" .$this->horasUnidades. "%'";
+	    	$sql = $sql . "HORAS_UNIDADES >= '" .$this->horasUnidades. "'";
 	    } 
 	    if ( $this->estado != '' ){
 	    	if ($or) $sql = $sql .' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "ESTADO LIKE '%" .$this->estado. "%'";
+	    	$sql = $sql . "ESTADO LIKE '" .$this->estado. "'";
 	    } 
 
 	    if (!$or) $sql = $sql . '1';
@@ -291,6 +292,49 @@ function productosValorados(){
 			FROM PRODUCTOS
 			INNER JOIN VALORACIONES ON PRODUCTOS.ID = VALORACIONES.ID_PRODUCTO
 			WHERE (1)";
+	$resultado = $this->mysqli->query($sql);
+
+	return $resultado;
+}
+
+//devuelve las categorias y la SUMA de las valoraciones de dicha categoria
+function getMejoresCategorias(){
+	$sql = "SELECT  CATEGORIAS.ID, CATEGORIAS.NOMBRE_CATEGORIA , SUM(PUNTUACION) AS PUNTUACION1
+				FROM CATEGORIAS
+				LEFT JOIN PRODUCTOS_CATEGORIAS ON PRODUCTOS_CATEGORIAS.ID_CATEGORIA = CATEGORIAS.ID
+				INNER JOIN PRODUCTOS ON PRODUCTOS.ID = PRODUCTOS_CATEGORIAS.ID_PRODUCTO
+				INNER JOIN VALORACIONES ON PRODUCTOS.ID = VALORACIONES.ID_PRODUCTO
+                GROUP BY ID
+    			ORDER BY PUNTUACION1 DESC";
+	$resultado = $this->mysqli->query($sql);
+
+	return $resultado;
+}
+
+//devuelve los productos con mejores valoraciones
+function getMejoresProductos(){
+	//DEVUELVE LOS ID PRODUCTO Y VALORACIONES SEPARADO ( SIRVE PARA LA MEDIA)
+	/*$sql = "SELECT  PRODUCTOS.ID, PRODUCTOS.TITULO ,  
+				(CASE WHEN PUNTUACION IS NULL THEN 0 ELSE PUNTUACION END) AS PUNTUACION1
+			FROM PRODUCTOS
+			LEFT JOIN VALORACIONES ON PRODUCTOS.ID = VALORACIONES.ID_PRODUCTO
+            ORDER BY VALORACIONES.PUNTUACION DESC";
+
+     //DEVUELVE LOS ID PRODUCTO Y media DE VALORACIONES  
+    $sql = "SELECT  PRODUCTOS.ID, PRODUCTOS.TITULO ,  
+				(CASE WHEN AVG(PUNTUACION) IS NULL THEN 0 ELSE aVG(PUNTUACION) END) AS PUNTUACION1
+			FROM PRODUCTOS
+			LEFT JOIN VALORACIONES ON PRODUCTOS.ID = VALORACIONES.ID_PRODUCTO
+            group by ID
+            ORDER BY VALORACIONES.PUNTUACION DESC";
+*/
+    //DEVUELVE LOS ID PRODUCTO Y SUMA DE VALORACIONES
+    $sql = "SELECT  PRODUCTOS.ID, PRODUCTOS.TITULO ,  
+				(CASE WHEN SUM(PUNTUACION) IS NULL THEN 0 ELSE SUM(PUNTUACION) END) AS PUNTUACION1
+			FROM PRODUCTOS
+			LEFT JOIN VALORACIONES ON PRODUCTOS.ID = VALORACIONES.ID_PRODUCTO
+            group by ID
+            ORDER BY VALORACIONES.PUNTUACION DESC";
 	$resultado = $this->mysqli->query($sql);
 
 	return $resultado;

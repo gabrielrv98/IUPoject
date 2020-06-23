@@ -549,6 +549,30 @@ function desactivarCheckBoxID(campo){
     return true;
 }
 
+function desactivarCheckBoxIndiferente(campo){
+
+    var select = document.getElementById("idInter");
+    var division;
+
+    for (var i = 0; i < select.options.length ; i++) {
+        division = document.getElementById(select.options[i].value+"-id1");
+        if( division != null){
+            division.checked = false;
+            console.log("posicion "+ division.style.position +" para "+i);
+        }
+        division = document.getElementById(select.options[i].value+"-id2");
+        if( division != null){
+            division.checked = false;
+            console.log("posicion "+ division.style.position +" para "+i);
+        }
+    }
+    var definitivo = document.getElementById("loginUser");//se coge el campo que decidira que producto se valorara
+    definitivo.value = campo.value;
+    console.log("poniendo en definitivo "+campo.value);
+
+    return true;
+}
+
 //Coloca los titulos adecuados de los productos
 //y el ID 
 function colocarProductos(campo){
@@ -586,9 +610,12 @@ function colocarUsuarios(campo){
 
     for (var i = 0; i < select.options.length ; i++) {
         division = document.getElementById(select.options[i].value);
-        division.style.marginLeft = "-1000px";
-        division.style.position = "absolute";
-        console.log("posicion "+ division.style.position );
+        if( division != null){
+            division.style.marginLeft = "-1000px";
+            division.style.position = "absolute";
+            console.log("posicion "+ division.style.position +" para "+i);
+        }
+        
     }
     var id = select.options[select.selectedIndex].value;
     division = document.getElementById(id);
@@ -674,11 +701,13 @@ function comprobarExtension(campo){
     var ext = parts[parts.length-1];
 
     if (exp.test(ext) == false ){// se comprueba que la extension tenga el formato adecuado
-        document.getElementById(campo.name+"_error").style.visibility = "visible";
+        var elem = document.getElementById(campo.name+"_error");
+        if (elem != null) elem.style.visibility = "visible";
         campo.style.border = "2px solid red";
         return false;
     }else {
-        document.getElementById(campo.name+"_error").style.visibility = "hidden";
+        var elem = document.getElementById(campo.name+"_error");
+        if (elem != null) elem.style.visibility = "hidden";
         campo.style.border = "2px solid green";
         return true;
     }
@@ -883,9 +912,9 @@ function comprobarProductos(Formu){
             Formu.descripcion.style.border = "2px solid red";
             correcto = false;
         } 
-        if(Formu.foto != null){//cuadno se borra un producto no hay un campo foto
-            if(Formu.foto.value.length > 0 && !comprobarExtension(Formu.foto) ){//comprobamos que la extension esté bien escrita
-                Formu.foto.style.border = "2px solid red";
+        if(Formu.FOTO != null){//cuadno se borra un producto no hay un campo foto
+            if(!comprobarExtension(Formu.FOTO) ){//comprobamos que la extension esté bien escrita
+                Formu.FOTO.style.border = "2px solid red";
                 correcto = false;
             }
         }
@@ -893,7 +922,7 @@ function comprobarProductos(Formu){
             Formu.origen.style.border = "2px solid red";
             correcto = false;
         }
-        if(!comprobarEntero(Formu.horasUnidades) || !mayorQueCero(Formu.horasUnidades)){//comprobamos que las horasUnidades estén bien 
+        if(!comprobarEntero(Formu.horasUnidades) || !mayorIgualQueCero(Formu.horasUnidades)){//comprobamos que las horasUnidades estén bien 
             Formu.horasUnidades.style.border = "2px solid red";
             correcto = false;
         }
@@ -916,6 +945,22 @@ function comprobarProductosSearch(Formu){
         } 
         if(!comprobarAlfabeticoVacio(Formu.descripcion, 200)){//comprobamos que la contraseña esté bien escrito
             Formu.descripcion.style.border = "2px solid red";
+            correcto = false;
+        } 
+    return correcto;
+}
+
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarProductoSearchShort(Formu){
+    var correcto=true; 
+
+        if(!comprobarAlfabeticoVacio(Formu.titulo, 50)){//comprobamos que el nombre esté bien escrito
+            Formu.titulo.style.border = "2px solid red";
+            correcto = false;
+        } 
+        if(!comprobarEnteroVacio(Formu.horasUnidades)){//comprobamos que la contraseña esté bien escrito
+            Formu.horasUnidades.style.border = "2px solid red";
             correcto = false;
         } 
     return correcto;
@@ -985,9 +1030,9 @@ function changeIDCategorias(campo,obj){
 }
 
 //function mayorQueCero(campo) //comprueba que el campo es mayor que 0
-function mayorQueCero(campo){
+function mayorIgualQueCero(campo){
     let valor = parseInt(campo.value , 10);
-    if (valor <= 0) {
+    if (valor < 0) {
         document.getElementById(campo.name+"_errorLength").style.visibility="visible";
         campo.style.border="2px solid red";
         return false;
@@ -995,6 +1040,19 @@ function mayorQueCero(campo){
         document.getElementById(campo.name+"_errorLength").style.visibility="hidden";
         campo.style.border="2px solid green";
         return true;
+    }
+}
+
+function colocarEstado(campo){
+    let num = parseInt( campo.value, 10);
+    var estado = document.getElementById("estado");
+
+    if ( num <= 0 ){
+        estado.options.item(1).selected = "selected";
+        estado.options.item(0).selected = "";
+    }else{
+        estado.options.item(1).selected = "";
+        estado.options.item(0).selected = "selected";
     }
 }
 

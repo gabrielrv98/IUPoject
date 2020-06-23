@@ -28,8 +28,10 @@ class MENSAJES_SHOWALL {
 
 		
 		<h1 class="TShowAll"></h1>
+
+		<label class="explicacionShowAll">Explicacion</label><br><br>
 		<a href = '../Controller/MENSAJES_Controller.php?action=ADD' style="color:#FFFFFF;">
-			<img src='../View/icon/bolsa-de-la-compra.png' height="42" width="42" >
+			<img src='../View/icon/add_msg.png' height="42" width="42" >
 		</a>
 
 		<a href = '../Controller/MENSAJES_Controller.php?action=SEARCH'>
@@ -71,14 +73,7 @@ class MENSAJES_SHOWALL {
 								<img src='../View/icon/showuser.ico'>
 							</a>
 						</td>
-						<?php if($usuario->isAdmin()){ // si el usuario es administrador puede eliminar toda la conversaicon directamente	
-						?>
-						<td>
-							<a href = "../Controller/MENSAJES_Controller.php?action=DELETE&&idInter=<?php echo $key['ID_INTERCAMBIO']; ?>"  > 
-								<img src='../View/icon/bolsa-de-la-compra_delete.png' height="42" width="42">
-							</a>
-						</td>
-						<?php }		?>
+						
 					</tr>
 				<?php }		?>
 			

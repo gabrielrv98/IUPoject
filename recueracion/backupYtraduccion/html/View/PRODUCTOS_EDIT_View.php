@@ -74,7 +74,7 @@
 
 				<div class="form-group">
 					<label for="horasUnidades" class="horasUnidades">Horas o unidades</label>
-					<input type="number" name="horasUnidades" onblur="comprobarEntero(this);" value="<?php echo $this->valores['HORAS_UNIDADES'] ?>">
+					<input type="number" name="horasUnidades" onblur="comprobarEntero(this);colocarEstado(this);" value="<?php echo $this->valores['HORAS_UNIDADES'] ?>">
 					<label class="errormsg numberError" for="horasUnidades" id="horasUnidades_error" > Solo numeros </label>
 					<label class="errormsg tooshort" for="horasUnidades" id="horasUnidades_errorLength" > Al menos un numero </label>
 				</div>
@@ -102,7 +102,7 @@
 
 				<div class="form-group">
 				 	<label for="estado" class="estado"><?php echo $strings['estado'] ?>  </label>
-				 	<select name="estado" >
+				 	<select name="estado" id="estado" >
 				 		<option value="tramite" class="tramite" <?php if( $this->valores['ESTADO'] == 'tramite') echo "selected"  ?> > <?php echo $strings['tramite'] ; ?></option>
 
 						<option value="vendido" class="vendido" <?php if( $this->valores['ESTADO'] == 'vendido') echo "selected"  ?> > <?php echo $strings['vendido'] ; ?></option>

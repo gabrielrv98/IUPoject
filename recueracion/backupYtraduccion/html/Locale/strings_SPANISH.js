@@ -109,6 +109,16 @@ const arraySPANISH =  {
       'indexTitle' : 'Bienvenido a Intercambio de tiempo',
       'indexDescrip' :'Aqui puedes buscar ofertas para inercambiarlas por otras ofertas tuyas, puden ser productos hechos a mano o cultivados o incluso trabajo fisico!',
       'IndexViewLink' : 'Pagina principal',
+      'indexFuncion' : 'Usa la barra superior para buscar porductos que contengan esa palabra en el titulo y tengan igual o mas unidades de las especificadas.',
+      //ranking   
+      'rankingCategorias' : 'Categorias con mas puntos',
+      'rankingProductos'  :  'Porductos con mas puntos',
+      'rankingCategoriasExplicacion' : 'Aqui puedes ver las categorias que tienen productos que han sido valorados junto con la suma de las puntuaciones',
+      'rankingProductosExplicacion'  :  'Aqui puedes ver los productos que han sido valorados junto con la puntuacion total obtenida',
+      'rankingTransacciones'  :  'Intercambios mejor valorados',
+      'rankingIntercambiosExplicacion' : '',
+      'puesto' : 'Puesto',
+
 
       //noPermiso
       'noPermisoT' : 'No tienes permiso para estar aqui',
@@ -135,6 +145,7 @@ const arraySPANISH =  {
     'horasUnidades' : 'Unidades o horas',
     'verUser' : 'Ver usuario',
     'producto' : 'Producto',
+    'titulo':'Titulo',
 
 
 
@@ -205,8 +216,9 @@ const arraySPANISH =  {
     'timeHelp':'Toque el boton a la izquierda del cuadro para seleccionar la hora',
     'addMSG' : 'Añadir mensaje',
     'ChatFinalizado' : 'La transaccion ha sido aceptada por ambos usuarios, no se puede añadir mensajes a este chat',
-
-
+    'fechaSearchAdvice' : 'Si pones la fecha tambien tienes que poner la hora, y si pones la hora tambien tienes que poner el dia',
+    'explicacionShowAll' : 'Haz click en el boton de ver para abrir la conversacion y ver todos los mensajes.',
+    'explicaionShowConver' : 'Los mensajes mas recientes aparecen en la parte superior. Si le das al boton de añadir, podras añadir un mensaje a esta conversacion.',
 
     //codigos de error
     '00001' : '00001 Insercion fallida, el elemento ya existe',

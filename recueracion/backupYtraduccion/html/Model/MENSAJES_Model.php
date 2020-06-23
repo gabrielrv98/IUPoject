@@ -82,7 +82,8 @@ function SEARCH()
     $sql = "SELECT MENSAJES.ID AS MSG_ID, user1.LOGIN AS LOGIN1,
     			user2.LOGIN AS LOGIN2,
     			CONTENIDO, FECHA, ID_INTERCAMBIO,
-    			LOGIN_USUARIO
+    			LOGIN_USUARIO, prod1.TITULO AS TITULO1,
+    			prod2.TITULO AS TITULO2
     		FROM MENSAJES
 			INNER JOIN INTERCAMBIO ON MENSAJES.ID_INTERCAMBIO = INTERCAMBIO.ID
 			INNER JOIN PRODUCTOS prod1 ON ( prod1.ID = INTERCAMBIO.ID_PRODUCTO1)
@@ -130,7 +131,6 @@ function SEARCH()
     
 
     $sql = $sql . " )";
-    echo $sql;
     $toRet = $this->mysqli->query($sql);
     return $toRet ? $toRet : '00004 ';
 }
@@ -148,7 +148,8 @@ function getMensajes()
 			INNER JOIN PRODUCTOS prod2 ON ( prod2.ID = INTERCAMBIO.ID_PRODUCTO2)
 			INNER JOIN USUARIOS AS user1 ON prod1.VENDEDOR_DNI = user1.DNI
 			INNER JOIN USUARIOS AS user2 ON prod2.VENDEDOR_DNI = user2.DNI
-    		WHERE ( ID_INTERCAMBIO = '" .$this->idInter. "')";
+    		WHERE ( ID_INTERCAMBIO = '" .$this->idInter. "')
+    		ORDER BY FECHA ASC";
 
     $toRet = $this->mysqli->query($sql);
     return $toRet ;
@@ -211,9 +212,8 @@ function DELETE()
 function RellenaDatos()
 {
 
-	$sql = "SELECT * ,MENSAJES.ID AS ID
+	$sql = "SELECT * 
 			FROM MENSAJES
-			INNER JOIN PRODUCTOS ON PRODUCTOS.ID = MENSAJES.ID_PRODUCTO
 			WHERE ( MENSAJES.ID = '$this->id')";
 
 	$toRet = $this->mysqli->query($sql);
@@ -233,8 +233,8 @@ function EDIT()
 	$response = $this->mysqli->query($sql)->num_rows;
 	if ($response == 1) {
 		$sql = "UPDATE MENSAJES
-			SET PUNTUACION = '$this->puntuacion',
-				COMENTARIO = '$this->coment'
+			SET CONTENIDO = '$this->contenido',
+				FECHA = '$this->fecha'
 			WHERE (ID = '$this->id')";
 		include_once '../Model/BD_logger.php';//se incluye el archivo con el log
 		$result = writeAndLog($sql); // se realiza el log

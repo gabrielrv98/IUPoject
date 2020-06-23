@@ -335,7 +335,7 @@ function comprobarAccept(){
 	}else return false;
 }
 
-//devuelve el titulo
+//devuelve los titulos a partir del id del producto
 function getTitulo(){
 
 	$sql = "SELECT prod1.TITULO AS TITULO1,
@@ -346,10 +346,30 @@ function getTitulo(){
 			WHERE INTERCAMBIO.ID = '$this->id'";
 	$toRet = $this->mysqli->query($sql);
  
-	if ($toRet) {
+	if ($toRet) {// si la busqueda fue existosa
 		$toRet = $toRet->fetch_array();
 		return $toRet;
 	}else return 'Titulo error';
+
+}
+
+//devuelve los intercambios mejores valorados junto con su ID, la suma de las 
+//puntuaciones asi como los titulos y unidades intercambiados
+function getMejoresIntercambios(){
+
+	$sql = "SELECT INTERCAMBIO.ID, SUM(PUNTUACION) AS PUNTUACION1, 
+			prod1.TITULO AS TITULO1, INTERCAMBIO.UNIDADES1 AS UNIDADES1, 
+			prod2.TITULO AS TITULO2, INTERCAMBIO.UNIDADES2 AS UNIDADES2
+	FROM `INTERCAMBIO`
+	INNER JOIN VALORACIONES ON VALORACIONES.ID_INTERCAMBIO = INTERCAMBIO.ID
+    INNER JOIN PRODUCTOS AS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+    INNER JOIN PRODUCTOS AS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+    
+    GROUP BY INTERCAMBIO.ID
+    ORDER BY PUNTUACION1 DESC";
+	$toRet = $this->mysqli->query($sql);
+ 
+	return $toRet;
 
 }
 

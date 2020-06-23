@@ -83,7 +83,6 @@
 					<label for="horasUnidades" class="horasUnidades">Horas o unidades</label>
 					<input type="number" name="horasUnidades" onblur="comprobarEnteroVacio(this);">
 					<label class="errormsg numberError" for="horasUnidades" id="horasUnidades_error" > Solo numeros </label>
-					<label class="errormsg tooshort" for="horasUnidades" id="horasUnidades_errorLength" > Al menos un numero </label>
 				</div>
 				<br>
 

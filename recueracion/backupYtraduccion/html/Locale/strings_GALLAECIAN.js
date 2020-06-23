@@ -120,7 +120,14 @@ const arrayGALLAECIAN =  {
       'indexTitle' : 'Benvido a Intercambio de tempo',
       'indexDescrip' :'Aqui podes buscar ofertas para intercambialas por ofertas tuas, poden ser produtos caseiros ou cultivados, tamén pode ser traballo fisico!',
       'IndexViewLink' : 'Páxina principal',
-
+      'indexFuncion' : 'Usa a barra superior para buscar pordutos que conteñan esa palabra e teñan igual ou máis unidades das especificadas.',
+      //ranking   
+      'rankingCategorias' : 'Categorias con máis puntos',
+      'rankingProductos'  :  'Pordutos con máis puntos',
+      'rankingTransacciones'  :  'Intercambios mellor valorados',
+      'puesto' : 'Posto',
+      'rankingCategoriasExplicacion' : 'Aqui podes ver as categorias que teñen produtos que furon valorados xunto coa suma das puntuacions',
+      'rankingProductosExplicacion'  :  'Aqui podes ver os produtos que furon valorados xunto coa puntuacion total obtida',
 
       //noPermiso
       'noPermisoT' : 'Non tes permiso para estar aqui',
@@ -148,6 +155,7 @@ const arrayGALLAECIAN =  {
     'horasUnidades' : 'Unidades ou horas',
     'verUser' : 'Ver usuario',
     'producto' : 'Produto',
+    'titulo':'Titulo',
     
 
     //Gestion de categorias
@@ -217,7 +225,10 @@ const arrayGALLAECIAN =  {
     'horaError':'A hora ten que estar comprendida entre 00:00 e 23:59',
     'timeHelp':'Toque o botón a la esquerda do cuadro para seleccionar a hora',
     'addMSG' : 'Añadir mensaxe',
-    'ChatFinalizado' : 'A transaccion fui aceptada por ambos usuarios, non puedese añadir mensaxes a esta conversa',
+    'ChatFinalizado' : 'A transaccion fui aceptada por ambos usuarios, non puedese engadir mensaxes a esta conversa',
+    'fechaSearchAdvice' : 'Se pos a data tamen tes que por a hora, e se pos a hora tamen tes que por a data',
+    'explicacionShowAll' : 'Fai click no boton de \"ver\" para abrir a conversa e ver todos as mensaxes.',
+    'explicaionShowConver' : 'As mensaxes máis recientes aparecen na parte superior. Se lle das o boton de engadir, poderas engadir unha mensaxe nesta conversa.',
 
     //codigos de error
     '00001' : '00001 Insercion fallida, o elemento xa existe',
