@@ -1,16 +1,19 @@
 <?php
-//Clase : MENSAJES_SHOWALL_View
+//Clase : MENSAJES_SHOWALLCONVER_View
 //Creado el : 20-06-20
 //Creado por: grvidal
 //Muestra unos campos de todos las tuplas de los MENSAJES
 //-------------------------------------------------------
 
-class MENSAJES_SHOWALL {
+class MENSAJES_SHOWALLCONVER {
 
 	var $lista;
+	var $titulo;
+	var $id;
 
-
-	function __construct($datos){ 
+	function __construct($titulo,$datos,$id){ 
+		$this->id = $id;
+		$this->titulo = $titulo;
 		$this->lista = $datos;
 		$this->render();
 	}
@@ -28,7 +31,7 @@ class MENSAJES_SHOWALL {
 
 		
 		<h1 class="TShowAll"></h1>
-		<a href = '../Controller/MENSAJES_Controller.php?action=ADD' style="color:#FFFFFF;">
+		<a href = '../Controller/MENSAJES_Controller.php?action=ADD&&idInter=<?php echo $this->id; ?>' style="color:#FFFFFF;">
 			<img src='../View/icon/bolsa-de-la-compra.png' height="42" width="42" >
 		</a>
 
@@ -37,10 +40,8 @@ class MENSAJES_SHOWALL {
 		</a>
 		<br>
 		<div>
+			<label class="titulosMsg tituloStyle"></label><label class="tituloStyle"> : <?php echo $this->titulo; ?></label><br><br>
 		<table border = ¨1¨>
-			<th class="titulosMsg">
-				TITULO PRODUCTO
-			</th>
 			<th class="fecha">
 				FECHA
 			</th>
@@ -48,14 +49,12 @@ class MENSAJES_SHOWALL {
 				USUARIO
 			</th>
 			<th class="coment">
-				PUNTUACION
+				COMENT
 			</th>
 			<?php foreach ($this->lista as $key ) { ?>
 
 					<tr>			
-						<td>
-							<?php echo $key['TITULO1'], " <-> ", $key['TITULO2']; ?>
-						</td>
+						
 						<td>
 							<?php echo $key['FECHA']; ?>
 						</td>
@@ -67,14 +66,14 @@ class MENSAJES_SHOWALL {
 						</td>
 
 						<td>
-							<a href = "../Controller/MENSAJES_Controller.php?action=SHOWCONVER&&idInter=<?php echo $key['ID_INTERCAMBIO']; ?>"  > 
+							<a href = "../Controller/MENSAJES_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['MSG_ID']; ?>"  > 
 								<img src='../View/icon/showuser.ico'>
 							</a>
 						</td>
 						<?php if($usuario->isAdmin()){ // si el usuario es administrador puede eliminar toda la conversaicon directamente	
 						?>
 						<td>
-							<a href = "../Controller/MENSAJES_Controller.php?action=DELETE&&idInter=<?php echo $key['ID_INTERCAMBIO']; ?>"  > 
+							<a href = "../Controller/MENSAJES_Controller.php?action=DELETE&&id=<?php echo $key['MSG_ID']; ?>"  > 
 								<img src='../View/icon/bolsa-de-la-compra_delete.png' height="42" width="42">
 							</a>
 						</td>

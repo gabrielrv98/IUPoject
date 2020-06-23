@@ -243,8 +243,8 @@
 									$producto = new PRODUCTOS_Model($intercambioAnterior['ID_PRODUCTO2'],'','','','','',$producto['HORAS_UNIDADES']+$intercambioAnterior['UNIDADES2'],'');//se crea el nuevo producto con los intems añadidos
 									array_push($respuesta, $producto->setCantidad());//se coloca la nueva cantidad en la bd
 
-									$intercambio = get_data_form();//se recogen los datos del nuevo intercambio
-									array_push($respuesta, $intercambio->EDIT());//se colocan en la db
+									//$intercambio = get_data_form();//se recogen los datos del nuevo intercambio
+									//array_push($respuesta, $intercambio->EDIT());//se colocan en la db
 								}
 								$intercambio = get_data_form();
 								

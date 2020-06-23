@@ -86,7 +86,7 @@ function comprobarEnteroVacio(campo) {
 /*Comprueba que sólo haya caracteres alfanuméricos y \n*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarAlfabeticoEnter(campo, size) {
-    var abc =/^\w[\wñº\n,. ]*$/;
+    var abc =/^\w[\wñº\n,.!? ]*$/;
     
     if(!comprobarExpresionRegular(campo,abc,size)){//comprueba que la expresión enviada en abc sea cumplida por el campo enviado si no lo hace devuelve false
          
@@ -102,7 +102,7 @@ function comprobarAlfabeticoEnter(campo, size) {
 /*Comprueba que sólo haya caracteres alfanuméricos y \n*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarAlfabeticoEnterVacio(campo, size) {
-    var abc =/^\w[\wñº\n,. ]*$/;
+    var abc =/^\w[\wñº\n,.!? ]*$/;
     
     if(campo.value.length <= 0){ // si el campo es menor que 3 caracteres se avisa del error
         campo.style.border = "2px solid green";
@@ -431,6 +431,7 @@ function comprobarFechaNacimiento(campo) {
 function checkEquals(numero,campo){
     var string = "idProd"+numero;
     var prod1 = document.getElementById(string);
+
     if(campo.value == prod1.value){// si los campos son iguales se muestra el error
         document.getElementById(campo.name+'_error').style.visibility = "visible";
         return false;
@@ -516,6 +517,37 @@ function desactivarCheckBox(campo){
 
     return true;
 }
+/*Desactiva el checkBox contrario*/
+function desactivarCheckBoxID(campo){
+    var inter = campo.name.split("-")[0];
+    var name = campo.name.split("-")[1];
+
+
+    console.log("inter " + inter + " name " +name);
+    console.log("buscando -> "+inter+"-id2");
+
+
+    if(name == "id1")//si es el campo uno elem es el campo dos
+        var elem =document.getElementById(inter+"-id2");// el guarda el campo 2
+    else if (name == "id2")//si es el campo dos elem es el campo uno
+        var elem =document.getElementById(inter+"-id1");// el guarda el campo 1
+    else console.log("hubo un error con los checkbox");//si no coinicde se avisa del error
+
+    elem.checked = campo.checked == true ? false : true;//desactivar el checkbox contrario
+
+    var codigo = document.getElementById(inter+"-id1");// se coge el campo 1
+    var select = document.getElementById("idInter");//se coge el campo select
+    var id;
+    if(codigo.checked == true){// se coloca el id del primer producto en l campo definitivo
+        id = document.getElementById(inter+"-label1").innerHTML;//se coge el titulos 1
+    }else id = document.getElementById(inter+"-label2").innerHTML;//se coge el titulos 2
+
+    var definitivo = document.getElementById("loginUser");//se coge el campo que decidira que producto se valorara
+    definitivo.value = id;
+    console.log("poniendo en definitivo "+id);
+
+    return true;
+}
 
 //Coloca los titulos adecuados de los productos
 //y el ID 
@@ -545,6 +577,26 @@ function colocarProductos(campo){
     return true;
 }
 
+//coloca los usuarios en la pantalla
+function colocarUsuarios(campo){
+    var select = document.getElementById("idInter");
+    
+
+    var division;
+
+    for (var i = 0; i < select.options.length ; i++) {
+        division = document.getElementById(select.options[i].value);
+        division.style.marginLeft = "-1000px";
+        division.style.position = "absolute";
+        console.log("posicion "+ division.style.position );
+    }
+    var id = select.options[select.selectedIndex].value;
+    division = document.getElementById(id);
+    division.style.marginLeft = "0px";
+    division.style.position = "static";
+    return true;
+
+}
 //comprueba que la puntuacion este entre 0 y 10
 function  comprobarPuntuacion(campo){
     var exp = /^[0-9]*$/;
@@ -650,6 +702,19 @@ function comprobarOrigen(campo) {
 /*abc- es una expresión regular que comprueba si origen es del tipo enum*/
 function comprobarEstado(campo) {
     var exp= /^(tramite|vendido)$/;
+    if (!comprobarExpresionRegular(campo, exp,100)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer"
+        campo.style.border = "2px solid red";
+        return false;
+
+    }else{ 
+        campo.style.border = "2px solid green";
+        return true;
+    }
+}
+
+//comprueba que la hora tenga el formato adecuado
+function comprobarHora(campo){
+    var exp = /^[0-2][0-9]:[0-5][0-9]$/;
     if (!comprobarExpresionRegular(campo, exp,100)){// se comprueba que el sexo encaje con los valores "hombre" o "mujer"
         campo.style.border = "2px solid red";
         return false;
@@ -989,6 +1054,33 @@ function comprobarValoracion(Formu){
         }
         if(!comprobarPuntuacion(Formu.punt,2)){//comprobamos las unidades sean numeros
             Formu.punt.style.border = "2px solid red";
+            correcto = false;
+        }
+        
+    return correcto;
+}
+
+//comprueba la valoracion antes de enviarla por submit
+function comprobarMensajes(Formu){
+    var correcto=true; 
+        if(!comprobarAlfabetico(Formu.loginUser, 15)){//comprobamos que el nombre esté bien escrito
+            Formu.loginUser.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarEntero(Formu.idInter)){//comprobamos las unidades sean numeros
+            Formu.idInter.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarFechaNacimiento(Formu.dia)){//comprobamos las unidades sean numeros
+            Formu.dia.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarHora(Formu.hora)){//comprobamos las unidades sean numeros
+            Formu.hora.style.border = "2px solid red";
+            correcto = false;
+        }
+        if(!comprobarAlfabeticoEnter(Formu.contenido)){//comprobamos las unidades sean numeros
+            Formu.contenido.style.border = "2px solid red";
             correcto = false;
         }
         

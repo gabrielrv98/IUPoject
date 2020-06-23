@@ -358,6 +358,43 @@ function getIntercambios(){
 }
 
 
+function getConversacionesPosiblesPropias(){
+
+	$sql = "SELECT INTERCAMBIO.ID , prod1.TITULO AS TITULO1,
+				prod2.TITULO AS TITULO2, prod1.VENDEDOR_DNI AS DNI1,
+				prod2.VENDEDOR_DNI AS DNI2, user1.LOGIN AS LOGIN1, user2.LOGIN AS LOGIN2
+			FROM INTERCAMBIO
+			INNER JOIN PRODUCTOS AS prod1 ON INTERCAMBIO.ID_PRODUCTO1 = prod1.ID
+			INNER JOIN PRODUCTOS AS prod2 ON INTERCAMBIO.ID_PRODUCTO2 = prod2.ID
+            INNER JOIN USUARIOS AS user1 ON prod1.VENDEDOR_DNI = user1.DNI
+            INNER JOIN USUARIOS AS user2 ON prod2.VENDEDOR_DNI = user2.DNI
+			WHERE ( INTERCAMBIO.ACCEPT1 = 'denegado' OR 
+					INTERCAMBIO.ACCEPT2 = 'denegado') AND
+				  ( prod1.VENDEDOR_DNI = '$this->dni' OR
+				  	prod2.VENDEDOR_DNI = '$this->dni') ";
+	$resultado = $this->mysqli->query($sql);
+	return $resultado;
+}
+
+// se recogen el ultimo mensaje de las conversaciones
+function SHOW_ALL_BYGROUPS_Users(){
+	$sql = "SELECT ID_INTERCAMBIO, CONTENIDO, 
+				LOGIN_USUARIO, ID_PRODUCTO1,
+				ID_PRODUCTO2, FECHA, prod1.TITULO AS TITULO1, prod2.TITULO AS TITULO2
+			FROM MENSAJES
+			INNER JOIN INTERCAMBIO ON MENSAJES.ID_INTERCAMBIO = INTERCAMBIO.ID
+			INNER JOIN PRODUCTOS prod1 ON ( prod1.ID = INTERCAMBIO.ID_PRODUCTO1)
+			INNER JOIN PRODUCTOS prod2 ON ( prod2.ID = INTERCAMBIO.ID_PRODUCTO2)
+			where FECHA in (
+			    SELECT  MAX(FECHA)
+					FROM MENSAJES
+                	GROUP BY ID_INTERCAMBIO
+			        ORDER BY FECHA ASC
+             ) AND ( prod1.VENDEDOR_DNI = '$this->dni' OR
+             		 prod2.VENDEDOR_DNI = '$this->dni')
+               GROUP BY ID_INTERCAMBIO ";
+	return $this->mysqli->query($sql);
+}
 
 // funcion login: realiza la comprobación de si existe el usuario en la bd y despues si la pass
 // es correcta para ese usuario. Si es asi devuelve true, en cualquier otro caso devuelve el 

@@ -266,6 +266,93 @@ function getDNIPord2(){
 	return $resultado['VENDEDOR_DNI'];
 }
 
+
+//funcion getDNIS(): devuelve ambos DNI
+function getDNIS(){
+
+	$sql = "SELECT prod1.VENDEDOR_DNI AS DNI1 , prod2.VENDEDOR_DNI AS DNI2
+			FROM INTERCAMBIO
+			INNER JOIN PRODUCTOS as prod1 ON INTERCAMBIO.ID_PRODUCTO1 = prod1.ID
+			INNER JOIN PRODUCTOS as prod2 ON INTERCAMBIO.ID_PRODUCTO2 = prod2.ID
+			WHERE ( INTERCAMBIO.ID = '$this->id')";
+
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	return $resultado;
+}
+
+//funcion getConversaciones(): devuelve las conversaciones posibles
+function getConversacionesPosibles(){
+
+	$sql = "SELECT INTERCAMBIO.ID , prod1.TITULO AS TITULO1,
+				prod2.TITULO AS TITULO2, prod1.VENDEDOR_DNI AS DNI1,
+				prod2.VENDEDOR_DNI AS DNI2, user1.LOGIN AS LOGIN1, user2.LOGIN AS LOGIN2
+			FROM INTERCAMBIO
+			INNER JOIN PRODUCTOS AS prod1 ON INTERCAMBIO.ID_PRODUCTO1 = prod1.ID
+			INNER JOIN PRODUCTOS AS prod2 ON INTERCAMBIO.ID_PRODUCTO2 = prod2.ID
+            INNER JOIN USUARIOS AS user1 ON prod1.VENDEDOR_DNI = user1.DNI
+            INNER JOIN USUARIOS AS user2 ON prod2.VENDEDOR_DNI = user2.DNI
+			WHERE ( INTERCAMBIO.ACCEPT1 = 'denegado' OR 
+					INTERCAMBIO.ACCEPT2 = 'denegado')";
+	$resultado = $this->mysqli->query($sql);
+	return $resultado;
+}
+
+//funcion getConversacionConID(): devuelve la conversacoin con el id y unos datos
+//para mayor facilidad visual
+function getConversacionConID(){
+
+	$sql = "SELECT INTERCAMBIO.ID , prod1.TITULO AS TITULO1,
+				prod2.TITULO AS TITULO2, prod1.VENDEDOR_DNI AS DNI1,
+				prod2.VENDEDOR_DNI AS DNI2, user1.LOGIN AS LOGIN1, user2.LOGIN AS LOGIN2
+			FROM INTERCAMBIO
+			INNER JOIN PRODUCTOS AS prod1 ON INTERCAMBIO.ID_PRODUCTO1 = prod1.ID
+			INNER JOIN PRODUCTOS AS prod2 ON INTERCAMBIO.ID_PRODUCTO2 = prod2.ID
+            INNER JOIN USUARIOS AS user1 ON prod1.VENDEDOR_DNI = user1.DNI
+            INNER JOIN USUARIOS AS user2 ON prod2.VENDEDOR_DNI = user2.DNI
+			WHERE INTERCAMBIO.ID = '$this->id' ";
+
+			
+	$resultado = $this->mysqli->query($sql);
+	return $resultado;
+}
+
+//funcion comprobarAccept(): devuelve true si aun se puede enviar mensajes
+//comprueba que alguno de los dos aun no ha aceptado, 
+//en una conversacion aceptada no se pueden añadir mensajes
+function comprobarAccept(){
+
+	$sql = "SELECT INTERCAMBIO.ID 
+			FROM INTERCAMBIO
+			WHERE ( INTERCAMBIO.ACCEPT1 = 'denegado' OR 
+					INTERCAMBIO.ACCEPT2 = 'denegado') AND
+					INTERCAMBIO.ID = '$this->id' ";
+	$resultado = $this->mysqli->query($sql);
+
+	//Comprobacion de que la tupla es unica
+	if( mysqli_num_rows($resultado) == 1 ){
+		return true;
+	}else return false;
+}
+
+//devuelve el titulo
+function getTitulo(){
+
+	$sql = "SELECT prod1.TITULO AS TITULO1,
+					prod2.TITULO AS TITULO2, INTERCAMBIO.ID
+			FROM INTERCAMBIO
+			INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+			INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+			WHERE INTERCAMBIO.ID = '$this->id'";
+	$toRet = $this->mysqli->query($sql);
+ 
+	if ($toRet) {
+		$toRet = $toRet->fetch_array();
+		return $toRet;
+	}else return 'Titulo error';
+
+}
+
 }//fin de clase
 
 ?> 

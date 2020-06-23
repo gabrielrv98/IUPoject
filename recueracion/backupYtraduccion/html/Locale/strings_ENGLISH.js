@@ -209,6 +209,11 @@ const arrayENGLISH =  {
     'usuario' : 'User',
     'contenido' : 'Message content',
     'titulosMsg' : 'Products title',
+    'hora':'Hour',
+    'horaError':'Hour must be beteewn 00:00 and 23:59',
+    'timeHelp':'Press the button on the left of the input to set the hour',
+    'addMSG' : 'Add message',
+    'ChatFinalizado' : 'The transaction has been accepted by both users, you cannot add messages to this chat',
 
 
     //codigos de error

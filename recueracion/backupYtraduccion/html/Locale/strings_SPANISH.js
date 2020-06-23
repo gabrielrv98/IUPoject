@@ -200,6 +200,11 @@ const arraySPANISH =  {
     'usuario' : 'Usuario',
     'contenido' : 'Contenido del mensaje',
     'titulosMsg' : 'Titulos de los productos',
+    'hora':'Hora',
+    'horaError':'La hora tiene que estar comprendida entre 00:00 y 23:59',
+    'timeHelp':'Toque el boton a la izquierda del cuadro para seleccionar la hora',
+    'addMSG' : 'Añadir mensaje',
+    'ChatFinalizado' : 'La transaccion ha sido aceptada por ambos usuarios, no se puede añadir mensajes a este chat',
 
 
 

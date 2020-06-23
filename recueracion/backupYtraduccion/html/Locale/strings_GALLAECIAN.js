@@ -213,6 +213,11 @@ const arrayGALLAECIAN =  {
     'usuario' : 'Usuario',
     'contenido' : 'Contido di mensaxe',
     'titulosMsg' : 'Titulos dos produtos',
+    'hora':'Hora',
+    'horaError':'A hora ten que estar comprendida entre 00:00 e 23:59',
+    'timeHelp':'Toque o botón a la esquerda do cuadro para seleccionar a hora',
+    'addMSG' : 'Añadir mensaxe',
+    'ChatFinalizado' : 'A transaccion fui aceptada por ambos usuarios, non puedese añadir mensaxes a esta conversa',
 
     //codigos de error
     '00001' : '00001 Insercion fallida, o elemento xa existe',

@@ -1,6 +1,6 @@
 ﻿<?php
 //Clase : MENSAJES_Controller
-//Creado el : -06-2020
+//Creado el : 20-06-2020
 //Creado por: grvidal
 //Controla y administra las acciones enviadas por get
 //-------------------------------------------------------
@@ -12,29 +12,42 @@
 	}
 
 	include_once '../Model/MENSAJES_Model.php';
-	//include_once '../Model/INTERCAMBIOS_Model.php';
-	//include '../View/MENSAJES_SHOWCURRENT_View.php';
-	include '../View/MENSAJES_SHOWALL_View.php';   
-	//include '../View/MENSAJES_SEARCH_View.php';   
+	include_once '../Model/INTERCAMBIOS_Model.php';
+	include '../View/MENSAJES_SHOWCURRENT_View.php';
+	include '../View/MENSAJES_SHOWALL_View.php';  
+	include '../View/MENSAJES_SHOWALLCONVER_View.php';
+	include '../View/MENSAJES_SEARCH_View.php';   
 	//include '../View/MENSAJES_DELETE_View.php';	 
 	//include '../View/MENSAJES_EDIT_View.php';   
-	//include '../View/MENSAJES_ADD_View.php';   
+	include '../View/MENSAJES_ADD_View.php';   
 	include '../View/MESSAGE_View.php';
-	//include '../View/noPermiso.php';
+	include '../View/noPermiso.php';
 	//include '../View/noEditable.php';
 	
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia MENSAJES y la devuelve
 	function get_data_form(){
 
+		$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');//Recuperamos el usuario que esta operando
 
 		if (!isset($_REQUEST['id'])) $_REQUEST['id'] = '';
-		if (!isset($_REQUEST['idProd'])) $_REQUEST['idProd'] = '';
 		if (!isset($_REQUEST['idInter'])) $_REQUEST['idInter'] = '';
-		if (!isset($_REQUEST['punt'])) $_REQUEST['punt'] = '';
-		if (!isset($_REQUEST['coment'])) $_REQUEST['coment'] = '';
+		if (!isset($_REQUEST['contenido'])) $_REQUEST['contenido'] = '';
+		if (!isset($_REQUEST['dia'])) $_REQUEST['dia'] = '';//2020-06-20
+		if (!isset($_REQUEST['hora'])) $_REQUEST['hora'] = '';//21:30
+		if (!isset($_REQUEST['loginUser'])) $_REQUEST['loginUser'] = '';
 
-		return new MENSAJES_Model($_REQUEST['id'],$_REQUEST['idProd'],$_REQUEST['idInter'],$_REQUEST['punt'],$_REQUEST['coment']);// se Crea el nuevo usuario
+		$date = "";
+		if($_REQUEST['action']== 'ADD' && !$usuario->isAdmin()){// si esta haciendo add y no es administrador se le pone la fecha actual
+			$date = date("Y-m-d H:i:s");
+			
+		}else{// si es admnistrador o esta haciendo edit ( solo admins) o search, se pone la hora compuesta
+			if($_REQUEST['dia'] != "") // si el dia no esta vacio se completa
+				$date =  $_REQUEST['dia'] ." ".$_REQUEST['hora'].":00";
+		}
+
+		return new MENSAJES_Model($_REQUEST['id'],$_REQUEST['idInter'],$_REQUEST['contenido'],$date,$_REQUEST['loginUser']);// se Crea el nuevo usuario
+		
 
 	}
 
@@ -51,18 +64,41 @@
 		Switch ($_REQUEST['action']){
 			case 'ADD':
 					if (!$_POST){ // se incoca la vista de add de usuarios
-						//en principio solo un administrador puede llegar aqui, un usuario saltaria directamente al "else"
-						$intercambios = new INTERCAMBIOS_Model('','','','','','aceptado','aceptado');//se cogen los intercambios
-						$intercambios = $intercambios->SEARCH();//se recogen todos los intercambios
+						if (!isset($_REQUEST['idInter'])) {// si no esta puesta idInter se muestran todos los intercambios
+							if ($usuario->isAdmin()) {//si el usuario es administrador se le muestran todos los intercambios
+								$intercambios = new INTERCAMBIOS_Model('','','','','','','');//se cogen los intercambios
+								$intercambios = $intercambios->getConversacionesPosibles();//se recogen todos los intercambios
+							
+							}else{// si es un usuario normal se muestran solo sus inercambios
+								$USUARIO = new USUARIOS_Model('','','','','',$usuario->RellenaDatos()['DNI'],'','','','','','','','');//Recuperamos el usuario que esta operando para conseguir su dni
+								$intercambios = $USUARIO->getConversacionesPosiblesPropias();//recuperamos los intercambios que no esten aceptados por ambas partes
 
-						$productos = new PRODUCTOS_Model('','','','','','','','');
-						$productos = $productos->SEARCH();//Se recogen todos los productos
-						new MENSAJES_ADD($intercambios,$productos);
+							}
+							
+							
+						}else{// añadir un mensaje a la conversacion idInter
+							$intercambios = new INTERCAMBIOS_Model($_REQUEST['idInter'],'','','','','','');
+							$dnis = $intercambios->getDNIS();
+
+							if($usuario->isAdmin() || $usuario->getDNI() == $dnis['DNI1'] || $usuario->getDNI() == $dnis['DNI2']){//si es administrador o propietario de algun producto
+
+								if($intercambios->comprobarAccept()){
+									$intercambios = $intercambios->getConversacionConID();//se recogen todos los intercambios
+
+								}else{
+									$respuesta ="ChatFinalizado";
+									new MESSAGE($respuesta, '../Controller/MENSAJES_Controller.php');
+								}
+							}else new NoPermiso();
+
+
+						}
+						new MENSAJES_ADD($intercambios,$usuario);
 					}
 					else{
 						$MENSAJES = get_data_form(); //se recogen los datos del formulario
 						$respuesta = $MENSAJES->ADD();
-						new MESSAGE($respuesta, '../Controller/MENSAJES_Controller.php');
+						new MESSAGE($respuesta, '../Controller/MENSAJES_Controller.php?action=SHOWCONVER&&idInter='.$_REQUEST['idInter']);
 					}
 				
 				break;
@@ -98,12 +134,10 @@
 
 			case 'SEARCH':
 				if (!$_POST){
-					$productos = new PRODUCTOS_Model('','','','','','','','');
-					$productos = $productos->productosValorados();
+					$USUARIO = new USUARIOS_Model('','','','','',$usuario->RellenaDatos()['DNI'],'','','','','','','','');//Recuperamos el usuario que esta operando para conseguir su dni
+					$intercambios = $USUARIO->getConversacionesPosiblesPropias();//recuperamos los intercambios que no esten aceptados por ambas partes
 
-					$intercambios = new INTERCAMBIOS_Model('','','','','','','');
-					$intercambios = $intercambios->SEARCH();
-					new MENSAJES_SEARCH($productos, $intercambios);
+					new MENSAJES_SEARCH( $intercambios);
 				}
 				else{
 					$MENSAJES = get_data_form();
@@ -113,16 +147,51 @@
 				break;
 
 			case 'SHOWCURRENT':
-				$MENSAJES = new MENSAJES_Model($_REQUEST['id'],'','','',''); // Se crea el objeto
-				$valores = $MENSAJES->RellenaDatos();//se rellenan los datos
 
-				new MENSAJES_SHOWCURRENT($valores);
+					if(isset($_REQUEST['id'])){
+						$MENSAJES = new MENSAJES_Model($_REQUEST['id'],'','','','');
+						$dnis = $MENSAJES->getDNISfromID();
+						if($usuario->isAdmin() || $usuario->getDNI() == $dnis['DNI1'] || $usuario->getDNI() == $dnis['DNI2']){//si es administrador o propietario de algun producto
+							$MENSAJES = new MENSAJES_Model($_REQUEST['id'],'','','',''); // Se crea el objeto
+							$MENSAJES = $MENSAJES->SEARCH();//se cogen todos los mensajes de la conversacion
+							new MENSAJES_SHOWCURRENT($MENSAJES->fetch_array());
+
+						}else new NoPermiso();
+					}
+				
 				break;
 
+			case 'SHOWCONVER' :
+					if(isset($_REQUEST['idInter'])){// si esta puesto esta variable mostramos la conversacion
+						$intercambios = new INTERCAMBIOS_Model($_REQUEST['idInter'],'','','','','','');
+						$dnis = $intercambios->getDNIS();
+
+						if($usuario->isAdmin() || $usuario->getDNI() == $dnis['DNI1'] || $usuario->getDNI() == $dnis['DNI2']){//si es administrador o propietario de algun producto
+							$MENSAJES = new MENSAJES_Model('',$_REQUEST['idInter'],'','',''); // Se crea el objeto
+							$valores = $MENSAJES->getMensajes();//se cogen todos los mensajes de la conversacion
+
+							$INTERCAMBIO = new INTERCAMBIOS_Model($_REQUEST['idInter'],'','','','','',''); // Se crea el objeto
+							$titulo = $INTERCAMBIO->getTitulo();
+							$id = $titulo['ID'];
+							$titulo = $titulo['TITULO1'] . " <-> " . $titulo['TITULO2'];
+
+							new MENSAJES_SHOWALLCONVER($titulo,$valores,$id);
+
+						}else new NoPermiso();						
+					}
+
+				break;
 			default:
 
 				$MENSAJES = get_data_form();
-				$datos = $MENSAJES->SHOW_ALL_BYGROUPS();
+				if ($usuario->isAdmin()) {//si es administrador se le muestran todos
+					$datos = $MENSAJES->SHOW_ALL_BYGROUPS();
+				
+				}else{//sino se  muestran solo los suyos
+					$USUARIO = new USUARIOS_Model('','','','','',$usuario->RellenaDatos()['DNI'],'','','','','','','','');//Recuperamos el usuario que esta operando para conseguir su dni
+					$datos = $USUARIO->SHOW_ALL_BYGROUPS_Users();
+				}
+				
 				new MENSAJES_SHOWALL($datos);
 		}
 

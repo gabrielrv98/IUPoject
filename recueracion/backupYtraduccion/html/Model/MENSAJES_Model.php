@@ -36,7 +36,7 @@ function ADD()
 {	
 	$sql = "SELECT * 
 			from MENSAJES
-			where ID_INTERCAMBIO = '".$this->idInter."', AND
+			where ID_INTERCAMBIO = '".$this->idInter."' AND
 					CONTENIDO = '".$this->contenido."' AND
 					FECHA = '".$this->fecha."' AND 
 					LOGIN_USUARIO = '".$this->loginUsuario."' ";
@@ -48,8 +48,8 @@ function ADD()
 
 
 	$sql = "INSERT INTO MENSAJES (
-			CONTENIDO,
 			ID_INTERCAMBIO,
+			CONTENIDO,
 			FECHA,
 			LOGIN_USUARIO) 
 				VALUES (
@@ -58,7 +58,7 @@ function ADD()
 					'".$this->fecha."',
 					'".$this->loginUsuario."' )";
 
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
+		include_once '../Model/BD_logger.php';//se incluye el archivo con el log
 		if (!writeAndLog($sql)) {//llama al metodo para loggear la consulta y si la salida es false devuelve Error de insercion
 			return '00003';
 		}
@@ -79,40 +79,48 @@ function __destruct()
 //los datos proporcionados. Si van vacios devuelve todos
 function SEARCH()
 {
-    $sql = "SELECT * 
+    $sql = "SELECT MENSAJES.ID AS MSG_ID, user1.LOGIN AS LOGIN1,
+    			user2.LOGIN AS LOGIN2,
+    			CONTENIDO, FECHA, ID_INTERCAMBIO,
+    			LOGIN_USUARIO
     		FROM MENSAJES
-			INNER JOIN PRODUCTOS ON MENSAJES.ID_PRODUCTO = PRODUCTOS.ID
+			INNER JOIN INTERCAMBIO ON MENSAJES.ID_INTERCAMBIO = INTERCAMBIO.ID
+			INNER JOIN PRODUCTOS prod1 ON ( prod1.ID = INTERCAMBIO.ID_PRODUCTO1)
+			INNER JOIN PRODUCTOS prod2 ON ( prod2.ID = INTERCAMBIO.ID_PRODUCTO2)
+			INNER JOIN USUARIOS AS user1 ON prod1.VENDEDOR_DNI = user1.DNI
+			INNER JOIN USUARIOS AS user2 ON prod2.VENDEDOR_DNI = user2.DNI
     		WHERE ( ";
+
 
     $or = false;
 
     	if($this->id != ''){
-	    	$sql = $sql . "ID LIKE '%" .$this->id. "%'";
+	    	$sql = $sql . "MENSAJES.ID = '" .$this->id. "'";
 	    	$or = true;
 	    } 
 
 	    if ( $this->idInter != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "ID_INTERCAMBIO LIKE '%" .$this->idInter. "%'";
+	    	$sql = $sql . "ID_INTERCAMBIO = '" .$this->idInter. "'";
 	    	
 	    }  
-	    if ( $this->idProd != '' ){
+	    if ( $this->contenido != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "ID_PRODUCTO LIKE '%" .$this->idProd. "%'";
+	    	$sql = $sql . "CONTENIDO LIKE '%" .$this->contenido. "%'";
 	    	
 	    }
-	    if ( $this->coment != '' ){
+	    if ( $this->fecha != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "COMENTARIO LIKE '%" .$this->coment. "%'";
+	    	$sql = $sql . "FECHA LIKE '%" .$this->fecha. "%'";
 	    	
 	    }
-	    if ( $this->puntuacion != '' ){
+	    if ( $this->loginUsuario != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "PUNTUACION LIKE '%" .$this->puntuacion. "%'";
+	    	$sql = $sql . "LOGIN_USUARIO LIKE '%" .$this->loginUsuario. "%'";
 	    	
 	    } 
 
@@ -122,8 +130,28 @@ function SEARCH()
     
 
     $sql = $sql . " )";
+    echo $sql;
     $toRet = $this->mysqli->query($sql);
     return $toRet ? $toRet : '00004 ';
+}
+
+//funcion getMensajes: se recogen los mensajes, el contenido, la fecha
+//el usuario que lo envio
+function getMensajes()
+{
+    $sql = "SELECT MENSAJES.ID AS MSG_ID,
+    			CONTENIDO, FECHA, 
+    			LOGIN_USUARIO
+    		FROM MENSAJES
+			INNER JOIN INTERCAMBIO ON MENSAJES.ID_INTERCAMBIO = INTERCAMBIO.ID
+			INNER JOIN PRODUCTOS prod1 ON ( prod1.ID = INTERCAMBIO.ID_PRODUCTO1)
+			INNER JOIN PRODUCTOS prod2 ON ( prod2.ID = INTERCAMBIO.ID_PRODUCTO2)
+			INNER JOIN USUARIOS AS user1 ON prod1.VENDEDOR_DNI = user1.DNI
+			INNER JOIN USUARIOS AS user2 ON prod2.VENDEDOR_DNI = user2.DNI
+    		WHERE ( ID_INTERCAMBIO = '" .$this->idInter. "')";
+
+    $toRet = $this->mysqli->query($sql);
+    return $toRet ;
 }
 
 // se recogen el ultimo mensaje de las conversaciones
@@ -146,33 +174,12 @@ function SHOW_ALL_BYGROUPS(){
 			INNER JOIN PRODUCTOS prod2 ON ( prod2.ID = INTERCAMBIO.ID_PRODUCTO2)
 			where FECHA in (
 			    SELECT  MAX(FECHA)
-						FROM MENSAJES
-			            ORDER BY FECHA ASC )
-			GROUP BY ID_INTERCAMBIO";
+					FROM MENSAJES
+                	GROUP BY ID_INTERCAMBIO
+			        ORDER BY FECHA ASC
+             )
+               GROUP BY ID_INTERCAMBIO ";
 
-			/*
-
-SELECT ID, contenido , ID_INTERCAMBIO, FECHA
-FROM MENSAJES
-where FECHA in (
-    SELECT  MAX(FECHA)
-			FROM MENSAJES
-            ORDER BY FECHA ASC )
-GROUP BY ID_INTERCAMBIO
-
-			*/
-	return $this->mysqli->query($sql);
-}
-
-// se recogen el ultimo mensaje de las conversaciones
-function SHOW_ALL_BYGROUPS_Users(){
-	$sql = "SELECT ID_INTERCAMBIO, CONTENIDO, 
-					LOGIN_USUARIO, ID_PRODUCTO1,
-					ID_PRODUCTO2 
-			FROM MENSAJES
-			INNER JOIN PRODUCTOS ON MENSAJES.ID_INTERCAMBIO = INTERCAMBIO.ID
-			GROUP BY ID_INTERCAMBIO
-			ORDER BY FECHA DESC";
 	return $this->mysqli->query($sql);
 }
 
@@ -193,7 +200,7 @@ function DELETE()
    			FROM MENSAJES
    			WHERE ID = '$this->id'"; 
 
-   		include '../Model/BD_logger.php';//se incluye el archivo con el log
+   		include_once '../Model/BD_logger.php';//se incluye el archivo con el log
    		//se reliza el log del delete	
    		if (writeAndLog($sql)) return '00005'; 
 	}
@@ -229,12 +236,30 @@ function EDIT()
 			SET PUNTUACION = '$this->puntuacion',
 				COMENTARIO = '$this->coment'
 			WHERE (ID = '$this->id')";
-		include '../Model/BD_logger.php';//se incluye el archivo con el log
+		include_once '../Model/BD_logger.php';//se incluye el archivo con el log
 		$result = writeAndLog($sql); // se realiza el log
 
 		if($result = 1) return '00007';// si la actualizacion fue existosa
 	}
 	return '00008';// si el numero de tuplas de vuelta es mayor que 1 o la actualizacion tuvo un error
+}
+
+
+// funcion getDNIS: obtiene los DNIs a partir del id del mensaje
+function getDNISfromID()
+{
+
+	$sql = "SELECT  prod1.VENDEDOR_DNI as DNI1,
+				prod2.VENDEDOR_DNI as DNI2
+				FROM MENSAJES
+				INNER JOIN INTERCAMBIO ON INTERCAMBIO.ID = MENSAJES.ID_INTERCAMBIO
+				INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+				INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+				WHERE (MENSAJES.ID = '$this->id')";
+
+//se comprueba que el dni o el email no estan repetidos en otros usuarios
+	$response = $this->mysqli->query($sql);
+	return $response->fetch_array();
 }
 
 }//fin de clase
