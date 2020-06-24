@@ -2,23 +2,30 @@
 //Clase : USUARIO_SHOWCURRENT_View
 //Creado el : 2-10-2019
 //Creado por: grvidal
-//Muestra todos los campos con los datos del usuario
+//Muestra todos los campos con los datos del usuarios si eres administrador o propietario, si eres un usuario se esconden los privados
 //-------------------------------------------------------
 
 class USUARIOS_SHOWCURRENT {
 
 	var $lista;
 	var $productos;
+	var $intercambios;
+	var $usuarioApto;
 
 
-	function __construct($lista,$productos){ 
+	function __construct($lista,$productos,$usuario,$intercambios){ 
 		$this->lista = $lista;
 		$this->productos = $productos;
+		$this->intercambios = $intercambios;
+
+		
+		if ( $usuario->isAdmin() || $usuario->RellenaDatos()['LOGIN'] == $lista['LOGIN']) {
+			$this->usuarioApto = true;
+		}else $this->usuarioApto = false;
 		$this->render();
 	}
 
-	function render(){
-	
+	function render(){	
 
 		?>
 		<head>
@@ -33,9 +40,11 @@ class USUARIOS_SHOWCURRENT {
 			<th class="Login">
 				Login
 			</th>
+		<?php if ($this->usuarioApto) { ?>
 			<th class="DNI">
 				DNI
 			</th>
+		<?php } ?>
 			<th class="name">
 				nombre
 			</th>
@@ -51,6 +60,7 @@ class USUARIOS_SHOWCURRENT {
 			<th class="bDate">
 				Nacimiento
 			</th>
+		<?php if ($this->usuarioApto) { ?>
 			<th class="alergias">
 				Alergias
 			</th>
@@ -60,22 +70,27 @@ class USUARIOS_SHOWCURRENT {
 			<th class="cp">
 				CP
 			</th>
+		<?php } ?>
 			<th class="sexo">
 				Sexo
 			</th>
+		<?php if ($this->usuarioApto) { ?>
 			<th class="tipo_usuario">
 				tipo
 			</th>
 			<th class="activado">
 				activado
 			</th>
+		<?php } ?>
 			<tr>
 				<td>
 					<?php echo $this->lista['LOGIN'] ; ?>
 				</td>
+			<?php if ($this->usuarioApto) { ?>
 				<td>
 					<?php echo $this->lista['DNI']; ?>
 				</td>
+			<?php } ?>
 				<td>
 					<?php echo $this->lista['NOMBRE'] ; ?>
 				</td>					
@@ -92,6 +107,7 @@ class USUARIOS_SHOWCURRENT {
 					<?php $date = explode("-",$this->lista['FECHANACIMIENTO']);
 					echo $date[2].'-'.$date[1].'-'.$date[0]; ?>
 				</td>
+			<?php if ($this->usuarioApto) { ?>
 				<td>
 					<?php echo $this->lista['ALERGIAS']; ?>
 				</td>
@@ -101,15 +117,18 @@ class USUARIOS_SHOWCURRENT {
 				<td>
 					<?php echo $this->lista['CODIGO_POSTAL']; ?>
 				</td>
+			<?php } ?>
 				<td class="<?php echo $this->lista['SEXO']; ?>">
 					sexo
 				</td>
+			<?php if ($this->usuarioApto) { ?>
 				<td class="<?php echo $this->lista['TIPO_USUARIO']; ?>">
 					tipo
 				</td>
 				<td class="<?php echo $this->lista['ACTIVADO']; ?>">
 					activado
 				</td>
+			<?php } ?>
 			</tr>
 
 		</table>
@@ -125,8 +144,10 @@ class USUARIOS_SHOWCURRENT {
 		</div>
 
 		<div>
-			<label class="transacciones" style="font-size: 150%; text-decoration: underline;"> transacciones</label>
-			
+			<label class="transacciones" style="font-size: 150%; text-decoration: underline;"> transacciones</label><br>
+			<?php foreach ($this->intercambios as $key) { ?>
+				<a href="../Controller/INTERCAMBIOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"> <?php echo $key['TITULO1'], " <-> ",$key['TITULO2'] ?> </a><br>
+			 <?php } ?>
 		</div>
 
 		<a href='../Controller/USUARIOS_Controller.php'> <img src="../View/icon/back.ico" height="32" width="32"> </a>

@@ -18,26 +18,24 @@
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
 				<a class="IndexViewLink" href='../Controller/Index_Controller.php'>
-					Index Controller
+					IndexViewLink
 				</a>
 
-				<a class="Gestión Usuarios" href='../Controller/USUARIOS_Controller.php'>
-					'Gestión Usuarios
+				<a class="VerUsuarios" href='../Controller/USUARIOS_Controller.php'>
+					Ver usuario
 				</a>
 
-				<a class="Gestión Productos" href='../Controller/PRODUCTOS_Controller.php'>
-					Gestión Productos
+				<a class="VerProductos" href='../Controller/PRODUCTOS_Controller.php'>
+					Ver Productos
 				</a>
 
 				<a class="Gestión Categorias" href='../Controller/CATEGORIAS_Controller.php'>
 					Gestión Categorias
 				</a>
-
-				<a class="Gestión Productos-Categorias" href='../Controller/PRODUCTOS_CATEGORIAS_Controller.php'>
-					Productos-Categorias
-				</a>
-
 				<a class="intercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
+					Intercambios
+				</a>
+				<a class="Misintercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
 					Intercambios
 				</a>
 				<a class="mensajes" href='../Controller/MENSAJES_Controller.php'>
@@ -46,9 +44,12 @@
 				<a class="valoraciones" href='../Controller/VALORACIONES_Controller.php'>
 					valoraciones
 				</a>
+				<a class="Gestión MiPerfil" href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&&login=<?php echo $_SESSION['login']; ?>'>
+					Mi perfil
+				</a>
 			</div>
-			
-			<span class="menuBut open" onclick="openNav()"></span>
+
+			<span class="menuBut open" onclick="openNav()"> Abrir </span>
 
 		</div>
 		

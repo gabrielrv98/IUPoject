@@ -23,6 +23,7 @@
 	include '../View/INTERCAMBIOS_ADD_View.php';   
 	include '../View/MESSAGE_View.php';
 	include '../View/noPermiso.php';
+	include '../View/noEditable.php';
 	
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia INTERCAMBIOS y la devuelve
@@ -275,17 +276,13 @@
 				else{
 					$INTERCAMBIOS = get_data_form();
 
-
-					if (!$usuario->isAdmin() && $_REQUEST['idProd1'] == "" && $_REQUEST['idProd2'] == "") {// si no es administrador y marco los campos de productos como INdiferente, solo se le muestran sus interacciones
-						$datos = $usuario->getIntercambios();
+					if (!$usuario->isAdmin()) {// si no es administrador se busca como usuario
+						$datos = $INTERCAMBIOS->SEARCH_USUARIO($usuario->RellenaDatos()['DNI']);
 					}else{
 						$datos = $INTERCAMBIOS->SEARCH();
 					}
 					
-					$PRODUCTOS = new PRODUCTOS_Model('','','','','','','','');//se recoge el producto
-					$PRODUCTOS = $PRODUCTOS->SEARCH(); //Se recogen todos los productos para tener su nombre
-
-					new INTERCAMBIOS_SHOWALL($datos,$PRODUCTOS);
+					new INTERCAMBIOS_SHOWALL($datos);
 				}
 				break;
 
@@ -308,11 +305,10 @@
 			default:
 
 				$INTERCAMBIOS = get_data_form();
-				$PRODUCTOS = new PRODUCTOS_Model('','','','','','','','');//se recoge el producto
-				$PRODUCTOS = $PRODUCTOS->SEARCH(); //Se recogen todos los productos para tener su nombre
+
 				if($usuario->isAdmin()) $datos = $INTERCAMBIOS->SHOW_ALL();
-				else $datos = $usuario->getIntercambios();
-				new INTERCAMBIOS_SHOWALL($datos,$PRODUCTOS);
+				else $datos = $usuario->getIntercambiosUsuario();
+				new INTERCAMBIOS_SHOWALL($datos);
 		}
 
 

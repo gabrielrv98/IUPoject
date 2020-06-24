@@ -2,7 +2,8 @@
 //Clase : INTERCAMBIOS_ADD_View
 //Creado el : 15-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de añadir intercambios, que consta de el producto, las unidades y el estado de aceptacion, de ambas partes
+// Luego envia los parametros por post a Intercambios Controller
 //-------------------------------------------------------
 
 	class INTERCAMBIOS_ADD{
@@ -57,7 +58,7 @@
 				<div class="form-group">
 				 	<label for="unidades1" class="horasUnidades">Horas</label><label> Max </label><label id="unid1Max" > <?php echo $maxInicial; ?></label>
 				 	<br> 
-				 	<input type="number" name="unidades1" id="unidades1" onblur="comprobarEntero(this);noMayor(this,1)" required>
+				 	<input type="number" name="unidades1" id="unidades1" onblur="comprobarEntero(this);noMayor(this,1)" value="1" required>
 				 	<label class="errormsg noMayor" for="unidades1" id="unidades1_error" >Error en el producto </label>
 				 	<label class="errormsg tooshort" for="unidades1" id="unidades1_errorLength" > Al menos un numero </label>
 				</div>&nbsp;&nbsp;
@@ -95,7 +96,7 @@
 				<div class="form-group">
 				 	<label for="unidades2" class="horasUnidades">Horas</label><label> Max </label><label id="unid2Max"> <?php echo $maxInicial; ?></label>
 				 	<br> 
-				 	<input type="number" name="unidades2" id="unidades2" onblur="comprobarEntero(this); noMayor(this,2)" required>
+				 	<input type="number" name="unidades2" id="unidades2" onblur="comprobarEntero(this); noMayor(this,2)" value="1" required>
 				 	<label class="errormsg noMayor" for="unidades2" id="unidades2_error" >Error en el producto </label>
 				 	<label class="errormsg tooshort" for="unidades2" id="unidades2_errorLength" > Al menos un numero </label>
 				</div>&nbsp;&nbsp;

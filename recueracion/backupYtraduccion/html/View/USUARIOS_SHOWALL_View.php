@@ -2,16 +2,17 @@
 //Clase : USUARIO_SHOWALL_View
 //Creado el : 2-10-2019
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los usuarios
+//Muestra la tabla con los usuarios de la base de datos, si es un usuario permite añadir, editar y eliminar a usuarios distintos de uno mismo
 //-------------------------------------------------------
 
 class USUARIOS_SHOWALL {
 
 	var $lista;
+	var $usuario;
 
-
-	function __construct($datos){
+	function __construct($datos,$usuario){
 		//session_start();
+		$this->usuario = $usuario;
 		$this->lista = $datos;
 		$this->render();
 	}
@@ -27,11 +28,17 @@ class USUARIOS_SHOWALL {
 
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 
-		
 		<h1 class="TShowAll"></h1>
-		<a href = '../Controller/USUARIOS_Controller.php?action=ADD' style="color:#FFFFFF;">
-			<img src='../View/icon/adduser.ico'>
-		</a>
+
+		<?php if ($this->usuario->isAdmin()) { ?>
+			<a href = '../Controller/USUARIOS_Controller.php?action=ADD' style="color:#FFFFFF;">
+				<img src='../View/icon/adduser.ico'>
+			</a>
+		<?php } ?>
+
+		
+		
+		
 		<a href = '../Controller/USUARIOS_Controller.php?action=SEARCH'>
 			<img src='../View/icon/searchuser.ico'>
 		</a>
@@ -41,9 +48,11 @@ class USUARIOS_SHOWALL {
 			<th class="Login">
 				id
 			</th>
+		<?php if ($this->usuario->isAdmin()) { ?>
 			<th class="DNI">
 				DNI
 			</th>
+		<?php } ?>
 			<th class="name">
 				nombre
 			</th>
@@ -53,9 +62,11 @@ class USUARIOS_SHOWALL {
 			<th class="email">
 				Email
 			</th>
+		<?php if ($this->usuario->isAdmin()) { ?>
 			<th class="tipo_usuario">
 				tipo
 			</th>
+		<?php } ?>
 			<?php 
 			foreach ($this->lista as $key ) { ?>
 
@@ -63,10 +74,12 @@ class USUARIOS_SHOWALL {
 					<td>
 						<?php echo $key['LOGIN'] ; ?>
 					</td>
+				<?php if ($this->usuario->isAdmin()) { ?>
 					<td>
 						<?php  
 						echo $key['DNI']; ?>
 					</td>
+				<?php } ?>
 					<td>
 						<?php echo $key['NOMBRE'] ; ?>
 					</td>
@@ -78,26 +91,32 @@ class USUARIOS_SHOWALL {
 						echo $key['EMAIL']; 
 						?>
 					</td>
+				<?php if ($this->usuario->isAdmin()) { ?>
 					<td>
 						<?php  
 						echo $key['TIPO_USUARIO']; 
 						?>
 					</td>
+				<?php } 
+				 if ($this->usuario->RellenaDatos()['LOGIN'] == $key['LOGIN']) { ?>
 					<td>
 						<a href = "../Controller/USUARIOS_Controller.php?action=EDIT&&login=<?php echo $key['LOGIN']; ?>"  > 
 							<img src='../View/icon/edituser.ico'>
 						</a>
 					</td>
+				<?php } ?>
 					<td>
 						<a href = "../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&&login=<?php echo $key['LOGIN']; ?>"  > 
 							<img src='../View/icon/showuser.ico'>
 						</a>
 					</td>
+				<?php if ($this->usuario->RellenaDatos()['LOGIN'] == $key['LOGIN']) { ?>
 					<td>
 						<a href = "../Controller/USUARIOS_Controller.php?action=DELETE&&login=<?php echo $key['LOGIN']; ?>"  > 
 							<img src='../View/icon/deleteuser.ico'>
 						</a>
 					</td>
+				<?php } ?>
 				</tr>
 			<?php }		?>
 			

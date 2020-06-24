@@ -84,8 +84,12 @@ function __destruct()
 //los datos proporcionados. Si van vacios devuelve todos
 function SEARCH()
 {
-    $sql = "SELECT * 
+    $sql = "SELECT prod1.TITULO AS TITULO1, prod1.ID AS ID1, 
+    		prod2.TITULO AS TITULO2, prod2.ID AS ID2, INTERCAMBIO.ID,
+					UNIDADES1, UNIDADES2, ACCEPT1, ACCEPT2
     		FROM INTERCAMBIO
+    		INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+    		INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
     		WHERE ( ";
 
     $or = false;
@@ -93,7 +97,68 @@ function SEARCH()
 	    if ( $this->idProd1 != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
-	    	$sql = $sql . "ID_PRODUCTO1 LIKE '%" .$this->idProd1. "%'";
+	    	$sql = $sql . "ID_PRODUCTO1 = '" .$this->idProd1. "'";
+	    	
+	    }   
+
+	   if ( $this->idProd2 != ''   ){
+	   		if ($or) $sql = $sql .  ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "ID_PRODUCTO1 = '" .$this->idProd2. "'";
+	    } 
+	    if ( $this->unidades1 != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "UNIDADES1 => '" .$this->unidades1. "'";
+	    } 
+	    if ( $this->unidades2 != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "UNIDADES2 => '%" .$this->unidades2. "%'";
+	    } 
+	    if ( $this->accept1 != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "ACCEPT1 = '" .$this->accept1. "'";
+	    } 
+	    if ( $this->accept2 != '' ){
+	    	if ($or) $sql = $sql .' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "ACCEPT2 = '" .$this->accept2. "'";
+	    } 
+
+	    if (!$or) $sql = $sql . '1';
+
+    
+
+    $sql = $sql . " )";
+    $toRet = $this->mysqli->query($sql);
+    return $toRet ? $toRet : '00004';
+}
+
+//funcion SEARCH_USUARIO: hace una búsqueda en la tabla con
+//los datos proporcionados donde el usuario tenga algo que ver
+function SEARCH_USUARIO($dni)
+{
+    $sql = "SELECT INTERCAMBIO.ID AS ID, prod1.TITULO AS TITULO1, prod1.ID AS ID1,
+    				prod2.TITULO AS TITULO2, prod2.ID AS ID2,
+					UNIDADES1, UNIDADES2, ACCEPT1, ACCEPT2
+    		FROM INTERCAMBIO
+    		INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+    		INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+    		WHERE ( ";
+
+    $or = false;
+
+	    if ( $this->idProd1 != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+	    	$sql = $sql . "ID_PRODUCTO1 = '" .$this->idProd1. "'";
 	    	
 	    }   
 
@@ -101,7 +166,7 @@ function SEARCH()
 	   		if ($or) $sql = $sql .  ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "ID_PRODUCTO2 LIKE '%" .$this->idProd2. "%'";
+	    	$sql = $sql . "ID_PRODUCTO2 = '" .$this->idProd2. "'";
 	    } 
 	    if ( $this->unidades1 != '' ){
 	    	if ($or) $sql = $sql . ' AND ';
@@ -119,17 +184,18 @@ function SEARCH()
 	    	if ($or) $sql = $sql . ' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "ACCEPT1 LIKE '%" .$this->accept1. "%'";
+	    	$sql = $sql . "ACCEPT1 = '" .$this->accept1. "'";
 	    } 
 	    if ( $this->accept2 != '' ){
 	    	if ($or) $sql = $sql .' AND ';
 	    	else $or = true;
 
-	    	$sql = $sql . "ACCEPT2 LIKE '%" .$this->accept2. "%'";
+	    	$sql = $sql . "ACCEPT2 = '" .$this->accept2. "'";
 	    } 
-
-	    if (!$or) $sql = $sql . '1';
-
+	    if ( $or ) $sql = $sql .' AND ';
+	     
+		$sql = $sql . "prod1.VENDEDOR_DNI = '" .$dni. "' OR
+						prod2.VENDEDOR_DNI = '" .$dni. "'";
     
 
     $sql = $sql . " )";
@@ -137,10 +203,14 @@ function SEARCH()
     return $toRet ? $toRet : '00004';
 }
 
+
 // se recojen todas las tuplas de la base de datos y se pasan como array
 function SHOW_ALL(){
-	$sql = "SELECT *
-			FROM INTERCAMBIO";
+	$sql = "SELECT prod1.TITULO AS TITULO1, prod1.ID AS ID1, prod2.TITULO AS TITULO2, prod2.ID AS ID2, INTERCAMBIO.ID,
+					UNIDADES1, UNIDADES2, ACCEPT1, ACCEPT2
+				FROM INTERCAMBIO
+				INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+				INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2";
 	return $this->mysqli->query($sql);
 }
 

@@ -2,14 +2,13 @@
 //Clase : CATEGORIAS_ADD_View
 //Creado el : 8-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de añadir una categoria, que consta de el nombre de la categoria y los manda por post a CATEGORIAS_CONTROLLER con el action ADD
 //-------------------------------------------------------
 
 	class CATEGORIAS_ADD{
 
 
 		function __construct(){	
-			//session_start();
 			$this->render();
 		}
 
@@ -21,17 +20,26 @@
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
+		<!--  Titulo -->
 			<h1 class="addCategoria"></h1>	
+
+			<!--  Inicio del formulario-->
 			<form name = 'Form' action='../Controller/CATEGORIAS_Controller.php?action=ADD' method='post' onsubmit="return comprobarCategoria(this);" enctype="multipart/form-data">
 				 	
+
+				 <!--Nombre de la Categoria  -->
 				<div class="form-group">
+					<!--  Etiqueta de referencia-->
 				 	<label for="nombre" class="nombreCategoria"><?php echo $strings['nombreCategoria'] ?> </label> 
 				 	<br> 
+				 	<!-- Entrada de datos  -->
 				 	<input class="form-control" type = 'text' name = 'nombre' id = 'nombre' placeholder = 'Letras y numeros' size = '30' onblur="comprobarAlfabetico(this,50);" required>
+				 	<!-- Cadena de control de error -->
 				 	<label class="errormsg letrasynumeros" for="nombre" id="nombre_error" > <?php echo $strings['letrasynumeros'] ?> </label>
 				 	<label class="errormsg tooShortNoNum" for="nombre" id="nombre_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
 				</div>&nbsp;&nbsp;
 				
+				<!-- Boton de submit  -->
 				<button type="submit" name='action' class="btn btn-primary submit" value="ADD" >
 					<?php echo $strings['submit'] ; ?>
 				</button>

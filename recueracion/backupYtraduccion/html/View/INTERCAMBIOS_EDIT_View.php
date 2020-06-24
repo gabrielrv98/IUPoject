@@ -2,7 +2,8 @@
 //Clase : INTERCAMBIOS_EDIT_View
 //Creado el : 19-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de añadir intercambios, que consta de el producto, las unidades y el estado de aceptacion, de ambas partes
+// Luego envia los parametros por post a Intercambios Controller
 //-------------------------------------------------------
 
 	class INTERCAMBIOS_EDIT{

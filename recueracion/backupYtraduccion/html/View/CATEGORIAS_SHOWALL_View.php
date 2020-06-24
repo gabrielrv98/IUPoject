@@ -1,8 +1,8 @@
 <?php
-//Clase : USUARIO_SHOWALL_View
-//Creado el : 2-06-20
+//Clase : CATEGORIAS_SHOWALL_View
+//Creado el : 7-06-20
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los CATEGORIAS
+//Muestra una tabla con todas las categorias, desde esta vista se puede acceder a editar, visualizarm añadir, eliminar y buscar
 //-------------------------------------------------------
 
 class CATEGORIAS_SHOWALL {

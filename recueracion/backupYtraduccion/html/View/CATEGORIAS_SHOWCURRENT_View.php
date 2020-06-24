@@ -1,8 +1,8 @@
 <?php
 //Clase : CATEGORIAS_SHOWCURRENT_View
-//Creado el : 3-06-20
+//Creado el : 7-06-20
 //Creado por: grvidal
-//Muestra los detalles de la categoria seleccionada
+//Muestra una tabla con los atributos de la categoria, ademas muestra los productos en dicha categoria.
 //-------------------------------------------------------
 
 class CATEGORIAS_SHOWCURRENT {

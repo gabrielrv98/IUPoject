@@ -1,8 +1,8 @@
 <?php
-//Clase : CATEGORIAS_ADD_View
+//Clase : CATEGORIAS_SEARCH_View
 //Creado el : 8-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de buscar categorias, que consta de el nombre de la categoria y los manda por post a CATEGORIAS_CONTROLLER con el action SEARCH
 //-------------------------------------------------------
 
 	class CATEGORIAS_SEARCH{

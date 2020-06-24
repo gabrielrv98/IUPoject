@@ -2,16 +2,15 @@
 //Clase : INTERCAMBIOS_SHOWALL_View
 //Creado el : 15-06-20
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los INTERCAMBIOS
+//Muestra una tabla con todos los intercambios realizados, un usuario solo podra ver o sus intercambios o 
+//los intercambios ya aceptados
 //-------------------------------------------------------
 
 class INTERCAMBIOS_SHOWALL {
 
 	var $lista;
-	var $productos;
 
-	function __construct($datos,$productos){ 
-		$this->productos = $productos;
+	function __construct($datos){ 
 		$this->lista = $datos;
 		$this->render();
 	}
@@ -44,6 +43,7 @@ class INTERCAMBIOS_SHOWALL {
 		<br>
 		<div>
 		<table border = ¨1¨>
+			<!-- Titulos de la talba -->
 			<th class="idProd1">
 				Prod 1
 			</th>
@@ -62,29 +62,16 @@ class INTERCAMBIOS_SHOWALL {
 			<th class="accept2">
 				aceptacion 1
 			</th>
-			<?php 
+			<?php // se Recoren los inetrcambios apra mostrarlos en forma de tabla
 			foreach ($this->lista as $key ) {  ?>
 
 				<tr>			
 					<td>
-						<?php $nombre; 
-						foreach ($this->productos as $prod) {
-							if($prod['ID'] == $key['ID_PRODUCTO1']){
-								$nombre = $prod['TITULO'];
-								break;
-							}
-						}
-						echo $key['ID_PRODUCTO1'] , '-', $nombre ; ?>
+						<?php //Nombre del producto 1
+						echo $key['ID1'] , '-', $key['TITULO1'] ; ?>
 					</td>
 					<td>
-						<?php $nombre; 
-						foreach ($this->productos as $prod) {
-							if($prod['ID'] == $key['ID_PRODUCTO2']){
-								$nombre = $prod['TITULO'];
-								break;
-							}
-						}
-						echo $key['ID_PRODUCTO2'] , '-', $nombre ; ?>
+						<?php echo $key['ID2'] , '-', $key['TITULO2'] ; ?>
 					</td>
 					<td>
 						<?php echo $key['UNIDADES1'] ; ?>

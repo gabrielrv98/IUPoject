@@ -84,6 +84,14 @@ const arrayENGLISH =  {
       // Header
       'Intercambio de tiempo' : 'Time exchange',
 
+
+
+      //menu lateral
+    'MisIntercambios' : 'My exchanges',
+    'MiPerfil' : 'My profile',
+    'VerUsuarios' :'See users',
+    'VerProductos' :'See products',
+
       //Usuarios
       'tipo_usuario' :'User type',
       'Login' : 'Login', 

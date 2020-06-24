@@ -1,8 +1,9 @@
 <?php
 //Clase : Header.php
-//Creado el : 2-10-2019
+//Creado el : 2-06-2020
 //Creado por: grvidal
-//Pie de la plataforma con la hora y el alias del creador
+//Cabecera de la plataforma, añade los scripts de traduccion y los botones para traducir. Muestra el titulo de la web y el login del usuario connectado
+// junto con un boton para desconectarse
 //---------------------------------------------------------
 	include_once '../Functions/Authentication.php';
 	if (!isset($_COOKIE['idioma'])) {
@@ -26,6 +27,7 @@
 
 	
 <header class="MainHeader">
+	<!-- Titulo de la pagina -->
 	<div>
 		<p style="text-align:center">
 			<h1 class="Intercambio de tiempo">
@@ -34,6 +36,7 @@
 		</p>
 	</div>
 	
+	<!-- Botones de traduccion -->
 	<button  onclick="traducirIU('ENGLISH');">
 		<img  src="../View/icon/english.png" style="height: 32px; width: 32px">
 	</button> 
@@ -45,8 +48,9 @@
 	</button> <br>
 <?php
 	
-	if (IsAuthenticated()){
+	if (IsAuthenticated()){// si no esta autentificado se le envia a la vista de login
 ?>
+	<!-- Login del usuario -->
 	<div>
 		<label class="usuario"> </label> <label class="dosP">:</label> <label> <?php echo $_SESSION['login']; ?></label>
 	</div>
@@ -60,7 +64,7 @@
 <?php
 	
 	}
-	else{
+	else{// vista si el usuariio no esta autentificado
 ?>
 		<label class="Usuario_no_autenticado" > usuario no autentificado </label>
 		<a  href='../Controller/Register_Controller.php'> <img src="../View/icon/register.png" height="32" width="32"> </a>
@@ -70,17 +74,17 @@
 
 
 </header>
-
+<!-- Menu superior, dependiendo de los permisos del usuario se muestran diferentes vistas -->
 <div id = 'main' class="MainDiv">
 <?php
-		//session_start();
+		//seleccion del menu
 	if (IsAuthenticated()){
 		include_once '../Model/USUARIOS_Model.php'; 
 		$usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','','','');// se Crea el nuevo usuario
 		if ($usuario->isAdmin()){// se comprueba si es admin
-			include '../View/admin_menuLateral.php';
+			include '../View/admin_menuSuperior.php';
 		}else	{
-			include '../View/users_menuLateral.php';
+			include '../View/users_menuSuperior.php';
 		}
 
 	}

@@ -79,6 +79,13 @@ const arraySPANISH =  {
       // Header
       'Intercambio de tiempo' : 'Intercambio de tiempo',
 
+      //menu lateral
+    'MisIntercambios' : 'Mis intercambios',
+    'MiPerfil' : 'Mi perfil',
+    'VerUsuarios' :'Ver usuarios',
+    'VerProductos' :'Ver productos',
+
+
       //usuarios
       'alergias' : 'Alergias',
       'cp' : 'Codigo postal',

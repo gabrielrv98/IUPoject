@@ -2,7 +2,7 @@
 //Clase : CATEGORIAS_Controller
 //Creado el : 8-06-2020
 //Creado por: grvidal
-//Controla y administra las acciones enviadas por get
+//Controla y administra las acciones enviadas por get y elige que interfaz mostrar
 //-------------------------------------------------------
  include_once '../Model/USUARIOS_Model.php';
 

@@ -43,7 +43,7 @@ function comprobarAlfabeticoVacio(campo, size) {
     
 }
 
-/*Comprueba que sólo haya caracteres alfanuméricos o que esta vacio*/
+/*Comprueba que sólo haya caracteres alfanuméricos y que no esta vacio*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarEntero(campo) {
     var abc =/^[0-9]+$/;
@@ -60,7 +60,7 @@ function comprobarEntero(campo) {
     }
 }
 
-/*Comprueba que sólo haya caracteres alfanuméricos o que esta vacio*/
+/*Comprueba que sólo haya caracteres alfanuméricos*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarEnteroVacio(campo) {
     var abc =/^[0-9]+$/;
@@ -68,7 +68,7 @@ function comprobarEnteroVacio(campo) {
     if(campo.value.length <= 0){// si el campo esta vacio se acepta como valido
         
         var elem = document.getElementById(campo.name+"_error");
-        if (elem != null) elem.style.visibility = "hidden";
+        if (elem != null) elem.style.visibility = "hidden";// si no hay elemento no se modifica la visibilidad
         campo.style.border = "2px solid green";
         return true;
 
@@ -494,6 +494,7 @@ function noMayor(campo,numero){
     }
     
 }
+
 /*Desactiva el checkBox contrario*/
 function desactivarCheckBox(campo){
     if(campo.name == "id1")//si es el campo uno elem es el campo dos
@@ -549,19 +550,20 @@ function desactivarCheckBoxID(campo){
     return true;
 }
 
+/* Desactiva ambos checkbox si se marca la opcion "Indiferente"  */
 function desactivarCheckBoxIndiferente(campo){
 
     var select = document.getElementById("idInter");
     var division;
 
-    for (var i = 0; i < select.options.length ; i++) {
-        division = document.getElementById(select.options[i].value+"-id1");
-        if( division != null){
+    for (var i = 0; i < select.options.length ; i++) {// busca los valores de las opciones del select
+        division = document.getElementById(select.options[i].value+"-id1");// y obtiene su elemento
+        if( division != null){// comrprueba que no este nula
             division.checked = false;
             console.log("posicion "+ division.style.position +" para "+i);
         }
         division = document.getElementById(select.options[i].value+"-id2");
-        if( division != null){
+        if( division != null){// comrprueba que no este nula
             division.checked = false;
             console.log("posicion "+ division.style.position +" para "+i);
         }
@@ -608,9 +610,9 @@ function colocarUsuarios(campo){
 
     var division;
 
-    for (var i = 0; i < select.options.length ; i++) {
-        division = document.getElementById(select.options[i].value);
-        if( division != null){
+    for (var i = 0; i < select.options.length ; i++) {//recorrre todo el select
+        division = document.getElementById(select.options[i].value);// coge el element adecuado
+        if( division != null){// si no es nulo lo saca de la pantalla
             division.style.marginLeft = "-1000px";
             division.style.position = "absolute";
             console.log("posicion "+ division.style.position +" para "+i);
@@ -629,10 +631,10 @@ function  comprobarPuntuacion(campo){
     var exp = /^[0-9]*$/;
     let number = parseInt(campo.value,10);
 
-    if(!comprobarExpresionRegular(campo,exp,2)){
+    if(!comprobarExpresionRegular(campo,exp,2)){// si no cumple la expresion regular ( no deberia pasar  ya que funciona con input type="number")
         return false;
     
-    }else if( number < 0 || number > 10){
+    }else if( number < 0 || number > 10){// si el valor es menor que cero o mayor que 10
         console.log("out of limits");
         document.getElementById(campo.name+"_limited").style.visibility ="visible";
         campo.style.border = "2px solid red";

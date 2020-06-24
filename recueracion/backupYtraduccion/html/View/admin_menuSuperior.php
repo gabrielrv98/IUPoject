@@ -1,4 +1,10 @@
-
+<!--  
+Clase : admin_menuHorizontal
+Creado el : 8-06-2020
+Creado por: grvidal
+Controla y administra las acciones del menu horizontal para la vista de los administradores
+-------------------------------------------------------
+-->
 	<nav>
 		<script>
 		function openNav() {
@@ -18,7 +24,11 @@
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
 				<a class="IndexViewLink" href='../Controller/Index_Controller.php'>
-					IndexViewLink
+					Index Controller
+				</a>
+
+				<a class="Gestión Usuarios" href='../Controller/USUARIOS_Controller.php'>
+					'Gestión Usuarios
 				</a>
 
 				<a class="Gestión Productos" href='../Controller/PRODUCTOS_Controller.php'>
@@ -28,6 +38,11 @@
 				<a class="Gestión Categorias" href='../Controller/CATEGORIAS_Controller.php'>
 					Gestión Categorias
 				</a>
+
+				<a class="Gestión Productos-Categorias" href='../Controller/PRODUCTOS_CATEGORIAS_Controller.php'>
+					Productos-Categorias
+				</a>
+
 				<a class="intercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
 					Intercambios
 				</a>
@@ -38,8 +53,8 @@
 					valoraciones
 				</a>
 			</div>
-
-			<span class="menuBut open" onclick="openNav()"> Abrir </span>
+			
+			<span class="menuBut open" onclick="openNav()"></span>
 
 		</div>
 		

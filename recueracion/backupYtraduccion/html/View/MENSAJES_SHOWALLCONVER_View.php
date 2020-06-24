@@ -93,7 +93,7 @@ class MENSAJES_SHOWALLCONVER {
 		</table>
 	</div>
 		<br>
-		<a href="../../Controller/Index_Controller.php"> <img src="../View/icon/back.ico" height="32" width="32"> </a>
+		<a href="../../Controller/MENSAJES_Controller.php"> <img src="../View/icon/back.ico" height="32" width="32"> </a>
 		<br><br>
 
 		<?php

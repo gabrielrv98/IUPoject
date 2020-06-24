@@ -331,9 +331,9 @@ function isAdmin(){
 	}else return false;
 }
 
-//funcion getIntercambios(): devuelve los productos del usuario
+//funcion getIntercambiosUsuario(): devuelve los productos del usuario
 // Recoje los productos a partir de ID del usuario
-function getIntercambios(){
+function getIntercambiosUsuario(){
 
 	$sql = "SELECT DNI
 			FROM USUARIOS
@@ -345,14 +345,61 @@ function getIntercambios(){
 	$dni = $resultado['DNI'];
 
 
-	$sql = "SELECT DISTINCT * , INTERCAMBIO.ID as ID
-			FROM INTERCAMBIO, PRODUCTOS
+	$sql = "SELECT prod1.TITULO AS TITULO1, prod1.ID AS ID1, prod2.TITULO AS TITULO2, prod2.ID AS ID2, INTERCAMBIO.ID,
+					UNIDADES1, UNIDADES2, ACCEPT1, ACCEPT2
+				FROM INTERCAMBIO
+				INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+				INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+
+				WHERE (INTERCAMBIO.ACCEPT1 = 'aceptado' AND INTERCAMBIO.ACCEPT2 = 'aceptado') OR
+						prod1.VENDEDOR_DNI = '$dni' OR  prod2.VENDEDOR_DNI = '$dni' ";
+
+	return $this->mysqli->query($sql);
+}
+
+//Devuelve los intercambios en los que participe el usuario 
+function getIntercambiosPrivados(){
+
+	$sql = "SELECT DNI
+			FROM USUARIOS
 			WHERE 
-				(VENDEDOR_DNI = '$dni'
-				AND
-				(PRODUCTOS.ID = INTERCAMBIO.ID_PRODUCTO1 or
-				 PRODUCTOS.ID = INTERCAMBIO.ID_PRODUCTO2) )
+				(login = '$this->login') 
 			";
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	$dni = $resultado['DNI'];
+
+
+	$sql = "SELECT prod1.TITULO AS TITULO1, prod2.TITULO AS TITULO2, INTERCAMBIO.ID
+				FROM INTERCAMBIO
+				INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+				INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2 
+				WHERE (prod1.VENDEDOR_DNI = '$dni' OR 
+				prod2.VENDEDOR_DNI = '$dni')";
+
+	return $this->mysqli->query($sql);
+}
+
+//Devuelve los intercambios en los que participe el usuario y este aceptado
+function getIntercambiosPublicos(){
+
+	$sql = "SELECT DNI
+			FROM USUARIOS
+			WHERE 
+				(login = '$this->login') 
+			";
+	$resultado = $this->mysqli->query($sql);
+	$resultado = $resultado-> fetch_array();
+	$dni = $resultado['DNI'];
+
+
+	$sql = "SELECT prod1.TITULO AS TITULO1, prod2.TITULO AS TITULO2, INTERCAMBIO.ID
+				FROM INTERCAMBIO
+				INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+				INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2 
+				WHERE (prod1.VENDEDOR_DNI = '$dni' OR 
+				prod2.VENDEDOR_DNI = '$dni') AND
+				INTERCAMBIO.ACCEPT1 = 'aceptado' AND  INTERCAMBIO.ACCEPT2 = 'aceptado' ";
 
 	return $this->mysqli->query($sql);
 }

@@ -88,6 +88,13 @@ const arrayGALLAECIAN =  {
       // Header
       'Intercambio de tiempo' : 'Intercambio de tempo',
 
+
+      //menu lateral
+    'MisIntercambios' : 'Os meus intercambios',
+    'MiPerfil' : 'O meu perfil',
+    'VerUsuarios' :'Ver usuarios',
+    'VerProductos' :'Ver produtos',
+
       //usuarios
       'alergias' : 'Alerxias',
       'cp' : 'Codigo postal',

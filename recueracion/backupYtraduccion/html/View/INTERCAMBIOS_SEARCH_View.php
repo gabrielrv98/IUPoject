@@ -1,8 +1,9 @@
 <?php
-//Clase : INTERCAMBIOS_ADD_View
+//Clase : INTERCAMBIOS_SEARCH_View
 //Creado el : 8-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de buscar intercambios, que consta de el producto, las unidades y el estado de aceptacion, de ambas partes
+// Luego envia los parametros por post a Intercambios Controller
 //-------------------------------------------------------
 
 	class INTERCAMBIOS_SEARCH{
@@ -25,6 +26,8 @@
 			<h1 class="searchInter"></h1>	
 			<form name = 'Form' action='../Controller/INTERCAMBIOS_Controller.php?action=SEARCH' method='post' onsubmit="return comprobarCategoriasSearch(this);" enctype="multipart/form-data">
 				 	
+				 <label class="tituloStyle producto"></label><label class="tituloStyle"> 1</label><br><br>
+
 				<div class="form-group">
 				 	<label for="idProd1" class="tituloProducto">Titulo producto</label>
 				 	<br> 
@@ -49,7 +52,9 @@
 				 	<label class="errormsg acceptError" for="accept1" id="accept1_error" >Error en el estado de aceptacion </label>
 				</div>&nbsp;&nbsp;
 
-
+				<br><br>
+				<label class="tituloStyle producto"></label><label class="tituloStyle"> 2</label><br><br>
+				
 				<div class="form-group">
 				 	<label for="idProd2" class="tituloProducto">Titulo producto</label>
 				 	<br> 

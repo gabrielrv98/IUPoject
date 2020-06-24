@@ -2,7 +2,8 @@
 //Clase : CATEGORIAS_DELETE_View
 //Creado el : 8-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de Eliminar una categoria, que consta de el nombre de la categoria y no es editable
+// y los manda por post a CATEGORIAS_CONTROLLER con el action DELEETE
 //-------------------------------------------------------
 
 		class CATEGORIAS_DELETE{

@@ -9,10 +9,11 @@
 
 
 		var $valores;
+		var $usuario;
 
-		function __construct($valores){	
-			//session_start();
-
+		function __construct($valores,$usuario){	
+			
+			$this->usuario = $usuario;
 			$this->valores = $valores;
 			$this->render();
 		}
@@ -104,6 +105,7 @@
 								<label class="errormsg" for="sexo" id="sexo_error" > <?php echo $strings['sexoError'] ?> </label>
 					</div>&nbsp;&nbsp;
 
+				<?php if ($this->usuario->isAdmin()) { ?>
 					<div class="form-group">
 					 	<label for="tipo_usuario" class="tipo_usuario"><?php echo $strings['tipo_usuario']; ?></label>
 					 	<select name="tipo_usuario" required>
@@ -123,6 +125,7 @@
 
 					 	<label class="errormsg activadoError" for="activado" id="activado_error" > <?php echo $strings['activadoError'] ?> </label>
 					</div>&nbsp;&nbsp;
+				<?php } ?>
 
 					<button type="submit" name='action' class="btn btn-primary submit" value="EDIT" >
 						<?php echo $strings['submit'] ; ?>

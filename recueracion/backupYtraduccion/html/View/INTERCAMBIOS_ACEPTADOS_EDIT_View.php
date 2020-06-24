@@ -1,8 +1,9 @@
 <?php
-//Clase : INTERCAMBIOS_EDIT_View
+//Clase : INTERCAMBIOS_ACEPTADOS_EDIT_View
 //Creado el : 19-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de editar un intercambio que ha sido aceptado por ambas partes
+//Solo un administrador puede entrar aqui
 //-------------------------------------------------------
 
 	class INTERCAMBIOS_ACEPTADOS_EDIT{
@@ -12,8 +13,6 @@
 
 		//valores- los valores de la tupla de intercambios correspondiente
 		//productos- todos los productos para ser mostrados en un select
-		//propiedad- 0 = el usuario es admin, 1 = dueño del producto 1, 2= dueño del producto 2
-		//dni- el dni del usuario, si es admin, esta vacio
 		function __construct($valores,$productos){	
 
 			$this->valores = $valores;
@@ -30,6 +29,8 @@
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 			<h1 class="editInter"></h1>	
+
+			<!-- Inicio del formulario -->
 			<form name = 'Form' action='../Controller/INTERCAMBIOS_Controller.php?action=EDIT' method='post' onsubmit="return comprobarIntercambio(this);" enctype="multipart/form-data">
 
 				<div class="form-group">
@@ -41,7 +42,7 @@
 					<label class="tituloStyle noPodraDeshacerse">ADVERTENCIA </label>
 				</div>&nbsp;&nbsp;
 
-
+				<!-- Inicio del producto 1 -->
 				<br><br>
 				<label class="tituloStyle producto"></label><label class="tituloStyle"> 1</label><br><br>
 				 	
@@ -85,6 +86,9 @@
 				 	<label class="errormsg acceptError" for="accept1" id="accept1_error" >Error en el estado de aceptacion </label>
 				</div>&nbsp;&nbsp;
 
+				<!-- Fin del producto 1 -->
+
+				<!-- INicio del producto 2 -->
 				<br><br>
 				<label class="tituloStyle producto"></label><label class="tituloStyle"> 2</label><br><br>
 
@@ -124,6 +128,7 @@
 				 	</select>
 				 	<label class="errormsg acceptError" for="accept2" id="accept2_error" >Error en el estado de aceptacion </label>
 				</div>&nbsp;&nbsp;
+				<!-- Fin del producto 2-->
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="EDIT" >

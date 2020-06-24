@@ -13,24 +13,32 @@ php.exe dar permiso a logDB
 	resetear BD
 
 cambiar menu lateral por superior
-acabar comentarios y marca horaria
+
+--REVISION 0 ---
+añadir enlaces de transacion a mensajes y viceversa
+--------------------------
+
+--REVISION 1 ---
 revisar todos los $string y vaciar
+revisar los comentarios inicales
+añadir comentarios explicativos
+--------------------------
+
+--REVISION 2 ---
+hacer pruebas.pdf
 revisar todos los js
+--------------------------
 
+--REVISION 3 ---
+comprobar todo los metodos como usuario
+--------------------------
 
-//productos
-PRODUCTOS no actualiza $_REQUEST['foto']
-UNIDADES >= 1
-edit, unidades 0 = producto vendido
+productos showcurrent enviar usuario en parametros
 
-
-//categorias
-acabar showcurrent mostrar productos en las categorias
 
 //usuarios
-acabar user_index_View.php los anunciones tienen que ser clickeables y una busqueda por categorias
-gestion productos
-MI PERFIL USER
+busqueda por categorias
+
 acabar UsuariosShowCurrent (msj y productos relativos)
 restringuir el acceso
 

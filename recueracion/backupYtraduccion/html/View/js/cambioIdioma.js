@@ -1,4 +1,3 @@
-    
     /*Clase : cambioIdioma.js
 //Creado el : 2-06-20
 //Creado por: grvidal
@@ -8,6 +7,8 @@
     //toma el valor vacío por defecto (así se puede llamar la función sin 
     //parámetros en el evento onload del body).
 //-------------------------------------------------------*/
+
+//Se importan los arrays 
     import { arraySPANISH } from '../../Locale/strings_SPANISH.js';
     import { arrayENGLISH } from '../../Locale/strings_ENGLISH.js';
     import { arrayGALLAECIAN } from '../../Locale/strings_GALLAECIAN.js';
