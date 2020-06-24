@@ -98,7 +98,7 @@ class USUARIOS_SHOWALL {
 						?>
 					</td>
 				<?php } 
-				 if ($this->usuario->RellenaDatos()['LOGIN'] == $key['LOGIN']) { ?>
+				 if ($this->usuario->isAdmin() || $this->usuario->RellenaDatos()['LOGIN'] == $key['LOGIN']) { ?>
 					<td>
 						<a href = "../Controller/USUARIOS_Controller.php?action=EDIT&&login=<?php echo $key['LOGIN']; ?>"  > 
 							<img src='../View/icon/edituser.ico'>
@@ -110,7 +110,7 @@ class USUARIOS_SHOWALL {
 							<img src='../View/icon/showuser.ico'>
 						</a>
 					</td>
-				<?php if ($this->usuario->RellenaDatos()['LOGIN'] == $key['LOGIN']) { ?>
+				<?php if ($this->usuario->isAdmin() || $this->usuario->RellenaDatos()['LOGIN'] == $key['LOGIN']) { ?>
 					<td>
 						<a href = "../Controller/USUARIOS_Controller.php?action=DELETE&&login=<?php echo $key['LOGIN']; ?>"  > 
 							<img src='../View/icon/deleteuser.ico'>

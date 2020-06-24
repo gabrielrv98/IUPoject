@@ -54,9 +54,14 @@
 			case 'ADD':
 					if (!$_POST){ // se incoca la vista de add de usuarios
 
-						$PRODUCTOS= new PRODUCTOS_Model('','','','','','','','tramite');
-						$productos1 = $PRODUCTOS->SEARCH();
+						if(isset($_REQUEST['idProd'])){
+							$PRODUCTOS= new PRODUCTOS_Model($_REQUEST['idProd'],'','','','','','','');
+						}else{
+							$PRODUCTOS= new PRODUCTOS_Model('','','','','','','','tramite');
+						}
 
+						//BUSCA productos segun las caractersiteicas del constructor y que no pertenezan al usuario
+						$productos1 = $PRODUCTOS->SEARCHwithoutUser($usuario->RellenaDatos()['DNI']);
 						if($usuario->isAdmin()){//Si el usuario es admin puede crear cualquier relacion
 							$productos2 = $PRODUCTOS->SEARCH();
 						}else{//si no lo es solo con uno de los suyos

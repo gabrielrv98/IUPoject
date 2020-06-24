@@ -140,6 +140,71 @@ function SEARCH()
     return $toRet ? $toRet : '00004';
 }
 
+//funcion SEARCH: hace una búsqueda en la tabla con
+//los datos proporcionados. Si van vacios devuelve todos
+function SEARCHwithoutUser($dni)
+{
+    $sql = "SELECT * , ID, TITULO, HORAS_UNIDADES 
+    		FROM PRODUCTOS
+    		INNER JOIN USUARIOS ON USUARIOS.DNI = PRODUCTOS.VENDEDOR_DNI
+    		WHERE ( ";
+
+    $or = false;
+
+    	if ( $this->id != '' ){
+	    	$or = true;
+	    	$sql = $sql . "ID = '" .$this->id. "'";
+	    	
+	    }
+
+	    if ( $this->titulo != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+	    	$sql = $sql . "TITULO LIKE '%" .$this->titulo. "%'";
+	    	
+	    }   
+
+	   if ( $this->descripcion != '' ){
+	   		if ($or) $sql = $sql .  ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "DESCRIPCION LIKE '%" .$this->descripcion. "%'";
+	    } 
+	    if ( $this->vendedorDNI != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "VENDEDOR_DNI LIKE '%" .$this->vendedorDNI. "%'";
+	    } 
+	    if ( $this->origen != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "ORIGEN LIKE '" .$this->origen. "'";
+	    } 
+	    if ( $this->horasUnidades != '' ){
+	    	if ($or) $sql = $sql . ' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "HORAS_UNIDADES >= '" .$this->horasUnidades. "'";
+	    } 
+	    if ( $this->estado != '' ){
+	    	if ($or) $sql = $sql .' AND ';
+	    	else $or = true;
+
+	    	$sql = $sql . "ESTADO LIKE '" .$this->estado. "'";
+	    } 
+	    if ($or) $sql = $sql. " AND ";
+
+	    $sql = $sql. " VENDEDOR_DNI <> '$dni' ";
+
+    
+
+    $sql = $sql . " )";
+    $toRet = $this->mysqli->query($sql);
+    return $toRet ? $toRet : '00004';
+}
+
 // se recojen todas las tuplas de la base de datos y se pasan como array
 function SHOW_ALL(){
 	$sql = "SELECT * , USUARIOS.NOMBRE, USUARIOS.APELLIDOS 

@@ -197,6 +197,12 @@ const arraySPANISH =  {
     'noPodraDeshacerse' : 'Si ambos usuarios marcais el estado de aceptacion como aceptado, no podreis deshacer el intercambio',
     'noEditable' : 'Los usuarios no pueden modificar un intercambio despues de haber sido aceptado por ambas partes',
     'verProd' : 'Ver producto',
+    'ofrecerInter' : 'Pulsa aqui para ofrecer un intercambio con este producto',
+    'ofrecerInterError' : 'El intercambio no puede ser realizado por falta de productos o esta dado de baja',
+    'productoNoEnLaLista' : 'El producto no esta en la lista porque esta dado de baja.',
+    'productoNoEnLaLista2' : 'Por favor eliga otro producto o vuelva cuando rellenen mas unidades.',
+    'sinProductos' : 'No tenes productos que vender.',
+    'VendeCosas' : 'Ve a la pestaña de productos en el menu superior y clicka en añadir producto para crear uno.',
 
     //Gestion de VALORACIONES
     'Gestión valoraciones' : 'Gestion de valoraciones',

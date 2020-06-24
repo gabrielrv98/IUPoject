@@ -8,13 +8,12 @@ Cada uno de los tres proyectos está valorado en 70 horas de realización. Desde
 calcular horas aprox
 
 
-php.exe dar permiso a logDB
-	dar permiso a Files  u+rwX,go+wr
-	resetear BD
+install.php resetear BD
 
 cambiar menu lateral por superior
 
 --REVISION 0 ---
+producto a añadir transiciones
 añadir enlaces de transacion a mensajes y viceversa
 --------------------------
 

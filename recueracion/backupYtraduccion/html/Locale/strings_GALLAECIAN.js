@@ -206,6 +206,13 @@ const arrayGALLAECIAN =  {
     'noPodraDeshacerse' : 'Se ambos usuarios marcades o estado de aceptacion como aceptado, non poderedes desfacer o intercambio',
     'noEditable' : 'Os usuarios non poden modificar un intercambio despois de haber sido aceptado por ambas partes',
     'verProd' : 'Ver produto',
+    'ofrecerInter' : 'Pulsa eiquí para ofrecer un intercambio con este producto',
+    'ofrecerInterError' : 'O intercambio non pode ser realizado por falta de produtos ou esta dado de baixa',
+    'productoNoEnLaLista' : 'O produto non esta na lista porque esta dado de baixa.',
+    'productoNoEnLaLista2' : 'Por favor elixa outro produto ou volva cando rellenen mais unidades.',
+    'sinProductos' : 'Non tes produtos que vender.',
+    'VendeCosas' : 'Vai a pestaña de productos no menu superior e clicka en engadir produto para crear uno novo.',
+
 
     //Gestion de VALORACIONES
     'Gestión valoraciones' : 'Xestion das valoracions',

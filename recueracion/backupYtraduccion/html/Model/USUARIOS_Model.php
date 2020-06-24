@@ -453,6 +453,7 @@ function login(){
 			WHERE (
 				(login = '$this->login') 
 			)";
+			
 
 	$resultado = $this->mysqli->query($sql);
 	if ($resultado->num_rows == 0){

@@ -81,7 +81,7 @@
 				 	<label for="idProd2" class="tituloProducto">Titulo producto</label><label> 2</label>
 				 	<br> 
 				 	<select name="idProd2" id="idProd2" onchange="checkEquals(1,this); setMax(2)" required>
-				 		<?php $maxInicial;// el valor maximo inicialmente ( el maximo del primer Producto)
+				 		<?php $maxInicial = '';// el valor maximo inicialmente ( el maximo del primer Producto)
 				 				$control = 0; // control para asegurar que cogemos el primero
 				 		foreach ($this->productos2 as $key ) { //recorremos todos los productos 
 				 			if ( $control == 0 ) $maxInicial = $key['HORAS_UNIDADES']; // si es la primera vez se coge el valor
@@ -92,6 +92,10 @@
 				 	</select>
 				 	<label class="errormsg idRepetidos" for="idProd2" id="idProd2_error" >Error en el producto </label>
 				</div>&nbsp;&nbsp;
+
+				<div>
+					
+				</div>
 
 				<div class="form-group">
 				 	<label for="unidades2" class="horasUnidades">Horas</label><label> Max </label><label id="unid2Max"> <?php echo $maxInicial; ?></label>

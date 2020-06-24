@@ -61,18 +61,10 @@
 					new PRODUCTOS_ADD($categorias);
 				}
 				else{
-					//echo var_dump($_REQUEST); falta las fotos
 					if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
 					else if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
-					if( isset($_FILES['foto']) ){
-						echo "la va a subir";
+					if( isset($_FILES['foto']) ){// si se ha adjuntado alguna foto
 						upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
-					} else{
-						echo " que no la va a subir";
-						echo var_dump($_FILES);
-						if (isset($_FILES['foto'])) {
-							echo "Esta set";
-						}echo "- no esta set";
 					}
 					$PRODUCTOS = get_data_form(); //se recogen los datos del formulario
 					$respuestaP = $PRODUCTOS->ADD();// se añade el producto
@@ -124,80 +116,81 @@
 				break;
 
 			case 'EDIT':
+				$producto = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','','');
+				if( $usuario->isAdmin() || $usuario->getDNI() == $producto->getVendedorDNI()){
+					if (!$_POST){ //nos llega el usuario a editar por get
+						$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','',''); // Se crea el objeto PRODUCTO
+						$valores = $PRODUCTOS->RellenaDatos(); // obtengo todos los datos de la tupla
 
-				if (!$_POST){ //nos llega el usuario a editar por get
-					$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','',''); // Se crea el objeto PRODUCTO
-					$valores = $PRODUCTOS->RellenaDatos(); // obtengo todos los datos de la tupla
+						$categorias = new CATEGORIAS_Model('','');// Se crea el objeto CATEGORIAS
+						$categorias = $categorias->SEARCH();//recogemos todas las categorias
 
-					$categorias = new CATEGORIAS_Model('','');// Se crea el objeto CATEGORIAS
-					$categorias = $categorias->SEARCH();//recogemos todas las categorias
+						$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');
+						$prodCat = $prodCat->getCategorias();//recogemos todas las categorias a las que el producto ya pertenezca
 
-					$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');
-					$prodCat = $prodCat->getCategorias();//recogemos todas las categorias a las que el producto ya pertenezca
-
-					new PRODUCTOS_EDIT($valores,$categorias,$prodCat); //invoco la vista de edit con los datos precargados
-				}
-				else{
-
-					$respuesta = array();// se almacena en el array
-
-					if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
-					else if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
-					if( isset($_FILES['foto']) ) {// si se adjunto alguna foto
-						$respuestaI = upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
-						if (!$respuestaI) array_push($respuesta, $respuestaI);
+						new PRODUCTOS_EDIT($valores,$categorias,$prodCat); //invoco la vista de edit con los datos precargados
 					}
-					$PRODUCTOS = get_data_form(); //recojo los valores del formulario
-					array_push($respuesta, $PRODUCTOS->EDIT()); // update en la bd  y guardado en las respuestas
-					if($respuestaP= '00007' ){//Si se ha actualizado exitosamente y hay alguna categoria
-						
-						if(isset($_REQUEST['categorias'])){// si hay alguna categoria seleccionada
+					else{
 
-							//cogemos las viejas, las comparamos con las nuevas, las que no coinciden se hace delete
-							$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
-							$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
+						$respuesta = array();// se almacena en el array
 
-							foreach ($prodCat as $oldCat) {//recorremos todas las categorias antiguas
-								$eliminar = true;// en principio se marca para eliminar
+						if(!$usuario->isAdmin()) $_REQUEST['vendedorDNI'] = $usuario->getDNI();// si el usuario no es admin se pone su dni como vendedor
+						else if ($_REQUEST['vendedorDNI']== '') $_REQUEST['vendedorDNI'] = $usuario->getDNI();//si el usuario no es admin ya se coloco su dni, si es admin y no especifico dni, se coloca el del suyo
+						if( isset($_FILES['foto']) ) {// si se adjunto alguna foto
+							$respuestaI = upload_image();//si el tag foto esta puesto y es distinto de vacio se sube, y  para subir la foto necesita el vendedorDNI y la descripcion
+							if (!$respuestaI) array_push($respuesta, $respuestaI);
+						}
+						$PRODUCTOS = get_data_form(); //recojo los valores del formulario
+						array_push($respuesta, $PRODUCTOS->EDIT()); // update en la bd  y guardado en las respuestas
+						if($respuestaP= '00007' ){//Si se ha actualizado exitosamente y hay alguna categoria
+							
+							if(isset($_REQUEST['categorias'])){// si hay alguna categoria seleccionada
+
+								//cogemos las viejas, las comparamos con las nuevas, las que no coinciden se hace delete
+								$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
+								$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
+
+								foreach ($prodCat as $oldCat) {//recorremos todas las categorias antiguas
+									$eliminar = true;// en principio se marca para eliminar
+									foreach ($_REQUEST['categorias'] as $newCat) {//recorremos las categorias nuevas
+										if($oldCat['ID_CATEGORIA'] == $newCat) $eliminar = false;// si la antigua esta entre las nuevas no se marca para eliminar
+									}
+									if($eliminar == true){//si esta marcada para eliminar se elimina
+										$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$oldCat['ID_CATEGORIA']);//creamos el objeto
+										array_push($respuesta, $aux->DELETE()); //se elimina desde el modelo
+									}
+									
+								}
+
+								//cogemos las nuevas, las comparamos con las viejas, las que no coinicden se hace add
 								foreach ($_REQUEST['categorias'] as $newCat) {//recorremos las categorias nuevas
-									if($oldCat['ID_CATEGORIA'] == $newCat) $eliminar = false;// si la antigua esta entre las nuevas no se marca para eliminar
+									$insertar = true;// en principio se marca para añadir
+									foreach ( $prodCat as $oldCat) {//recorremos todas las categorias antiguas
+										if($oldCat['ID_CATEGORIA'] == $newCat) $insertar = false;// si la nueva esta entre las antiguas no se marca para añadir
+									}
+									if($insertar == true){//si esta marcada para añadir se añade
+										$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$newCat);//creamos el objeto
+										array_push($respuesta, $aux->ADD()); //se añade desde el modelo
+									}
+									
 								}
-								if($eliminar == true){//si esta marcada para eliminar se elimina
-									$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$oldCat['ID_CATEGORIA']);//creamos el objeto
-									array_push($respuesta, $aux->DELETE()); //se elimina desde el modelo
-								}
-								
-							}
+							}else{//si no hay ninguna categoria marcada se eliminan todas
 
-							//cogemos las nuevas, las comparamos con las viejas, las que no coinicden se hace add
-							foreach ($_REQUEST['categorias'] as $newCat) {//recorremos las categorias nuevas
-								$insertar = true;// en principio se marca para añadir
-								foreach ( $prodCat as $oldCat) {//recorremos todas las categorias antiguas
-									if($oldCat['ID_CATEGORIA'] == $newCat) $insertar = false;// si la nueva esta entre las antiguas no se marca para añadir
-								}
-								if($insertar == true){//si esta marcada para añadir se añade
-									$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$newCat);//creamos el objeto
-									array_push($respuesta, $aux->ADD()); //se añade desde el modelo
-								}
-								
-							}
-						}else{//si no hay ninguna categoria marcada se eliminan todas
+								$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
+								$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
 
-							$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
-							$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
-
-							foreach ($prodCat as $key) {
-								$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$key['ID_CATEGORIA']);//creamos el objeto
-								array_push($respuesta, $aux->DELETE()); //se eliminan desde el modelo
+								foreach ($prodCat as $key) {
+									$aux = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],$key['ID_CATEGORIA']);//creamos el objeto
+									array_push($respuesta, $aux->DELETE()); //se eliminan desde el modelo
+								}
 							}
 						}
+
+						//control de añadir/eliminar las categorias
+
+						new MESSAGE($respuesta, '../Controller/PRODUCTOS_Controller.php');
 					}
-
-					//control de añadir/eliminar las categorias
-
-					new MESSAGE($respuesta, '../Controller/PRODUCTOS_Controller.php');
-				}
-
+				}else new NoPermiso();
 				break;
 
 			case 'SEARCH':
@@ -207,7 +200,7 @@
 				else{ 
 					$PRODUCTOS = get_data_form();// se recogen los datos
 					$datos = $PRODUCTOS->SEARCH();// se hace la busqueda
-					new PRODUCTOS_SHOWALL($datos);//se muestra
+					new PRODUCTOS_SHOWALL($datos,$usuario);//se muestra
 				}
 				break;
 
@@ -226,7 +219,7 @@
 				$PRODUCTOS = get_data_form();
 				$datos = $PRODUCTOS->SHOW_ALL();
 
-				new PRODUCTOS_SHOWALL($datos);
+				new PRODUCTOS_SHOWALL($datos,$usuario);
 		}
 
 

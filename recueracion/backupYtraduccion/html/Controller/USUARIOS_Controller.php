@@ -91,7 +91,11 @@ $usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','
 						new USUARIOS_EDIT($valores,$usuario); //invoco la vista de edit con los datos precargados
 					}
 					else{
-						//upload_image();
+						
+						if (!$usuario->isAdmin()){//Si es un usuario, no puede modificar ni su estado ni sus permisos
+							$_REQUEST['tipo_usuario'] = 'usuario';
+							$_REQUEST['activado'] = 'activado';
+						}
 						$USUARIOS = get_data_form(); //recojo los valores del formulario
 						$respuesta = $USUARIOS->EDIT(); // update en la bd 
 						new MESSAGE($respuesta, '../Controller/USUARIOS_Controller.php');

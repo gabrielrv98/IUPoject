@@ -162,6 +162,8 @@ const arrayENGLISH =  {
     'verUser' : 'See usuer',
     'producto' : 'Product',
     'titulo':'Title',
+    'ofrecerInter' : 'Click here to offer an exchange with this product',
+    'ofrecerInterError' : 'The exchange cannot be made due to lack of products or is unsubscribed',
 
     //Gestion de categorias
     'Gestión Categorias' : 'Category manager',
@@ -204,6 +206,9 @@ const arrayENGLISH =  {
     'noPodraDeshacerse' : 'If both users mark the acceptance status as accepted, you will not be able to undo the exchange',
     'noEditable' : 'Users cannot modify an exchange after it has been accepted by both parties',
     'verProd' : 'See product',
+    'productoNoEnLaLista' : 'The product is not on the list because it has been removed.',
+    'productoNoEnLaLista2' : 'Please choose another product or come back when more units are filled.',
+
 
     //Gestion de VALORACIONES
     'Gestión valoraciones' : 'valuation management',

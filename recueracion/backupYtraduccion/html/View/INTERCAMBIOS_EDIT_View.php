@@ -53,15 +53,16 @@
 				<div class="form-group">
 				 	<label for="idProd1" class="tituloProducto">Titulo producto</label>
 				 	<br> 
-				 	<?php if ($this->propiedad == '0'){//se le muestran todos los productos?>
+				 	<?php $encontrado = false;//variable que se pone a true si el producto marcado en el intercambio aparece en el record de productos
+				 		if ($this->propiedad == '0'){//se le muestran todos los productos?>
 
 				 		<select name="idProd1" id="idProd1" onchange="checkEquals(2,this); setMax(1)" required>
 					 		<?php $maxInicial;// el valor maximo inicialmente ( el maximo del producto anteriormente seleccionado)
-
+					 				
 					 		foreach ($this->productos as $key ) { //recorremos todos los productos				 			
 					 			if ( $this->valores['ID_PRODUCTO1'] == $key['ID'] ) $maxInicial = $key['HORAS_UNIDADES']; // si es el prodcto anteriormente seleccionado se guarda su maximo?>
 
-						 			<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO1'] == $key['ID']) echo "selected"; ?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
+						 			<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO1'] == $key['ID']){ echo "selected"; $encontrado = true; }?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
 
 
 						 		<?php  } ?>
@@ -77,7 +78,7 @@
 					 				if ( $this->valores['ID_PRODUCTO1'] == $key['ID'] ) $maxInicial = $key['HORAS_UNIDADES']; // si es el prodcto anteriormente seleccionado se guarda su maximo 
 						 				if($key['ESTADO'] != 'vendido'){ ?>
 
-							 				<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO1'] == $key['ID']) echo "selected"; ?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
+							 				<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO1'] == $key['ID']){ echo "selected"; $encontrado = true; } ?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
 							 			<?php } ?>
 
 						 			<?php  } ?>	
@@ -85,7 +86,9 @@
 						</select> 
 						 	<?php } else { 
 						 		foreach($this->productos as $key ) {
-						 			if ($key['ID'] == $this->valores['ID_PRODUCTO1']){ ?>
+						 			if ($key['ID'] == $this->valores['ID_PRODUCTO1']){ 
+						 				$encontrado = true; ?>
+
 						 				<input type="text" id="idProd1" name="idProd1" value="<?php echo $key['ID'] ?>"  readonly><label> <?php echo $key['TITULO'] ?></label>
 						 			<?php $maxInicial = $key['HORAS_UNIDADES'];
 						 			} 
@@ -96,6 +99,14 @@
 
 					 	<label class="errormsg idRepetidos" for="idProd1" id="idProd1_error" >Error en el producto </label>
 				</div>&nbsp;&nbsp;
+
+				<?php if (!$encontrado) { ?>
+					<div>
+						<label class="productoNoEnLaLista tituloStyle errormsg" style="visibility: visible;"></label><br>
+						<label class="productoNoEnLaLista2 errormsg" style="visibility: visible;"></label><br><br>
+					</div>
+					
+				<?php } ?>
 
 				<div class="form-group">
 				 	<label for="unidades1" class="horasUnidades">Horas</label><label> Max </label><label id="unid1Max" > <?php echo $maxInicial; ?></label>
@@ -108,7 +119,8 @@
 				<div class="form-group">
 				 	<label for="accept1" class="accept1">Accept</label>
 				 	<br> 
-				 	<?php if ($this->propiedad != '2'){ ?>
+				 	<?php $encontrado = false;//variable que se pone a true si el producto marcado en el intercambio aparece en el record de productos
+				 	if ($this->propiedad != '2'){ ?>
 					 	<select id="accept1" name="accept1" onchange="comprobarAccept(this);" required>
 					 		<option value="aceptado" class="aceptado" <?php if($this->valores['ACCEPT1'] == 'aceptado') echo "selected" ?> > Aceptado</option>
 					 		<option value="denegado" class="denegado" <?php if($this->valores['ACCEPT1'] == 'denegado') echo "selected" ?>>Denegado</option>
@@ -130,11 +142,11 @@
 
 				 		<select name="idProd2" id="idProd2" onchange="checkEquals(1,this); setMax(2)" required>
 					 		<?php $maxInicial;// el valor maximo inicialmente del producto seleccionado
-
+					 			
 					 		foreach ($this->productos as $key ) { //recorremos todos los productos				 			
 					 			if ( $this->valores['ID_PRODUCTO2'] == $key['ID'] ) $maxInicial = $key['HORAS_UNIDADES']; // si es el prodcto anteriormente seleccionado se guarda su maximo
 						 			?>
-						 			<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO2'] == $key['ID']) echo "selected"; ?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
+						 			<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO2'] == $key['ID']){ echo "selected"; $encontrado = true; } ?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
 						 		<?php  } ?>
 						</select>
 				 		
@@ -142,20 +154,22 @@
 
 						<select name="idProd2" id="idProd2" onchange="checkEquals(1,this); setMax(2)" required>
 						<?php 	$maxInicial;// el valor maximo inicialmente ( el maximo del primer Producto)
+						
 					 		foreach ($this->productos as $key ) { //recorremos todos los productos	
 						 		if($key['VENDEDOR_DNI'] == $this->dni){ //si el producto es suyo		
 
 					 				if ( $this->valores['ID_PRODUCTO2'] == $key['ID'] ) $maxInicial = $key['HORAS_UNIDADES']; // si es el prodcto anteriormente seleccionado se guarda su maximo
 					 					if($key['ESTADO'] != 'vendido'){ ?> ?>
 
-						 				<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO2'] == $key['ID']) echo "selected"; ?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
+						 				<option value="<?php echo $key['ID'];?>" <?php if($this->valores['ID_PRODUCTO2'] == $key['ID']){ echo "selected"; $encontrado = true; } ?> ><?php echo $key['TITULO'], " - Max :",$key['HORAS_UNIDADES']; ?></option>
 						 				<?php } ?>
 						 			<?php  } ?>	
 						 		<?php  } ?>
 						</select> 
 						 	<?php } else { 
 						 		foreach($this->productos as $key ) {
-						 			if ($key['ID'] == $this->valores['ID_PRODUCTO2']){ ?>
+						 			if ($key['ID'] == $this->valores['ID_PRODUCTO2']){ 
+						 				$encontrado = true; ?>
 						 				<input type="text" id="idProd2" name="idProd2" value="<?php echo $key['ID'] ?>" readonly><label> <?php echo $key['TITULO'] ?></label>
 						 			<?php $maxInicial = $key['HORAS_UNIDADES'];
 						 			} 
@@ -166,6 +180,16 @@
 
 					 	<label class="errormsg idRepetidos" for="idProd2" id="idProd2_error" >Error en el producto </label>
 				</div>&nbsp;&nbsp;
+
+
+				<?php //si el producto no esta en la lista porque se ha agotado se muestra un mensaje explicativo
+					if (!$encontrado) { ?>
+					<div>
+						<label class="productoNoEnLaLista tituloStyle errormsg" style="visibility: visible;"></label><br>
+						<label class="productoNoEnLaLista2  errormsg" style="visibility: visible;"></label><br><br>
+					</div>
+					
+				<?php } ?>
 
 				<div class="form-group">
 				 	<label for="unidades2" class="horasUnidades">Horas</label><label> Max </label><label id="unid2Max"> <?php echo $maxInicial; ?></label>

@@ -22,11 +22,11 @@ class PRODUCTOS_SHOWCURRENT {
 		?>
 		
 		<head>
-			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC">TShowC</title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 
-		<?php include '../View/Header.php'; //header necesita los strings
+		<?php include '../View/Header.php';
 		include_once '../Model/USUARIOS_Model.php';
 		$usuario = new USUARIOS_Model('','','','','',$this->lista['VENDEDOR_DNI'],'','','','','','','','');//Recuperamos el usuario  
 		$nombre =  $usuario->getNombre();//obtenemos su nombre y apellidos
@@ -87,6 +87,15 @@ class PRODUCTOS_SHOWCURRENT {
 		</table>
 	</div>
 
+	<div class="ofrecerInterStyle" >
+		<?php if ($this->lista['ESTADO'] == 'tramite' ){//si no esta marcado como vendido ofrece el intercambio ?>
+			<a href="../../Controller/INTERCAMBIOS_Controller.php?action=ADD&&idProd=<?php echo $this->lista['ID'] ?>" > <img src="../View/icon/anadir_tramite.png" height="40" width="40"> </a>
+			<br>
+			<label class="ofrecerInter">Ofrecer intercambio</label>
+		<?php }else{ //si lo esta se muestra un cartel de error ?>
+			<label class="ofrecerInterError">Ofrecer intercambio error</label>
+		<?php } ?>
+	</div>
 	<div>
 		<br>
 		<label class="verUser" style="font-size: 150%; text-decoration: underline;"></label> <br>
@@ -101,8 +110,8 @@ class PRODUCTOS_SHOWCURRENT {
 		<?php foreach ($this->categorias as $key) { ?>
 			<a href="../Controller/CATEGORIAS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID_CATEGORIA']; ?>"> <?php echo $key['NOMBRE_CATEGORIA'] ?> </a><br>
 		<?php } ?>
-
 	</div>
+
 
 		<br>
 		<a href="../../Controller/PRODUCTOS_Controller.php"> <img src="../View/icon/back.ico" height="32" width="32"> </a>

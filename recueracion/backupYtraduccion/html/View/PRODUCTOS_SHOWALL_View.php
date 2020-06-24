@@ -8,9 +8,10 @@
 class PRODUCTOS_SHOWALL {
 
 	var $lista;
+	var $usuario;
 
-
-	function __construct($datos){
+	function __construct($datos,$usuario){
+		$this->usuario = $usuario;
 		$this->lista = $datos;
 		$this->render();
 	}
@@ -79,21 +80,25 @@ class PRODUCTOS_SHOWALL {
 					<td class="<?php  echo $key['ESTADO']; ?>">
 						<?php  echo $key['ESTADO']; ?>
 					</td>
+				<?php if ($this->usuario->isAdmin() || $this->usuario->RellenaDatos()['DNI'] == $key['VENDEDOR_DNI']){ ?>
 					<td>
 						<a href = "../Controller/PRODUCTOS_Controller.php?action=EDIT&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/edituser.ico'>
 						</a>
 					</td>
+				<?php } ?>
 					<td>
 						<a href = "../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/showuser.ico'>
 						</a>
 					</td>
+				<?php if ($this->usuario->isAdmin() || $this->usuario->RellenaDatos()['DNI'] == $key['VENDEDOR_DNI']){ ?>
 					<td>
 						<a href = "../Controller/PRODUCTOS_Controller.php?action=DELETE&&id=<?php echo $key['ID']; ?>"  > 
 							<img src='../View/icon/bolsa-de-la-compra_delete.png' height="42" width="42">
 						</a>
 					</td>
+				<?php } ?>
 				</tr>
 			<?php }		?>
 			
