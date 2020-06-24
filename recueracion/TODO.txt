@@ -12,10 +12,6 @@ install.php resetear BD
 
 cambiar menu lateral por superior
 
---REVISION 0 ---
-producto a añadir transiciones
-añadir enlaces de transacion a mensajes y viceversa
---------------------------
 
 --REVISION 1 ---
 revisar todos los $string y vaciar

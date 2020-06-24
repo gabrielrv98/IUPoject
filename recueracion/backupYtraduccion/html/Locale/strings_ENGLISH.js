@@ -208,6 +208,13 @@ const arrayENGLISH =  {
     'verProd' : 'See product',
     'productoNoEnLaLista' : 'The product is not on the list because it has been removed.',
     'productoNoEnLaLista2' : 'Please choose another product or come back when more units are filled.',
+    'addPropio' : 'You cannot exchange with your own products',
+    'sinProductos' : 'You have no products to sell.',
+    'VendeCosas' : 'Go to the products tab in the top menu and click on add product to create one.',
+    'enviarMensaje' : 'Click here to send a message to the owner of the other product.',
+    'converOver' : 'The conversation is over because both of you have accepted the process.',
+    'verValoracion' : 'See valoration',
+    'noValorado' : 'This product has not been rated yet',
 
 
     //Gestion de VALORACIONES
@@ -238,7 +245,7 @@ const arrayENGLISH =  {
     'ChatFinalizado' : 'The transaction has been accepted by both users, you cannot add messages to this chat',
     'fechaSearchAdvice' : 'If you set the date you also have to set the time, and if you set the time you also have to set the day',
     'explicacionShowAll' : 'Click the view button to open the conversation and see all messages.',
-    'explicaionShowConver' : 'The most recent messages appear at the top. If you hit the add button, you can add a message to this conversation.',
+    'explicaionShowConver' : 'The most recent messages appear at the bottom. If you hit the add button, you can add a message to this conversation.',
 
 
     //codigos de error

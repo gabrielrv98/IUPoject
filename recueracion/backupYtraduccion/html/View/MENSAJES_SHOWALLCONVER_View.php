@@ -41,7 +41,11 @@ class MENSAJES_SHOWALLCONVER {
 		</a>
 		<br>
 		<div>
-			<label class="titulosMsg tituloStyle"></label><label class="tituloStyle"> : <?php echo $this->titulo; ?></label><br><br>
+			<label class="titulosMsg tituloStyle"></label><label class="tituloStyle"> : <?php echo $this->titulo; ?></label>
+			<a href = "../Controller/INTERCAMBIOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->id; ?>"  > 
+								<img src='../View/icon/showuser.ico'  height="42" width="42">
+							</a>
+			<br><br>
 		<table border = ¨1¨>
 			<th class="fecha">
 				FECHA
@@ -76,7 +80,7 @@ class MENSAJES_SHOWALLCONVER {
 						<?php }		?>
 						<td>
 							<a href = "../Controller/MENSAJES_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['MSG_ID']; ?>"  > 
-								<img src='../View/icon/showuser.ico'>
+								<img src='../View/icon/showuser.ico'  height="42" width="42">
 							</a>
 						</td>
 						<?php if($usuario->isAdmin()){ // si el usuario es administrador puede eliminar toda la conversaicon directamente	

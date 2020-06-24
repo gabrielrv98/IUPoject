@@ -43,7 +43,7 @@
 				 	<label for="idProd1" class="tituloProducto">Titulo producto</label>
 				 	<br> 
 				 	<select name="idProd1" id="idProd1" onchange="checkEquals(2,this); setMax(1)" required>
-				 		<?php $maxInicial;// el valor maximo inicialmente ( el maximo del primer Producto)
+				 		<?php $maxInicial = "";// el valor maximo inicialmente ( el maximo del primer Producto)
 				 				$control = 0; // control para asegurar que cogemos el primero
 				 		foreach ($this->productos1 as $key ) { //recorremos todos los productos
 				 			if ( $control == 0 ) $maxInicial = $key['HORAS_UNIDADES']; // si es la primera vez se coge el valor
@@ -54,6 +54,14 @@
 				 	</select>
 				 	<label class="errormsg idRepetidos" for="idProd1" id="idProd1_error" >Error en el producto </label>
 				</div>&nbsp;&nbsp;
+
+				<?php //si el producto no esta en la lista porque se ha agotado se muestra un mensaje explicativo
+					if ($maxInicial == '') { ?>
+					<div>
+						<label class="addPropio tituloStyle errormsg" style="visibility: visible;"></label><br><br>
+					</div>
+					
+				<?php } ?>
 
 				<div class="form-group">
 				 	<label for="unidades1" class="horasUnidades">Horas</label><label> Max </label><label id="unid1Max" > <?php echo $maxInicial; ?></label>
@@ -93,9 +101,14 @@
 				 	<label class="errormsg idRepetidos" for="idProd2" id="idProd2_error" >Error en el producto </label>
 				</div>&nbsp;&nbsp;
 
-				<div>
+				<?php //si el producto no esta en la lista porque se ha agotado se muestra un mensaje explicativo
+					if ($maxInicial == '') { ?>
+					<div>
+						<label class="sinProductos tituloStyle errormsg" style="visibility: visible;"></label><br>
+						<label class="VendeCosas  errormsg" style="visibility: visible;"></label><br><br>
+					</div>
 					
-				</div>
+				<?php } ?>
 
 				<div class="form-group">
 				 	<label for="unidades2" class="horasUnidades">Horas</label><label> Max </label><label id="unid2Max"> <?php echo $maxInicial; ?></label>

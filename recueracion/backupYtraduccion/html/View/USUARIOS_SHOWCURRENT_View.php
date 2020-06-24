@@ -135,13 +135,38 @@ class USUARIOS_SHOWCURRENT {
 		<br>
 
 		<div>
-			<label class="ofertas" style="font-size: 150%; text-decoration: underline;"> Ofertas</label><br>
+		<label   class="ofertas" style="font-size: 150%; text-decoration: underline;"></label> <br><br>
+		<table border = ¨0¨>
+				<?php $columnas = 0;
+					foreach ($this->productos as $key ) { 
+						if ($columnas == 0) { ?>
 
-			<?php foreach ($this->productos as $key) { ?>
-				<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"> <?php echo $key['TITULO'] ?> </a><br>
-			 <?php } ?>
-
-		</div>
+					<tr>
+					<?php	 } ?>
+				<td>		
+					<div>
+						<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>">
+							<img src='../View/icon/showuser.ico'>
+						</a>
+						<img src="<?php echo $key['FOTO'];?>" height="42" width="42">
+						<br>
+						<label> 
+							<?php echo $key['TITULO']; ?>
+						</label>
+						<br>
+						<label size ="10">
+							<?php echo strlen($key['DESCRIPCION']) > 25 ? substr($key['DESCRIPCION'], 0,25): $key['DESCRIPCION'] ; ?>
+						</label>
+					</div>
+				</td>
+			<?php $columnas = $columnas + 1;
+				if( $columnas == 5){
+					$columnas = 0;  ?>
+				</tr>
+				<?php } 
+				} ?>
+		</table>
+	</div><br><br>
 
 		<div>
 			<label class="transacciones" style="font-size: 150%; text-decoration: underline;"> transacciones</label><br>
@@ -149,7 +174,7 @@ class USUARIOS_SHOWCURRENT {
 				<a href="../Controller/INTERCAMBIOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"> <?php echo $key['TITULO1'], " <-> ",$key['TITULO2'] ?> </a><br>
 			 <?php } ?>
 		</div>
-
+		<br><br>
 		<a href='../Controller/USUARIOS_Controller.php'> <img src="../View/icon/back.ico" height="32" width="32"> </a>
 		<br><br>
 

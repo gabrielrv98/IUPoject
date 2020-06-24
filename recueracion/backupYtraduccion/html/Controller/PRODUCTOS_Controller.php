@@ -211,7 +211,9 @@
 				$prodCat = new PRODUCTOS_CATEGORIAS_Model($_REQUEST['id'],'');//creamos el objeto
 				$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
 
-				new PRODUCTOS_SHOWCURRENT($valores,$prodCat);
+				$valoraciones = $PRODUCTOS->getValoraciones();//se recuperan las valoraciones de dicho producto
+				
+				new PRODUCTOS_SHOWCURRENT($valores,$prodCat,$valoraciones,$usuario);
 				break;
 
 			default:

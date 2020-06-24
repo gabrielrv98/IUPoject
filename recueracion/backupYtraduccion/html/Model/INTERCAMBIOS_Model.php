@@ -242,9 +242,17 @@ function DELETE()
 function RellenaDatos()
 {
 
-	$sql = "SELECT * 
+	$sql = "SELECT INTERCAMBIO.ID, ID_PRODUCTO1, ID_PRODUCTO2, 
+				UNIDADES1, UNIDADES2, 
+				ACCEPT1, ACCEPT2,
+				prod1.TITULO AS TITULO1,
+				prod1.VENDEDOR_DNI AS DNI1,
+				prod2.TITULO AS TITULO2,
+				prod2.VENDEDOR_DNI AS DNI2
 			FROM INTERCAMBIO
-			WHERE ( ID = '$this->id')";
+			INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+			INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+			WHERE ( INTERCAMBIO.ID = '$this->id')";
 
 
 	$toRet = $this->mysqli->query($sql);
@@ -440,6 +448,36 @@ function getMejoresIntercambios(){
 	$toRet = $this->mysqli->query($sql);
  
 	return $toRet;
+
+}
+
+//devuelve las valoraciones del intercambio
+function getValoraciones1(){
+
+	$sql = "SELECT PUNTUACION, VALORACIONES.ID AS ID
+		FROM `VALORACIONES` 
+		INNER JOIN INTERCAMBIO ON VALORACIONES.ID_INTERCAMBIO = INTERCAMBIO.ID 
+		INNER JOIN PRODUCTOS ON PRODUCTOS.ID = INTERCAMBIO.ID_PRODUCTO1
+		WHERE VALORACIONES.ID_INTERCAMBIO = '13' AND
+	INTERCAMBIO.ID_PRODUCTO1 = VALORACIONES.ID_PRODUCTO";
+	$toRet = $this->mysqli->query($sql);
+ 
+	return $toRet->fetch_array();
+
+}
+
+//devuelve las valoraciones del intercambio
+function getValoraciones2(){
+
+	$sql = "SELECT PUNTUACION, VALORACIONES.ID AS ID
+		FROM `VALORACIONES` 
+		INNER JOIN INTERCAMBIO ON VALORACIONES.ID_INTERCAMBIO = INTERCAMBIO.ID 
+		INNER JOIN PRODUCTOS ON PRODUCTOS.ID = INTERCAMBIO.ID_PRODUCTO2
+		WHERE VALORACIONES.ID_INTERCAMBIO = '13' AND
+	INTERCAMBIO.ID_PRODUCTO2 = VALORACIONES.ID_PRODUCTO";
+	$toRet = $this->mysqli->query($sql);
+ 
+	return $toRet->fetch_array();
 
 }
 

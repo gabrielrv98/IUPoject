@@ -3,8 +3,10 @@
 class Index {
 
 	var $productos;
+	var $categorias;
 
-	function __construct($productos){
+	function __construct($productos,$categorias){
+		$this->categorias = $categorias;
 		$this->productos = $productos;
 		$this->render();
 	}
@@ -32,7 +34,7 @@ class Index {
 	</form>
 		<hr>
 
-	<table border="1">
+		<table border="1">
 	
 			<td>
 				<a href="../Controller/Index_Controller.php?vista=RANKING_CATEGORIAS"><label class="rankingCategorias"></label></a>
@@ -43,6 +45,35 @@ class Index {
 			<td>
 				<a href="../Controller/Index_Controller.php?vista=RANKING_INTERCAMBIOS"><label class="rankingTransacciones"></label></a>
 			</td>
+	</table>
+
+	<table border="1">
+	
+			<?php 
+
+			$columnas = 0;
+			foreach ($this->categorias as $key ) { 
+				if ($columnas == 0) { ?>
+
+			<tr>
+			<?php	 } ?>
+		<td>		
+			<div>
+				<a href="../Controller/CATEGORIAS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>">
+					<img src='../View/icon/showuser.ico'>
+				</a>
+				<br>
+				<label> 
+					<?php echo $key['NOMBRE_CATEGORIA']; ?>
+				</label>
+			</div>
+		</td>
+	<?php $columnas = $columnas + 1;
+		if( $columnas == 8){
+			$columnas = 0;  ?>
+		</tr>
+		<?php } 
+		} ?>
 	</table>
 
 	<p class="indexDescrip"> En esta aplicacion puedes comprar o vender productos hechos a mano de agricultura</p>

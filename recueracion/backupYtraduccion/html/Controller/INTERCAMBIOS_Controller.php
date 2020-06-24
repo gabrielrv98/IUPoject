@@ -295,16 +295,10 @@
 				$INTERCAMBIOS = new INTERCAMBIOS_Model($_REQUEST['id'],'','','','','',''); // Se crea el objeto
 				$valores = $INTERCAMBIOS->RellenaDatos();//se rellenan los datos
 
-				include_once '../Model/PRODUCTOS_Model.php';
-				$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO1'],'','','','','','','');//se recoge el producto en cuestion
-				$productos = $productos->RellenaDatos();//devuelve los datos
-				$nombre1 = $productos['TITULO'];//se guarda su titulo
+				$valoraciones1 = $INTERCAMBIOS->getValoraciones1();//se cogen las valoraciones del primer producto
+				$valoraciones2 = $INTERCAMBIOS->getValoraciones2();//se cogen las valoraciones del segundo producto
 
-				$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO2'],'','','','','','','');//se recoge el producto en cuestion
-				$productos = $productos->RellenaDatos();//devuelve los datos
-				$nombre2 = $productos['TITULO'];//se guarda su titulo
-
-				new INTERCAMBIOS_SHOWCURRENT($valores,$nombre1,$nombre2);
+				new INTERCAMBIOS_SHOWCURRENT($valores,$valoraciones1,$valoraciones2,$usuario);
 				break;
 
 			default:

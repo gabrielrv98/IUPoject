@@ -203,6 +203,10 @@ const arraySPANISH =  {
     'productoNoEnLaLista2' : 'Por favor eliga otro producto o vuelva cuando rellenen mas unidades.',
     'sinProductos' : 'No tenes productos que vender.',
     'VendeCosas' : 'Ve a la pestaña de productos en el menu superior y clicka en añadir producto para crear uno.',
+    'enviarMensaje' : 'Pulsa aqui para enviar un mensaje al propietario del otro producto.',
+    'converOver' : 'La conversacion ha acabado porque ambos habeis aceptado el tramite.',
+    'addPropio' : 'No puedes intercambiar con productos tuyos',
+    'verValoracion' : 'Ver valoracion',
 
     //Gestion de VALORACIONES
     'Gestión valoraciones' : 'Gestion de valoraciones',
@@ -215,6 +219,7 @@ const arraySPANISH =  {
     'coment' : 'Comentario',
     'valoraciones' : 'Valoraciones',
     'outLimit': 'El valor esta fuera de los limites, por favor, entre 0 y 10',
+    'noValorado' : 'Este producto no ha sido valorado aun',
 
     //mensajes
     'mensajes' : 'Mensajes',
@@ -231,7 +236,7 @@ const arraySPANISH =  {
     'ChatFinalizado' : 'La transaccion ha sido aceptada por ambos usuarios, no se puede añadir mensajes a este chat',
     'fechaSearchAdvice' : 'Si pones la fecha tambien tienes que poner la hora, y si pones la hora tambien tienes que poner el dia',
     'explicacionShowAll' : 'Haz click en el boton de ver para abrir la conversacion y ver todos los mensajes.',
-    'explicaionShowConver' : 'Los mensajes mas recientes aparecen en la parte superior. Si le das al boton de añadir, podras añadir un mensaje a esta conversacion.',
+    'explicaionShowConver' : 'Los mensajes mas recientes aparecen en la parte inferior. Si le das al boton de añadir, podras añadir un mensaje a esta conversacion.',
 
     //codigos de error
     '00001' : '00001 Insercion fallida, el elemento ya existe',

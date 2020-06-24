@@ -9,10 +9,13 @@ class PRODUCTOS_SHOWCURRENT {
 
 	var $lista;
 	var $categorias;
+	var $usuario;
+	var $valoraciones;
 
-
-	function __construct($datos,$categorias){
+	function __construct($datos,$categorias,$valoraciones,$usuario){
 		
+		$this->valoraciones = $valoraciones;
+		$this->usuario = $usuario;
 		$this->lista = $datos;
 		$this->categorias = $categorias;
 		$this->render();
@@ -87,6 +90,7 @@ class PRODUCTOS_SHOWCURRENT {
 		</table>
 	</div>
 
+<?php if($this->usuario->RellenaDatos()['DNI'] != $this->lista['VENDEDOR_DNI']){ ?>
 	<div class="ofrecerInterStyle" >
 		<?php if ($this->lista['ESTADO'] == 'tramite' ){//si no esta marcado como vendido ofrece el intercambio ?>
 			<a href="../../Controller/INTERCAMBIOS_Controller.php?action=ADD&&idProd=<?php echo $this->lista['ID'] ?>" > <img src="../View/icon/anadir_tramite.png" height="40" width="40"> </a>
@@ -96,6 +100,8 @@ class PRODUCTOS_SHOWCURRENT {
 			<label class="ofrecerInterError">Ofrecer intercambio error</label>
 		<?php } ?>
 	</div>
+<?php } ?>
+
 	<div>
 		<br>
 		<label class="verUser" style="font-size: 150%; text-decoration: underline;"></label> <br>
@@ -111,6 +117,21 @@ class PRODUCTOS_SHOWCURRENT {
 			<a href="../Controller/CATEGORIAS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID_CATEGORIA']; ?>"> <?php echo $key['NOMBRE_CATEGORIA'] ?> </a><br>
 		<?php } ?>
 	</div>
+
+
+	<div>
+		<br>
+		<label class="valoraciones" style="font-size: 150%; text-decoration: underline;"></label> <br>
+		<?php foreach ($this->valoraciones as $key) { ?>
+
+			<label class="puntuacion"></label><label> </label><label><?php echo $key['PUNTUACION']; ?></label>
+			<a href = "../Controller/VALORACIONES_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID']; ?>"  > 
+				<img src='../View/icon/showuser.ico'  height="21" width="21">
+			</a><BR>
+
+		<?php } ?>
+	</div>
+	<BR>
 
 
 		<br>

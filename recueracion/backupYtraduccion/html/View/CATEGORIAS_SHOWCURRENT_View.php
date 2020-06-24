@@ -53,13 +53,38 @@ class CATEGORIAS_SHOWCURRENT {
 	</div>
 	
 	<br>
-
 	<div>
-		<label   class="productosEnCategoria" style="font-size: 150%; text-decoration: underline;"></label> <br>
-		<br>
-		<?php foreach ($this->productos as $key) { ?>
-			<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID_PRODUCTO']; ?>"> <?php echo $key['TITULO'] ?> </a><br>
-		<?php } ?>
+		<label   class="productosEnCategoria" style="font-size: 150%; text-decoration: underline;"></label> <br><br>
+		<table border = ¨0¨>
+				<?php $columnas = 0;
+					foreach ($this->productos as $key ) { 
+						if ($columnas == 0) { ?>
+
+					<tr>
+					<?php	 } ?>
+				<td>		
+					<div>
+						<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $key['ID_PRODUCTO']; ?>">
+							<img src='../View/icon/showuser.ico'>
+						</a>
+						<img src="<?php echo $key['FOTO'];?>" height="42" width="42">
+						<br>
+						<label> 
+							<?php echo $key['TITULO']; ?>
+						</label>
+						<br>
+						<label size ="10">
+							<?php echo strlen($key['DESCRIPCION']) > 25 ? substr($key['DESCRIPCION'], 0,25): $key['DESCRIPCION'] ; ?>
+						</label>
+					</div>
+				</td>
+			<?php $columnas = $columnas + 1;
+				if( $columnas == 5){
+					$columnas = 0;  ?>
+				</tr>
+				<?php } 
+				} ?>
+		</table>
 	</div>
 		<br>
 		<a href="../../Controller/CATEGORIAS_Controller.php"> <img src="../View/icon/back.ico" height="32" width="32"> </a>

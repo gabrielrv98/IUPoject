@@ -8,13 +8,15 @@
 class INTERCAMBIOS_SHOWCURRENT {
 
 	var $lista;
-	var $nombre1;
-	var $nombre2;
+	var $valoraciones1;
+	var $valoraciones2;
+	var $usuario;
 
-	function __construct($datos,$nombre1,$nombre2){
+	function __construct($datos,$valoraciones1,$valoraciones2,$usuario){
 
-		$this->nombre1 = $nombre1;
-		$this->nombre2 = $nombre2;
+		$this->valoraciones1 = $valoraciones1;
+		$this->valoraciones2 = $valoraciones2;
+		$this->usuario = $usuario;
 		$this->lista = $datos;
 		$this->render();
 	}
@@ -61,10 +63,10 @@ class INTERCAMBIOS_SHOWCURRENT {
 						echo $this->lista['ID']; ?>
 					</td>
 					<td>
-						<?php echo $this->lista['ID_PRODUCTO1'], " ",$this->nombre1 ; ?>
+						<?php echo $this->lista['ID_PRODUCTO1'], " ",$this->lista['TITULO1'] ; ?>
 					</td>
 					<td>
-						<?php echo $this->lista['ID_PRODUCTO2'], " ",$this->nombre2 ; ?>
+						<?php echo $this->lista['ID_PRODUCTO2'], " ",$this->lista['TITULO2'] ; ?>
 					</td>
 					<td>
 						<?php echo $this->lista['UNIDADES1'] ; ?>
@@ -85,18 +87,60 @@ class INTERCAMBIOS_SHOWCURRENT {
 	
 	<br>
 
+<?php if ($this->usuario->isAdmin() || $this->lista['DNI1'] == $this->usuario->RellenaDatos()['DNI'] || $this->lista['DNI2'] == $this->usuario->RellenaDatos()['DNI'] ){//si es admin o el usuario esta implicado en el intercambio puede iniciar una conversacion?>
+	<div class="ofrecerInterStyle" >
+		<?php if ($this->lista['ACCEPT1'] == "denegado" || $this->lista['ACCEPT2'] == "denegado" ){//si aun no han aceptado ambas partes, se puede enviar un mensaje?>
+
+			<a href="../../Controller/MENSAJES_Controller.php?action=ADD&&idInter=<?php echo $this->lista['ID'] ?>" > <img src="../View/icon/add_msg.png" height="40" width="40"> </a>
+			<br>
+			<label class="enviarMensaje">Enviar mensaje</label>
+
+		<?php } else { //sino se avisa de que no se puede?>
+			<label class="converOver">Conversacion finalizada</label>
+		<?php } ?>
+	</div>
+<?php } ?>
+
 	<div>
 		<label   class="verProd" style="font-size: 150%; text-decoration: underline;">Ver</label><label style="font-size: 150%; text-decoration: underline;"> 1</label> <br>
 		
-			<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->lista['ID_PRODUCTO1']; ?>"> <?php echo $this->nombre1 ?> </a>
+			<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->lista['ID_PRODUCTO1']; ?>"> <?php echo $this->lista['TITULO1'] ?> </a>
 		<br><br>
-		
+
+		<?php if ($this->valoraciones1) { ?>
+
+		<label class="verValoracion"></label><br>
+			<label class="puntuacion"></label><label> </label><label><?php echo $this->valoraciones1['PUNTUACION']; ?></label>
+			<a href = "../Controller/VALORACIONES_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->valoraciones1['ID']; ?>"  > 
+				<img src='../View/icon/showuser.ico'  height="21" width="21">
+			</a>
+
+		<?php } else{ ?>
+
+			<label class="noValorado"></label>
+			
+		<?php } ?>
+			<br><br>
 	</div>
 	<div>
 		<label   class="verProd" style="font-size: 150%; text-decoration: underline;">Ver</label><label style="font-size: 150%; text-decoration: underline;"> 2</label> <br>
 		
-			<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->lista['ID_PRODUCTO2']; ?>"> <?php echo $this->nombre2 ?> </a>
-		<br><br>
+			<a href="../Controller/PRODUCTOS_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->lista['ID_PRODUCTO2']; ?>"> <?php echo $this->lista['TITULO2'] ?> </a>
+			<br><br>
+
+			<?php if ($this->valoraciones1) { ?>
+
+			<label class="verValoracion"></label><br>
+			<label class="puntuacion"></label><label> </label><label><?php echo $this->valoraciones2['PUNTUACION']; ?></label>
+			<a href = "../Controller/VALORACIONES_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->valoraciones2['ID']; ?>"  > 
+				<img src='../View/icon/showuser.ico'  height="21" width="21">
+			</a>
+		<?php } else{ ?>
+		
+			<label class="noValorado"></label>
+			
+		<?php } ?>
+			<br><br>
 		
 	</div>
 

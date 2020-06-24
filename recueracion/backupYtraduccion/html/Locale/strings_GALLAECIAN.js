@@ -212,7 +212,10 @@ const arrayGALLAECIAN =  {
     'productoNoEnLaLista2' : 'Por favor elixa outro produto ou volva cando rellenen mais unidades.',
     'sinProductos' : 'Non tes produtos que vender.',
     'VendeCosas' : 'Vai a pestaña de productos no menu superior e clicka en engadir produto para crear uno novo.',
-
+    'enviarMensaje' : 'Pulsa aqui para enviar unha mensaxe o propietario doutro produto.',
+    'converOver' : 'A conversa acabou porque ambos aceptastedes o tramite.',
+    'addPropio' : 'Non podes intercambiar cos teus propios produtos',
+    'verValoracion' : 'Ver valoracion',
 
     //Gestion de VALORACIONES
     'Gestión valoraciones' : 'Xestion das valoracions',
@@ -225,6 +228,7 @@ const arrayGALLAECIAN =  {
     'coment' : 'Comentario',
     'valoraciones' : 'Valoracions',
     'outLimit': 'O valor esta fora dos limites, por favor, entre 0 e 10',
+    'noValorado' : 'Este producto non fui valorado aun',
 
 
     //mensajes
@@ -242,7 +246,7 @@ const arrayGALLAECIAN =  {
     'ChatFinalizado' : 'A transaccion fui aceptada por ambos usuarios, non puedese engadir mensaxes a esta conversa',
     'fechaSearchAdvice' : 'Se pos a data tamen tes que por a hora, e se pos a hora tamen tes que por a data',
     'explicacionShowAll' : 'Fai click no boton de \"ver\" para abrir a conversa e ver todos as mensaxes.',
-    'explicaionShowConver' : 'As mensaxes máis recientes aparecen na parte superior. Se lle das o boton de engadir, poderas engadir unha mensaxe nesta conversa.',
+    'explicaionShowConver' : 'As mensaxes máis recientes aparecen na parte inferior. Se lle das o boton de engadir, poderas engadir unha mensaxe nesta conversa.',
 
     //codigos de error
     '00001' : '00001 Insercion fallida, o elemento xa existe',

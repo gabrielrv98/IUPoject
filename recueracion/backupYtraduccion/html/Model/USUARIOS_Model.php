@@ -280,7 +280,7 @@ function getUsuariosConProductos(){
 //funcion getProductos(): devuelve los productos a partir del dni del usuario
 // devuelve un array con el id y titulo del producto
 function getProductos(){
-	$sql = "SELECT DISTINCT TITULO, ID
+	$sql = "SELECT TITULO, ID, FOTO, DESCRIPCION
 			FROM PRODUCTOS 
 			INNER JOIN  USUARIOS ON PRODUCTOS.VENDEDOR_DNI = USUARIOS.DNI
 			WHERE (DNI = '$this->dni')
