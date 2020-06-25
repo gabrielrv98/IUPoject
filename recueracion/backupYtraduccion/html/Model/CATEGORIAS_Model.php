@@ -110,13 +110,20 @@ function DELETE()
 	//Comprobacion de que la tupla es unica
 	if( mysqli_num_rows($obj) == 1 ){
 
-		$sql = "DELETE 
-   			FROM CATEGORIAS
-   			WHERE ID = '$this->id'"; 
+		$sql = "SELECT *
+				FROM PRODUCTOS_CATEGORIAS
+				WHERE (ID_CATEGORIA = '$this->id')";
 
-   		include '../Model/BD_logger.php';//se incluye el archivo con el log
-   		//se reliza el log del delete	
-   		if (writeAndLog($sql)) return '00005'; 
+		$obj = $this->mysqli->query($sql);
+		if( mysqli_num_rows($obj) <= 0 ){
+			$sql = "DELETE 
+	   			FROM CATEGORIAS
+	   			WHERE ID = '$this->id'"; 
+
+	   		include '../Model/BD_logger.php';//se incluye el archivo con el log
+	   		//se reliza el log del delete	
+	   		if (writeAndLog($sql)) return '00005'; 
+	   	}
 	}
 	return '00006';
 }
@@ -134,6 +141,17 @@ function RellenaDatos()
 	return $toRet ? $toRet->fetch_array() : '00015';
 }
 
+//comprueba si la categoria tiene productos asociados, en caso afirmativo devuelve false
+function esEliminable(){
+
+	$sql = "SELECT * 
+			FROM PRODUCTOS_CATEGORIAS
+			WHERE ( ID_CATEGORIA = '$this->id')";
+
+
+	$toRet = $this->mysqli->query($sql);
+	return $toRet->num_rows <= 0 ? 'true' : 'false';
+}
 
 // funcion Edit: realizar el update de una tupla despues de comprobar que existe
 function EDIT()

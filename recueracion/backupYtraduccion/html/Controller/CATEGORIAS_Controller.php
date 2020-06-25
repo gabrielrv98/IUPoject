@@ -62,7 +62,9 @@
 					if (!$_POST){ //nos llega el id a eliminar por get
 						$CATEGORIAS = new CATEGORIAS_Model($_REQUEST['id'],'');
 						$valores = $CATEGORIAS->RellenaDatos();
-						new CATEGORIAS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
+
+						$eliminable = $CATEGORIAS->esEliminable();
+						new CATEGORIAS_DELETE($valores,$eliminable); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 					}
 					else{ // llegan los datos confirmados por post y se eliminan
 						$CATEGORIAS = get_data_form();

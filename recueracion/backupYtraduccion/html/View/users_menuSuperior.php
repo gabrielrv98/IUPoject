@@ -35,8 +35,8 @@
 				<a class="intercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
 					Intercambios
 				</a>
-				<a class="Misintercambios" href='../Controller/INTERCAMBIOS_Controller.php'>
-					Intercambios
+				<a class="Misintercambios" href='../Controller/INTERCAMBIOS_Controller.php?person=me'>
+					Mis intercambios
 				</a>
 				<a class="mensajes" href='../Controller/MENSAJES_Controller.php'>
 					mensajes

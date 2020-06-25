@@ -227,15 +227,24 @@ function DELETE()
 	//Comprobacion de que la tupla es unica
 	if( mysqli_num_rows($obj) == 1 ){
 
-		$sql = "DELETE 
-   			FROM INTERCAMBIO
-   			WHERE ID = '$this->id'"; 
+		$sql = "SELECT *
+			FROM MENSAJES
+			WHERE (ID_INTERCAMBIO = '$this->id')";
+		$obj = $this->mysqli->query($sql);
 
-   		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
-   		//se reliza el log del delete	
-   		if (writeAndLog($sql)) return '00005';
+		if( mysqli_num_rows($obj) <= 0 ){
+
+			$sql = "DELETE 
+	   			FROM INTERCAMBIO
+	   			WHERE ID = '$this->id'"; 
+
+	   		include_once'../Model/BD_logger.php';//se incluye el archivo con el log
+	   		//se reliza el log del delete	
+	   		if (writeAndLog($sql)) return '00005';
+   		}
    			
-	}else return '00006';
+	}
+	 return '00006';
 }
 
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
@@ -330,6 +339,25 @@ function getDNIPord1(){
 	$resultado = $this->mysqli->query($sql);
 	$resultado = $resultado-> fetch_array();
 	return $resultado['VENDEDOR_DNI'];
+}
+
+//comprueba si el intercambio se puede eliminar, si tienes mensajes asociados o valoraciones devolvera false
+function esEliminable(){
+
+	$sql = "SELECT *
+			FROM MENSAJES
+			WHERE ID_INTERCAMBIO = '$this->id'";
+	$resultado = $this->mysqli->query($sql);
+
+	if ($resultado->num_rows <= 0) {
+		$sql = "SELECT *
+				FROM VALORACIONES
+				WHERE ID_INTERCAMBIO = '$this->id'";
+		$resultado = $this->mysqli->query($sql);
+
+		if ($resultado->num_rows <= 0)  return 'true';
+	}
+	return 'false';
 }
 
 //funcion getDNIPord2(): devuelve el DNI del producto 2

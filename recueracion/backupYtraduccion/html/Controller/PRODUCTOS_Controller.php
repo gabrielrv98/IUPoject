@@ -88,7 +88,8 @@
 					if (!$_POST){ //nos llega el id a eliminar por get
 						$PRODUCTOS = new PRODUCTOS_Model($_REQUEST['id'],'','','','','','','');
 						$valores = $PRODUCTOS->RellenaDatos();
-						new PRODUCTOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
+						$eliminable = $PRODUCTOS->esEliminable();
+						new PRODUCTOS_DELETE($valores,$eliminable); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 					}
 					else{
 						$PRODUCTOS = get_data_form(); // llegan los datos confirmados por post y se eliminan
@@ -212,7 +213,7 @@
 				$prodCat = $prodCat->getCategorias();//cogemos todas las categorias antiguas
 
 				$valoraciones = $PRODUCTOS->getValoraciones();//se recuperan las valoraciones de dicho producto
-				
+
 				new PRODUCTOS_SHOWCURRENT($valores,$prodCat,$valoraciones,$usuario);
 				break;
 

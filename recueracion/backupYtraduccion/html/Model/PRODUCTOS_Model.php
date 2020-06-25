@@ -247,6 +247,20 @@ function DELETE()
 	}else return '00006';
 }
 
+//comprueba si tiene intercambios o valoraciones asociadas
+function esEliminable(){
+	$sql = "SELECT * 
+			FROM INTERCAMBIO
+			INNER JOIN PRODUCTOS PROD1 ON PROD1.ID = INTERCAMBIO.ID_PRODUCTO1
+			INNER JOIN PRODUCTOS PROD2 ON PROD2.ID = INTERCAMBIO.ID_PRODUCTO2
+			WHERE (  PROD1.ID = '$this->id' OR PROD2.ID = '$this->id')";
+
+			
+	$toRet = $this->mysqli->query($sql);
+	return $toRet->num_rows <= 0 ? 'true' : 'false' ;
+}
+
+
 // funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
 function RellenaDatos()
 {

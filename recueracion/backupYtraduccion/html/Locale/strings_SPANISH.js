@@ -153,6 +153,7 @@ const arraySPANISH =  {
     'verUser' : 'Ver usuario',
     'producto' : 'Producto',
     'titulo':'Titulo',
+    'ProdNoEliminable' : 'Este producto no se puede eliminar porque tiene intercambios o valoraciones asociadas',
 
 
 
@@ -165,6 +166,7 @@ const arraySPANISH =  {
     'productosEnCategoria' : 'Productos en esta categoria',
     'idCategoriaError' :'Error en la categoria',
     'categorias' : 'Categorias',
+    'CatNoEliminable' :'Esta categoria no es eliminable porque tiene porductos asociados',
 
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Gestion de produtos-categorias',
@@ -220,6 +222,10 @@ const arraySPANISH =  {
     'valoraciones' : 'Valoraciones',
     'outLimit': 'El valor esta fuera de los limites, por favor, entre 0 y 10',
     'noValorado' : 'Este producto no ha sido valorado aun',
+    'productoAValorar' : 'Producto que se va a valorar',
+    'noValoracionesAun' : 'Consigue que un intercambio sea aceptado y podras valorar su porducto',
+    'eligeElOtro' : 'Por favor elige el producto del otro usuario, ya que no podrás valorar tu propio producto',
+    'noValorarPropio' : 'No puedes valorar tu propio producto. Por favor, elige otro.',
 
     //mensajes
     'mensajes' : 'Mensajes',

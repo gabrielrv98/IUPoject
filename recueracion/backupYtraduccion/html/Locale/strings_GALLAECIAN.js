@@ -163,6 +163,7 @@ const arrayGALLAECIAN =  {
     'verUser' : 'Ver usuario',
     'producto' : 'Produto',
     'titulo':'Titulo',
+    'ProdNoEliminable' : 'Este produco non puedese eliminar porque ten intercambios ou valoracions asociadas',
     
 
     //Gestion de categorias
@@ -174,6 +175,7 @@ const arrayGALLAECIAN =  {
     'productosEnCategoria' : 'Produtos nesta categoria',
     'idCategoriaError' :'Erro na categoria',
     'categorias' : 'Categorias',
+    'CatNoEliminable' :'Esta categoria non é eliminable porque ten pordutos asociados',
 
     //Gestion de categorias_productos
     'Gestión Productos-Categorias' : 'Xestion de produtos-categorias',
@@ -229,6 +231,10 @@ const arrayGALLAECIAN =  {
     'valoraciones' : 'Valoracions',
     'outLimit': 'O valor esta fora dos limites, por favor, entre 0 e 10',
     'noValorado' : 'Este producto non fui valorado aun',
+    'productoAValorar' : 'Producto que vase a valorar',
+    'noValoracionesAun' : 'Consigue que un intercambio sea aceptado e poderas valorar o seu porduto',
+    'eligeElOtro' : 'Por favor elixe o produto deoutro usuario, xa que non poderás valorar o teu propio produto',
+    'noValorarPropio' : 'Non podes valorar o teu propio produto. Por favor, elixe outro.',
 
 
     //mensajes

@@ -510,7 +510,7 @@ function desactivarCheckBox(campo){
     var id;
     if(codigo.checked == true){// se coloca el id del primer producto en l campo definitivo
         id = select.options[select.selectedIndex].text.split(':')[0];//se coge el titulos 1
-    }else id = select.options[select.selectedIndex].text.split('-')[1].split(":")[0];//se coge el titulos 2
+    }else id = select.options[select.selectedIndex].text.split('- ')[1].split(":")[0];//se coge el titulos 2
 
     var definitivo = document.getElementById("idProd");//se coge el campo que decidira que producto se valorara
     definitivo.value = id;

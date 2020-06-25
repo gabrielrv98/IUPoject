@@ -52,17 +52,25 @@
 		Switch ($_REQUEST['action']){
 			case 'ADD':
 					if (!$_POST){ // se incoca la vista de add de usuarios
-						//en principio solo un administrador puede llegar aqui, un usuario saltaria directamente al "else"
-						$intercambios = new INTERCAMBIOS_Model('','','','','','aceptado','aceptado');//se cogen los intercambios
-						$intercambios = $intercambios->SEARCH();//se recogen todos los intercambios
+						
+						if ($usuario->isAdmin()) {
+							$intercambios = new INTERCAMBIOS_Model('','','','','','aceptado','aceptado');//se cogen los intercambios
+							$intercambios = $intercambios->SEARCH();//se recogen todos los intercambios
+						}else{
+							$intercambios = $usuario->getPosiblesValoraciones($usuario->RellenaDatos()['DNI']);
+						}
+						
 
 						$productos = new PRODUCTOS_Model('','','','','','','','');
 						$productos = $productos->SEARCH();//Se recogen todos los productos
-						new VALORACIONES_ADD($intercambios,$productos);
+						new VALORACIONES_ADD($intercambios,$usuario);
 					}
 					else{
 						$VALORACIONES = get_data_form(); //se recogen los datos del formulario
-						$respuesta = $VALORACIONES->ADD();
+						if (!$usuario->esMio($_REQUEST['idProd']) ) {
+							$respuesta = $VALORACIONES->ADD();
+						}else  $respuesta = 'noValorarPropio';
+						
 						new MESSAGE($respuesta, '../Controller/VALORACIONES_Controller.php');
 					}
 				

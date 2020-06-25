@@ -8,12 +8,12 @@
 	class VALORACIONES_ADD{
 
 		var $intercambios;
-		var $productos;
+		var $usuario;
 
 		// añadir variable que sea 1 o 2 para prod1 o 2
-		function __construct($intercambios,$productos){	
+		function __construct($intercambios,$usuario){	
 			$this->intercambios = $intercambios;
-			$this->productos = $productos;
+			$this->usuario = $usuario;
 			$this->render();
 		}
 
@@ -27,41 +27,45 @@
 		<?php include '../View/Header.php'; //header necesita los strings ?>
 			<h1 class="addValoracion"></h1>	
 			<form name = 'Form' action='../Controller/VALORACIONES_Controller.php?action=ADD' method='post' onsubmit="return comprobarValoracion(this);" enctype="multipart/form-data">
+
+			<?php if ($this->intercambios->num_rows === 0) { ?>
+				<label class="noValoracionesAun tituloStyle errormsg" style="visibility: visible;"></label><br><br>
+			<?php } ?>
+				
 				 	
 				<div class="form-group">
 				 	<label for="idInter" class="intercambios">Intercambio </label> 
 				 	<br> 
 				 	<select id="idInter" name="idInter" onchange="colocarProductos(this)" required>
-				 		<?php $control1 = 0; //variable de control
-				 			 $control2 = 0; //variable de control
+				 		<?php $control = 0; //variable de control
+				 				$id1 =  "";
+				 				$nombreText1 = "productoEjemplo1";
+				 				$id2 =  "";
+				 				$nombreText2 = "productoEjemplo2"; 
 				 		 foreach ($this->intercambios as $inter) { // se recorren todos los intercambios
-				 				foreach ($this->productos as $prod) {//se busca los productos en dicho intercambio y se guarda el nombre
-				 				 	if($inter['ID_PRODUCTO1'] == $prod['ID']){
-				 				 		$nombre1 = $prod['TITULO'];
-				 				 		if ($control1 == 0){
-				 				 			$id1 =  $prod['ID'];
-				 				 			$nombreText1 = $prod['TITULO'];
-				 				 		} 
-				 				 		$control1 = 1;
-				 				 	} 
-				 				 	if($inter['ID_PRODUCTO2'] == $prod['ID']){
-				 				 		$nombre2 = $prod['TITULO'];
-				 				 		if ($control2 == 0){
-											$id2 =  $prod['ID'];
-				 				 			$nombreText2 = $prod['TITULO'];
-				 				 		} 
-				 				 		$control2 = 1;
-				 				 	} 
-				 				 	
-				 				 } ?>
-				 			<option value="<?php echo $inter['ID'] ?>"><?php echo $inter['ID_PRODUCTO1'],":",$nombre1," - ",$inter['ID_PRODUCTO2'],":",$nombre2 ?></option>
+				 		 	if ($control == 0) {
+				 		 		$id1 =  $inter['ID1'];
+				 				$nombreText1 = $inter['TITULO1'];
+				 				$id2 =  $inter['ID2'];
+				 				$nombreText2 = $inter['TITULO2']; 
+				 		 		$control = 1;
+				 		 	} ?>
+									
+
+				 			<option value="<?php echo $inter['ID'] ?>"><?php echo $inter['ID1'],":",$inter['TITULO1']," - ",$inter['ID2'],":",$inter['TITULO2'] ?></option>
 				 		<?php } ?>
 				 	</select>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
+					<label class="productoAValorar tituloStyle"></label><br>
+					<label class="eligeElOtro"></label><br><br>
 					
-				 	<input type="checkbox" name="id1" id="id1" onchange="desactivarCheckBox(this);" checked="true"><label id="tituloProd1" ><?php echo $nombreText1; ?></label><br>
+				 	<input type="checkbox" name="id1" id="id1" onchange="desactivarCheckBox(this);" checked="true"
+				 	<?php //if ($this->usuario->RellenaDatos()['DNI'] == ) {
+				 		# code...
+				 	//} ?>
+				 	><label id="tituloProd1" ><?php echo $nombreText1; ?></label><br>
 
 				 	<input type="checkbox" name="id2" id="id2" onchange="desactivarCheckBox(this);"><label id="tituloProd2" ><?php echo $nombreText2; ?></label>
 

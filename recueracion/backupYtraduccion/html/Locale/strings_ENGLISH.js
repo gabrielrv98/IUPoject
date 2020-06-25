@@ -164,6 +164,7 @@ const arrayENGLISH =  {
     'titulo':'Title',
     'ofrecerInter' : 'Click here to offer an exchange with this product',
     'ofrecerInterError' : 'The exchange cannot be made due to lack of products or is unsubscribed',
+    'ProdNoEliminable' : 'This product cannot be removed because it has associated exchanges or ratings',
 
     //Gestion de categorias
     'Gestión Categorias' : 'Category manager',
@@ -176,6 +177,7 @@ const arrayENGLISH =  {
     'eliminarProductoCategoria' : 'Delete product-category',
     'editarProductoCategoria' : 'Edit product-category',
     'categorias' : 'Categories',
+    'CatNoEliminable' :'This category is not removable because it has associated products',
     
 
     //Gestion de categorias_productos
@@ -228,6 +230,10 @@ const arrayENGLISH =  {
     'coment' : 'Comments',
     'valoraciones' : 'Valuations',
     'outLimit': 'Value is out of limits, please set it between 0 and 10',
+    'productoAValorar' : 'Product to be valued',
+    'noValoracionesAun' : 'Get an exchange accepted so you can value his product',
+    'eligeElOtro' : 'Please choose the other user\'s product, as you will not be able to rate your own product',
+    'noValorarPropio' : 'You cannot value your own product. Please choose another one',
 
 
     //mensajes

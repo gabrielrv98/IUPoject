@@ -101,16 +101,9 @@
 						$INTERCAMBIOS = new INTERCAMBIOS_Model($_REQUEST['id'],'','','','','',''); // Se crea el objeto
 						$valores = $INTERCAMBIOS->RellenaDatos();
 
-						include_once '../Model/PRODUCTOS_Model.php';
-						$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO1'],'','','','','','','');//se recoge el producto en cuestion
-						$productos = $productos->RellenaDatos();//devuelve los datos
-						$nombre1 = $productos['TITULO'];//se guarda su titulo
+						$eliminable = $INTERCAMBIOS->esEliminable();
 
-						$productos = new PRODUCTOS_Model($valores['ID_PRODUCTO2'],'','','','','','','');//se recoge el producto en cuestion
-						$productos = $productos->RellenaDatos();//devuelve los datos
-						$nombre2 = $productos['TITULO'];//se guarda su titulo
-
-						new INTERCAMBIOS_DELETE($valores,$nombre1,$nombre2); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
+						new INTERCAMBIOS_DELETE($valores,$eliminable); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 					}
 					else{ // llegan los datos confirmados por post y se eliminan
 						$INTERCAMBIOS = get_data_form();
@@ -304,9 +297,14 @@
 			default:
 
 				$INTERCAMBIOS = get_data_form();
+				if (isset($_REQUEST['person'])) {
+					$datos = $usuario->misIntercambios();
+				}else{
+					if($usuario->isAdmin()) $datos = $INTERCAMBIOS->SHOW_ALL();
+					else $datos = $usuario->getIntercambiosUsuario();
+				}
 
-				if($usuario->isAdmin()) $datos = $INTERCAMBIOS->SHOW_ALL();
-				else $datos = $usuario->getIntercambiosUsuario();
+				
 				new INTERCAMBIOS_SHOWALL($datos);
 		}
 

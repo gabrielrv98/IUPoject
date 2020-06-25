@@ -135,11 +135,18 @@ class INTERCAMBIOS_SHOWCURRENT {
 			<a href = "../Controller/VALORACIONES_Controller.php?action=SHOWCURRENT&&id=<?php echo $this->valoraciones2['ID']; ?>"  > 
 				<img src='../View/icon/showuser.ico'  height="21" width="21">
 			</a>
-		<?php } else{ ?>
+		<?php } else { ?>
 		
 			<label class="noValorado"></label>
-			
-		<?php } ?>
+			<?php if ($this->usuario->RellenaDatos()['DNI'] == $this->lista['DNI1']) { ?>
+				
+				<label class="hacerValoracion"></label>
+				<a href = "../Controller/VALORACIONES_Controller.php?action=ADD&&id=<?php echo $this->valoraciones2['ID']; ?>"  > 
+					<img src='../View/icon/showuser.ico'  height="21" width="21">
+				</a>
+			<?php } 
+
+			} ?>
 			<br><br>
 		
 	</div>

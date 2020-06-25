@@ -331,9 +331,25 @@ function isAdmin(){
 	}else return false;
 }
 
-//funcion getIntercambiosUsuario(): devuelve los productos del usuario
-// Recoje los productos a partir de ID del usuario
+//funcion getIntercambiosUsuario(): devuelve los productos aceptados por ambas partes
 function getIntercambiosUsuario(){
+
+	$sql = "SELECT prod1.TITULO AS TITULO1, prod1.ID AS ID1, prod2.TITULO AS TITULO2, prod2.ID AS ID2, INTERCAMBIO.ID,
+					UNIDADES1, UNIDADES2, ACCEPT1, ACCEPT2
+				FROM INTERCAMBIO
+				INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+				INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+
+				WHERE (INTERCAMBIO.ACCEPT1 = 'aceptado' AND INTERCAMBIO.ACCEPT2 = 'aceptado')";
+
+	return $this->mysqli->query($sql);
+}
+
+
+
+//funcion misIntercambios(): devuelve los productos del usuario
+// Recoje los productos a partir de ID del usuario
+function misIntercambios(){
 
 	$sql = "SELECT DNI
 			FROM USUARIOS
@@ -351,12 +367,10 @@ function getIntercambiosUsuario(){
 				INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
 				INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
 
-				WHERE (INTERCAMBIO.ACCEPT1 = 'aceptado' AND INTERCAMBIO.ACCEPT2 = 'aceptado') OR
-						prod1.VENDEDOR_DNI = '$dni' OR  prod2.VENDEDOR_DNI = '$dni' ";
+				WHERE (prod1.VENDEDOR_DNI = '$dni' OR prod2.VENDEDOR_DNI = '$dni')";
 
 	return $this->mysqli->query($sql);
 }
-
 //Devuelve los intercambios en los que participe el usuario 
 function getIntercambiosPrivados(){
 
@@ -443,6 +457,33 @@ function SHOW_ALL_BYGROUPS_Users(){
 	return $this->mysqli->query($sql);
 }
 
+
+//devuelve los intercambios que no tienen una valoracion
+function getPosiblesValoraciones($dni){
+	$sql = "SELECT prod1.TITULO AS TITULO1, prod1.ID AS ID1, 
+    		prod2.TITULO AS TITULO2, prod2.ID AS ID2, INTERCAMBIO.ID,
+					UNIDADES1, UNIDADES2, ACCEPT1, ACCEPT2
+    		FROM INTERCAMBIO
+    		INNER JOIN PRODUCTOS prod1 ON prod1.ID = INTERCAMBIO.ID_PRODUCTO1
+    		INNER JOIN PRODUCTOS prod2 ON prod2.ID = INTERCAMBIO.ID_PRODUCTO2
+
+    		WHERE (ACCEPT1 = 'aceptado' AND ACCEPT2 = 'aceptado') AND
+    			(prod1.VENDEDOR_DNI = '$dni' or prod2.VENDEDOR_DNI = '$dni')";
+	return $this->mysqli->query($sql);
+}
+
+//devuelve true si el producto pertenece al usuario
+function esMio($idProd){
+	$sql = "SELECT TITULO
+			FROM PRODUCTOS
+			INNER JOIN USUARIOS ON USUARIOS.DNI = PRODUCTOS.VENDEDOR_DNI
+			WHERE PRODUCTOS.ID = '$idProd' AND USUARIOS.LOGIN = '$this->login'";
+	$response = $this->mysqli->query($sql);
+
+	if ($response->num_rows === 0) {
+		return false;
+	}return true;
+}
 // funcion login: realiza la comprobación de si existe el usuario en la bd y despues si la pass
 // es correcta para ese usuario. Si es asi devuelve true, en cualquier otro caso devuelve el 
 // error correspondiente

@@ -8,10 +8,12 @@
 		class PRODUCTOS_DELETE{
 
 		var $valores;
+		var $eliminable;
 
-		function __construct($valores){	
-			//session_start();
+		function __construct($valores,$eliminable){	
+			
 			$this->valores = $valores;
+			$this->eliminable = $eliminable;
 			$this->render();
 		}
 
@@ -31,6 +33,11 @@
 		 ?>
 			<h1 class="eliminarProducto"></h1>	
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarProductos(this);" enctype="multipart/form-data">
+
+
+				<?php if($this->eliminable == 'false'){ ?>
+					<label class="ProdNoEliminable tituloStyle errormsg" style="visibility: visible;"></label><br><br>
+				<?php } ?>
 				 	
 				<div class="form-group">
 					<label class="idProducto">ID del producto</label>

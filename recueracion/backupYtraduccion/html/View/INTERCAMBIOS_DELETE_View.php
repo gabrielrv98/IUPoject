@@ -9,14 +9,13 @@
 	class INTERCAMBIOS_DELETE{
 
 		var $valores;
-		var $nombre1;		
-		var $nombre2;
+		var $eliminable;
+		
 		//funcion que guarda los parametros y construye la interfaz
 		//$valores- lista de productos para intercambiar
-		function __construct($valores,$nombre1,$nombre2){
+		function __construct($valores,$eliminable){
+			$this->eliminable =$eliminable;
 			$this->valores =$valores;
-			$this->nombre2 =$nombre2;
-			$this->nombre1 =$nombre1;
 			$this->render();
 		}
 
@@ -35,6 +34,10 @@
 
 			<form name = 'Form' action='../Controller/INTERCAMBIOS_Controller.php?action=DELETE' method='post' onsubmit="return comprobarIntercambio(this);" enctype="multipart/form-data">
 
+				<?php if($this->eliminable == 'false'){ ?>
+					<label class="ProdNoEliminable tituloStyle errormsg" style="visibility: visible;"></label><br><br>
+				<?php } ?>
+
 				<div class="form-group">
 					<label for="id" >ID </label>
 					<input type="text" id="id" name="id"  value="<?php echo $this->valores['ID'] ?>" readonly>
@@ -45,7 +48,7 @@
 				<div class="form-group">
 				 	<label for="idProd1" class="tituloProducto">Titulo producto</label>
 				 	<br> 
-				 	<input type="text" name="idProd1" id="idProd1" onblur="checkEquals(2,this)" value="<?php echo $this->valores['ID_PRODUCTO1'] ?>"   readonly><label> <?php echo $this->nombre1; ?></label>
+				 	<input type="text" name="idProd1" id="idProd1" onblur="checkEquals(2,this)" value="<?php echo $this->valores['ID_PRODUCTO1'] ?>"   readonly><label> <?php echo $this->valores['TITULO1']; ?></label>
 				 	<label class="errormsg idRepetidos" for="idProd1" id="idProd1_error" >Error en el producto </label>
 				</div>&nbsp;&nbsp;
 
@@ -75,7 +78,7 @@
 				<div class="form-group">
 				 	<label for="idProd2" class="tituloProducto">Titulo producto</label><label> 2</label>
 				 	<br> 
-				 	<input type="text" name="idProd2" id="idProd2" onblur="checkEquals(1,this)" value="<?php echo $this->valores['ID_PRODUCTO2'] ?>"   readonly><label> <?php echo $this->nombre2; ?></label>
+				 	<input type="text" name="idProd2" id="idProd2" onblur="checkEquals(1,this)" value="<?php echo $this->valores['ID_PRODUCTO2'] ?>"   readonly><label> <?php echo $this->valores['TITULO2']; ?></label>
 				 	<label class="errormsg idRepetidos" for="idProd2" id="idProd2_error" >Error en el producto </label>
 				</div>&nbsp;&nbsp;
 
