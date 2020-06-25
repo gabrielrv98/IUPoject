@@ -26,7 +26,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tadd"> <?php echo $strings['Tadd']; ?></title>
+			<title class="Tadd"> Tadd</title>
 		</head>
 		
 		<?php include '../View/Header.php'; 

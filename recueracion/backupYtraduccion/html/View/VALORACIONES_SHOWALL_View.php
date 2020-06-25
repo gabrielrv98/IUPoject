@@ -2,7 +2,7 @@
 //Clase : USUARIO_SHOWALL_View
 //Creado el : 18-06-20
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los VALORACIONES
+//Muestra unos todas las valoraciones
 //-------------------------------------------------------
 
 class VALORACIONES_SHOWALL {

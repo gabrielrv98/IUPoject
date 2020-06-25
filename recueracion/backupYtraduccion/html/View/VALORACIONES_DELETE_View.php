@@ -1,8 +1,8 @@
 <?php
-//Clase : USUARIO_DELETE_View
+//Clase : VALORACIONES_DELETE_View
 //Creado el : 18-06-2020
 //Creado por: grvidal
-//Muestra los campos de la tupla antes de eliminarlo
+//Muestra los campos de una valoracion antes de eliminarlo
 //-------------------------------------------------------
 	class VALORACIONES_DELETE{
 

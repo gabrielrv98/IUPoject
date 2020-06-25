@@ -2,7 +2,7 @@
 //Clase : PRODUCTOS_EDIT_View
 //Creado el : 3-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra unos los atributos de un producto para ser editados, todos menos el id
 //-------------------------------------------------------
 
 	class PRODUCTOS_EDIT{
@@ -25,7 +25,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tedit"> <?php echo $strings['Tedit']; ?></title>
+			<title class="Tedit">  Tedit </title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
@@ -38,27 +38,27 @@
 				</div>&nbsp;&nbsp;
 				 	
 				<div class="form-group">
-				 	<label for="titulo" class="tituloProducto"><?php echo $strings['tituloProducto'] ?> </label> 
+				 	<label for="titulo" class="tituloProducto"> tituloProducto </label> 
 				 	<br> 
 				 	<input class="form-control" type = 'text' name = 'titulo' id = 'titulo' placeholder = 'Letras y numeros' size = '30' onblur="comprobarAlfabetico(this,50);" value = '<?php echo $this->valores['TITULO']; ?>' required>
-				 	<label class="errormsg letrasynumeros" for="titulo" id="titulo_error" > <?php echo $strings['letrasynumeros'] ?> </label>
-				 	<label class="errormsg tooShortNoNum" for="titulo" id="titulo_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="titulo" id="titulo_error" >  letrasynumeros  </label>
+				 	<label class="errormsg tooShortNoNum" for="titulo" id="titulo_errorLength" >  tooShortNoNum  </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="descripcion" class="descripcionProducto"><?php echo $strings['descripcionProducto'] ?> </label>
+				 	<label for="descripcion" class="descripcionProducto"> descripcionProducto </label>
 				 	<br> 
 				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoEnter(this,200)"  rows="5" required ><?php echo $this->valores['DESCRIPCION']; ?> </textarea> 
-				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
-				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" >  letrasynumeros   </label>
+				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" >  tooShortNoNum  </label>
 				</div>&nbsp;
 
 
 				<div class="form-group">
 					<img src="<?php echo $this->valores['FOTO'];?>" height="42" width="42"><br>
-				 	<label for="foto" class="picture"><?php echo $strings['picture'] ?>  </label><br>
+				 	<label for="foto" class="picture"> picture   </label><br>
 				 	<input type = 'file' name = 'foto' id = 'foto' onchange="comprobarExtension(this)" > 
-				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>
+				 	<label class="errormsg fotoError" for="foto" id="foto_error" >  fotoError  </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
@@ -87,27 +87,27 @@
 				?>
 
 				<div class="form-group">
-				 	<label for="vendedorDNI" class="persona"><?php echo $strings['persona'] ?>  </label>
+				 	<label for="vendedorDNI" class="persona"> persona   </label>
 				 	<select name="vendedorDNI" >
 				 		<?php  foreach ($usuariosProductos as $key) { 
 				 			$patata = $key; ?>
 				 			<option value="<?php echo $key['DNI']; ?>" <?php if( $this->valores['VENDEDOR_DNI'] == $key['DNI'] ) echo "selected"  ?> > <?php echo $key['NOMBRE'], "-",$key['APELLIDOS'] ; ?></option>
 
 				 		<?php } ?>
-						<option value="" class="yo"> <?php echo $strings['yo'] ; ?></option>
+						<option value="" class="yo">  yo  ?></option>
 					</select>
-					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > <?php echo $strings['vendedorDNIError'] ?> </label>
+					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" >  vendedorDNIError  </label>
 				</div>&nbsp;&nbsp;
 
 
 				<div class="form-group">
-				 	<label for="estado" class="estado"><?php echo $strings['estado'] ?>  </label>
+				 	<label for="estado" class="estado"> estado  </label>
 				 	<select name="estado" id="estado" >
-				 		<option value="tramite" class="tramite" <?php if( $this->valores['ESTADO'] == 'tramite') echo "selected"  ?> > <?php echo $strings['tramite'] ; ?></option>
+				 		<option value="tramite" class="tramite" <?php if( $this->valores['ESTADO'] == 'tramite') echo "selected"  ?> >  tramite </option>
 
-						<option value="vendido" class="vendido" <?php if( $this->valores['ESTADO'] == 'vendido') echo "selected"  ?> > <?php echo $strings['vendido'] ; ?></option>
+						<option value="vendido" class="vendido" <?php if( $this->valores['ESTADO'] == 'vendido') echo "selected"  ?> >  vendido </option>
 					</select>
-					<label class="errormsg estadoError" for="estado" id="estado_error" > <?php echo $strings['estadoError'] ?> </label>
+					<label class="errormsg estadoError" for="estado" id="estado_error" > < estadoError </label>
 				</div>&nbsp;&nbsp;
 
 				<?php } ?>
@@ -126,7 +126,7 @@
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="EDIT" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

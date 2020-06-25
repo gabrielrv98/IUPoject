@@ -2,7 +2,7 @@
 //Clase : PRODUCTOS_CATEGORIAS_ADD_View
 //Creado el : 10-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra el formulario de añadir un producto_categoria, que consta del id de la categoria y el id del productolos manda por post a CATEGORIAS_CONTROLLER con el action ADD
 //-------------------------------------------------------
 
 	class PRODUCTOS_CATEGORIAS_ADD{
@@ -20,7 +20,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tadd"> <?php echo $strings['Tadd']; ?></title>
+			<title class="Tadd">  Tadd </title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
@@ -52,7 +52,7 @@
 				</div>&nbsp;&nbsp;
 				
 				<button type="submit" name='action' class="btn btn-primary submit" value="ADD" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

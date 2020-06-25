@@ -2,7 +2,7 @@
 //Clase : PRODUCTOS_CATEGORIAS_EDIT_View
 //Creado el : 11-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra los atributos de pructo_categoria y y permite editarlos todos menos el id 
 //-------------------------------------------------------
 
 	class PRODUCTOS_CATEGORIAS_EDIT{
@@ -22,7 +22,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tedit"> <?php echo $strings['Tedit']; ?></title>
+			<title class="Tedit">  Tedit </title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
@@ -55,7 +55,7 @@
 				</div>&nbsp;&nbsp;
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="EDIT" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

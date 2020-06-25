@@ -1,5 +1,9 @@
 <?php
-
+//Clase : MESSAGE_View
+//Creado el : 2-06-20
+//Creado por: grvidal
+//Recive una cadena o un array por parametro y los muestra por pantalla
+//-------------------------------------------------------
 class MESSAGE{
 
 	private $string; 

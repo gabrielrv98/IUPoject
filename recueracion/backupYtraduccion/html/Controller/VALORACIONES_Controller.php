@@ -1,6 +1,6 @@
 ﻿<?php
 //Clase : VALORACIONES_Controller
-//Creado el : 8-06-2020
+//Creado el : 18-06-2020
 //Creado por: grvidal
 //Controla y administra las acciones enviadas por get
 //-------------------------------------------------------

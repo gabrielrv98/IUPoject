@@ -1,6 +1,6 @@
 <?php
 //Clase : MENSAJES_EDIT_View
-//Creado el : 8-06-2020
+//Creado el : 21-06-2020
 //Creado por: grvidal
 //Muestra unos campos para ser rellenados y los manda por post al controlador
 //-------------------------------------------------------
@@ -73,7 +73,7 @@
 				</div>&nbsp;&nbsp;
 				
 				<button type="submit" name='action' class="btn btn-primary submit" value="EDIT" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

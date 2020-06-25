@@ -1,8 +1,8 @@
 <?php
-//Clase : USUARIO_SHOWCURRENT_View
+//Clase : PRODUCTOS_SHOWCURRENT_View
 //Creado el : 3-06-20
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los PRODUCTOS
+//Muestra unos un producto con sus detalles y enlaces a su propietario, a los intercambios y a sus valoraciones
 //-------------------------------------------------------
 
 class PRODUCTOS_SHOWCURRENT {

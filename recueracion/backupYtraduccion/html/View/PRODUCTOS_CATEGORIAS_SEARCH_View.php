@@ -2,7 +2,7 @@
 //Clase : PRODUCTOS_CATEGORIAS_ADD_View
 //Creado el : 10-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra ofrece un formulario para buscar las relaciones productos-categorias
 //-------------------------------------------------------
 
 	class PRODUCTOS_CATEGORIAS_SEARCH{
@@ -35,7 +35,7 @@
 				 	<br> 
 				 	<input class="form-control" type = 'text' name = 'idCategoria' id = 'idCategoria' placeholder = 'Numero' size = '30' onblur="comprobarEnteroVacio(this);">
 				 	<label class="errormsg onlynumbers" for="idCategoria" id="idCategoria_error" > Solo numeros </label>
-				 	<label class="errormsg tooShortNoNum" for="idCategoria" id="idCategoria_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg tooShortNoNum" for="idCategoria" id="idCategoria_errorLength" >  tooShortNoNum  </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group"><!-- Select para la categoria  -->
@@ -71,7 +71,7 @@
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="SEARCH" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

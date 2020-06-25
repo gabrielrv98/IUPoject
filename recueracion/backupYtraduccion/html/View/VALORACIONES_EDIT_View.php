@@ -2,7 +2,7 @@
 //Clase : VALORACIONES_EDIT_View
 //Creado el : 8-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra los atributos de una valoracion y manda los datos al controlador por post
 //-------------------------------------------------------
 
 	class VALORACIONES_EDIT{

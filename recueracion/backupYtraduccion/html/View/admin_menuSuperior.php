@@ -1,6 +1,6 @@
 <!--  
 Clase : admin_menuHorizontal
-Creado el : 8-06-2020
+Creado el : 1-06-2020
 Creado por: grvidal
 Controla y administra las acciones del menu horizontal para la vista de los administradores
 -------------------------------------------------------

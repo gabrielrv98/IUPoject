@@ -1,5 +1,5 @@
 <?php
-//Clase : MENSAJES_ADD_View
+//Clase : MENSAJES_SEARCH_View
 //Creado el : 21-06-2020
 //Creado por: grvidal
 //Muestra unos campos para ser rellenados y los manda por post al controlador

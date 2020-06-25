@@ -2,7 +2,7 @@
 //Clase : PRODUCTOS_DELETE_View
 //Creado el : 2-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra los atributos de un producto antes de eliminarlo
 //-------------------------------------------------------
 
 		class PRODUCTOS_DELETE{
@@ -21,7 +21,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tedit"> <?php echo $strings['Tedit']; ?></title>
+			<title class="Tedit">  Tedit </title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings 
@@ -45,34 +45,34 @@
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="titulo" class="tituloProducto"><?php echo $strings['tituloProducto'] ?> </label> 
+				 	<label for="titulo" class="tituloProducto"> tituloProducto  </label> 
 				 	<br> 
 				 	<input class="form-control" type = 'text' name = 'titulo' id = 'titulo' placeholder = 'Letras y numeros' size = '30' onblur="comprobarAlfabetico(this,50);" value = '<?php echo $this->valores['TITULO']; ?>' readonly>
-				 	<label class="errormsg letrasynumeros" for="titulo" id="titulo_error" > <?php echo $strings['letrasynumeros'] ?> </label>
-				 	<label class="errormsg tooShortNoNum" for="titulo" id="titulo_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="titulo" id="titulo_error" >  letrasynumeros  </label>
+				 	<label class="errormsg tooShortNoNum" for="titulo" id="titulo_errorLength" >  tooShortNoNum  </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="descripcion" class="descripcionProducto"><?php echo $strings['descripcionProducto'] ?> </label>
+				 	<label for="descripcion" class="descripcionProducto"> descripcionProducto  </label>
 				 	<br> 
-				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabetico(this,200)"  rows="5" readonly ><?php echo $this->valores['DESCRIPCION']; ?> </textarea> 
-				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
-				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabetico(this,200)"  rows="5" readonly > DESCRIPCION  </textarea> 
+				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" >  letrasynumeros   </label>
+				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" > tooShortNoNum  </label>
 				</div>&nbsp;
 
 
 				<div class="form-group">
-				 	<label for="foto" class="picture"><?php echo $strings['picture'] ?>  </label><br> 
+				 	<label for="foto" class="picture"> picture  </label><br> 
 					<img src="<?php echo $this->valores['FOTO'];?>" id="foto" height="42" width="42">
-				 	<label class="errormsg fotoError" for="foto" id="foto_error" > <?php echo $strings['fotoError'] ?> </label>
+				 	<label class="errormsg fotoError" for="foto" id="foto_error" >  fotoError </label>
 				</div>&nbsp;&nbsp;
 
 
 				<div class="form-group">
-				 	<label for="vendedorDNI" class="persona"><?php echo $strings['persona'] ?>  </label>
+				 	<label for="vendedorDNI" class="persona"> persona   </label>
 				 	<input class="form-control" type = 'text' onblur="comprobarAlfabetico(this,200)" value = '<?php echo $nombre; ?>' readonly>
 					<input class="form-control" type = 'text' name = 'vendedorDNI' id = 'vendedorDNI'  onblur="comprobarDni(this)"  size = '9'  value = '<?php echo $this->valores['VENDEDOR_DNI']; ?>' readonly>
-					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > <?php echo $strings['vendedorDNIError'] ?> </label>
+					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" >vendedorDNIError </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
@@ -103,7 +103,7 @@
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="DELETE" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

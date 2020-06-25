@@ -2,7 +2,7 @@
 //Clase : PRODUCTOS_CATEGORIAS_DELETE_View
 //Creado el : 11-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra unos los atributos antes de eliminarlo
 //-------------------------------------------------------
 
 		class PRODUCTOS_CATEGORIAS_DELETE{
@@ -18,7 +18,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tedit"> <?php echo $strings['Tedit']; ?></title>
+			<title class="Tedit">  Tedit </title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings 
@@ -51,7 +51,7 @@
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="DELETE" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

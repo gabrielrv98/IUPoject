@@ -1,5 +1,5 @@
 <?php
-//Clase : Espacio_Controller
+//Clase : Login_Controller
 //Creado el : 2-10-2019
 //Creado por: grvidal
 //Comprueba que el login es correcto 

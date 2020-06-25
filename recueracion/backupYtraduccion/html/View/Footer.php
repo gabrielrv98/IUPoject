@@ -1,5 +1,5 @@
 <!--//Clase : Footer.php
-//Creado el : 2-06-2020
+//Creado el : 1-06-2020
 //Creado por: grvidal
 //Pie de la plataforma con la hora y el alias del creador
 //--------------------------------------------------------->

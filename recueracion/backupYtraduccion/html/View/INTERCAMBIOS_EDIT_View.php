@@ -30,7 +30,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tedit"> <?php echo $strings['Tedit']; ?></title>
+			<title class="Tedit"> Tedit</title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
@@ -215,7 +215,7 @@
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="EDIT" >
-					<?php echo $strings['submit'] ; ?>
+					submit
 				</button>
 
 			</form>

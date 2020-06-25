@@ -18,7 +18,7 @@
 		?>
 			<head>
 				<link rel="stylesheet" type="text/css" href="../css/estilo.css"> 
-				<title class="Tdelete"> <?php echo $strings['Tdelete']; ?> </title>
+				<title class="Tdelete">  Tdelete  ?> </title>
 			</head> 
 
 			<?php include '../View/Header.php'; //header necesita los strings ?>
@@ -62,7 +62,7 @@
 				</div>&nbsp;&nbsp;
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="DELETE" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 				 
 			</form>

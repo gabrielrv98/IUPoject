@@ -96,7 +96,7 @@
 
 				
 				<button type="submit" name='action' class="btn btn-primary submit" value="ADD" >
-					<?php echo $strings['submit'] ; ?>
+					 submit 
 				</button>
 
 			</form>

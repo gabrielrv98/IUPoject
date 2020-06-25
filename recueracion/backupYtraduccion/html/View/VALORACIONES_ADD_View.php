@@ -2,7 +2,7 @@
 //Clase : VALORACIONES_ADD_View
 //Creado el : 18-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra unos campos para ser rellenados y añade la valoracion de un producto referente a un intercambio
 //-------------------------------------------------------
 
 	class VALORACIONES_ADD{
@@ -81,8 +81,8 @@
 					<label for="coment" class="coment"> </label> 
 				 	<br> 
 				 	<textarea name="coment" id="coment" cols='80' rows='3' onblur="comprobarAlfabeticoEnter(this,200);" ></textarea> 
-				 	<label class="errormsg letrasynumeros" for="descripcion" id="coment_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
-				 	<label class="errormsg tooShortNoNum" for="descripcion" id="coment_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="descripcion" id="coment_error" > letrasynumeros </label>
+				 	<label class="errormsg tooShortNoNum" for="descripcion" id="coment_errorLength" > tooShortNoNum</label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">

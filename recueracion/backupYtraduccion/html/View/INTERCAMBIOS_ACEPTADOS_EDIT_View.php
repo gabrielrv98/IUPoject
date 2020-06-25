@@ -24,7 +24,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tedit"> <?php echo $strings['Tedit']; ?></title>
+			<title class="Tedit">Tedit</title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>

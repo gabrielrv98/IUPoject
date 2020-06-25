@@ -1,4 +1,8 @@
-
+<!-- //Clase : users_menuSuperior
+//Creado el : 1-06-20
+//Creado por: grvidal
+//Muestra un menu superior propio de los usuarios
+//------------------------------------------------------- -->
 	<nav>
 		<script>
 		function openNav() {

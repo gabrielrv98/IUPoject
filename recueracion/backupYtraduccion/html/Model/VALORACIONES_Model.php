@@ -1,6 +1,6 @@
 <?php
 //Clase : VALORACIONES_Model
-//Creado el : 8-06-2020
+//Creado el : 18-06-2020
 //Creado por: grvidal
 //Modelo de usuarios para realizar las acciones sobre la base de datos
 //-------------------------------------------------------

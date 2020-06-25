@@ -1,8 +1,9 @@
 <?php
-//----------------------------------------------------
-// DB connection function
-// Can be modified to use CONSTANTS defined in config.inc
-//----------------------------------------------------
+//Clase : CATEGORIAS_Model
+//Creado el : 2-06-2020
+//Creado por: grvidal
+//datos de acceso a la base de datos
+//-------------------------------------------------------
 
 
 function ConnectDB()

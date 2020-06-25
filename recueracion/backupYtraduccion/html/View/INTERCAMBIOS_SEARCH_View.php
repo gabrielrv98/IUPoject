@@ -81,7 +81,7 @@
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="SEARCH" >
-					<?php echo $strings['submit'] ; ?>
+					submit
 				</button>
 
 			</form>

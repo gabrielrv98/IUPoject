@@ -13,11 +13,6 @@ install.php resetear BD
 cambiar menu lateral por superior
 
 
---REVISION 1 ---
-revisar todos los $string y vaciar
-revisar los comentarios inicales
-añadir comentarios explicativos
---------------------------
 
 --REVISION 2 ---
 hacer pruebas.pdf
@@ -26,16 +21,5 @@ revisar todos los js
 
 --REVISION 3 ---
 comprobar todo los metodos como usuario
+añadir comentarios explicativos
 --------------------------
-
-productos showcurrent enviar usuario en parametros
-
-
-//usuarios
-busqueda por categorias
-
-acabar UsuariosShowCurrent (msj y productos relativos)
-restringuir el acceso
-
-//productos categorias
-el js del submit no funciona bien

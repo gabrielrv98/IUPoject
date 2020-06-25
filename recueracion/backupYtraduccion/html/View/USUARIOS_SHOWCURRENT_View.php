@@ -29,7 +29,7 @@ class USUARIOS_SHOWCURRENT {
 
 		?>
 		<head>
-			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC">TShowC</title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 

@@ -1,8 +1,8 @@
 <?php
-//Clase : VALORACIONES_ADD_View
+//Clase : VALORACIONES_SEARCH_View
 //Creado el : 18-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra unos campos para ser rellenados y busca valoraciones que coincidan con esos datos
 //-------------------------------------------------------
 
 	class VALORACIONES_SEARCH{
@@ -58,7 +58,7 @@
 					<label for="coment" class="coment"> </label> 
 				 	<br> 
 				 	<textarea name="coment" id="coment" cols='80' rows='3' onblur="comprobarAlfabeticoEnterVacio(this,200);" ></textarea> 
-				 	<label class="errormsg letrasynumeros" for="descripcion" id="coment_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
+				 	<label class="errormsg letrasynumeros" for="descripcion" id="coment_error" > letrasynumeros  </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
@@ -72,7 +72,7 @@
 
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="SEARCH" >
-					<?php echo $strings['submit'] ; ?>
+					submit
 				</button>
 
 			</form>

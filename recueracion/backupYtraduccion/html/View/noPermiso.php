@@ -1,5 +1,9 @@
 <?php
-
+//Clase : NoPermiso_View
+//Creado el : 1-06-20
+//Creado por: grvidal
+//Muestra una pantalla explicando que el usuario no tiene permisos para estar aqui
+//-------------------------------------------------------
 	class NoPermiso{
 
 
@@ -12,7 +16,7 @@
 			include '../View/Header.php'; 
 ?>
 		<head>
-			<title> <?php echo $strings['Intercambio de tiempo']; ?> </title>
+			<title>  Intercambio de tiempo  </title>
 		</head>
 
 			<h1 class="noPermisoT">No tienes permiso</h1>	 

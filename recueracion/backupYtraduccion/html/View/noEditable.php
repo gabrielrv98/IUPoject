@@ -1,5 +1,9 @@
 <?php
-
+//Clase : NoEditable_View
+//Creado el : 1-06-20
+//Creado por: grvidal
+//Muestra una pantalla explicando que el objeto no se ha podido evitar por falta de permisos 
+//-------------------------------------------------------
 	class NoEditable{
 
 
@@ -12,7 +16,7 @@
 			include '../View/Header.php'; 
 ?>
 		<head>
-			<title> <?php echo $strings['Intercambio de tiempo']; ?> </title>
+			<title class="Intercambio de tiempo">  </title>
 		</head>
 
 			<h1 class="noPermisoT">No tienes permiso</h1>	 

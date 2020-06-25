@@ -1,8 +1,8 @@
 <?php
-//Clase : PRODUCTOS_ADD_View
+//Clase : PRODUCTOS_SEARCH_View
 //Creado el : 3-06-2020
 //Creado por: grvidal
-//Muestra unos campos para ser rellenados y los manda por post al controlador
+//Muestra ofrece un formulario para buscar productos
 //-------------------------------------------------------
 
 	class PRODUCTOS_SEARCH{
@@ -28,43 +28,43 @@
 			<form name = 'Form' action='../Controller/PRODUCTOS_Controller.php?action=SEARCH' method='post' onsubmit="return comprobarProductoSearch(this);" enctype="multipart/form-data">
 				 	
 				<div class="form-group">
-				 	<label for="titulo" class="tituloProducto"><?php echo $strings['tituloProducto'] ?> </label> 
+				 	<label for="titulo" class="tituloProducto"> tituloProducto  </label> 
 				 	<br> 
 				 	<input class="form-control" type = 'text' name = 'titulo' id = 'titulo' placeholder = 'Letras y numeros' size = '30' onblur="comprobarAlfabeticoVacio(this,50);">
-				 	<label class="errormsg letrasynumeros" for="titulo" id="titulo_error" > <?php echo $strings['letrasynumeros'] ?> </label>
-				 	<label class="errormsg tooShortNoNum" for="titulo" id="titulo_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="titulo" id="titulo_error" >  letrasynumeros  </label>
+				 	<label class="errormsg tooShortNoNum" for="titulo" id="titulo_errorLength" >  tooShortNoNum  </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
-				 	<label for="vendedorDNI" class="persona"><?php echo $strings['persona'] ?>  </label>
+				 	<label for="vendedorDNI" class="persona"> persona  </label>
 				 	<select name="vendedorDNI" >
 				 		<?php  foreach ($usuariosProductos as $key) { 
 				 			$patata = $key; ?>
 				 			<option value="<?php echo $key['DNI']; ?>" > <?php echo $key['NOMBRE'], "-",$key['APELLIDOS'] ; ?></option>
 
 				 		<?php } ?>
-						<option value="" class="mix" selected> <?php echo $strings['mix'] ; ?></option>
+						<option value="" class="mix" selected>  mix </option>
 					</select>
-					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" > <?php echo $strings['vendedorDNIError'] ?> </label>
+					<label class="errormsg vendedorDNIError" for="vendedorDNI" id="vendedorDNI_error" >  vendedorDNIError  </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
 				 	<label for="estado" class="disponibilidad">Disponibilidad </label>
 				 	<select name="estado" >
-						<option value="" class="indiferente" selected> <?php echo $strings['indiferente'] ; ?></option>
-						<option value="tramite" class="tramite" > <?php echo $strings['tramite'] ; ?></option>
-						<option value="vendido" class="vendido" > <?php echo $strings['vendido'] ; ?></option>
+						<option value="" class="indiferente" selected> indiferente</option>
+						<option value="tramite" class="tramite" > tramite</option>
+						<option value="vendido" class="vendido" > vendido</option>
 					</select>
-					<label class="errormsg estadoError" for="estado" id="estado_error" > <?php echo $strings['estadoError'] ?> </label>
+					<label class="errormsg estadoError" for="estado" id="estado_error" >estadoError </label>
 				</div>&nbsp;&nbsp;
 
 
 				<div class="form-group">
-				 	<label for="descripcion" class="descripcionProducto"><?php echo $strings['descripcionProducto'] ?> </label>
+				 	<label for="descripcion" class="descripcionProducto">descripcionProducto</label>
 				 	<br> 
 				 	<textarea class="form-control" type = 'text' name = 'descripcion' id = 'descripcion' cols='100' rows='5' placeholder = 'letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoVacio(this,200)" rows="5" ></textarea> 
-				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" > <?php echo $strings['letrasynumeros'] ?>  </label>
-				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="descripcion" id="descripcion_error" > letrasynumeros   </label>
+				 	<label class="errormsg tooShortNoNum" for="descripcion" id="descripcion_errorLength" >  tooShortNoNum  </label>
 				</div>&nbsp;
 
 				<div class="form-group">
@@ -87,7 +87,7 @@
 				<br>
 
 				<button type="submit" name='action' class="btn btn-primary submit" value="SEARCH" >
-					<?php echo $strings['submit'] ; ?>
+ 					submit 					
 				</button>
 
 			</form>

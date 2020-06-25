@@ -78,6 +78,7 @@ $usuario = new USUARIOS_Model($_SESSION['login'],'','','','','','','','','','','
 					else{ // llegan los datos confirmados por post y se eliminan
 						$USUARIOS = get_data_form();
 						$respuesta = $USUARIOS->DELETE();
+						unset($_SESSION['login']);
 						new MESSAGE($respuesta, '../Controller/USUARIOS_Controller.php');
 					}
 				}else new NoPermiso();

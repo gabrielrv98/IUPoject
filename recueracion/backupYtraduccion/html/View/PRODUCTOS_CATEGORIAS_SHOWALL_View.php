@@ -1,8 +1,8 @@
 <?php
-//Clase : USUARIO_SHOWALL_View
+//Clase : PRODUCTOS_CATEGORIAS_SHOWCURRENT_View
 //Creado el : 2-06-20
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los PRODUCTOS_CATEGORIAS
+//Muestra una tabla con todos los productos categorias
 //-------------------------------------------------------
 
 class PRODUCTOS_CATEGORIAS_SHOWALL {
@@ -19,7 +19,7 @@ class PRODUCTOS_CATEGORIAS_SHOWALL {
 		?>
 		
 		<head>
-			<title class="TShowAll"><?php echo $strings['TShowAll']; ?></title>
+			<title class="TShowAll"> TShowAll </title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 

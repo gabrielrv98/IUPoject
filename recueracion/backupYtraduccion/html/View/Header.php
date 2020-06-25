@@ -1,6 +1,6 @@
 <?php
 //Clase : Header.php
-//Creado el : 2-06-2020
+//Creado el : 1-06-2020
 //Creado por: grvidal
 //Cabecera de la plataforma, añade los scripts de traduccion y los botones para traducir. Muestra el titulo de la web y el login del usuario connectado
 // junto con un boton para desconectarse

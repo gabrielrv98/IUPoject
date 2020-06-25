@@ -1,8 +1,8 @@
 <?php
-//Clase : USUARIO_SHOWCURRENT_View
+//Clase : PRODUCTOS_CATEGORIAS_SHOWCURRENT_View
 //Creado el : 11-06-20
 //Creado por: grvidal
-//Muestra unos campos de todos las tuplas de los PRODUCTOS_CATEGORIAS
+//Muestra los detalles de una relacion producto cateogria
 //-------------------------------------------------------
 
 class PRODUCTOS_CATEGORIAS_SHOWCURRENT {
@@ -19,7 +19,7 @@ class PRODUCTOS_CATEGORIAS_SHOWCURRENT {
 		?>
 		
 		<head>
-			<title class="TShowC"><?php echo $strings['TShowC']; ?></title>
+			<title class="TShowC"> TShowC </title>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
 		</head>
 

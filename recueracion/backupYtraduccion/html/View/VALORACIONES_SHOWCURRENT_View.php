@@ -2,7 +2,7 @@
 //Clase : VALORACIONES_SHOWCURRENT_View
 //Creado el : 18-06-20
 //Creado por: grvidal
-//Muestra los detalles de la categoria seleccionada
+//Muestra los detalles de la valoracion seleccionada
 //-------------------------------------------------------
 
 class VALORACIONES_SHOWCURRENT {

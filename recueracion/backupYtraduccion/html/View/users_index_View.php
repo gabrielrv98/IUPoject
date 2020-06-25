@@ -1,4 +1,10 @@
 <?php
+//Clase : users_index_View
+//Creado el : 3-06-20
+//Creado por: grvidal
+//Muestra la pantalla principal, con un campo para buscar por titulo y cantidad
+//unos links para los rankings y una tabla para las categorias
+//-------------------------------------------------------
 
 class Index {
 
