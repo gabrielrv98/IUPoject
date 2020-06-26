@@ -44,6 +44,26 @@ const arrayENGLISH =  {
       'Tsearch' : 'Search',
       'empty' : 'Empty',
       'deleteUser' : 'Delete user',
+      'loginBD' : 'Enter the login and password of the data manager',
+      'ErrorinstalandoDB' : 'There was an error installing the databases, repeat the process or contact the administrator to install it manually',
+
+      //install.php
+      //-----------------------------------
+      'loginErroneoBD' : 'Database manager login or password failed.',
+      'dbeliminada' : 'The database has been successfully removed.',
+      'dbcreadaBien' : 'The database has been successfully created.',
+      'USUARIOCreado' : 'The USUARIOS table was created successfully.',
+      'PRODUCTOSCreado': 'The PRODUCTOS table was created successfully.',
+      'CATEGORIASCreado': 'The CATEGORIAS table was created successfully.',
+      'PRODUCTOS_CATEGORIASCreado': 'The PRODUCTOS_CATEGORIAS table was created successfully.',
+      'INTERCAMBIOCreado': 'The INTERCAMBIOS table was created successfully.',
+      'VALORACIONESCreado': 'The VALORACIONES table was created successfully.',
+      'MENSAJESCreado': 'The MENSAJES table was created successfully.',
+      'USUARIOSINICIALESCreado' : 'Initial users have been successfully added.',
+      'userEliminado' : 'User iu2018 deleted if it existed.',
+      'userPermisosDados' : 'Permissions given to the user iu2018.',
+      'userEspecificandoCar' : 'Added iu2018 user features',
+      //------------------------------------
       
       //verificaiones---------------------------------------------------------
       'letrasynumeros' : 'Field can only contain numbers and letters',

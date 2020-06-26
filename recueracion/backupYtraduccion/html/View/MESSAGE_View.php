@@ -32,7 +32,7 @@ class MESSAGE{
 		<br>
 		<br>
 		<H3 class=" <?php echo $this->string ; ?>" >
-			Mensaje en texto
+			<?php echo $this->string ; ?>
 		</H3>
 		<br>
 		<br>
@@ -59,7 +59,7 @@ class MESSAGE{
 		<?php
 			foreach ($this->string as $key ) {
 				?>
-				<H3 class="<?php echo $key; ?>" ></H3>
+				<H3 class="<?php echo $key; ?>" ><?php echo $key; ?></H3>
 <?php
 			}
 ?>	

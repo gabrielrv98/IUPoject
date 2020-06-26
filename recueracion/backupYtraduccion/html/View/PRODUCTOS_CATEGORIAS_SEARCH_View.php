@@ -1,5 +1,5 @@
 <?php
-//Clase : PRODUCTOS_CATEGORIAS_ADD_View
+//Clase : PRODUCTOS_CATEGORIAS_SEARCH_View
 //Creado el : 10-06-2020
 //Creado por: grvidal
 //Muestra ofrece un formulario para buscar las relaciones productos-categorias

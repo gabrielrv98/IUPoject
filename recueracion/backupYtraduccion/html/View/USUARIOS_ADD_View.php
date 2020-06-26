@@ -80,12 +80,14 @@
 				 	<label for="alergias" class="alergias"> alergias  </label>
 				 	<input class="form-control" type = 'text' name = 'alergias' id = 'alergias' placeholder = 'Letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoVacio(this,50)" >
 				 	<label class="errormsg letrasynumeros" for="alergias" id="alergias_error" > letrasynumeross</label>
+				 	<label class="errormsg tooShortNoNum" for="alergias" id="alergias_errorLength" > tooShortNoNum </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">
 				 	<label for="direccion" class="direccion">direccion  </label>
 				 	<input class="form-control" type = 'text' name = 'direccion' id = 'direccion' placeholder = 'Letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoVacio(this,250)" >
 				 	<label class="errormsg letrasynumeros" for="direccion" id="direccion_error" > letrasynumeros</label>
+					<label class="errormsg tooShortNoNum" for="direccion" id="direccion_errorLength" > tooShortNoNum </label>
 				</div>&nbsp;&nbsp;
 
 				<div class="form-group">

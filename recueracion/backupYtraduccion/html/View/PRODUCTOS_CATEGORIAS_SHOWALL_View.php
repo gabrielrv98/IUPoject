@@ -1,5 +1,5 @@
 <?php
-//Clase : PRODUCTOS_CATEGORIAS_SHOWCURRENT_View
+//Clase : PRODUCTOS_CATEGORIAS_SHOWALL_View
 //Creado el : 2-06-20
 //Creado por: grvidal
 //Muestra una tabla con todos los productos categorias

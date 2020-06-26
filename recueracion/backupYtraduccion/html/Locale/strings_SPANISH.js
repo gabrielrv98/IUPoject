@@ -44,7 +44,26 @@ const arraySPANISH =  {
       'deleteUser' : 'Eliminar usuario',
       'Campus' : 'Campus',
       'ISesion' :'Iniciar sesion',
+      'loginBD' : 'Escribe el login y contraseña del gestor de base de datos',
+      'ErrorinstalandoDB' : 'Hubo un error instalando la base de dato, repita el proceso o contacte con el administrador para que la instale manualmente',
 
+      //install.php
+      //-----------------------------------
+      'loginErroneoBD' : 'Error en el login o contraseña del gestor de base de datos',
+      'dbeliminada' : 'La base de datos ha sido eliminada exitosamente.',
+      'dbcreadaBien' : 'La  base de datos ha sido creada exitosamente.',
+      'USUARIOCreado' : 'La tabla USUARIOS fue creada exitosamente.',
+      'PRODUCTOSCreado': 'La tabla PRODUCTOS fue creada exitosamente.',
+      'CATEGORIASCreado': 'La tabla CATEGORIAS fue creada exitosamente.',
+      'PRODUCTOS_CATEGORIASCreado': 'La tabla PRODUCTOS_CATEGORIAS fue creada exitosamente.',
+      'INTERCAMBIOCreado': 'La tabla INTERCAMBIOS fue creada exitosamente.',
+      'VALORACIONESCreado': 'La tabla VALORACIONES fue creada exitosamente.',
+      'MENSAJESCreado': 'La tabla MENSAJES fue creada exitosamente.',
+      'USUARIOSINICIALESCreado' : 'Los usuarios iniciales se han añadido exitosamente.',
+      'userEliminado' : 'Usuario iu2018 eliminado si existia.',
+      'userPermisosDados' : 'Permisos dados al usuario iu2018.',
+      'userEspecificandoCar' : 'Caracteristicas del usuario iu2018 añadidas',
+      //------------------------------------
 
       //verificaiones---------------------------------------------------------
       'letrasynumeros' : 'El campo solo puede contener letras y números.',

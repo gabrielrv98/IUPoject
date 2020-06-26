@@ -32,7 +32,9 @@
 
 					<div class="form-group">
 					 	<label for="login" class="Login">Login</label>  
-					 	<input class="form-control" type = 'text' name = 'login' id = 'login'  value = '<?php echo $this->valores['LOGIN']; ?>' readonly>
+					 	<input class="form-control" type = 'text' name = 'login' id = 'login' onblur="comprobarAlfabetico(this,15);"  value = '<?php echo $this->valores['LOGIN']; ?>' readonly>
+					 	<label class="errormsg letrasynumeros" for="login" id="login_error" > letrasynumeros</label>
+					 	<label class="errormsg tooShortNoNum" for="login" id="login_errorLength" > tooShortNoNum</label>
 					</div>&nbsp;&nbsp;
 
 					<div class="form-group">
@@ -45,6 +47,7 @@
 					<div class="form-group">
 					 	<label for="DNI" class="DNI">DNI  </label> 
 					 	<input class="form-control" type = 'text' name = 'DNI' id = 'DNI' value = '<?php echo $this->valores['DNI']; ?>' placeholder = 'Utiliza tu dni' size = '9' onblur="comprobarDni(this)" readonly >
+					 	<label class="errormsg dniError" for="DNI" id="DNI_error" > dniError </label>
 					</div>&nbsp;&nbsp; 
 
 					<div class="form-group">
@@ -70,6 +73,7 @@
 					<div class="form-group">
 					 	<label for="email" class="email">Email </label>
 					 	<input class="form-control" type = 'text' name = 'email' id = 'email' placeholder ='Utiliza tu correo' size = '40' value = '<?php echo $this->valores['EMAIL']; ?>' onblur="comprobarEmail(this,60)" readonly >
+					 	<label class="errormsg emailError" for="email" id="email_error" >emailError </label>
 					</div>&nbsp;&nbsp;
 
 					<div class="form-group">
@@ -82,12 +86,14 @@
 					 	<label for="alergias" class="alergias">alergias </label>
 					 	<input class="form-control" type = 'text' name = 'alergias' id = 'alergias' placeholder = 'Letras y numeros' size = '50' value="<?php echo $this->valores['ALERGIAS']; ?>" onblur="comprobarAlfabeticoVacio(this,50)" >
 					 	<label class="errormsg letrasynumeros" for="alergias" id="alergias_error" > letrasynumeros</label>
+				 	<label class="errormsg tooShortNoNum" for="alergias" id="alergias_errorLength" > tooShortNoNum </label>
 					</div>&nbsp;&nbsp;
 
 					<div class="form-group">
 					 	<label for="direccion" class="direccion">direccion </label>
 					 	<input class="form-control" type = 'text' name = 'direccion' id = 'direccion' value="<?php echo $this->valores['DIRECCION']; ?>" placeholder = 'Letras y numeros' size = '50' value = '' onblur="comprobarAlfabeticoVacio(this,250)" >
 					 	<label class="errormsg letrasynumeros" for="direccion" id="direccion_error" > letrasynumeros </label>
+					 	<label class="errormsg tooShortNoNum" for="direccion" id="direccion_errorLength" > tooShortNoNum </label>
 					</div>&nbsp;&nbsp;
 
 					<div class="form-group">

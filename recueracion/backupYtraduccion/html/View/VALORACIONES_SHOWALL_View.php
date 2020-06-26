@@ -1,5 +1,5 @@
 <?php
-//Clase : USUARIO_SHOWALL_View
+//Clase : VALORACIONES_SHOWALL_View
 //Creado el : 18-06-20
 //Creado por: grvidal
 //Muestra unos todas las valoraciones

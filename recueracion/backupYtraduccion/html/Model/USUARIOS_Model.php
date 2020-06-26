@@ -326,7 +326,8 @@ function isAdmin(){
 			)";
 	$resultado = $this->mysqli->query($sql);
 	$resultado = $resultado-> fetch_array();
-	if ($resultado['tipo_usuario'] == 'admin') {
+
+	if ($resultado['tipo_usuario'] == 'admin') {// si el tipo de usuario es administrador devuelve true
 		return true;
 	}else return false;
 }
@@ -522,7 +523,7 @@ function ADD()
 	// si el usuario no existe se devolveria true a toRet
 	$toRet = $this->Register();
 	return $toRet;
-/*
+
 	switch ($toRet) {
 		case '00012':
 			return '00001';
@@ -537,7 +538,7 @@ function ADD()
 			return '00016';
 			break;
 	}
-*/
+
 }
 
 //Metodo Register

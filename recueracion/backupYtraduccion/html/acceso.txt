@@ -1,0 +1,8 @@
+usuario: admin 
+contraseña: admin
+tipo_usuario: admin
+
+usuario: user
+contraseña: user
+tipo_usuario: usuario
+

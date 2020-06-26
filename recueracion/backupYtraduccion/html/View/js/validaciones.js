@@ -9,6 +9,7 @@
 //-------------------------------------------------------
 
 
+
 /*Comprueba que sólo haya caracteres alfanuméricos*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarAlfabetico(campo, size) {
@@ -785,7 +786,20 @@ function comprobarSexoSearch(campo){
 
 }
 
+//Comprueba el login antes de mandarlo por post a Login_Controller
+function comprobar_login(Formu) {
+    var correcto=true; 
 
+        if(!comprobarAlfabetico(Formu.login, 15)){//comprobamos que el nombre esté bien escrito
+            Formu.login.style.border = "2px solid red";
+            correcto = false;
+        } 
+        if(!comprobarAlfabetico(Formu.password, 128)){//comprobamos que la contraseña esté bien escrito
+            Formu.password.style.border = "2px solid red";
+            correcto = false;
+        } 
+    return correcto;
+}
 
 /*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
 /*correcto- variable que cambia de estado a false si uno de las validaciones falla*/

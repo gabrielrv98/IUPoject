@@ -51,6 +51,27 @@ const arrayGALLAECIAN =  {
       'empty' : 'Vacio',
       'deleteUser' : 'Eliminar usuario',
       'ISesion' : 'Iniciar sesión',
+      'loginBD' : 'Escribe o login e contrasinal do xestor de base de datos',
+      'ErrorinstalandoDB' : 'Houbo un error instalando o base de datos, repita o proceso ou contacte co admins para que o instale manualmente',
+
+
+      //install.php
+      //-----------------------------------
+      'loginErroneoBD' : 'Error no login e contraseña do xestor de base de datos',
+      'dbeliminada' : 'A base de datos ha sido eliminada exitosamente.',
+      'dbcreadaBien' : 'A  base de datos fui creada exitosamente.',
+      'USUARIOCreado' : 'A tabla USUARIOS fui creada exitosamente.',
+      'PRODUCTOSCreado': 'A tabla PRODUCTOS fui creada exitosamente.',
+      'CATEGORIASCreado': 'A tabla CATEGORIAS fui creada exitosamente.',
+      'PRODUCTOS_CATEGORIASCreado': 'A tabla PRODUCTOS_CATEGORIAS fui creada exitosamente.',
+      'INTERCAMBIOCreado': 'A tabla INTERCAMBIOS fui creada exitosamente.',
+      'VALORACIONESCreado': 'A tabla VALORACIONES fui creada exitosamente.',
+      'MENSAJESCreado': 'A tabla MENSAJES fui creada exitosamente.',
+      'USUARIOSINICIALESCreado' : 'Od usuarios iniciais añadironse exitosamente.',
+      'userEliminado' : 'Usuario iu2018 eliminado se existia.',
+      'userPermisosDados' : 'Permisos dados ao usuario iu2018.',
+      'userEspecificandoCar' : 'Caracteristicas do usuario iu2018 engadidas',
+      //------------------------------------
 
 //verificacion
       'letrasynumeros' : 'O campo só pode conter letras e números.',

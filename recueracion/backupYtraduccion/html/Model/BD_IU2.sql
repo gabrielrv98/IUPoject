@@ -232,7 +232,7 @@ INSERT INTO USUARIOS (
 					'admin',
 					'admin',
 					'00000001R',
-					'Admin1',
+					'Admin',
 					'Admin',
 					'000000000',
 					'admin@email.com',
