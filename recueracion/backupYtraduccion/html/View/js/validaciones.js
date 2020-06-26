@@ -29,7 +29,7 @@ function comprobarAlfabetico(campo, size) {
 /*Comprueba que sólo haya caracteres alfanuméricos o que esta vacio*/
 /*abc- es una expresión regular que comprueba si el carácter es alfanuméricos de principio a fin*/
 function comprobarAlfabeticoVacio(campo, size) {
-    var abc =/^[\wñº, ]*$/;
+    var abc =/^[\wñº,. ]*$/;
 
     if(campo.value.length <= 0){// si el campo esta vacio se acepta como valido
         document.getElementById(campo.name+"_error").style.visibility = "hidden";
