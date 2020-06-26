@@ -16,7 +16,7 @@
 		?>
 		<head>
 			<link rel="stylesheet" type="text/css" href="../View/css/estilo.css"> 
-			<title class="Tadd"> <?php echo $strings['Tadd']; ?></title>
+			<title class="Tadd"> Tadd</title>
 		</head>
 		
 		<?php include '../View/Header.php'; //header necesita los strings ?>
@@ -30,13 +30,13 @@
 				 <!--Nombre de la Categoria  -->
 				<div class="form-group">
 					<!--  Etiqueta de referencia-->
-				 	<label for="nombre" class="nombreCategoria"><?php echo $strings['nombreCategoria'] ?> </label> 
+				 	<label for="nombre" class="nombreCategoria">nombreCategoria </label> 
 				 	<br> 
 				 	<!-- Entrada de datos  -->
 				 	<input class="form-control" type = 'text' name = 'nombre' id = 'nombre' placeholder = 'Letras y numeros' size = '30' onblur="comprobarAlfabetico(this,50);" required>
 				 	<!-- Cadena de control de error -->
-				 	<label class="errormsg letrasynumeros" for="nombre" id="nombre_error" > <?php echo $strings['letrasynumeros'] ?> </label>
-				 	<label class="errormsg tooShortNoNum" for="nombre" id="nombre_errorLength" > <?php echo $strings['tooShortNoNum'] ?> </label>
+				 	<label class="errormsg letrasynumeros" for="nombre" id="nombre_error" > letrasynumeros </label>
+				 	<label class="errormsg tooShortNoNum" for="nombre" id="nombre_errorLength" > tooShortNoNum </label>
 				</div>&nbsp;&nbsp;
 				
 				<!-- Boton de submit  -->

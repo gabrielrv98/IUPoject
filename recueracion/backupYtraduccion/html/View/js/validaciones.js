@@ -986,7 +986,23 @@ function comprobarProductoSearchShort(Formu){
 /*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
 function comprobarCategoria(Formu){
     var correcto=true; 
+         
+        if(!comprobarAlfabeticoVacio(Formu.nombre, 50)){//comprobamos que el nombre esté bien escrito
+            Formu.nombre.style.border = "2px solid red";
+            correcto = false;
+        } 
+    return correcto;
+}
 
+/*Comprueba que todos los campos obligatorios estén escritos y que todos los campos escritos estén cubiertos correctamente,se envía en USUARIOS_ADD_View */
+/*correcto- variable que cambia de estado a false si uno de las validaciones falla*/
+function comprobarCategoriaEdit(Formu){
+    var correcto=true; 
+        if(!comprobarEntero(Formu.id)){//comprobamos que el nombre esté bien escrito
+                elem.style.border = "2px solid red";
+                correcto = false; 
+        }
+         
         if(!comprobarAlfabeticoVacio(Formu.nombre, 50)){//comprobamos que el nombre esté bien escrito
             Formu.nombre.style.border = "2px solid red";
             correcto = false;

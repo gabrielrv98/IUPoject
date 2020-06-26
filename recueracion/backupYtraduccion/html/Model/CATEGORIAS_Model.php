@@ -28,8 +28,9 @@ function __construct($id,$nombre){
 //existe ya en la tabla
 function ADD()
 {	
-	$sql = "select * from CATEGORIAS where NOMBRE_CATEGORIA = '".$this->nombre."'";
-
+	$sql = "SELECT * 
+		FROM CATEGORIAS 
+		WHERE NOMBRE_CATEGORIA = '$this->nombre'";
 		$result = $this->mysqli->query($sql);
 		if ($result->num_rows == 1){  // el elemento ya existe
 				return '00001';
