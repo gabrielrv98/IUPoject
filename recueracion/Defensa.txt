@@ -1,0 +1,10 @@
+Hola Soy Gabriel y he vista la correccion y la verdad es que a mi me funcionaba todo sin problema,
+el fichero install.sh, solo necesita que el fichero Files y el Fle/loggerDB.txt esten en la carpeta /var/html pero se 
+puede ejecutar desde cualquier lado
+
+
+Y en cuanto al fichero install.php se ejecuta tras la primera vez que se ejecuta la aplicacion, y en mi ordenador
+crea la base de datos llamada TIMEEXCHANGE perfectamente.
+
+Ademas la funcion recogida en instal.php se llama desde Login_Controller.php al intentar establecer una conexion 
+con la base de datos y que esta falle.
